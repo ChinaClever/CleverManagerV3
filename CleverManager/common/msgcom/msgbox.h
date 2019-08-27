@@ -6,6 +6,8 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QInputDialog>
+#include <QGridLayout>
+#include "backcolourcom.h"
 
 /*询问消息框*/
 class QuMsgBox : public QMessageBox
