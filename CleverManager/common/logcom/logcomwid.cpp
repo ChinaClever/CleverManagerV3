@@ -15,7 +15,7 @@ LogComWid::LogComWid(QWidget *parent) :
     ui(new Ui::LogComWid)
 {
     ui->setupUi(this);
-    //    groupBox_background_icon(this);
+    groupBox_background_icon(this);
 
     mSqlTableWid = new SqlTableWid(ui->widget);
     mDateWidget = new LOG_DateWidget(ui->dateWid);

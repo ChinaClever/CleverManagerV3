@@ -16,8 +16,7 @@ NewUsrDlg::NewUsrDlg(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    groupBox_background_icon(this);
-//    button_style_sheet(this);/*设置按键样式*/
+    groupBox_background_icon(this);
 
     QRegExp regx("[0-9]+$");
     QValidator *validator = new QRegExpValidator(regx, ui->TelephonelineEdit);
