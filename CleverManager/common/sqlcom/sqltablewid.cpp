@@ -6,7 +6,6 @@ SqlTableWid::SqlTableWid(QWidget *parent) :
     ui(new Ui::SqlTableWid)
 {
     ui->setupUi(this);
-    mTableView = new SqlTableView(ui->viewWid);
     mExportDlg = new SqlExportDlg(this);
 }
 
@@ -15,31 +14,33 @@ SqlTableWid::~SqlTableWid()
     delete ui;
 }
 
-void SqlTableWid::initWid(const QString &name, BasicSql *db, QStringList &list,  SqlBtnBar *btn)
+
+void SqlTableWid::initWid(BasicSql *db, SqlBtnBar *btn)
 {
     mBtnBar = btn;
-    mTableTile = name;
-
-    mTableView->initTable(db, list);
+    mTableTile = db->tableTile;
     btn->setParent(ui->btnWid);
+    btn->gridLayout(ui->btnWid);
+
+    mTableView = new SqlTableView(ui->viewWid);
+    mTableView->initTable(db);
     initFunSLot();
 }
 
-void SqlTableWid::setNoEdit()
-{
-    mBtnBar->setNoEdit();
-    mTableView->setNoEdit();
-}
+
 
 void SqlTableWid::initFunSLot()
 {
     connect(mBtnBar,SIGNAL(exportSig()),this,SLOT(exportSlot()));
     connect(mBtnBar,SIGNAL(delSig()),mTableView,SLOT(delSlot()));
-    connect(mBtnBar,SIGNAL(modifySig()),mTableView,SLOT(submitSlot()));
+    connect(mTableView,SIGNAL(delSig(int)),mBtnBar,SLOT(delSlot(int)));
+    connect(mBtnBar,SIGNAL(delSig(int)),mTableView,SLOT(delSlot(int)));
+    connect(mBtnBar,SIGNAL(modifySig()),mTableView,SLOT(modifySlot()));
+    connect(mTableView,SIGNAL(modifySig(int)),mBtnBar,SLOT(modifySlot(int)));
     connect(mBtnBar,SIGNAL(clearSig()),mTableView,SLOT(clearTableSlot()));
     connect(mBtnBar,SIGNAL(refreshSig()),mTableView,SLOT(refreshSlot()));
-    connect(mBtnBar,SIGNAL(querySig(const QString &)),mTableView,SLOT(queryFilter(const QString &)));
-    connect(this,SIGNAL(querySig(const QString &)),mTableView,SLOT(queryFilter(const QString &)));
+    connect(mBtnBar,SIGNAL(querySig(const QString &)),mTableView,SLOT(querySlot(const QString &)));
+    connect(this,SIGNAL(querySig(const QString &)),mTableView,SLOT(querySlot(const QString &)));
     connect(mBtnBar,SIGNAL(refreshSig()),this,SIGNAL(refreshSig()));
 }
 

@@ -13,6 +13,9 @@ BasicSql::BasicSql(QObject *parent) :
     QObject(parent)
 {
     initDb();
+    headList << tr("编号") << tr("日期") << tr("时间");
+    hiddens << 0;
+
     //标记表
     QString cmd = "create table if not exists markingtable("
                   "name TEXT primary key not null,"
@@ -92,6 +95,10 @@ int BasicSql::count(const QString &column_name, const QString &condition)
     return count;
 }
 
+int BasicSql::counts()
+{
+    return count("id", "");
+}
 
 /**
  * @brief 函数返回列的所有值

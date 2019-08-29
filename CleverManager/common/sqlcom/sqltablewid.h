@@ -15,8 +15,7 @@ public:
     explicit SqlTableWid(QWidget *parent = 0);
     ~SqlTableWid();
 
-    void setNoEdit();
-    void initWid(const QString& name, BasicSql *db, QStringList &list,  SqlBtnBar *btn);
+    void initWid(BasicSql *db,  SqlBtnBar *btn);
 
 signals:
     void refreshSig();

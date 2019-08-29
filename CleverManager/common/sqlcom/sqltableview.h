@@ -3,6 +3,7 @@
 #include <QTableView>
 #include <QHeaderView>
 #include <QMessageBox>
+#include <QGridLayout>
 #include "sqltablemodel.h"
 
 class SqlTableView : public QWidget
@@ -11,17 +12,25 @@ class SqlTableView : public QWidget
 public:
     explicit SqlTableView(QWidget *parent = nullptr);
 
-    void initTable(BasicSql *db, QStringList &list);
+    void initTable(BasicSql *db);
 
     bool refreshTable(const QString &table);
     void setStretch();
+    void setColumnsHidden();
     void setColumnHidden(int column);
     int getList(QList<QStringList> &list);
-    void setNoEdit();
     void insertRow(QStringList &list);
+    int getCurrentId();
+
+signals:
+    void modifySig(int);
+    void delSig(int);
+
 
 public slots:
     void delSlot();
+    void delSlot(int);
+    void modifySlot();
     void clearTableSlot();
     void refreshSlot();
     void submitSlot();
@@ -29,12 +38,10 @@ public slots:
 
 public:
     BasicSql *mDb;
-    QStringList mHeadList;
     SqlTableModel *model;
 
 private:
     QTableView *tableView;
-    QList<int> mHiddens;
 };
 
 #endif // SQLTABLEVIEW_H

@@ -13,7 +13,6 @@ SqlTableModel::SqlTableModel(QWidget *parent) :
 {
     model = new QSqlTableModel(this);
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-
     model->setSort(0, Qt::AscendingOrder); //选择按照 第一列 排序
 }
 

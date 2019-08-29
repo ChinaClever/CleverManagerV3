@@ -14,7 +14,7 @@ SqlExportDlg::SqlExportDlg(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    groupBox_background_icon(this);
+//    groupBox_background_icon(this);
     this->setWindowTitle(tr("日志导出"));
     mExportThread = new Excel_SaveThread(this);
 
@@ -30,11 +30,11 @@ SqlExportDlg::~SqlExportDlg()
 void SqlExportDlg::init(const QString &title, QList<QStringList> &list)
 {
     mList = list;
-    mTableTile = title + tr("导出");
+   QString fn = title + tr("导出");
 
     ui->progressBar->setValue(0);
-    ui->titleLab->setText(mTableTile);
-    ui->fileEdit->setText(mTableTile);
+    ui->titleLab->setText(fn);
+    ui->fileEdit->setText(fn);
 }
 
 /**
@@ -47,7 +47,7 @@ void SqlExportDlg::on_pushButton_clicked()
     dlg.setDirectory("E:");
     if(dlg.exec() == QDialog::Accepted) {
         QString fn = dlg.selectedFiles().at(0);
-        if(fn.right(0) != "/")  fn += "/";
+        if(fn.right(1) != "/")  fn += "/";
         ui->pathEdit->setText(fn);
     }
 }
@@ -76,6 +76,9 @@ bool SqlExportDlg::checkInput()
         CriticalMsgBox box(this, str + tr("\n文件已存在！!"));
         return false;
     }
+    ui->exportBtn->setEnabled(false);
+    ui->quitBtn->setEnabled(false);
+    ui->progressBar->setValue(1);
 
     return true;
 }
@@ -108,7 +111,8 @@ void SqlExportDlg::on_exportBtn_clicked()
     bool ret = checkInput();
     if(ret) {
         timer->start(100);
-        mExportThread->saveData(mTableTile, mList);
+        QString fn = ui->pathEdit->text() + ui->fileEdit->text();
+        mExportThread->saveData(fn, mList);
     }
 }
 

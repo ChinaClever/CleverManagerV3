@@ -2,10 +2,10 @@
 #define DB_USR_H
 #include "basicsql.h"
 
-struct sUserItem{
-    sUserItem():id(-1),jur(0){}
-    int id,jur;
-    QString dateTime,name,pwd,email,telephone,remarks;
+struct sUserItem : public DbBasicItem{
+    sUserItem():jur(0){}
+    int jur;
+    QString name,pwd,jurisdiction, email,telephone,remarks;
 };
 
 
@@ -18,15 +18,16 @@ public:
     static DbUser* get();
     QString tableName(){return "users";}
 
-    void insertItem(sUserItem& item);
-    void updateItem(const sUserItem& item);
+    int contains(const QString &name);
+    bool insertItem(sUserItem& item);
+    bool updateItem(const sUserItem& item);
 
-    QVector<sUserItem> selItemsByName(const QString& Name);
+    sUserItem selItemsByName(const QString& Name);
     void removeItemsByName(const QString& name);
 
 protected:
     void createTable();
-    void modifyItem(const sUserItem& item,const QString& cmd);
+    bool modifyItem(const sUserItem& item,const QString& cmd);
     void selectItem(QSqlQuery &query,sUserItem &item);
 };
 

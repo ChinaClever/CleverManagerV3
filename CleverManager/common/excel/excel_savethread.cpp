@@ -69,7 +69,7 @@ void Excel_SaveThread::writeFile(QList<QStringList> &list)
                 excel.setCellString(i+1, j+1, list.at(i).at(j));
             }
             mSize++;
-            msleep(15);
+            msleep(25);
         }
         excel.save();
     }

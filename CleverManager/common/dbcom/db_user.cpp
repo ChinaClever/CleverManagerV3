@@ -10,6 +10,11 @@
 DbUser::DbUser()
 {
     createTable();
+    tableTile = tr("用户管理");
+    hiddens << 1 << 2 << 5 << 9;
+    headList << tr("用户") << tr("权限") << tr("密码")
+             << tr("邮箱") << tr("电话") << tr("备注")
+             <<  tr("标记");
 }
 
 void DbUser::createTable()
@@ -17,8 +22,10 @@ void DbUser::createTable()
     QString cmd =
             "create table if not exists %1("
             "id             INTEGER primary key autoincrement not null,"
-            "dateTime       TEXT,"
+            "date           TEXT,"
+            "time           TEXT,"
             "name           TEXT not null,"
+            "jurisdiction   TEXT,"
             "pwd            TEXT,"
             "email          TEXT,"
             "telephone      INTEGER,"
@@ -39,68 +46,83 @@ DbUser *DbUser::get()
     return sington;
 }
 
-void DbUser::insertItem(sUserItem &item)
+bool DbUser::insertItem(sUserItem &item)
 {
     item.id = maxId()+1;
-    QString cmd = "insert into %1 (id,dateTime,name,pwd,email,telephone,remarks,jur) "
-                  "values(:id,:dateTime,:name,:pwd,:email,:telephone,:remarks,:jur)";
-    modifyItem(item,cmd.arg(tableName()));
-    emit itemChanged(item.id,Insert);
+    QString cmd = "insert into %1 (id,date,time,name,pwd,email,jurisdiction,telephone,remarks,jur) "
+                  "values(:id,:date,:time,:name,:pwd,:email,:jurisdiction,:telephone,:remarks,:jur)";
+    bool ret = modifyItem(item,cmd.arg(tableName()));
+    if(ret) emit itemChanged(item.id,Insert);
+    return ret;
 }
 
+int DbUser::contains(const QString &name)
+{
+    QString condition = QString("where name=\'%1\'").arg(name);
 
-void DbUser::updateItem(const sUserItem &item)
+    return count("name", condition);
+}
+
+bool DbUser::updateItem(const sUserItem &item)
 {
     QString cmd = "update %1 set "
                   "name        = :name,"
                   "pwd         = :pwd,"
                   "email       = :email,"
+                  "jurisdiction   = :jurisdiction,"
                   "telephone   = :telephone,"
                   "remarks     = :remarks,"
                   "jur         = :jur"
                   " where id   = :id";
-    modifyItem(item,cmd.arg(tableName()));
-    emit itemChanged(item.id,Update);
+    bool ret = modifyItem(item,cmd.arg(tableName()));
+    if(ret) emit itemChanged(item.id,Update);
+
+    return ret;
 }
 
-void DbUser::modifyItem(const sUserItem &item, const QString &cmd)
-{
+bool DbUser::modifyItem(const sUserItem &item, const QString &cmd)
+{   
     QSqlQuery query;
     query.prepare(cmd);
     query.bindValue(":id",item.id);
-    query.bindValue(":dateTime",item.dateTime);
+    query.bindValue(":date",item.date);
+    query.bindValue(":time",item.time);
     query.bindValue(":name",item.name);
     query.bindValue(":pwd",item.pwd);
     query.bindValue(":email",item.email);
+    query.bindValue(":jurisdiction",item.jurisdiction);
     query.bindValue(":telephone",item.telephone);
     query.bindValue(":remarks",item.remarks);
     query.bindValue(":jur",item.jur);
-    if(!query.exec())
-        throwError(query.lastError());
+    bool ret = query.exec();
+    if(!ret)  throwError(query.lastError());
+    return ret;
 }
 
 void DbUser::selectItem(QSqlQuery &query,sUserItem &item)
 {
     item.id = query.value("id").toInt();
-    item.dateTime = query.value("dateTime").toString();
+    item.date = query.value("date").toString();
+    item.time = query.value("time").toString();
     item.name = query.value("name").toString();
     item.pwd = query.value("pwd").toString();
     item.email = query.value("email").toString();
+    item.jurisdiction = query.value("jurisdiction").toString();
     item.telephone = query.value("telephone").toString();
     item.remarks = query.value("remarks").toString();
     item.jur = query.value("jur").toInt();
 }
 
 
-QVector<sUserItem> DbUser::selItemsByName(const QString& Name)
+sUserItem DbUser::selItemsByName(const QString& Name)
 {
-    return selectItems(QString("where name = %1").arg(Name));
+    QVector<sUserItem> items = selectItems(QString("where name = %1").arg(Name));
+    return items.first();
 }
 
 
 void DbUser::removeItemsByName(const QString& name)
 {
-    QVector<sUserItem> items = selItemsByName(name);
-    foreach(const sUserItem& item,items)
-        removeItem(item);
+    sUserItem item = selItemsByName(name);
+    removeItem(item);
 }

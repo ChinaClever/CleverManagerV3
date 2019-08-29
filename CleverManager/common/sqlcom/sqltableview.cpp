@@ -1,11 +1,12 @@
 #include "sqltableview.h"
-#include <QGridLayout>
 
 SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)
 {
-    tableView = new QTableView(this);
+    tableView = new QTableView(parent);
     tableView->setSortingEnabled(true);
-    tableView->setSelectionMode(QAbstractItemView::SingleSelection);//
+    tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //禁用编辑功能
     tableView->resizeColumnsToContents();
 
     model = new SqlTableModel(tableView);
@@ -14,22 +15,20 @@ SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)
 
     QGridLayout *gridLayout = new QGridLayout(parent);
     gridLayout->setContentsMargins(0, 0, 0, 0);
-    gridLayout->addWidget(this);
+    gridLayout->addWidget(tableView);
 }
 
 
 /**
  * @brief 初始化表格
  */
-void SqlTableView::initTable(BasicSql *db, QStringList &list)
+void SqlTableView::initTable(BasicSql *db)
 {
+    this->mDb = db;
     QString table = db->tableName();
     this->refreshTable(table);
-
-    mHeadList = list;
-    model->setHeaders(mHeadList);
+    model->setHeaders(db->headList);
 }
-
 
 
 /**
@@ -37,17 +36,27 @@ void SqlTableView::initTable(BasicSql *db, QStringList &list)
  */
 void SqlTableView::setStretch()
 {
-    tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-/**
- * @brief 禁用编辑功能
- */
-void SqlTableView::setNoEdit()
+
+int SqlTableView::getCurrentId()
 {
-    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //禁用编辑功能
+    int id = -1;
+    int curRow = tableView->currentIndex().row();
+    if(curRow >= 0) {
+        QModelIndex index = model->model->index(curRow, 0);
+        id = model->model->data(index, Qt::DisplayRole).toInt();
+    }
+    return id;
 }
+
+void SqlTableView::modifySlot()
+{
+    int id = getCurrentId();
+    if(id >= 0) emit modifySig(id);
+}
+
 
 void SqlTableView::submitSlot()
 {
@@ -91,22 +100,28 @@ bool SqlTableView::refreshTable(const QString &table)
 {
     bool ret = model->refreshTable(table);
     if(ret) {
-        mHiddens.clear();
         tableView->sortByColumn(0, Qt::DescendingOrder); // 降序排列
-        setColumnHidden(0);
+        setColumnsHidden();
     }
     return  ret;
 }
 
+void SqlTableView::setColumnsHidden()
+{
+    for(int i=0; i<mDb->hiddens.size(); ++i) {
+        int column = mDb->hiddens.at(i);
+        setColumnHidden(column);
+    }
+}
+
 void SqlTableView::setColumnHidden(int column)
 {
-    mHiddens << column;
     tableView->setColumnHidden(column, true);
 }
 
 void SqlTableView::refreshSlot()
 {
-    initTable(mDb, mHeadList);
+    initTable(mDb);
 }
 
 /**
@@ -118,7 +133,7 @@ void SqlTableView::clearTableSlot()
     BasicSql* db = mDb;
     db->clear();
     db->createTable();
-    initTable(mDb, mHeadList);
+    initTable(mDb);
 }
 
 /**
@@ -126,23 +141,35 @@ void SqlTableView::clearTableSlot()
  */
 void SqlTableView::delSlot()
 {
+    int id = getCurrentId();
+    if(id >= 0) emit delSig(id);
+}
+
+void SqlTableView::delSlot(int)
+{
     int curRow = tableView->currentIndex().row();
     model->removeRow(curRow);
 }
 
 
-
 int SqlTableView::getList(QList<QStringList> &list)
 {
-    list.append(mHeadList);
+    QStringList head;
+    head << tr("编号");
+    for(int i=0; i<mDb->headList.size(); ++i) {
+        if(mDb->hiddens.contains(i)) continue;
+        head << mDb->headList.at(i);
+    }
+    list.append(head);
 
     int row = model->model->rowCount();
     for(int j=0; j<row; ++j) {
         QStringList strList;
+        strList << QString::number(j+1);
         int column = model->model->columnCount();
         for(int i=0; i<column; ++i)
         {
-            if(mHiddens.contains(i)) continue;
+            if(mDb->hiddens.contains(i)) continue;
             QModelIndex index = model->model->index(j, i);
             strList << model->model->data(index, Qt::DisplayRole).toString();
         }

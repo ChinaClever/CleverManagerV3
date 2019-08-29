@@ -18,8 +18,6 @@ LogComWid::LogComWid(QWidget *parent) :
     //    groupBox_background_icon(this);
 
     mSqlTableWid = new SqlTableWid(ui->widget);
-    mSqlTableWid->setNoEdit();
-
     mDateWidget = new LOG_DateWidget(ui->dateWid);
     connect(mDateWidget,SIGNAL(selectedSig(const QString &)), mSqlTableWid,SIGNAL(querySig(const QString &)));
     connect(mSqlTableWid,SIGNAL(refreshSig()), mDateWidget,SLOT(updateSlot()));
@@ -30,11 +28,11 @@ LogComWid::~LogComWid()
     delete ui;
 }
 
-void LogComWid::initWid(const QString& name, BasicSql *db, QStringList &list,  SqlBtnBar *btn)
+void LogComWid::initWid(BasicSql *db, SqlBtnBar *btn)
 {
-    ui->groupBox->setTitle(name);
+    ui->groupBox->setTitle(db->tableTile);
     mDateWidget->setTable(db->tableName());
-    mSqlTableWid->initWid(name, db, list, btn);
+    mSqlTableWid->initWid(db, btn);
 }
 
 

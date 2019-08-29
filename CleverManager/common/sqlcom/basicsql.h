@@ -6,7 +6,7 @@
 
 #define LOG_DELAY 1
 
-struct DbBasicItem{
+struct DbBasicItem {
     DbBasicItem():id(-1){
         QDateTime dateTime = QDateTime::currentDateTime();
         date = dateTime.toString("yyyy-MM-dd");
@@ -15,6 +15,7 @@ struct DbBasicItem{
 
     int id;
     QString date, time;
+    QStringList headList;
 };
 
 class BasicSql : public QObject
@@ -23,12 +24,16 @@ class BasicSql : public QObject
 public:
     explicit BasicSql(QObject *parent = 0);
 
+    QList<int> hiddens;
+    QString tableTile;
+    QStringList headList;
     enum{Remove,Insert,Update};
     virtual QString tableName() = 0;
 
     int  maxId(const QString &idName = "id");
     void remove(const QString &condition);
 
+    int counts();
     int  maxId(const QString &idName, const QString &condition);
     int count(const QString &column_name, const QString &condition);
 
@@ -87,7 +92,7 @@ public:
     }
 
 protected:
-    virtual void selectItem(QSqlQuery &query,T &item)=0; //纯虚函数
+    virtual void selectItem(QSqlQuery &,T &){} //纯虚函数
     QVector<T> selectItems(const QString &condition)
     {
         QVector<T> items;

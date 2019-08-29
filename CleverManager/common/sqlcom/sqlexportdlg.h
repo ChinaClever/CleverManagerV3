@@ -32,7 +32,6 @@ protected slots:
 private:
     Ui::SqlExportDlg *ui;
     QTimer *timer;
-    QString mTableTile;
     QList<QStringList> mList;
     Excel_SaveThread *mExportThread;
 };

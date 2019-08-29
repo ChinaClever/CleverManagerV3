@@ -1,7 +1,7 @@
 #ifndef LOGCOMWID_H
 #define LOGCOMWID_H
 
-#include "sqltablewid.h"
+#include "logbtnbar.h"
 #include "log_datewidget.h"
 
 namespace Ui {
@@ -16,7 +16,7 @@ public:
     explicit LogComWid(QWidget *parent = 0);
     ~LogComWid();
 
-    void initWid(const QString& name, BasicSql *db, QStringList &list,  SqlBtnBar *btn);
+    void initWid(BasicSql *db,  SqlBtnBar *btn);
 
 protected:
     Ui::LogComWid *ui;
