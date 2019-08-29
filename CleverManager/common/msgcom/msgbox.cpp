@@ -24,7 +24,7 @@ QuMsgBox::QuMsgBox(QWidget *parent,const QString &strContext) : QMessageBox(pare
     cancelBut->setFocus();
     confirmBut->setFocus();
 
-    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
+//    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
 }
 
 QuMsgBox::~QuMsgBox()
@@ -58,7 +58,7 @@ WaringMsgBox::WaringMsgBox(QWidget *parent, const QString &strContext) : QMessag
 
     confirmBut->setFocus();
     cancelBut->setFocus();
-    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
+//    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
 }
 
 WaringMsgBox::~WaringMsgBox()
@@ -88,8 +88,7 @@ InfoMsgBox::InfoMsgBox(QWidget *parent, const QString &strContext) :
     confirmBut->setMinimumSize(75,29);
 
     confirmBut->setFocus();
-    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
-
+//    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
     //QTimer::singleShot(AutoOutTime*1000,this,SLOT(close())); 自动关闭
 
     exec(); /* 自动 运行*/
@@ -113,8 +112,7 @@ CriticalMsgBox::CriticalMsgBox(QWidget *parent, const QString &strContext) :
     confirmBut->setMinimumSize(75,29);
 
     confirmBut->setFocus();
-    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
-
+//    setStyleSheet( "QPushButton:hover{background-color:rgb(91, 237, 238);}" );
 //    QTimer::singleShot(AutoOutTime*1000,this,SLOT(close())); 自动关闭
 
     exec(); /* 自动 运行*/

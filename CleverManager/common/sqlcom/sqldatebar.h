@@ -21,6 +21,10 @@ public:
 private slots:
     void on_startDateBtn_clicked();
     void on_endDateBtn_clicked();
+    void on_dayRadio_clicked(bool checked);
+    void on_weekRadio_clicked(bool checked);
+    void on_monthRadio_clicked(bool checked);
+    void on_currentMonthRadio_clicked(bool checked);
 
 private:
     Ui::SqlDateBar *ui;

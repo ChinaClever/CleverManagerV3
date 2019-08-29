@@ -28,13 +28,16 @@ include(setups/setups.pri)
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    navbarwid.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    navbarwid.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    navbarwid.ui
 
 RESOURCES += \
     images/image.qrc

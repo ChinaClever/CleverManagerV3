@@ -7,6 +7,10 @@ SqlTableWid::SqlTableWid(QWidget *parent) :
 {
     ui->setupUi(this);
     mExportDlg = new SqlExportDlg(this);
+
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
 }
 
 SqlTableWid::~SqlTableWid()
@@ -19,7 +23,6 @@ void SqlTableWid::initWid(BasicSql *db, SqlBtnBar *btn)
 {
     mBtnBar = btn;
     mTableTile = db->tableTile;
-    btn->setParent(ui->btnWid);
     btn->gridLayout(ui->btnWid);
 
     mTableView = new SqlTableView(ui->viewWid);

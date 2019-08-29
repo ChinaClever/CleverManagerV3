@@ -8,7 +8,6 @@
 #include "usrlanddlg.h"
 #include "ui_usrlanddlg.h"
 #include <QApplication>
-bool usr_landFlag = false;
 
 UsrLandDlg::UsrLandDlg(QWidget *parent) :
     QDialog(parent),
@@ -16,10 +15,10 @@ UsrLandDlg::UsrLandDlg(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    this->setWindowTitle(tr("用户登录"));
-    setWindowIcon(QIcon(":/images/logo.jpg"));
+    //    this->setWindowTitle(tr("用户登录"));
+    //    setWindowIcon(QIcon(":/images/logo.jpg"));
 
-    QPixmap map1(":/images/usr_land.jpg");
+    QPixmap map1(":/image/usr_land.jpg");
     QPixmap map=map1.scaled(800,600);
     QPalette palette;
     // palette.setBrush(QPalette::Background, QBrush(QPixmap(":/images/usr_land.jpg")));
@@ -39,16 +38,6 @@ UsrLandDlg::~UsrLandDlg()
     delete ui;
 }
 
-/**
- * @brief 执行登录窗口
- * @return
- */
-bool UsrLandDlg::landWidget(void)
-{
-    this->exec();
-
-    return LandingUser::get()->land;
-}
 
 /**
  * @brief 选择工作模式
@@ -56,7 +45,7 @@ bool UsrLandDlg::landWidget(void)
  */
 int UsrLandDlg::selectWork(void)
 {
-    QMessageBox msgBox(this);
+    QMessageBox msgBox;
     msgBox.setWindowTitle(tr("操作选择"));
     //    com_setBackColour(tr("信息提示"),&msgBox);
     msgBox.setText(tr("信息提示"));
@@ -92,13 +81,13 @@ int UsrLandDlg::selectWork(void)
 bool UsrLandDlg::quitWidget(void)
 {
     QString name = LandingUser::get()->user.name;
-    QuMsgBox box(this,tr("是否退出当前用户:%1").arg(name));
+    QuMsgBox box(0,tr("是否退出当前用户:%1").arg(name));
     bool ret = box.Exec();
     if(ret) {
         sLandLogItem item;
         item.name = name;
         item.remarks = tr("用户退出");
-        DbUserLandLog::get()->insertItem(item);
+        DbLandLog::get()->insertItem(item);
         LandingUser::get()->land = false;
     }
 
@@ -130,7 +119,7 @@ void UsrLandDlg::usrLand(void)
                     sLandLogItem item;
                     item.name = name;
                     item.remarks = tr("用户登陆");
-                    DbUserLandLog::get()->insertItem(item);
+                    DbLandLog::get()->insertItem(item);
 
                     this->accept();
                 }
@@ -159,6 +148,7 @@ void UsrLandDlg::on_landBtn_clicked()
 
 void UsrLandDlg::on_pushButton_clicked()
 {
+    InfoMsgBox box(0,tr("程序即将退出！"));
     exit(0);
 }
 

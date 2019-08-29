@@ -1,5 +1,11 @@
 #include "landinguser.h"
 
+
+bool land_usr_jur()
+{
+    return LandingUser::get()->user.jur;
+}
+
 LandingUser::LandingUser()
 {
     land = false;
@@ -30,4 +36,5 @@ void LandingUser::init()
         db->insertItem(user);
     }
 }
+
 

@@ -133,7 +133,7 @@ bool NewUsrDlg::saveUsrInfo(sUserItem &user)
         sLandLogItem item;
         item.name = LandingUser::get()->user.name;
         item.remarks = tr("新增用户:%1").arg(user.name);;
-        DbUserLandLog::get()->insertItem(item);
+        DbLandLog::get()->insertItem(item);
     }
 
     return ret;

@@ -1,5 +1,6 @@
 #include "sqlbtnbar.h"
 #include "ui_sqlbtnbar.h"
+extern bool land_usr_jur();
 
 SqlBtnBar::SqlBtnBar(QWidget *parent) :
     QWidget(parent),
@@ -33,6 +34,7 @@ void SqlBtnBar::gridLayout(QWidget *parent)
     QGridLayout *gridLayout = new QGridLayout(parent);
     gridLayout->setContentsMargins(0, 0, 0, 0);
     gridLayout->addWidget(this);
+    this->setParent(parent);
 }
 
 void SqlBtnBar::setNoEdit()
@@ -49,15 +51,30 @@ void SqlBtnBar::on_refreshBtn_clicked()
     emit refreshSig();
 }
 
+bool SqlBtnBar::checkJur()
+{
+    bool ret = true; //land_usr_jur();
+    if(!ret) {
+        InfoMsgBox box(this, tr("您无权操作此功能！"));
+    }
+    return ret;
+}
+
 void SqlBtnBar::on_addBtn_clicked()
 {
-    addBtn();
-    emit refreshSig();
+    bool ret = checkJur();
+    if(ret) {
+        addBtn();
+        emit refreshSig();
+    }
 }
 
 void SqlBtnBar::on_modifyBtn_clicked()
-{   
-    emit modifySig();
+{
+    bool ret = checkJur();
+    if(ret) {
+        emit modifySig();
+    }
 }
 
 void SqlBtnBar::modifySlot(int id)
@@ -86,7 +103,10 @@ void SqlBtnBar::delSlot(int id)
 
 void SqlBtnBar::on_delBtn_clicked()
 {
-    emit delSig();
+    bool ret = checkJur();
+    if(ret) {
+        emit delSig();
+    }
 }
 
 void SqlBtnBar::on_clearBtn_clicked()
@@ -101,19 +121,28 @@ void SqlBtnBar::on_clearBtn_clicked()
 
 void SqlBtnBar::on_queryBtn_clicked()
 {
-    queryBtn();
+   QString str = queryBtn();
+   if(!str.isEmpty()) {
+       emit querySig(str);
+   }
 }
 
 void SqlBtnBar::on_exportBtn_clicked()
 {
-    emit exportSig();
+    bool ret = checkJur();
+    if(ret) {
+        emit exportSig();
+    }
 }
 
 void SqlBtnBar::on_importBtn_clicked()
 {
-    bool ret = importBtn();
+    bool ret = checkJur();
     if(ret) {
-        InfoMsgBox box(this, tr("数据导入成功!"));
-        emit refreshSig();
+        ret = importBtn();
+        if(ret) {
+            InfoMsgBox box(this, tr("数据导入成功!"));
+            emit refreshSig();
+        }
     }
 }

@@ -32,11 +32,12 @@ signals:
     void querySig(const QString &);
 
 protected:
+    bool checkJur();
     virtual void addBtn(){}
-    virtual void queryBtn(){}
     virtual void modifyBtn(int){}
     virtual bool delBtn(int){return true;}
     virtual bool importBtn(){return false;}
+    virtual QString queryBtn(){return "";}
 
 public slots:
     void delSlot(int);

@@ -28,8 +28,8 @@ void DbUser::createTable()
             "jurisdiction   TEXT,"
             "pwd            TEXT,"
             "email          TEXT,"
-            "telephone      INTEGER,"
-            "remarks        INTEGER,"
+            "telephone      VCHAR,"
+            "remarks        VCHAR,"
             "jur            INTEGER);";
     QSqlQuery query;
     if(!query.exec(cmd.arg(tableName())))
@@ -116,7 +116,7 @@ void DbUser::selectItem(QSqlQuery &query,sUserItem &item)
 
 sUserItem DbUser::selItemsByName(const QString& Name)
 {
-    QVector<sUserItem> items = selectItems(QString("where name = %1").arg(Name));
+    QVector<sUserItem> items = selectItems(QString("where name = \'%1\'").arg(Name));
     return items.first();
 }
 

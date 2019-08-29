@@ -14,7 +14,7 @@ SqlExportDlg::SqlExportDlg(QWidget *parent) :
 {
 
     ui->setupUi(this);
-//    groupBox_background_icon(this);
+    groupBox_background_icon(this);
     this->setWindowTitle(tr("日志导出"));
     mExportThread = new Excel_SaveThread(this);
 

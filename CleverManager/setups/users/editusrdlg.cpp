@@ -36,7 +36,7 @@ bool EditUsrDlg::saveUsrInfo(sUserItem &user)
         sLandLogItem item;
         item.name = LandingUser::get()->user.name;
         item.remarks = tr("修改用户");
-        DbUserLandLog::get()->insertItem(item);
+        DbLandLog::get()->insertItem(item);
     }
 
     return ret;

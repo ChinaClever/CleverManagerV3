@@ -138,7 +138,7 @@ color: rgb(0，0，0);</string>
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="../images/image.qrc">
+    <iconset>
      <normaloff>:/images/other/icon_close.png</normaloff>:/images/other/icon_close.png</iconset>
    </property>
   </widget>
@@ -280,8 +280,6 @@ color: rgb(0，0，0);</string>
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="../images/image.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

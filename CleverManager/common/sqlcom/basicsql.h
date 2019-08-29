@@ -3,6 +3,7 @@
 
 #include <QtSql>
 #include <QObject>
+#include "common.h"
 
 #define LOG_DELAY 1
 

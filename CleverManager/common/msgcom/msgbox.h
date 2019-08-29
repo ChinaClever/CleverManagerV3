@@ -1,6 +1,7 @@
 #ifndef MSGBOX_H
 #define MSGBOX_H
 
+#include <QtCore>
 #include <QObject>
 #include <QtGui>
 #include <QMessageBox>

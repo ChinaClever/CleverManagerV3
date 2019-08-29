@@ -11,8 +11,10 @@ include(logcom/logcom.pri)
 include(backcolour/backcolour.pri)
 
 HEADERS += \	
+    $$PWD/common.h
 	
 SOURCES += \	
+    $$PWD/common.cpp
 
 FORMS += \
 

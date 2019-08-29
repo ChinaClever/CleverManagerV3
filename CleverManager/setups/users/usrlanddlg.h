@@ -16,7 +16,6 @@ public:
     explicit UsrLandDlg(QWidget *parent = 0);
     ~UsrLandDlg();
 
-    bool landWidget(void);
     bool quitWidget(void);
     int selectWork(void);
 

@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "usermainwid.h"
+#include "navbarwid.h"
+#include "setupmainwid.h"
+#include "logmainwid.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,9 +18,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+protected slots:
+    void initFunSLot();
+    void navBarSlot(int);
+
 private:
     Ui::MainWindow *ui;
-
+    NavBarWid *mNavBar;
+    SetUpMainWid *mSetup;
+    LogMainWid *mLog;
     UserMainWid *mUserWid;
 };
 

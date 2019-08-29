@@ -7,11 +7,11 @@ struct sLandLogItem : public DbBasicItem{
     QString name,remarks;
 };
 
-class DbUserLandLog : public SqlBasic<sLandLogItem>
+class DbLandLog : public SqlBasic<sLandLogItem>
 {
-    DbUserLandLog();
+    DbLandLog();
 public:
-    static DbUserLandLog* get();
+    static DbLandLog* get();
     QString tableName(){return "landlogs";}
     bool insertItem(sLandLogItem& item);
 

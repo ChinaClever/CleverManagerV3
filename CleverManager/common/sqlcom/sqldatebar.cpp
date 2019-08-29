@@ -6,8 +6,7 @@ SqlDateBar::SqlDateBar(QWidget *parent) :
     ui(new Ui::SqlDateBar)
 {
     ui->setupUi(this);
-    ui->startDateEdit->setDate(QDate::currentDate());
-    ui->endDateEdit->setDate(QDate::currentDate());
+    on_dayRadio_clicked(true);
 }
 
 SqlDateBar::~SqlDateBar()
@@ -46,4 +45,40 @@ void SqlDateBar::on_endDateBtn_clicked()
     MsgCalendarDlg dlg(this);
     dlg.exec();
     ui->endDateEdit->setDate(dlg.getDate());
+}
+
+void SqlDateBar::on_dayRadio_clicked(bool checked)
+{
+    if(checked) {
+        QDate date = QDate::currentDate();
+        ui->startDateEdit->setDate(date);
+        ui->endDateEdit->setDate(date);
+    }
+}
+
+void SqlDateBar::on_weekRadio_clicked(bool checked)
+{
+    if(checked) {
+        QDate date = QDate::currentDate();
+        ui->startDateEdit->setDate(date.addDays(-7));
+        ui->endDateEdit->setDate(QDate::currentDate());
+    }
+}
+
+void SqlDateBar::on_monthRadio_clicked(bool checked)
+{
+    if(checked) {
+        QDate date = QDate::currentDate();
+        ui->startDateEdit->setDate(date.addMonths(-1));
+        ui->endDateEdit->setDate(QDate::currentDate());
+    }
+}
+
+void SqlDateBar::on_currentMonthRadio_clicked(bool checked)
+{
+    if(checked) {
+        QDate date = QDate::currentDate();
+        ui->startDateEdit->setDate(date.addDays(1-date.day()));
+        ui->endDateEdit->setDate(QDate::currentDate());
+    }
 }
