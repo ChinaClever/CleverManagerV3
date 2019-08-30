@@ -6,7 +6,7 @@ DbPduAlarm::DbPduAlarm()
     tableTile = tr("PDU报警日志");
     hiddens  << 4;
     headList << tr("机房") << tr("模块") << tr("机柜")  << tr("主备路") << tr("设备类型")
-             << tr("设备IP") << tr("级联编号") << tr("报警内容") << tr("报警描述");
+             << tr("设备IP") << tr("级联编号") << tr("报警项目") << tr("报警描述");
 }
 
 
@@ -33,7 +33,7 @@ void DbPduAlarm::createTable()
 }
 
 
-DbPduAlarm *DbPduAlarm::get()
+DbPduAlarm *DbPduAlarm::bulid()
 {
     static DbPduAlarm* sington = nullptr;
     if(sington == nullptr)

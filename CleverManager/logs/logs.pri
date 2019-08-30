@@ -4,23 +4,25 @@ INCLUDEPATH += $$PWD
 
 
 HEADERS += \	
-    $$PWD/landlog/log_landbar.h \
-    $$PWD/landlog/log_landquerydlg.h \
     $$PWD/logmainwid.h \
-    $$PWD/pdualarmlog/log_pdualarmquerydlg.h \
-    $$PWD/pdualarmlog/log_pdualarmbar.h
+    $$PWD/logquerydlg/log_pdualarmquerydlg.h \
+    $$PWD/logquerydlg/log_userquerydlg.h \
+    $$PWD/logquerydlg/log_cabhrsquerydlg.h \
+    $$PWD/logquerydlg/log_querydlgs.h \
+    $$PWD/logquerydlg/log_cabelecquerydlg.h
 	
 SOURCES += \	
-    $$PWD/landlog/log_landbar.cpp \
-    $$PWD/landlog/log_landquerydlg.cpp \
     $$PWD/logmainwid.cpp \
-    $$PWD/pdualarmlog/log_pdualarmquerydlg.cpp \
-    $$PWD/pdualarmlog/log_pdualarmbar.cpp
+    $$PWD/logquerydlg/log_pdualarmquerydlg.cpp \
+    $$PWD/logquerydlg/log_userquerydlg.cpp \
+    $$PWD/logquerydlg/log_cabhrsquerydlg.cpp \
+    $$PWD/logquerydlg/log_cabelecquerydlg.cpp
 
 FORMS += \
-    $$PWD/landlog/log_landquerydlg.ui \
     $$PWD/logmainwid.ui \
-    $$PWD/pdualarmlog/log_pdualarmquerydlg.ui
+    $$PWD/logquerydlg/log_pdualarmquerydlg.ui \
+    $$PWD/logquerydlg/log_userquerydlg.ui \
+    $$PWD/logquerydlg/log_cabhrsquerydlg.ui
 
 
 

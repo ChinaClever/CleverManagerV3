@@ -39,12 +39,27 @@
       </property>
       <item>
        <property name="text">
-        <string>用户登陆日志</string>
+        <string>用户操作日志</string>
        </property>
       </item>
       <item>
        <property name="text">
         <string>PDU报警日志</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PDU数据纪录</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>机柜数据纪录</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>机柜电能计算</string>
        </property>
       </item>
      </widget>

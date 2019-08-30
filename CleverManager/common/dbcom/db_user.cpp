@@ -38,7 +38,7 @@ void DbUser::createTable()
     }
 }
 
-DbUser *DbUser::get()
+DbUser *DbUser::bulid()
 {
     static DbUser* sington = nullptr;
     if(sington == nullptr)
@@ -124,5 +124,5 @@ sUserItem DbUser::selItemsByName(const QString& Name)
 void DbUser::removeItemsByName(const QString& name)
 {
     sUserItem item = selItemsByName(name);
-    removeItem(item);
+    remove(item.id);
 }

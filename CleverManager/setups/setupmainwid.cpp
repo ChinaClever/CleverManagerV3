@@ -6,6 +6,7 @@ SetUpMainWid::SetUpMainWid(QWidget *parent) :
     ui(new Ui::SetUpMainWid)
 {
     ui->setupUi(this);
+    groupBox_background_icon(this);
     QTimer::singleShot(rand()%50,this,SLOT(initFunSLot()));
 
 }

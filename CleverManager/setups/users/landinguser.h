@@ -1,6 +1,6 @@
 #ifndef LANDINGUSER_H
 #define LANDINGUSER_H
-#include "dbuserlandlog.h"
+#include "dbuserlog.h"
 
 class LandingUser
 {

@@ -15,7 +15,7 @@ class DbPduAlarm : public SqlBasic<sDbAlarmItem>
 {
     DbPduAlarm();
 public:
-    static DbPduAlarm* get();
+    static DbPduAlarm* bulid();
     QString tableName(){return "pdualarmlogs";}
     bool insertItem(sDbAlarmItem& item);
 

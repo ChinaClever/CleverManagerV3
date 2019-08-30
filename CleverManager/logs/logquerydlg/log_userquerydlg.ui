@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Log_LandQueryDlg</class>
- <widget class="QDialog" name="Log_LandQueryDlg">
+ <class>Log_UserQueryDlg</class>
+ <widget class="QDialog" name="Log_UserQueryDlg">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -6,7 +6,7 @@ Log_PduAlarmQueryDlg::Log_PduAlarmQueryDlg(QWidget *parent) :
     ui(new Ui::Log_PduAlarmQueryDlg)
 {
     ui->setupUi(this);
-    this->setWindowTitle(tr("PDU报警日志查询对话框"));
+    this->setWindowTitle(tr("查询对话框"));
     groupBox_background_icon(this);
     mDateBar = new SqlDateBar(ui->dateWid);
 }

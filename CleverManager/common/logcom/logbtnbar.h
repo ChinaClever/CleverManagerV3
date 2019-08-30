@@ -1,17 +1,20 @@
 #ifndef LOGBTNBAR_H
 #define LOGBTNBAR_H
 
-#include "sqltablewid.h"
+#include "logquerybase.h"
 
 class LogBtnBar : public SqlBtnBar
 {
     Q_OBJECT
 public:
     explicit LogBtnBar(QWidget *parent = nullptr);
+    void setDlg(LogQueryBase *dlg){mQueryDlg=dlg;}
 
-signals:
+protected:
+    virtual QString queryBtn();
 
-public slots:
+protected:
+    LogQueryBase *mQueryDlg;
 };
 
 #endif // LOGBTNBAR_H

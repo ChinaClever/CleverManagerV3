@@ -111,6 +111,7 @@ void SqlBtnBar::on_delBtn_clicked()
 
 void SqlBtnBar::on_clearBtn_clicked()
 {
+    if(!checkJur()) return;
     QString str = tr("是否清空纪录?");
     QuMsgBox box(this, str);
     bool ret = box.Exec();

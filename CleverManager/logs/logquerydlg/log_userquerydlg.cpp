@@ -1,22 +1,22 @@
-#include "log_landquerydlg.h"
-#include "ui_log_landquerydlg.h"
+#include "log_userquerydlg.h"
+#include "ui_log_userquerydlg.h"
 
-Log_LandQueryDlg::Log_LandQueryDlg(QWidget *parent) :
+Log_UserQueryDlg::Log_UserQueryDlg(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Log_LandQueryDlg)
+    ui(new Ui::Log_UserQueryDlg)
 {
     ui->setupUi(this);
-    this->setWindowTitle(tr("用户登陆查询对话框"));
+    this->setWindowTitle(tr("查询对话框"));
     groupBox_background_icon(this);
     mDateBar = new SqlDateBar(ui->dateWid);
 }
 
-Log_LandQueryDlg::~Log_LandQueryDlg()
+Log_UserQueryDlg::~Log_UserQueryDlg()
 {
     delete ui;
 }
 
-QString Log_LandQueryDlg::getCmd()
+QString Log_UserQueryDlg::getCmd()
 {
     QString cmd = mDateBar->getDate();
     QString str = ui->userEdit->text();
@@ -27,12 +27,12 @@ QString Log_LandQueryDlg::getCmd()
     return cmd;
 }
 
-void Log_LandQueryDlg::on_quitBtn_clicked()
+void Log_UserQueryDlg::on_quitBtn_clicked()
 {
     this->close();
 }
 
-void Log_LandQueryDlg::on_okBtn_clicked()
+void Log_UserQueryDlg::on_okBtn_clicked()
 {
     this->accept();
 }

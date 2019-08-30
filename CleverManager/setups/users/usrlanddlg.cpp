@@ -84,10 +84,10 @@ bool UsrLandDlg::quitWidget(void)
     QuMsgBox box(0,tr("是否退出当前用户:%1").arg(name));
     bool ret = box.Exec();
     if(ret) {
-        sLandLogItem item;
+        sUserLogItem item;
         item.name = name;
         item.remarks = tr("用户退出");
-        DbLandLog::get()->insertItem(item);
+        DbUserLog::bulid()->insertItem(item);
         LandingUser::get()->land = false;
     }
 
@@ -103,7 +103,7 @@ void UsrLandDlg::usrLand(void)
     QString name = ui->nameLineEdit->text();
     if(!name.isEmpty())
     {
-        DbUser* db = DbUser::get();
+        DbUser* db = DbUser::bulid();
         int rtn = db->contains(name);
         if(rtn>0)
         {
@@ -116,10 +116,10 @@ void UsrLandDlg::usrLand(void)
                     LandingUser::get()->land = true;
                     LandingUser::get()->user = user;
 
-                    sLandLogItem item;
+                    sUserLogItem item;
                     item.name = name;
                     item.remarks = tr("用户登陆");
-                    DbLandLog::get()->insertItem(item);
+                    DbUserLog::bulid()->insertItem(item);
 
                     this->accept();
                 }

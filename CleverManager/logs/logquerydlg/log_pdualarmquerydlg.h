@@ -9,7 +9,7 @@ namespace Ui {
 class Log_PduAlarmQueryDlg;
 }
 
-class Log_PduAlarmQueryDlg : public QDialog
+class Log_PduAlarmQueryDlg : public QDialog, public LogQueryBase
 {
     Q_OBJECT
 
@@ -18,6 +18,7 @@ public:
     ~Log_PduAlarmQueryDlg();
 
     QString getCmd();
+    int Exec() {return this->exec();}
 
 private slots:
     void on_quitBtn_clicked();

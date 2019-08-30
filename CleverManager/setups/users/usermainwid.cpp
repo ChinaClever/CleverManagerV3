@@ -10,7 +10,7 @@ UserMainWid::UserMainWid(QWidget *parent) :
     LandingUser::get();
     mBtnBar = new UserBtnBar;
     mDbTable = new SqlTableWid(ui->widget);
-    mDbTable->initWid(DbUser::get(), mBtnBar);
+    mDbTable->initWid(DbUser::bulid(), mBtnBar);
 }
 
 UserMainWid::~UserMainWid()

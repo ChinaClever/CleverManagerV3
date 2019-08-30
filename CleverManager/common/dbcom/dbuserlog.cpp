@@ -1,15 +1,15 @@
-#include "dbuserlandlog.h"
+#include "dbuserlog.h"
 
-DbLandLog::DbLandLog()
+DbUserLog::DbUserLog()
 {
     createTable();
-    tableTile = tr("用户登陆日志");
+    tableTile = tr("用户日志");
 //    hiddens << 1 << 2 << 5 << 9;
     headList << tr("用户名") << tr("描述");
 }
 
 
-void DbLandLog::createTable()
+void DbUserLog::createTable()
 {
     QString cmd =
             "create table if not exists %1("
@@ -25,16 +25,16 @@ void DbLandLog::createTable()
 }
 
 
-DbLandLog *DbLandLog::get()
+DbUserLog *DbUserLog::bulid()
 {
-    static DbLandLog* sington = nullptr;
+    static DbUserLog* sington = nullptr;
     if(sington == nullptr)
-        sington = new DbLandLog();
+        sington = new DbUserLog();
     return sington;
 }
 
 
-bool DbLandLog::insertItem(sLandLogItem &item)
+bool DbUserLog::insertItem(sUserLogItem &item)
 {
     QString cmd = "insert into %1 (date,time,name,remarks) "
                   "values(:date,:time,:name,:remarks)";
@@ -42,7 +42,7 @@ bool DbLandLog::insertItem(sLandLogItem &item)
 }
 
 
-bool DbLandLog::modifyItem(const sLandLogItem &item, const QString &cmd)
+bool DbUserLog::modifyItem(const sUserLogItem &item, const QString &cmd)
 {
     QSqlQuery query;
     query.prepare(cmd);

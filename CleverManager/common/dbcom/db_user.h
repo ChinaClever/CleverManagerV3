@@ -15,7 +15,7 @@ class DbUser : public SqlBasic<sUserItem>
     Q_OBJECT
     DbUser();
 public:
-    static DbUser* get();
+    static DbUser* bulid();
     QString tableName(){return "users";}
 
     int contains(const QString &name);

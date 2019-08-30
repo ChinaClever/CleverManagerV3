@@ -25,7 +25,7 @@ bool UserBtnBar::delBtn(int id)
 {
     bool ret = false;
 
-    DbUser* db = DbUser::get();
+    DbUser* db = DbUser::bulid();
     int rtn = db->counts();
     if(rtn > 1) {
         QString name = LandingUser::get()->user.name;

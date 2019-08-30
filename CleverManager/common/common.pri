@@ -8,6 +8,7 @@ include(sqlcom/sqlcom.pri)
 include(cfgcom/cfgcom.pri)
 include(msgcom/msgcom.pri)
 include(logcom/logcom.pri)
+include(elecom/elecom.pri)
 include(backcolour/backcolour.pri)
 
 HEADERS += \	

@@ -30,13 +30,25 @@ BasicSql::BasicSql(QObject *parent) :
  * @brief 删除
  * @param condition
  */
-void BasicSql::remove(const QString &condition)
+bool BasicSql::remove(const QString &condition)
 {
     QSqlQuery query;
-    if(!query.exec(QString("DELETE FROM %1 WHERE %2").arg(tableName()).arg(condition))) {
+    bool ret = query.exec(QString("DELETE FROM %1 WHERE %2").arg(tableName()).arg(condition));
+    if(!ret) {
         qDebug()<< "remove:" << query.lastError();
         throwError(query.lastError());
     }
+
+    return ret;
+}
+
+bool BasicSql::remove(int id)
+{
+    bool ret =  remove(QString("id = %1").arg(id));
+    if(ret) {
+        emit itemChanged(id, Remove);
+    }
+    return ret;
 }
 
 
@@ -45,18 +57,19 @@ void BasicSql::remove(const QString &condition)
  * @param idName
  * @return
  */
-int BasicSql::maxId(const QString &idName)
+int BasicSql::maxId()
 {
-    int max_id = 0;
+    int id = 0;
     QSqlQuery query;
-    if(query.exec(QString("select max(%1) from %2").arg(idName).arg(tableName())))
+    if(query.exec(QString("select max(%1) from %2").arg("id").arg(tableName())))
     {
         if(query.next())
-            max_id = query.value(0).toInt();
+            id = query.value(0).toInt();
     } else {
         qDebug()<< "maxId:" << query.lastError();
     }
-    return max_id;
+
+    return id;
 }
 
 
@@ -67,15 +80,38 @@ int BasicSql::maxId(const QString &idName)
  */
 int BasicSql::maxId(const QString &idName, const QString &condition)
 {
-    int max_id = 0;
+    int id = 0;
     QSqlQuery query;
     if(query.exec(QString("select max(%1) from %2 %3").arg(idName).arg(tableName()).arg(condition)))
     {
         if(query.next())
-            max_id = query.value(0).toInt();
+            id = query.value(0).toInt();
     } else
         qDebug()<< "maxId:" << query.lastError();
-    return max_id;
+    return id;
+}
+
+int BasicSql::maxId(const QString &condition)
+{
+    return maxId("id", QString("where %1").arg(condition));
+}
+
+int BasicSql::minId(const QString &idName, const QString &condition)
+{
+    int id = 0;
+    QSqlQuery query;
+    if(query.exec(QString("select MIN(%1) from %2 %3").arg(idName).arg(tableName()).arg(condition)))
+    {
+        if(query.next())
+            id = query.value(0).toInt();
+    } else
+        qDebug()<< "maxId:" << query.lastError();
+    return id;
+}
+
+int BasicSql::minId(const QString &condition)
+{
+    return minId("id", QString("where %1").arg(condition));
 }
 
 /**
@@ -172,8 +208,8 @@ void BasicSql::throwError(const QSqlError &err)
 
 bool BasicSql::clear()
 {
-//    QString cmd = QString("truncate table %1").arg(tableName());
-     QString cmd = QString("DROP  table %1").arg(tableName());
+    //    QString cmd = QString("truncate table %1").arg(tableName());
+    QString cmd = QString("DROP  table %1").arg(tableName());
     QSqlQuery query(cmd);
     bool ret = query.exec(cmd);
     if(!ret){

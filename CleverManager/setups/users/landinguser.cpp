@@ -23,7 +23,7 @@ LandingUser *LandingUser::get()
 
 void LandingUser::init()
 {
-    DbUser* db = DbUser::get();
+    DbUser* db = DbUser::bulid();
     int ret = db->counts();
     if(ret < 1) {
         user.jur = 1;

@@ -1,8 +1,9 @@
 #ifndef LOGMAINWID_H
 #define LOGMAINWID_H
 
-#include "landlog/log_landbar.h"
-#include "pdualarmlog/log_pdualarmbar.h"
+#include "logquerydlg/log_querydlgs.h"
+#include "dbpduhrs.h"
+#include "eleccomwid.h"
 
 namespace Ui {
 class LogMainWid;
@@ -27,6 +28,9 @@ private:
 
     LogComWid *mLandLog;
     LogComWid *mPduALarmLog;
+    LogComWid *mPduHrs;
+    LogComWid *mCabHrs;
+    ElecComWid *mCabElec;
 };
 
 #endif // LOGMAINWID_H

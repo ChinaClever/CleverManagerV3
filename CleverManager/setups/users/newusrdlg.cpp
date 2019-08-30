@@ -46,7 +46,7 @@ void NewUsrDlg::editTitle(const QString &str)
  */
 void NewUsrDlg::checkUsr(void)
 {
-    DbUser* db = DbUser::get();
+    DbUser* db = DbUser::bulid();
     int ret = db->counts();
     if(ret <= 1) {
         ui->authcomboBox->setCurrentIndex(1);
@@ -124,16 +124,16 @@ bool NewUsrDlg::informationCheck(void)
 
 bool NewUsrDlg::saveUsrInfo(sUserItem &user)
 {
-    DbUser* db = DbUser::get();
+    DbUser* db = DbUser::bulid();
     int rtn = db->contains(user.name);
     if(rtn > 0) return false;
 
     bool ret = db->insertItem(user);
     if(ret) {
-        sLandLogItem item;
+        sUserLogItem item;
         item.name = LandingUser::get()->user.name;
         item.remarks = tr("新增用户:%1").arg(user.name);;
-        DbLandLog::get()->insertItem(item);
+        DbUserLog::bulid()->insertItem(item);
     }
 
     return ret;

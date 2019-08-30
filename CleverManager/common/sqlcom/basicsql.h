@@ -16,7 +16,16 @@ struct DbBasicItem {
 
     int id;
     QString date, time;
-    QStringList headList;
+};
+
+struct DbBasicElecItem {
+    DbBasicElecItem():id(-1){
+        startele=endele=ele=price=fees=0;
+    }
+
+    int id;
+    QString startdt, enddt;
+    double startele, endele, ele, price, fees;
 };
 
 class BasicSql : public QObject
@@ -31,11 +40,17 @@ public:
     enum{Remove,Insert,Update};
     virtual QString tableName() = 0;
 
-    int  maxId(const QString &idName = "id");
-    void remove(const QString &condition);
+    bool remove(int id);
+    bool remove(const QString &condition);
+
+    int maxId();
+    int maxId(const QString &condition);
+    int maxId(const QString &idName, const QString &condition);
+
+    int minId(const QString &condition);
+    int minId(const QString &idName, const QString &condition);
 
     int counts();
-    int  maxId(const QString &idName, const QString &condition);
     int count(const QString &column_name, const QString &condition);
 
     QStringList listColumn(const QString &column_name, const QString &condition);
@@ -64,17 +79,11 @@ template <typename T> //模板
 class SqlBasic:public BasicSql
 {
 public:
-    void removeById(int id) {
-        remove(QString("id = %1").arg(id));
-        emit itemChanged(id,Remove);
-    }
 
-    void removeItem(const T& item) {
-        removeById(item.id);
-    }
     QVector<T> allItems() {
         return selectItems("");
     }
+
     QVector<T> findItemById(int id){
         return selectItems(QString("where id = %1").arg(id));
     }

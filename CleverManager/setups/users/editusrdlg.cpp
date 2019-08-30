@@ -22,7 +22,7 @@ EditUsrDlg::~EditUsrDlg()
 void EditUsrDlg::setUsrId(int id)
 {
     mId = id;
-    sUserItem user = DbUser::get()->findById(id);
+    sUserItem user = DbUser::bulid()->findById(id);
     loadUsrInfo(user);
 }
 
@@ -30,13 +30,13 @@ void EditUsrDlg::setUsrId(int id)
 bool EditUsrDlg::saveUsrInfo(sUserItem &user)
 {
     user.id = mId;
-    DbUser* db = DbUser::get();
+    DbUser* db = DbUser::bulid();
     bool ret = db->updateItem(user);
     if(ret) {
-        sLandLogItem item;
+        sUserLogItem item;
         item.name = LandingUser::get()->user.name;
         item.remarks = tr("修改用户");
-        DbLandLog::get()->insertItem(item);
+        DbUserLog::bulid()->insertItem(item);
     }
 
     return ret;
