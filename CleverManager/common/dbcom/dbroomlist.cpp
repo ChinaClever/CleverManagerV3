@@ -12,7 +12,7 @@ DbRoomList::DbRoomList()
 {
     createTable();
     tableTile = tr("机房列表");
-    hiddens << 3;
+    hiddens << 2;
     headList.clear();
     headList << tr("编号") << tr("机房") << tr("描述");
 }

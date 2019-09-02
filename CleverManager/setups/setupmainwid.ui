@@ -42,6 +42,21 @@
         <string>用户管理</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>PDU列表</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>机柜列表</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>机房列表</string>
+       </property>
+      </item>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">

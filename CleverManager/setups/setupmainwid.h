@@ -2,6 +2,7 @@
 #define SETUPMAINWID_H
 
 #include "usermainwid.h"
+#include "dbpdudevices.h"
 
 namespace Ui {
 class SetUpMainWid;
@@ -14,6 +15,10 @@ class SetUpMainWid : public QWidget
 public:
     explicit SetUpMainWid(QWidget *parent = 0);
     ~SetUpMainWid();
+
+protected:
+    void initPdusTable();
+
 
 protected slots:
     void initFunSLot();
