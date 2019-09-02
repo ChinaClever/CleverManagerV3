@@ -13,6 +13,7 @@ QString ElecBtnBar::queryBtn()
         int ret = mQueryDlg->Exec();
         if(ret == QDialog::Accepted) {
             emit clearSig(); // 清除现成数据
+            QCoreApplication::processEvents(QEventLoop::AllEvents,35);
             str = mQueryDlg->getCmd();
             emit refreshSig();
         }

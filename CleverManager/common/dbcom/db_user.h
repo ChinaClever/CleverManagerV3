@@ -25,6 +25,7 @@ public:
     sUserItem selItemsByName(const QString& Name);
     void removeItemsByName(const QString& name);
 
+
 protected:
     void createTable();
     bool modifyItem(const sUserItem& item,const QString& cmd);

@@ -180,7 +180,7 @@ bool BasicSql::updateColumn(const QString& column_name, const QString& value, co
 {
     bool ret = false;
     QSqlQuery query;
-    ret = query.exec(QString("update  %1 set %2=\'%3\' %4").arg(tableName()).arg(column_name).arg(value).arg(condition));
+    ret = query.exec(QString("update  %1 set %2=\'%3\' where %4").arg(tableName()).arg(column_name).arg(value).arg(condition));
     if(!ret)
         qDebug()<< "sqlcom updateColumn 2:" << query.lastError();
     return ret;
