@@ -4,10 +4,9 @@
 
 struct sDbAlarmItem : public DbBasicItem
 {
-    sDbAlarmItem():devnum(0){}
     QString room, modular, cab, road;
     QString devtype, ip;
-    int devnum;
+    QString devnum;
     QString item, msg;
 };
 

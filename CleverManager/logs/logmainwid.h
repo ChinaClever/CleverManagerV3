@@ -31,6 +31,7 @@ private:
     LogComWid *mPduHrs;
     LogComWid *mCabHrs;
     ElecComWid *mCabElec;
+    ElecComWid *mPduElec;
 };
 
 #endif // LOGMAINWID_H

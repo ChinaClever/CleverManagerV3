@@ -24,7 +24,7 @@ void DbPduHrs::createTable()
             "road           VCHAR,"
             "devtype        VCHAR,"
             "ip             VCHAR,"
-            "devnum         INTEGER,"
+            "devnum         VCHAR,"
             "item           VCHAR,"
             "sw             VCHAR,"
             "vol            DOUBLE,"
@@ -97,7 +97,7 @@ void DbPduHrs::selectItem(QSqlQuery &query,sDbPduHrsItem &item)
     item.road = query.value("road").toString();
     item.devtype = query.value("devtype").toString();
     item.ip = query.value("ip").toString();
-    item.devnum = query.value("devnum").toInt();
+    item.devnum = query.value("devnum").toString();
     item.item = query.value("item").toString();
     item.sw = query.value("sw").toString();
     item.vol = query.value("vol").toDouble();

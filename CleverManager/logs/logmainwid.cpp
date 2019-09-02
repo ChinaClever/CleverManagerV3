@@ -37,6 +37,11 @@ void LogMainWid::initFunSLot()
     mCabElec = new ElecComWid(ui->stackedWid);
     mCabElec->initWid(DbCabElec::bulid(), new Log_CabElecQueryDlg(this));
     ui->stackedWid->addWidget(mCabElec);
+
+    mPduElec = new ElecComWid(ui->stackedWid);
+    mPduElec->initWid(DbPduElec::bulid(), new Log_PduElecQueryDlg(this));
+    ui->stackedWid->addWidget(mPduElec);
+
 }
 
 void LogMainWid::on_comboBox_currentIndexChanged(int index)

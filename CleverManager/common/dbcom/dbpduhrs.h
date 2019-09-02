@@ -4,10 +4,8 @@
 
 struct sDbPduHrsItem : public DbBasicItem
 {
-    sDbPduHrsItem():devnum(0){}
     QString room, modular, cab, road;
-    QString devtype, ip;
-    int devnum;
+    QString devtype, ip, devnum;
     QString item;
     QString sw;
     double vol, cur, pow, pf, ele;

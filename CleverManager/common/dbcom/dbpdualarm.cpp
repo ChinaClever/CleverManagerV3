@@ -23,7 +23,7 @@ void DbPduAlarm::createTable()
             "road           VCHAR,"
             "devtype        VCHAR,"
             "ip             VCHAR,"
-            "devnum         INTEGER,"
+            "devnum         VCHAR,"
             "item           VCHAR,"
             "msg        VCHAR);";
     QSqlQuery query;

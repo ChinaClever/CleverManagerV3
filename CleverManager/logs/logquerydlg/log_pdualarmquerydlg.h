@@ -19,12 +19,13 @@ public:
 
     QString getCmd();
     int Exec() {return this->exec();}
+    virtual bool inputCheck();
 
 private slots:
     void on_quitBtn_clicked();
     void on_okBtn_clicked();
 
-private:
+protected:
     Ui::Log_PduAlarmQueryDlg *ui;
     SqlDateBar *mDateBar;
 };

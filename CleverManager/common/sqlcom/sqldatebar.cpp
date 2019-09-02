@@ -26,7 +26,7 @@ QString SqlDateBar::getDate()
     } else {
         QString startDateStr = startDate.toString("yyyy-MM-dd");
         QString endDateStr = endDate.toString("yyyy-MM-dd");
-        str = QString("date between \'%1\' and  \'%2\'").arg(startDateStr).arg(endDateStr);
+        str = QString(" date between \'%1\' and  \'%2\'").arg(startDateStr).arg(endDateStr);
     }
 
     return str;

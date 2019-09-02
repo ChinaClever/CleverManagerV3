@@ -34,6 +34,12 @@ QString Log_PduAlarmQueryDlg::getCmd()
     str = ui->ipEdit->text();
     if(!str.isEmpty()) cmd += QString(" and ip like '%%1%'").arg(str);
 
+    ret = ui->devnumCmb->currentIndex();
+    if(ret) {
+        str = ui->devnumCmb->currentText();
+        cmd += QString(" and devnum like '%%1%'").arg(str);
+    }
+
     return cmd;
 }
 
@@ -43,15 +49,24 @@ void Log_PduAlarmQueryDlg::on_quitBtn_clicked()
     close();
 }
 
-void Log_PduAlarmQueryDlg::on_okBtn_clicked()
+bool Log_PduAlarmQueryDlg::inputCheck()
 {
+    bool ret = true;
+
     QString ip = ui->ipEdit->text();
     if(!ip.isEmpty()) {
-        bool ret = cm_isIPaddress(ip);
+        ret = cm_isIPaddress(ip);
         if(!ret) {
             CriticalMsgBox box(this, tr("设备IP地址输入有误，请重新输入!!!"));
-            return;
         }
     }
-    this->accept();
+
+    return ret;
+}
+
+void Log_PduAlarmQueryDlg::on_okBtn_clicked()
+{
+    if(inputCheck()) {
+        this->accept();
+    }
 }
