@@ -29,6 +29,8 @@ private slots:
 
     void on_upBtn_clicked();
 
+    void on_alarmCmb_currentIndexChanged(int index);
+
 private:
     Ui::SetUpMainWid *ui;
     UserMainWid *mUserWid;

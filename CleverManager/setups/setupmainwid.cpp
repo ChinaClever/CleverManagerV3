@@ -2,7 +2,7 @@
 #include "ui_setupmainwid.h"
 #include "logmainwid.h"
 #include "pdudevices/setup_pdustablewid.h"
-
+#include "sound.h"
 
 SetUpMainWid::SetUpMainWid(QWidget *parent) :
     QWidget(parent),
@@ -54,4 +54,9 @@ void SetUpMainWid::on_comboBox_currentIndexChanged(int index)
 void SetUpMainWid::on_upBtn_clicked()
 {
     mUpdlg->exec();
+}
+
+void SetUpMainWid::on_alarmCmb_currentIndexChanged(int index)
+{
+    Sound::bulid(this)->setAllow(index);
 }

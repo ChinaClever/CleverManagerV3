@@ -10,6 +10,7 @@ include(msgcom/msgcom.pri)
 include(logcom/logcom.pri)
 include(elecom/elecom.pri)
 include(tabcom/tabcom.pri)
+include(sound/sound.pri)
 include(network/network.pri)
 include(backcolour/backcolour.pri)
 
