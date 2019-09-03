@@ -6,6 +6,7 @@ Up_MainDlg::Up_MainDlg(QWidget *parent) :
     ui(new Ui::Up_MainDlg)
 {
     ui->setupUi(this);
+    this->setWindowTitle(tr("设备升级"));
     QTimer::singleShot(rand()%50,this,SLOT(initFunSLot()));
 }
 

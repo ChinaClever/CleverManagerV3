@@ -12,7 +12,7 @@ Up_IpsWid::Up_IpsWid(QWidget *parent) :
     ui(new Ui::Up_IpsWid)
 {
     ui->setupUi(this);
-    on_ipRadio_clicked(true);
+    on_getRadio_clicked(true);
 }
 
 Up_IpsWid::~Up_IpsWid()

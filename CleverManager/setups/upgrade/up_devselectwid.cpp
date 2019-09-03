@@ -11,6 +11,7 @@ Up_DevSelectWid::Up_DevSelectWid(QWidget *parent) :
     timer = new QTimer(this);
     timer->start(200);
     connect(timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
+    on_comboBox_currentIndexChanged(0);
     mCount = 1;
 }
 
@@ -61,7 +62,7 @@ void Up_DevSelectWid::on_okBtn_clicked()
     bool en = false;
     QString str = tr("修改");
     if(mCount++ %2) {
-        if(mData->devtype) {
+        if(mData->devtype > 1) {
             if(!checkInput()) {
                 mCount--; return;
             }
