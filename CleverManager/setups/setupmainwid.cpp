@@ -2,7 +2,7 @@
 #include "ui_setupmainwid.h"
 #include "logmainwid.h"
 #include "pdudevices/setup_pdustablewid.h"
-#include "up_maindlg.h"
+
 
 SetUpMainWid::SetUpMainWid(QWidget *parent) :
     QWidget(parent),
@@ -22,6 +22,7 @@ SetUpMainWid::~SetUpMainWid()
 
 void SetUpMainWid::initPdusTable()
 {
+    mUpdlg = new Up_MainDlg(this);
     Setup_PdusTableWid *pdu = new Setup_PdusTableWid(ui->stackedWid);
     pdu->initWid(DbPduDevices::get(), new Setup_PdusQueryDlg(this));
     ui->stackedWid->addWidget(pdu);
@@ -52,6 +53,5 @@ void SetUpMainWid::on_comboBox_currentIndexChanged(int index)
 
 void SetUpMainWid::on_upBtn_clicked()
 {
-    Up_MainDlg dlg(this);
-    dlg.exec();
+    mUpdlg->exec();
 }

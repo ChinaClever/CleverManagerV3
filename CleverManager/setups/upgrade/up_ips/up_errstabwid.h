@@ -1,13 +1,13 @@
 #ifndef ERRSTABWID_H
 #define ERRSTABWID_H
 
-#include "ipstabwid.h"
+#include "up_ipstabwid.h"
 
-class ErrsTabWid : public IpsTabWid
+class Up_ErrsTabWid : public Up_IpsTabWid
 {
     Q_OBJECT
 public:
-    explicit ErrsTabWid(QWidget *parent = nullptr);
+    explicit Up_ErrsTabWid(QWidget *parent = nullptr);
 
 protected slots:
    virtual void timeoutDone();

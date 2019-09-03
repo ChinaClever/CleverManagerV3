@@ -2,10 +2,10 @@
 #define UP_MAINDLG_H
 
 #include <QDialog>
-#include "ipswid.h"
+#include "up_ipswid.h"
 #include "upgradewid.h"
-#include "okstabwid.h"
-#include "devselectwid.h"
+#include "up_okstabwid.h"
+#include "up_devselectwid.h"
 
 namespace Ui {
 class Up_MainDlg;
@@ -19,16 +19,19 @@ public:
     explicit Up_MainDlg(QWidget *parent = 0);
     ~Up_MainDlg();
 
+protected slots:
+    void initFunSLot();
+
 private:
     Ui::Up_MainDlg *ui;
 
     QTimer* timer;
-    IpsWid *mIpsWid;
+    Up_IpsWid *mIpsWid;
     UpgradeWid *mUpgradeWid;
-    IpsTabWid *mIpsTabWid;
-    OksTabWid *mOksTabWid;
-    ErrsTabWid *mErrsTabWid;
-    DevSelectWid *mDevSelectWid;
+    Up_IpsTabWid *mIpsTabWid;
+    Up_OksTabWid *mOksTabWid;
+    Up_ErrsTabWid *mErrsTabWid;
+    Up_DevSelectWid *mDevSelectWid;
 };
 
 #endif // UP_MAINDLG_H

@@ -2,7 +2,7 @@
 #define UPGRADETHREAD_H
 
 #include <QThread>
-#include "datapacket.h"
+#include "up_datapacket.h"
 
 class UpgradeThread : public QThread
 {

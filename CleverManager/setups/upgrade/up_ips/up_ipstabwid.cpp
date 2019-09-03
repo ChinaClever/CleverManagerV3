@@ -1,12 +1,12 @@
-#include "ipstabwid.h"
+#include "up_ipstabwid.h"
 
-IpsTabWid::IpsTabWid(QWidget *parent) : ComTableWid(parent)
+Up_IpsTabWid::Up_IpsTabWid(QWidget *parent) : ComTableWid(parent)
 {
     initWid();
     mData = Up_DataPacket::bulid()->data;
 }
 
-void IpsTabWid::initWid()
+void Up_IpsTabWid::initWid()
 {
     QString title = tr("需升级IP列表");
     QStringList header;
@@ -15,7 +15,7 @@ void IpsTabWid::initWid()
     initTableWid(header, 0, title);
 }
 
-void IpsTabWid::updateData(QStringList &lst)
+void Up_IpsTabWid::updateData(QStringList &lst)
 {
     if(lst.size()) {
         checkTableRow(lst.size());
@@ -30,7 +30,7 @@ void IpsTabWid::updateData(QStringList &lst)
     }
 }
 
-void IpsTabWid::timeoutDone()
+void Up_IpsTabWid::timeoutDone()
 {
     updateData(mData->ips);
 }

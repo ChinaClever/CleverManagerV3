@@ -2,13 +2,13 @@
 #define IPSTABWID_H
 
 #include "comtablewid.h"
-#include "datapacket.h"
+#include "up_datapacket.h"
 
-class IpsTabWid : public ComTableWid
+class Up_IpsTabWid : public ComTableWid
 {
     Q_OBJECT
 public:
-    explicit IpsTabWid(QWidget *parent = nullptr);
+    explicit Up_IpsTabWid(QWidget *parent = nullptr);
 
 protected slots:
    virtual void timeoutDone();

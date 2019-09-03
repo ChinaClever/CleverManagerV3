@@ -4,16 +4,16 @@
 #include <QWidget>
 
 namespace Ui {
-class IpsWid;
+class Up_IpsWid;
 }
 
-class IpsWid : public QWidget
+class Up_IpsWid : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit IpsWid(QWidget *parent = 0);
-    ~IpsWid();
+    explicit Up_IpsWid(QWidget *parent = 0);
+    ~Up_IpsWid();
 
 protected:
     void disEnable();
@@ -28,13 +28,11 @@ private slots:
     void on_ipRadio_clicked(bool checked);
     void on_ipsRadio_clicked(bool checked);
     void on_exportRadio_clicked(bool checked);
-
     void on_getRadio_clicked(bool checked);
-
     void on_getBtn_clicked();
 
 private:
-    Ui::IpsWid *ui;
+    Ui::Up_IpsWid *ui;
     QStringList mList;
 };
 

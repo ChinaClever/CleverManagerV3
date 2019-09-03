@@ -98,7 +98,7 @@ void UpgradeWid::on_breakBtn_clicked()
         QuMsgBox box(this, tr("是否要中断传输?"));
         if(box.Exec()) {
             mUpgradeThread->breakDown();
-            if(!mData->devtype>1) {
+            if(mData->devtype>1) {
                 InfoMsgBox msg(this, tr("软件即将重启!!!"));
                 QProcess *process = new QProcess(this);
                 process->start("NetUpgradeTool.exe");

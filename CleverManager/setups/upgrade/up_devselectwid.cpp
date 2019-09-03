@@ -1,10 +1,10 @@
-#include "devselectwid.h"
+#include "up_devselectwid.h"
 #include "ui_devselectwid.h"
 #include "msgbox.h"
 
-DevSelectWid::DevSelectWid(QWidget *parent) :
+Up_DevSelectWid::Up_DevSelectWid(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::DevSelectWid)
+    ui(new Ui::Up_DevSelectWid)
 {
     ui->setupUi(this);
     mData = Up_DataPacket::bulid()->data;
@@ -14,19 +14,19 @@ DevSelectWid::DevSelectWid(QWidget *parent) :
     mCount = 1;
 }
 
-DevSelectWid::~DevSelectWid()
+Up_DevSelectWid::~Up_DevSelectWid()
 {
     delete ui;
 }
 
 
-void DevSelectWid::timeoutDone(void)
+void Up_DevSelectWid::timeoutDone(void)
 {
     this->setDisabled(mData->isRun);
 }
 
 
-bool DevSelectWid::checkInput()
+bool Up_DevSelectWid::checkInput()
 {
     QString str;
     QString user =ui->userEdit->text();
@@ -49,14 +49,14 @@ bool DevSelectWid::checkInput()
     return ret;
 }
 
-void DevSelectWid::setenabled(bool e)
+void Up_DevSelectWid::setenabled(bool e)
 {
     ui->comboBox->setEnabled(e);
     ui->userEdit->setEnabled(e);
     ui->pwdEdit->setEnabled(e);
 }
 
-void DevSelectWid::on_okBtn_clicked()
+void Up_DevSelectWid::on_okBtn_clicked()
 {
     bool en = false;
     QString str = tr("修改");
@@ -75,7 +75,7 @@ void DevSelectWid::on_okBtn_clicked()
     ui->okBtn->setText(str);
 }
 
-void DevSelectWid::on_comboBox_currentIndexChanged(int index)
+void Up_DevSelectWid::on_comboBox_currentIndexChanged(int index)
 {
     bool en = true;
     mData->devtype = index;

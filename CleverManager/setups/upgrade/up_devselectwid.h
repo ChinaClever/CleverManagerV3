@@ -2,19 +2,19 @@
 #define DEVSELECTWID_H
 
 #include <QWidget>
-#include "datapacket.h"
+#include "up_datapacket.h"
 
 namespace Ui {
-class DevSelectWid;
+class Up_DevSelectWid;
 }
 
-class DevSelectWid : public QWidget
+class Up_DevSelectWid : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DevSelectWid(QWidget *parent = 0);
-    ~DevSelectWid();
+    explicit Up_DevSelectWid(QWidget *parent = 0);
+    ~Up_DevSelectWid();
 
 protected:
     bool checkInput();
@@ -26,7 +26,7 @@ private slots:
     void on_comboBox_currentIndexChanged(int index);
 
 private:
-    Ui::DevSelectWid *ui;
+    Ui::Up_DevSelectWid *ui;
     Up_sDataPacket *mData;
     QTimer *timer;
     int mCount;

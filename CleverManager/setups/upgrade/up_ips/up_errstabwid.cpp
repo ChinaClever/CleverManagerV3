@@ -1,11 +1,11 @@
-#include "errstabwid.h"
+#include "up_errstabwid.h"
 
-ErrsTabWid::ErrsTabWid(QWidget *parent) : IpsTabWid(parent)
+Up_ErrsTabWid::Up_ErrsTabWid(QWidget *parent) : Up_IpsTabWid(parent)
 {
     initWid();
 }
 
-void ErrsTabWid::initWid()
+void Up_ErrsTabWid::initWid()
 {
     QString title = tr("升级失败列表");
     QStringList header;
@@ -15,7 +15,7 @@ void ErrsTabWid::initWid()
 }
 
 
-void ErrsTabWid::timeoutDone()
+void Up_ErrsTabWid::timeoutDone()
 {
     updateData(mData->errs);
 }

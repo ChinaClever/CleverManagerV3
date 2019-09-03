@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DevSelectWid</class>
- <widget class="QWidget" name="DevSelectWid">
+ <class>Up_DevSelectWid</class>
+ <widget class="QWidget" name="Up_DevSelectWid">
   <property name="geometry">
    <rect>
     <x>0</x>

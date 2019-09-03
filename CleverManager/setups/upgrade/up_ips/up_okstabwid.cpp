@@ -1,12 +1,12 @@
-#include "okstabwid.h"
+#include "up_okstabwid.h"
 
-OksTabWid::OksTabWid(QWidget *parent) : ErrsTabWid(parent)
+Up_OksTabWid::Up_OksTabWid(QWidget *parent) : Up_ErrsTabWid(parent)
 {
     initWid();
 }
 
 
-void OksTabWid::initWid()
+void Up_OksTabWid::initWid()
 {
     QString title = tr("升级成功列表");
     QStringList header;
@@ -15,7 +15,7 @@ void OksTabWid::initWid()
     initTableWid(header, 0, title);
 }
 
-void OksTabWid::timeoutDone()
+void Up_OksTabWid::timeoutDone()
 {
     updateData(mData->oks);
 }

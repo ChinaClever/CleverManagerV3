@@ -1,26 +1,26 @@
-#include "ipswid.h"
+#include "up_ipswid.h"
 #include "ui_ipswid.h"
 #include <QFileDialog>
 #include "msgbox.h"
 #include <QHostAddress>
 #include "common.h"
-#include "datapacket.h"
+#include "up_datapacket.h"
 #include "dbpdudevices.h"
 
-IpsWid::IpsWid(QWidget *parent) :
+Up_IpsWid::Up_IpsWid(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::IpsWid)
+    ui(new Ui::Up_IpsWid)
 {
     ui->setupUi(this);
     on_ipRadio_clicked(true);
 }
 
-IpsWid::~IpsWid()
+Up_IpsWid::~Up_IpsWid()
 {
     delete ui;
 }
 
-void IpsWid::disEnable()
+void Up_IpsWid::disEnable()
 {
     ui->widget->setDisabled(true);
     ui->exportBtn->setDisabled(true);
@@ -30,27 +30,27 @@ void IpsWid::disEnable()
 }
 
 
-void IpsWid::on_exportRadio_clicked(bool checked)
+void Up_IpsWid::on_exportRadio_clicked(bool checked)
 {
     disEnable();
     ui->exportBtn->setEnabled(checked);
 }
 
-void IpsWid::on_ipRadio_clicked(bool checked)
+void Up_IpsWid::on_ipRadio_clicked(bool checked)
 {
     disEnable();
     ui->ipEdit->setEnabled(checked);
     ui->ipBtn->setEnabled(checked);
 }
 
-void IpsWid::on_ipsRadio_clicked(bool checked)
+void Up_IpsWid::on_ipsRadio_clicked(bool checked)
 {
     disEnable();
     ui->widget->setEnabled(checked);
 }
 
 
-bool IpsWid::readFile(QString &fn, QStringList &list)
+bool Up_IpsWid::readFile(QString &fn, QStringList &list)
 {
     int i=0;
     QFile file(fn);
@@ -75,7 +75,7 @@ bool IpsWid::readFile(QString &fn, QStringList &list)
     return true;
 }
 
-void IpsWid::on_exportBtn_clicked()
+void Up_IpsWid::on_exportBtn_clicked()
 {
     QString fn = QFileDialog::getOpenFileName(0,tr("文件选择"),"/","",0);
     if (!fn.isNull()) {
@@ -87,7 +87,7 @@ void IpsWid::on_exportBtn_clicked()
     }
 }
 
-void IpsWid::on_ipBtn_clicked()
+void Up_IpsWid::on_ipBtn_clicked()
 {
     QString ip = ui->ipEdit->text();
     bool ret = cm_isIPaddress(ip);
@@ -99,13 +99,13 @@ void IpsWid::on_ipBtn_clicked()
     }
 }
 
-int IpsWid::getIpInt(QString &ip)
+int Up_IpsWid::getIpInt(QString &ip)
 {
     QHostAddress sendip(ip);
     return sendip.toIPv4Address();
 }
 
-int IpsWid::bulidIps( QString startIp,  QString &endIp)
+int Up_IpsWid::bulidIps( QString startIp,  QString &endIp)
 {
     QStringList list;
     QHostAddress startAddr(startIp), endAddr(endIp);
@@ -118,7 +118,7 @@ int IpsWid::bulidIps( QString startIp,  QString &endIp)
     return list.size();
 }
 
-void IpsWid::on_ipsBtn_clicked()
+void Up_IpsWid::on_ipsBtn_clicked()
 {
     QString start = ui->startEdit->text();
     QString end = ui->endEdit->text();
@@ -139,13 +139,13 @@ void IpsWid::on_ipsBtn_clicked()
     }
 }
 
-void IpsWid::on_getRadio_clicked(bool checked)
+void Up_IpsWid::on_getRadio_clicked(bool checked)
 {
     disEnable();
     ui->getBtn->setEnabled(checked);
 }
 
-void IpsWid::on_getBtn_clicked()
+void Up_IpsWid::on_getBtn_clicked()
 {
     QString dev_type = Up_DataPacket::bulid()->data->dev_type;
     QStringList ips = DbPduDevices::get()->listIps(dev_type);

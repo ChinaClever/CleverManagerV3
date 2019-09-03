@@ -4,20 +4,20 @@ INCLUDEPATH += $$PWD
 
 
 HEADERS += \
-    $$PWD/ipswid.h \
-    $$PWD/errstabwid.h \
-    $$PWD/ipstabwid.h \
-    $$PWD/okstabwid.h
+    $$PWD/up_ipswid.h \
+    $$PWD/up_ipstabwid.h \
+    $$PWD/up_okstabwid.h \
+    $$PWD/up_errstabwid.h
 
 	
 SOURCES += \
-    $$PWD/ipswid.cpp \
-    $$PWD/errstabwid.cpp \
-    $$PWD/ipstabwid.cpp \
-    $$PWD/okstabwid.cpp
+    $$PWD/up_ipswid.cpp \
+    $$PWD/up_ipstabwid.cpp \
+    $$PWD/up_okstabwid.cpp \
+    $$PWD/up_errstabwid.cpp
 
 FORMS += \
-    $$PWD/ipswid.ui
+    $$PWD/up_ipswid.ui
 
 
 

@@ -3,6 +3,7 @@
 
 #include "usermainwid.h"
 #include "dbpdudevices.h"
+#include "up_maindlg.h"
 
 namespace Ui {
 class SetUpMainWid;
@@ -31,6 +32,7 @@ private slots:
 private:
     Ui::SetUpMainWid *ui;
     UserMainWid *mUserWid;
+    Up_MainDlg *mUpdlg;
 };
 
 #endif // SETUPMAINWID_H
