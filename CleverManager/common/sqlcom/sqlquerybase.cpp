@@ -1,4 +1,4 @@
-#include "logquerybase.h"
+#include "sqlquerybase.h"
 
 SqlQueryBase::SqlQueryBase()
 {
