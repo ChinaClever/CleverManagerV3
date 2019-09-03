@@ -20,7 +20,7 @@ void DbPduDevices::createTable()
     QString cmd = "create table if not exists %1("
                   "id                INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
                   "room_id           INTEGER references %2(%3),"
-                  "cabinet_id        INTEGER references %4(%5),"
+                  "cab_id        INTEGER references %4(%5),"
                   "room              VCHAR,"
                   "cab               VCHAR,"
                   "road              VCHAR,"
@@ -46,8 +46,8 @@ DbPduDevices *DbPduDevices::get()
 void DbPduDevices::insertItem(PduDeviceItem &item)
 {
     item.id = maxId()+1;
-    QString cmd = "insert into %1 (id,cabinet_id,room_id,room,cab,ip,dev_num,dev_type,road) "
-                  "values(:id,:cabinet_id,:room_id,:room,:cab,:ip,:dev_num,:dev_type,:road)";
+    QString cmd = "insert into %1 (id,cab_id,room_id,room,cab,ip,dev_num,dev_type,road) "
+                  "values(:id,:cab_id,:room_id,:room,:cab,:ip,:dev_num,:dev_type,:road)";
     modifyItem(item,cmd.arg(tableName()));
     emit itemChanged(item.id,Insert);
 }
@@ -56,7 +56,7 @@ void DbPduDevices::insertItem(PduDeviceItem &item)
 void DbPduDevices::insertItem(CabinetItem &item)
 {
     PduDeviceItem it;
-    it.cabinet_id = item.id;
+    it.cab_id = item.id;
     it.room_id = item.room_id;
     it.room = item.room;
     it.cab = item.cab;
@@ -81,7 +81,7 @@ void DbPduDevices::insertItem(CabinetItem &item)
 void DbPduDevices::updateItem(const PduDeviceItem &item)
 {
     QString cmd = "update %1 set "
-                  "cabinet_id        = :cabinet_id,"
+                  "cab_id        = :cab_id,"
                   "room_id           = :room_id,"
                   "room              = :room,"
                   "cab               = :cab,"
@@ -104,11 +104,11 @@ void DbPduDevices::roomItemChange(int roomId, int type)
     }
 }
 
-void DbPduDevices::cabinetItemChange(int cabinet_id, int type)
+void DbPduDevices::cabinetItemChange(int cab_id, int type)
 {
-    remove(QString("cabinet_id=%1").arg(cabinet_id));
+    remove(QString("cab_id=%1").arg(cab_id));
     if(type > Remove) {
-        CabinetItem item = DbCabinetList::get()->findById(cabinet_id);
+        CabinetItem item = DbCabinetList::get()->findById(cab_id);
         insertItem(item);
     }
 }
@@ -120,7 +120,7 @@ void DbPduDevices::removeItemsByCabinetId(int id)
 
 QVector<PduDeviceItem> DbPduDevices::selectItemsByCabinetId(int id)
 {
-    return selectItems(QString("where cabinet_id = %1").arg(id));
+    return selectItems(QString("where cab_id = %1").arg(id));
 }
 
 QStringList DbPduDevices::listRoom()
@@ -174,7 +174,7 @@ void DbPduDevices::modifyItem(const PduDeviceItem &item, const QString &cmd)
     query.prepare( cmd );
     query.bindValue(":id",item.id);
     query.bindValue(":room_id",item.room_id);
-    query.bindValue(":cabinet_id",item.cabinet_id);
+    query.bindValue(":cab_id",item.cab_id);
     query.bindValue(":cab",item.cab);
     query.bindValue(":room",item.room);
     query.bindValue(":road",item.road);
@@ -189,7 +189,7 @@ void DbPduDevices::selectItem(QSqlQuery &query, PduDeviceItem &item)
 {
     item.id = query.value("id").toInt();
     item.room_id  = query.value("room_id").toInt();
-    item.cabinet_id = query.value("cabinet_id").toInt();
+    item.cab_id = query.value("cab_id").toInt();
     item.room= query.value("room").toString();
     item.cab  = query.value("cab").toString();
     item.road = query.value("road").toString();

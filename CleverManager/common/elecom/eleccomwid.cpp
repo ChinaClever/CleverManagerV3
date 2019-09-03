@@ -17,7 +17,7 @@ ElecComWid::~ElecComWid()
 
 void ElecComWid::initWid(BasicSql *db,  LogQueryBase *btn)
 {
-    LogBtnBar *bar = new LogBtnBar;
+    ElecBtnBar *bar = new ElecBtnBar;
     bar->setDlg(btn);
     mSqlTableWid->initWid(db, bar);
     ui->groupBox->setTitle(db->tableTile);

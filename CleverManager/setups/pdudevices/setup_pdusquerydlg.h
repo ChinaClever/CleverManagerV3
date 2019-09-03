@@ -19,11 +19,11 @@ public:
     int Exec() {return this->exec();}
     virtual bool inputCheck();
 
-private slots:
+protected slots:
     void on_okBtn_clicked();
     void on_quitBtn_clicked();
 
-private:
+protected:
     Ui::Setup_PdusQueryDlg *ui;
 };
 

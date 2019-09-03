@@ -1,7 +1,7 @@
 #include "setupmainwid.h"
 #include "ui_setupmainwid.h"
 #include "logmainwid.h"
-#include "pdudevices/setup_pdusquerydlg.h"
+#include "pdudevices/setup_pdustablewid.h"
 
 SetUpMainWid::SetUpMainWid(QWidget *parent) :
     QWidget(parent),
@@ -21,19 +21,17 @@ SetUpMainWid::~SetUpMainWid()
 
 void SetUpMainWid::initPdusTable()
 {
-    ElecComWid *pdu = new ElecComWid(ui->stackedWid);
+    Setup_PdusTableWid *pdu = new Setup_PdusTableWid(ui->stackedWid);
     pdu->initWid(DbPduDevices::get(), new Setup_PdusQueryDlg(this));
     ui->stackedWid->addWidget(pdu);
 
-    ElecComWid *cab = new ElecComWid(ui->stackedWid);
-    cab->initWid(DbCabinetList::get(), new Log_CabElecQueryDlg(this));
+    Setup_PdusTableWid *cab = new Setup_PdusTableWid(ui->stackedWid);
+    cab->initWid(DbCabinetList::get(), new Setup_CabQueryDlg(this));
     ui->stackedWid->addWidget(cab);
 
-    SqlBtnBar *roomBar = new SqlBtnBar;
-    roomBar->setNoEdit();  roomBar->clearHidden(); roomBar->queryHidden();
-    SqlTableWid *roomTable = new SqlTableWid(ui->stackedWid);
-    roomTable->initWid(DbRoomList::get(), roomBar);
-    ui->stackedWid->addWidget(roomTable);
+    Setup_PdusTableWid *room = new Setup_PdusTableWid(ui->stackedWid);
+    room->initWid(DbRoomList::get(), new Setup_RoomQueryDlg(this));
+    ui->stackedWid->addWidget(room);
 }
 
 

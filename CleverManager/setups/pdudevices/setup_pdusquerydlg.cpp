@@ -16,9 +16,10 @@ Setup_PdusQueryDlg::~Setup_PdusQueryDlg()
 }
 
 
+
 QString Setup_PdusQueryDlg::getCmd()
 {
-    QString cmd = mDateBar->getDate();
+    QString cmd;
     QString str = ui->roomEdit->text();
     if(!str.isEmpty()) cmd += QString(" and room like '%%1%'").arg(str);
 
@@ -28,7 +29,7 @@ QString Setup_PdusQueryDlg::getCmd()
     int ret = ui->devtypeCmb->currentIndex();
     if(ret) {
         str = ui->devtypeCmb->currentText();
-        cmd += QString(" and devtype like '%%1%'").arg(str);
+        cmd += QString(" and dev_type like '%%1%'").arg(str);
     }
 
     str = ui->ipEdit->text();
@@ -37,7 +38,7 @@ QString Setup_PdusQueryDlg::getCmd()
     ret = ui->devnumCmb->currentIndex();
     if(ret) {
         str = ui->devnumCmb->currentText();
-        cmd += QString(" and devnum like '%%1%'").arg(str);
+        cmd += QString(" and dev_num like '%%1%'").arg(str);
     }
 
     return cmd;

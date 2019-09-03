@@ -4,8 +4,8 @@
 
 struct PduDeviceItem
 {
-    PduDeviceItem() {id=room_id=cabinet_id=-1;}
-    int id, room_id,cabinet_id;
+    PduDeviceItem() {id=room_id=cab_id=-1;}
+    int id, room_id,cab_id;
     QString room, cab, road;
     QString ip, dev_num, dev_type;
 };
