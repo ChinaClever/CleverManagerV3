@@ -7,7 +7,7 @@ namespace Ui {
 class Setup_CabQueryDlg;
 }
 
-class Setup_CabQueryDlg : public QDialog , public LogQueryBase
+class Setup_CabQueryDlg : public QDialog , public SqlQueryBase
 {
     Q_OBJECT
 

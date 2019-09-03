@@ -28,7 +28,7 @@ LogComWid::~LogComWid()
     delete ui;
 }
 
-void LogComWid::initWid(BasicSql *db,  LogQueryBase *btn)
+void LogComWid::initWid(BasicSql *db,  SqlQueryBase *btn)
 {
     ui->groupBox->setTitle(db->tableTile);
     mDateWidget->setTable(db->tableName());

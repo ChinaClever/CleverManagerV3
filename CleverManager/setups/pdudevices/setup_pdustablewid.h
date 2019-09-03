@@ -1,7 +1,6 @@
 #ifndef SETUP_PDUSTABLEWID_H
 #define SETUP_PDUSTABLEWID_H
 
-#include "setup_pdusbtnbar.h"
 #include "setup_roomquerydlg.h"
 
 namespace Ui {
@@ -15,7 +14,7 @@ class Setup_PdusTableWid : public QWidget
 public:
     explicit Setup_PdusTableWid(QWidget *parent = 0);
     ~Setup_PdusTableWid();
-    void initWid(BasicSql *db,  LogQueryBase *btn);
+    void initWid(BasicSql *db,  SqlQueryBase *btn);
 
 private:
     Ui::Setup_PdusTableWid *ui;

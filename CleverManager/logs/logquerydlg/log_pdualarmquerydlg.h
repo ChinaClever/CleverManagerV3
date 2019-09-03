@@ -9,7 +9,7 @@ namespace Ui {
 class Log_PduAlarmQueryDlg;
 }
 
-class Log_PduAlarmQueryDlg : public QDialog, public LogQueryBase
+class Log_PduAlarmQueryDlg : public QDialog, public SqlQueryBase
 {
     Q_OBJECT
 

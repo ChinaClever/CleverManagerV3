@@ -8,7 +8,8 @@ HEADERS += \
     $$PWD/sqltableview.h \
     $$PWD/sqlbtnbar.h \
     $$PWD/sqldatebar.h \
-    $$PWD/sqlexportdlg.h
+    $$PWD/sqlexportdlg.h \
+    $$PWD/sqlquerybase.h
 
 	
 SOURCES += \
@@ -18,7 +19,8 @@ SOURCES += \
     $$PWD/sqltableview.cpp \
     $$PWD/sqlbtnbar.cpp \
     $$PWD/sqldatebar.cpp \
-    $$PWD/sqlexportdlg.cpp
+    $$PWD/sqlexportdlg.cpp \
+    $$PWD/sqlquerybase.cpp
 
 FORMS += \
     $$PWD/sqltablewid.ui \

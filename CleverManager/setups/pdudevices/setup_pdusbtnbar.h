@@ -8,13 +8,13 @@ class Setup_PdusBtnBar : public SqlBtnBar
     Q_OBJECT
 public:
     explicit Setup_PdusBtnBar(QWidget *parent = nullptr);
-    void setDlg(LogQueryBase *dlg){mQueryDlg=dlg;}
+    void setDlg(SqlQueryBase *dlg){mQueryDlg=dlg;}
 
 protected:
     virtual QString queryBtn();
 
 protected:
-    LogQueryBase *mQueryDlg;
+    SqlQueryBase *mQueryDlg;
 };
 
 #endif // SETUP_PDUSBTNBAR_H

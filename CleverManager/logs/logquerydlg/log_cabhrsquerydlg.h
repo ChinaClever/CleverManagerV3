@@ -9,7 +9,7 @@ namespace Ui {
 class Log_CabHrsQueryDlg;
 }
 
-class Log_CabHrsQueryDlg : public QDialog, public LogQueryBase
+class Log_CabHrsQueryDlg : public QDialog, public SqlQueryBase
 {
     Q_OBJECT
 

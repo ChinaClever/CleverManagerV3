@@ -1,13 +1,13 @@
 #ifndef SETUP_PDUSQUERYDLG_H
 #define SETUP_PDUSQUERYDLG_H
 
-#include "logquerybase.h"
+#include "sqlquerybase.h"
 
 namespace Ui {
 class Setup_PdusQueryDlg;
 }
 
-class Setup_PdusQueryDlg : public QDialog , public LogQueryBase
+class Setup_PdusQueryDlg : public QDialog , public SqlQueryBase
 {
     Q_OBJECT
 

@@ -14,7 +14,7 @@ class ElecComWid : public QWidget
 public:
     explicit ElecComWid(QWidget *parent = 0);
     ~ElecComWid();
-    void initWid(BasicSql *db,  LogQueryBase *btn);
+    void initWid(BasicSql *db,  SqlQueryBase *btn);
 
 private:
     Ui::ElecComWid *ui;

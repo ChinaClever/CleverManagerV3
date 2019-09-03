@@ -15,7 +15,7 @@ ElecComWid::~ElecComWid()
     delete ui;
 }
 
-void ElecComWid::initWid(BasicSql *db,  LogQueryBase *btn)
+void ElecComWid::initWid(BasicSql *db,  SqlQueryBase *btn)
 {
     ElecBtnBar *bar = new ElecBtnBar;
     bar->setDlg(btn);

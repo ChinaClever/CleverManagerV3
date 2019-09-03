@@ -1,8 +1,10 @@
 #ifndef COMTABLEWID_H
 #define COMTABLEWID_H
 
+#include <QtCore>
 #include <QWidget>
 #include <QGridLayout>
+#include "backcolourcom.h"
 
 namespace Ui {
 class ComTableWid;

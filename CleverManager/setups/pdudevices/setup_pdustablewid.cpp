@@ -1,5 +1,6 @@
 #include "setup_pdustablewid.h"
 #include "ui_setup_pdustablewid.h"
+#include "setup_pdusbtnbar.h"
 
 Setup_PdusTableWid::Setup_PdusTableWid(QWidget *parent) :
     QWidget(parent),
@@ -16,7 +17,7 @@ Setup_PdusTableWid::~Setup_PdusTableWid()
 }
 
 
-void Setup_PdusTableWid::initWid(BasicSql *db,  LogQueryBase *btn)
+void Setup_PdusTableWid::initWid(BasicSql *db,  SqlQueryBase *btn)
 {
     Setup_PdusBtnBar *bar = new Setup_PdusBtnBar;
     bar->setDlg(btn);

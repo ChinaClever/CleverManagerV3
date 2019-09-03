@@ -1,6 +1,6 @@
 #include "logquerybase.h"
 
-LogQueryBase::LogQueryBase()
+SqlQueryBase::SqlQueryBase()
 {
 
 }

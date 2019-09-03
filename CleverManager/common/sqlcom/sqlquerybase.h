@@ -2,10 +2,10 @@
 #define LOGQUERYBASE_H
 #include "sqltablewid.h"
 
-class LogQueryBase
+class SqlQueryBase
 {
 public:
-    LogQueryBase();
+    SqlQueryBase();
 
     virtual QString getCmd()=0;
     virtual int Exec()=0;
