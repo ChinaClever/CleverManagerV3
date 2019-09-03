@@ -2,6 +2,7 @@
 INCLUDEPATH += $$PWD
 
 include(users/users.pri)
+include(upgrade/upgrade.pri)
 
 HEADERS += \	
     $$PWD/setupmainwid.h \

@@ -28,6 +28,7 @@ protected slots:
     void timeoutDone();
     void on_pushButton_clicked();
     void on_exportBtn_clicked();
+    void on_quitBtn_clicked();
 
 private:
     Ui::SqlExportDlg *ui;

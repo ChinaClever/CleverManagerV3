@@ -20,9 +20,9 @@ ComTableWid::ComTableWid(QWidget *parent) :
     timer->start(1*1000);
     connect(timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
 
-    //    QGridLayout *gridLayout = new QGridLayout(parent);
-    //    gridLayout->setContentsMargins(0, 0, 0, 0);
-    //    gridLayout->addWidget(this);
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
 }
 
 ComTableWid::~ComTableWid()
@@ -30,12 +30,12 @@ ComTableWid::~ComTableWid()
     delete ui;
 }
 
-
 /**
  * @brief 初始化窗口
  */
 void ComTableWid::initTableWidget(QStringList &header)
 {
+    mHeader = header;
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);        //设置行数/
 
@@ -241,4 +241,26 @@ void ComTableWid::setItemColor(int id, int column, int alarm)
 void ComTableWid::scrollToBottomTable()
 {
     ui->tableWidget->scrollToBottom();
+}
+
+
+int ComTableWid::getList(QList<QStringList> list)
+{
+    QStringList header;
+    header << tr("编号") << mHeader;
+    list << header;
+
+    int row = ui->tableWidget->rowCount();
+    int col = ui->tableWidget->columnCount();
+    for(int i=0; i<row; ++i) {
+        QStringList strs;
+        strs <<  QString::number(i+1);
+        for(int j=0; j<col; j++) {
+            QTableWidgetItem *item = ui->tableWidget->item(i, j);
+            strs << item->text();
+        }
+        list << strs;
+    }
+
+    return list.size();
 }

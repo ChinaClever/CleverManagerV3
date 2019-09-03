@@ -18,6 +18,7 @@ public:
     explicit ComTableWid(QWidget *parent = 0);
     ~ComTableWid();
 
+    int getList(QList<QStringList> list);
 protected:
     void initTableWid(QStringList &header, int line, const QString &title);
     void setTableItem(int id, int column, const QString &str);
@@ -48,6 +49,7 @@ private:
 
 private:
     Ui::ComTableWid *ui;
+    QStringList mHeader;
 };
 
 #endif // COMTABLEWID_H

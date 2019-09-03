@@ -30,7 +30,7 @@ SqlExportDlg::~SqlExportDlg()
 void SqlExportDlg::init(const QString &title, QList<QStringList> &list)
 {
     mList = list;
-   QString fn = title + tr("导出");
+    QString fn = title + tr("导出");
 
     ui->progressBar->setValue(0);
     ui->titleLab->setText(fn);
@@ -116,3 +116,12 @@ void SqlExportDlg::on_exportBtn_clicked()
     }
 }
 
+
+void SqlExportDlg::on_quitBtn_clicked()
+{
+    if(timer->isActive()) {
+        InfoMsgBox box(this, tr("\n导出还没有完成，还不能关闭!!\n"));
+    } else   {
+        this->close();
+    }
+}

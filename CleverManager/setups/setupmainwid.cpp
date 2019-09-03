@@ -2,6 +2,7 @@
 #include "ui_setupmainwid.h"
 #include "logmainwid.h"
 #include "pdudevices/setup_pdustablewid.h"
+#include "up_maindlg.h"
 
 SetUpMainWid::SetUpMainWid(QWidget *parent) :
     QWidget(parent),
@@ -47,4 +48,10 @@ void SetUpMainWid::initFunSLot()
 void SetUpMainWid::on_comboBox_currentIndexChanged(int index)
 {
     ui->stackedWid->setCurrentIndex(index);
+}
+
+void SetUpMainWid::on_upBtn_clicked()
+{
+    Up_MainDlg dlg(this);
+    dlg.exec();
 }

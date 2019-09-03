@@ -26,6 +26,8 @@ protected slots:
 private slots:
     void on_comboBox_currentIndexChanged(int index);
 
+    void on_upBtn_clicked();
+
 private:
     Ui::SetUpMainWid *ui;
     UserMainWid *mUserWid;
