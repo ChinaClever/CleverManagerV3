@@ -1,4 +1,4 @@
-﻿/*
+/*
  * udpsentsocket.cpp
  * UDP 发送套接字
  *
@@ -7,12 +7,8 @@
  */
 #include "udpsentsocket.h"
 
-
-
-
 UdpSentSocket::UdpSentSocket(QObject *parent) : QObject(parent)
 {
-    mUdpSocket = NULL;
     sentLock = new QReadWriteLock();
     mUdpSocket = new QUdpSocket(this);
 }
@@ -25,15 +21,24 @@ UdpSentSocket::~UdpSentSocket()
 }
 
 
+UdpSentSocket *UdpSentSocket::bulid(QObject *parent)
+{
+    static UdpSentSocket* sington = NULL;
+    if(sington == NULL) {
+        sington = new UdpSentSocket(parent);
+    }
+    return sington;
+}
 
-bool UdpSentSocket::sentData(QHostAddress &addr,uchar *buf, ushort len)
+
+bool UdpSentSocket::sentData(const QString &addr, uchar *buf, ushort len, quint16 port)
 {
     QByteArray byte;
 
     for(int i=0; i<len; ++i)
         byte.append(buf[i]);
 
-    return sentData(addr,byte);
+    return sentData(addr,byte, port);
 }
 
 /**
@@ -41,12 +46,13 @@ bool UdpSentSocket::sentData(QHostAddress &addr,uchar *buf, ushort len)
  * @param msg 数据内容
  * @return true
  */
-bool UdpSentSocket::sentData(QHostAddress &addr,QByteArray &msg)
+bool UdpSentSocket::sentData(const QString &addr, QByteArray &msg, quint16 port)
 {
     bool ret = true;
+    QHostAddress host(addr);
 
     QWriteLocker locker(sentLock);
-    int len = mUdpSocket->writeDatagram(msg.data(),msg.size(),addr,UDP_SENT_PORT); // UDP发送端口18726
+    int len = mUdpSocket->writeDatagram(msg.data(),msg.size(),host,port); // UDP发送端口18726
     if(len != msg.length())
     {
         ret = false;
@@ -93,10 +99,3 @@ bool UdpSentSocket::sentBroadcastData(QByteArray &msg, quint16 port)
     return ret;
 }
 
-
-void udp_sent_data(const QString &ip, uchar *buf, ushort len)
-{
-    UdpSentSocket udp;
-    QHostAddress addr(ip);
-    udp.sentData(addr, buf, len);
-}

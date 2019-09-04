@@ -23,9 +23,9 @@ void DbPduElec::createTable()
             "modular        VCHAR,"
             "cab            VCHAR,"
             "road           VCHAR,"
-            "devtype        VCHAR,"
+            "dev_type       VCHAR,"
             "ip             VCHAR,"
-            "devnum         VCHAR,"
+            "dev_num        VCHAR,"
             "item           VCHAR,"
             "startdt        VCHAR,"
             "startele       DOUBLE,"
@@ -52,8 +52,8 @@ DbPduElec *DbPduElec::bulid()
 
 bool DbPduElec::insertItem(sPduElecItem &item)
 {
-    QString cmd = "insert into %1 (room,modular,cab,road,devtype,ip,devnum,item,startdt,startele,enddt,ele,price,fees) "
-                  "values(:room,:modular,:cab,:road,:devtype,:ip,:devnum,:item,:startdt,:startele,:enddt,:ele,:price,:fees)";
+    QString cmd = "insert into %1 (room,modular,cab,road,dev_type,ip,dev_num,item,startdt,startele,enddt,ele,price,fees) "
+                  "values(:room,:modular,:cab,:road,:dev_type,:ip,:dev_num,:item,:startdt,:startele,:enddt,:ele,:price,:fees)";
     return modifyItem(item,cmd.arg(tableName()));
 }
 
@@ -66,9 +66,9 @@ bool DbPduElec::modifyItem(const sPduElecItem &item, const QString &cmd)
     query.bindValue(":modular",item.modular);
     query.bindValue(":cab",item.cab);
     query.bindValue(":road",item.road);
-    query.bindValue(":devtype",item.devtype);
+    query.bindValue(":dev_type",item.dev_type);
     query.bindValue(":ip",item.ip);
-    query.bindValue(":devnum",item.devnum);
+    query.bindValue(":dev_num",item.dev_num);
     query.bindValue(":item",item.item);
     query.bindValue(":startdt",item.startdt);
     query.bindValue(":startele",item.startele);
@@ -95,9 +95,9 @@ void DbPduElec::elec(QStringList &list)
             ele.modular = it.modular;
             ele.cab = it.cab;
             ele.road = it.road;
-            ele.devtype = it.devtype;
+            ele.dev_type = it.dev_type;
             ele.ip = it.ip;
-            ele.devnum = it.devnum;
+            ele.dev_num = it.dev_num;
             ele.item = it.item;
             insertItem(ele);
         }

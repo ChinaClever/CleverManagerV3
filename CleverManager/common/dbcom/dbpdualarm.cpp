@@ -21,9 +21,9 @@ void DbPduAlarm::createTable()
             "modular        VCHAR,"
             "cab            VCHAR,"
             "road           VCHAR,"
-            "devtype        VCHAR,"
+            "dev_type       VCHAR,"
             "ip             VCHAR,"
-            "devnum         VCHAR,"
+            "dev_num        VCHAR,"
             "item           VCHAR,"
             "msg        VCHAR);";
     QSqlQuery query;
@@ -44,8 +44,8 @@ DbPduAlarm *DbPduAlarm::bulid()
 
 bool DbPduAlarm::insertItem(sDbAlarmItem &item)
 {
-    QString cmd = "insert into %1 (date,time,room,modular,cab,road,devtype,ip,devnum,item,msg) "
-                  "values(:date,:time,:room,:modular,:cab,:road,:devtype,:ip,:devnum,:item,:msg)";
+    QString cmd = "insert into %1 (date,time,room,modular,cab,road,dev_type,ip,dev_num,item,msg) "
+                  "values(:date,:time,:room,:modular,:cab,:road,:dev_type,:ip,:dev_num,:item,:msg)";
     return modifyItem(item,cmd.arg(tableName()));
 }
 
@@ -60,9 +60,9 @@ bool DbPduAlarm::modifyItem(const sDbAlarmItem &item, const QString &cmd)
     query.bindValue(":modular",item.modular);
     query.bindValue(":cab",item.cab);
     query.bindValue(":road",item.road);
-    query.bindValue(":devtype",item.devtype);
+    query.bindValue(":dev_type",item.dev_type);
     query.bindValue(":ip",item.ip);
-    query.bindValue(":devnum",item.devnum);
+    query.bindValue(":dev_num",item.dev_num);
     query.bindValue(":item",item.item);
     query.bindValue(":msg",item.msg);
     bool ret = query.exec();

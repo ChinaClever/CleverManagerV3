@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     mNavBar = new NavBarWid(ui->navWId);
     QTimer::singleShot(5,this,SLOT(initFunSLot()));
     connect(mNavBar, SIGNAL(navBarSig(int)), this, SLOT(navBarSlot(int)));
-
 }
 
 MainWindow::~MainWindow()

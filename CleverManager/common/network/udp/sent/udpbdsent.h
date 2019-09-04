@@ -1,30 +1,20 @@
-﻿#ifndef UDPBDSENT_H
+#ifndef UDPBDSENT_H
 #define UDPBDSENT_H
 
 #include "udpsentsocket.h"
 
-class UdpBDSent : public QThread
+class UdpBDSent : public QObject
 {
     Q_OBJECT
-public:
     explicit UdpBDSent(QObject *parent = 0);
+public:
+    static UdpBDSent *bulid(QObject *parent = 0);
 
-protected:
-    void run(void);
-    void sentData(void);
-
-signals:
-
-public slots:
-      void timeoutDone(void);
+    bool sent(uchar *buf, ushort len, quint16 port=UDP_SENT_PORT);
+    bool sent(QByteArray &msg, quint16 port=UDP_SENT_PORT);
 
 private:
-    bool isRun;
     UdpSentSocket *mSocket;
-    QTimer *timer;
-
-    QReadWriteLock  *mLock;
-    QQueue<QByteArray>  *mArrayQue;
 };
-void udp_queue_append(uchar *buf, int len);
+
 #endif // UDPBDSENT_H

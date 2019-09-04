@@ -28,7 +28,7 @@ QString Log_PduAlarmQueryDlg::getCmd()
     int ret = ui->devtypeCmb->currentIndex();
     if(ret) {
         str = ui->devtypeCmb->currentText();
-        cmd += QString(" and devtype like '%%1%'").arg(str);
+        cmd += QString(" and dev_type like '%%1%'").arg(str);
     }
 
     str = ui->ipEdit->text();
@@ -37,7 +37,7 @@ QString Log_PduAlarmQueryDlg::getCmd()
     ret = ui->devnumCmb->currentIndex();
     if(ret) {
         str = ui->devnumCmb->currentText();
-        cmd += QString(" and devnum like '%%1%'").arg(str);
+        cmd += QString(" and dev_num like '%%1%'").arg(str);
     }
 
     return cmd;

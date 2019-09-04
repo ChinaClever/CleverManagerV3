@@ -6,7 +6,7 @@
 struct sPduElecItem : public DbBasicElecItem
 {
     QString room, modular, cab, road;
-    QString devtype, ip, devnum;
+    QString dev_type, ip, dev_num;
     QString item;
 };
 

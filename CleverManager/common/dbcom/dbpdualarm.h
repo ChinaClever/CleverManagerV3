@@ -5,8 +5,8 @@
 struct sDbAlarmItem : public DbBasicItem
 {
     QString room, modular, cab, road;
-    QString devtype, ip;
-    QString devnum;
+    QString dev_type, ip;
+    QString dev_num;
     QString item, msg;
 };
 

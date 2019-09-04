@@ -1,4 +1,4 @@
-﻿/*
+/*
  * udpheartbeat.cpp
  * UDP 心跳包线程
  *
@@ -7,21 +7,15 @@
  */
 #include "udpheartbeat.h"
 
-#define UDP_HEARTBEAT_MSG   "Clever PDU Net Upgrade Tool Server OK!" // 心跳包
+#define UDP_HB_PORT     18725 /*UDP心跳端口*/
+#define UDP_HEARTBEAT_MSG   "Clever-Manager PDU PC Server OK!" // 心跳包
 
-UdpHeartBeat::UdpHeartBeat(QObject *parent) : QThread(parent)
+UdpHeartBeat::UdpHeartBeat(QObject *parent) : QObject(parent)
 {
-    isRun=false;
-    mSocket = NULL;
-    startSent();
+    mSocket = UdpSentSocket::bulid(this);
 }
 
 
-UdpHeartBeat::~UdpHeartBeat()
-{
-    isRun=false;
-    wait();
-}
 
 UdpHeartBeat *UdpHeartBeat::bulid(QObject *parent)
 {
@@ -32,45 +26,19 @@ UdpHeartBeat *UdpHeartBeat::bulid(QObject *parent)
     return sington;
 }
 
-/**
- * @brief 启动心跳包线程
- */
-void UdpHeartBeat::startSent(void)
-{
-    mSocket = new UdpSentSocket(this);
 
-    timer = new QTimer(this);
-    connect( timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
-    timer->start(1500);
-
-    mUdpBDSent = new UdpBDSent(this); // 启动UDP广播数据包
-}
-
-void UdpHeartBeat::timeoutDone(void)
-{
-//    start(); // 在定时器中启动线程
-    run();
-}
-
-/**
-* @brief 心跳包
-*/
-void UdpHeartBeat::heartbeatPacket(void)
+void UdpHeartBeat::sent(const QString &ip)
 {
     QByteArray msg = UDP_HEARTBEAT_MSG;
-
-    if(mSocket)
-        mSocket->sentBroadcastData(msg,UDP_HB_PORT);
+    mSocket->sentData(ip, msg,UDP_HB_PORT);
 }
 
 
-void UdpHeartBeat::run(void)
+void UdpHeartBeat::sent(void)
 {
-    if(isRun != true) // 在运行就不执行
-    {
-        isRun = true;
-        heartbeatPacket();
-        isRun = false;
-    }
+    QByteArray msg = UDP_HEARTBEAT_MSG;
+    mSocket->sentBroadcastData(msg,UDP_HB_PORT);
 }
+
+
 

@@ -22,9 +22,9 @@ void DbPduHrs::createTable()
             "modular        VCHAR,"
             "cab            VCHAR,"
             "road           VCHAR,"
-            "devtype        VCHAR,"
+            "dev_type       VCHAR,"
             "ip             VCHAR,"
-            "devnum         VCHAR,"
+            "dev_num        VCHAR,"
             "item           VCHAR,"
             "sw             VCHAR,"
             "vol            DOUBLE,"
@@ -50,8 +50,8 @@ DbPduHrs *DbPduHrs::bulid()
 
 bool DbPduHrs::insertItem(sDbPduHrsItem &item)
 {
-    QString cmd = "insert into %1 (date,time,room,modular,cab,road,devtype,ip,devnum,item,sw,vol,cur,pow,pf,ele) "
-                  "values(:date,:time,:room,:modular,:cab,:road,:devtype,:ip,:devnum,:item,:sw,:vol,:cur,:pow,:pf,:ele)";
+    QString cmd = "insert into %1 (date,time,room,modular,cab,road,dev_type,ip,dev_num,item,sw,vol,cur,pow,pf,ele) "
+                  "values(:date,:time,:room,:modular,:cab,:road,:dev_type,:ip,:dev_num,:item,:sw,:vol,:cur,:pow,:pf,:ele)";
     return modifyItem(item,cmd.arg(tableName()));
 }
 
@@ -66,9 +66,9 @@ bool DbPduHrs::modifyItem(const sDbPduHrsItem &item, const QString &cmd)
     query.bindValue(":modular",item.modular);
     query.bindValue(":cab",item.cab);
     query.bindValue(":road",item.road);
-    query.bindValue(":devtype",item.devtype);
+    query.bindValue(":dev_type",item.dev_type);
     query.bindValue(":ip",item.ip);
-    query.bindValue(":devnum",item.devnum);
+    query.bindValue(":dev_num",item.dev_num);
     query.bindValue(":item",item.item);
     query.bindValue(":sw",item.sw);
     if(item.vol > 10) {
@@ -95,9 +95,9 @@ void DbPduHrs::selectItem(QSqlQuery &query,sDbPduHrsItem &item)
     item.modular = query.value("modular").toString();
     item.cab = query.value("cab").toString();
     item.road = query.value("road").toString();
-    item.devtype = query.value("devtype").toString();
+    item.dev_type = query.value("dev_type").toString();
     item.ip = query.value("ip").toString();
-    item.devnum = query.value("devnum").toString();
+    item.dev_num = query.value("dev_num").toString();
     item.item = query.value("item").toString();
     item.sw = query.value("sw").toString();
     item.vol = query.value("vol").toDouble();

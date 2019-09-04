@@ -59,11 +59,11 @@ QStringList Log_PduElecQueryDlg::getCmds()
     if(!str.isEmpty()) cmd += QString(" and cab like '%%1%'").arg(str);
 
     str = ui->devtypeCmb->currentText();
-    cmd += QString(" and devtype like '%%1%'").arg(str);
+    cmd += QString(" and dev_type like '%%1%'").arg(str);
     cmd += QString(" and ip like '%%1%'").arg(str);
 
     str = ui->devnumCmb->currentText();
-    cmd += QString(" and devnum like '%%1%'").arg(str);
+    cmd += QString(" and dev_num like '%%1%'").arg(str);
 
     QStringList list, items = getItems();
     for(int i=0; i<items.size(); ++i) {
