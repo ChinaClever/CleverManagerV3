@@ -103,7 +103,7 @@ void DataPackets::tgDevData(sDevData &dev)
     //    tg->pf = averData(obj->pf);
 }
 
-void DataPackets::delPdu(uint id)
+sDataPacket *DataPackets::getByPdu(uint id)
 {
     sDataPacket *pack = nullptr;
     QHashIterator<QString, sDataPacket *> iter(mHash);
@@ -111,49 +111,80 @@ void DataPackets::delPdu(uint id)
         pack = iter.next().value();
         if(pack) {
             if(pack->pdu_id == id) {
-                pack->en = 0;
-                pack->offLine = -1;
+                break;
             }
         }
     }
+
+    return pack;
 }
 
-void DataPackets::delCab(uint id)
+void DataPackets::delPdu(uint id)
+{
+    sDataPacket *pack = getByPdu(id);
+    if(pack) {
+        pack->en = 0;
+        pack->offLine = -1;
+    }
+}
+
+QVector<sDataPacket *> DataPackets::getByCab(uint id)
 {
     sDataPacket *pack = nullptr;
+    QVector<sDataPacket *> packs;
     QHashIterator<QString, sDataPacket *> iter(mHash);
 
     while(iter.hasNext()) {
         pack = iter.next().value();
         if(pack) {
             if(pack->cab_id == id) {
-                pack->en = 0;
-                pack->offLine = -1;
+                packs.append(pack);
             }
         }
     }
+
+    return packs;
+}
+
+QVector<sDataPacket *> DataPackets::getByRoom(uint id)
+{
+    sDataPacket *pack = nullptr;
+    QVector<sDataPacket *> packs;
+    QHashIterator<QString, sDataPacket *> iter(mHash);
+
+    while(iter.hasNext()) {
+        pack = iter.next().value();
+        if(pack) {
+            if(pack->room_id == id) {
+                packs.append(pack);
+            }
+        }
+    }
+
+    return packs;
+}
+
+void DataPackets::dels(QVector<sDataPacket *> &packs)
+{
+    sDataPacket *pack = nullptr;
+    for(int i=0; i<packs.size(); ++i) {
+        pack = packs.at(i);
+        pack->en = 0;
+        pack->offLine = -1;
+    }
+}
+
+void DataPackets::delCab(uint id)
+{
+    QVector<sDataPacket *> packs = getByCab(id);
+    dels(packs);
 }
 
 void DataPackets::delRoom(uint id)
 {
-    sDataPacket *pack = nullptr;
-    QHashIterator<QString, sDataPacket *> iter(mHash);
-
-    while(iter.hasNext())
-    {
-        pack = iter.next().value();
-        if(pack) {
-            if(pack->room_id == id) {
-                pack->en = 0;
-                pack->offLine = -1;
-            }
-        }
-    }
+    QVector<sDataPacket *> packs = getByRoom(id);
+    dels(packs);
 }
-
-
-
-
 
 void DataPackets::workDown()
 {

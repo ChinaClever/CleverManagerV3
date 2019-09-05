@@ -12,6 +12,10 @@ public:
     ~Dp_CabPackets();
 
     sCabPacket *get(const QString &room, const QString &cab);
+
+    sCabPacket *getByCab(uint id);
+    QVector<sCabPacket *> getByRoom(uint id);
+
     void delCab(uint id);
     void delRoom(uint id);
 
@@ -20,6 +24,7 @@ protected:
     void initFun();
     void workDown();
     void initPacket(CabinetItem &it);
+    void dels(QVector<sCabPacket *> &packs);
 
     void tgData(sCabPacket *cab);
     int getStatus(sTgObjData *tg, sDataPacket *pack);

@@ -15,6 +15,11 @@ public:
     sDataPacket *get(const QString &ip, int devNum);
     sDataPacket *get(const QString &ip, const QString &dev_num);
 
+    sDataPacket *getByPdu(uint id);
+    QVector<sDataPacket *> getByCab(uint id);
+    QVector<sDataPacket *> getByRoom(uint id);
+    void dels(QVector<sDataPacket *> &packs);
+
     void delPdu(uint id);
     void delCab(uint id);
     void delRoom(uint id);

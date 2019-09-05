@@ -180,9 +180,9 @@ struct sBusPacket : public sDataPacket
 
 struct sCabPacket
 {
-    sCabPacket() {m=s=nullptr; count=0;en=1;}
+    sCabPacket() {m=s=nullptr; count=0;en=1;status=-1;}
 
-    uchar status;
+    char status;
     uint en, room_id, cab_id, count;
     QString room,modular,cab;
     sDataPacket *m, *s;

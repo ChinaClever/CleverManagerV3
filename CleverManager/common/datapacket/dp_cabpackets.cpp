@@ -10,7 +10,6 @@ Dp_CabPackets::Dp_CabPackets(QObject *parent) : QThread(parent)
     start();
 }
 
-
 Dp_CabPackets::~Dp_CabPackets()
 {
     isRun = false;
@@ -110,42 +109,68 @@ void Dp_CabPackets::initFun()
     }
 }
 
-void Dp_CabPackets::delCab(uint id)
+sCabPacket *Dp_CabPackets::getByCab(uint id)
 {
     sCabPacket *pack = nullptr;
+    QHashIterator<QString, sCabPacket *> iter(mHash);
+    while(iter.hasNext()) {
+        pack = iter.next().value();
+        if(pack) {
+            if(pack->cab_id == id) {
+                break;
+            }
+        }
+    }
+
+    return pack;
+}
+
+QVector<sCabPacket *> Dp_CabPackets::getByRoom(uint id)
+{
+    sCabPacket *pack = nullptr;
+    QVector<sCabPacket *> packs;
     QHashIterator<QString, sCabPacket *> iter(mHash);
 
     while(iter.hasNext()) {
         pack = iter.next().value();
         if(pack) {
-            if(pack->cab_id == id) {
-                pack->en = 0;
+            if(pack->room_id == id) {
+                packs.append(pack);
             }
         }
+    }
+
+    return packs;
+}
+
+void Dp_CabPackets::dels(QVector<sCabPacket *> &packs)
+{
+    sCabPacket *pack = nullptr;
+    for(int i=0; i<packs.size(); ++i) {
+        pack = packs.at(i);
+        pack->en = 0;
+    }
+}
+
+void Dp_CabPackets::delCab(uint id)
+{
+    sCabPacket *pack = getByCab(id);
+    if(pack) {
+        pack->en = 0;
     }
      mPdus->delCab(id);
 }
 
 void Dp_CabPackets::delRoom(uint id)
 {
-    sCabPacket *pack = nullptr;
-    QHashIterator<QString, sCabPacket *> iter(mHash);
-
-    while(iter.hasNext())
-    {
-        pack = iter.next().value();
-        if(pack) {
-            if(pack->room_id == id) {
-                pack->en = 0;
-            }
-        }
-    }
+    QVector<sCabPacket *> packs = getByRoom(id);
+    dels(packs);
     mPdus->delRoom(id);
 }
 
 int Dp_CabPackets::getStatus(sTgObjData *tg, sDataPacket *pack)
 {
-    int ret = 0;
+    int ret = -1;
     if((pack->offLine > 0) && pack->en){
         ret = pack->alarm;
         *tg = pack->data.tg;
@@ -154,9 +179,12 @@ int Dp_CabPackets::getStatus(sTgObjData *tg, sDataPacket *pack)
     return ret;
 }
 
+
+
+
 int Dp_CabPackets::getStatus(sTgObjData *tg, sDataPacket *m,  sDataPacket *s)
 {
-    int ret = 0;
+    int ret = -1;
     if((m->offLine > 0) && m->en  && (s->offLine > 0) && s->en){
         tg->vol = m->data.tg.vol + s->data.tg.vol;
         tg->cur = m->data.tg.cur + s->data.tg.cur;
