@@ -42,6 +42,7 @@ bool BasicSql::remove(const QString &condition)
     return ret;
 }
 
+
 bool BasicSql::remove(int id)
 {
     bool ret =  remove(QString("id = %1").arg(id));

@@ -55,7 +55,7 @@ public:
 
     QStringList listColumn(const QString &column_name, const QString &condition);
     QVector<int> listColumnToInt(const QString &column_name, const QString &condition);
-    QVector<int> selectIds(const QString &condition);
+    QVector<int> selectIds(const QString &condition="");
 
     bool updateColumn(const QString& column_name, double value, const QString &condition);
     bool updateColumn(const QString& column_name, const QString& value, const QString &condition);

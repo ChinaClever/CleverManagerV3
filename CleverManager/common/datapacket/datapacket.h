@@ -65,6 +65,19 @@ struct sObjData
     ushort volThd[PACK_ARRAY_SIZE]; // 电压谐波含量
 };
 
+struct sTgObjData
+{
+    int vol; // 电压
+    int cur;  // 电流
+    int pow; // 功率
+
+    int ele; // 电能
+    int pf; // 功率因素
+    int activePow; // 袖在功率
+    int tem;
+    uchar status;
+};
+
 /**
  * 环境数据结构体
  */
@@ -72,6 +85,8 @@ struct sEnvData
 {
     sEnvData() {size=0;}
     uchar size;
+
+    QString name[SENOR_NUM];
     sDataUnit tem; // 温度
     sDataUnit hum; // 湿度
 
@@ -88,7 +103,7 @@ struct sDevData
     sObjData line; // 相数据
     sObjData loop; // 回路数据
     sObjData output; //位数据
-    sObjData tg; // 回路数据
+    sTgObjData tg; // 回路数据
     sEnvData env; // 环境数据
 };
 
@@ -120,13 +135,15 @@ struct sIpAddr
  */
 struct sDataPacket
 {
-    uchar id;  // 设备号
+    sDataPacket() {offLine=0; alarm=0; count=0; en=1;}
+
+    uchar id, en;  // 设备号
     uint devType; //设备类型
     uchar devSpec; // 设备规格 A\B\C\D
     uchar txType; // 通讯类型 0  1:SNMP  2：Zebra
 
     uchar alarm; // 工作状态 ==0 正常
-    uchar offLine; //离线标志 > 0在线
+    char offLine; //离线标志 > 0在线
 
     QString name; // 设备名称
     QString user, pwd;
@@ -145,6 +162,11 @@ struct sDataPacket
 
     ushort version;
     ushort reserve;
+    uint count;
+
+    uint room_id;
+    uint cab_id;
+    uint pdu_id;
 };
 
 struct sThdData {
@@ -157,5 +179,13 @@ struct sBusPacket : public sDataPacket
     sThdData thd;  // 谐波含量
 };
 
+struct sCabPacket
+{
+    sCabPacket() {m=s=nullptr; count=0;}
 
+    uint room_id, cab_id, count;
+    QString room,modular,cab;
+    sDataPacket *m, *s;
+    sTgObjData tg;
+};
 #endif // DATAPACKET_H

@@ -5,14 +5,18 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \	
     $$PWD/datapacket.h \
-    $$PWD/pdu_datapackets.h \
     $$PWD/datapackets.h \
-    $$PWD/dp_pdualarm.h
+    $$PWD/dp_pdualarm.h \
+    $$PWD/dp_pduhrssave.h \
+    $$PWD/dp_pdupackets.h \
+    $$PWD/dp_cabpackets.h
 	
 SOURCES += \	
-    $$PWD/pdu_datapackets.cpp \
     $$PWD/datapackets.cpp \
-    $$PWD/dp_pdualarm.cpp
+    $$PWD/dp_pdualarm.cpp \
+    $$PWD/dp_pduhrssave.cpp \
+    $$PWD/dp_pdupackets.cpp \
+    $$PWD/dp_cabpackets.cpp
 
 FORMS += \
 

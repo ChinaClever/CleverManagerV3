@@ -1,9 +1,18 @@
 #include "datapackets.h"
+#include <QtSql>
 
-DataPackets::DataPackets(QObject *parent) : QObject(parent)
+DataPackets::DataPackets(QObject *parent) : QThread(parent)
 {
-
+    isRun = true;
+    start();
 }
+
+DataPackets::~DataPackets()
+{
+    isRun = false;
+    wait();
+}
+
 
 sDataPacket *DataPackets::find(const QString &key)
 {
@@ -73,10 +82,11 @@ int DataPackets::averData(ushort *data, int len)
 
 void DataPackets::tgDevData(sDevData &dev)
 {
-    sObjData *tg = &(dev.tg);
+    sTgObjData *tg = &(dev.tg);
     sObjData *obj = &(dev.line);
     int size = obj->size;
 
+    memset(tg, 0, sizeof(sTgObjData));
     for(int i=0; i<size; ++i)
     {
         tg->cur += obj->cur.value[i];
@@ -93,3 +103,84 @@ void DataPackets::tgDevData(sDevData &dev)
     //    tg->pf = averData(obj->pf);
 }
 
+void DataPackets::delPdu(uint id)
+{
+    sDataPacket *pack = nullptr;
+    QHashIterator<QString, sDataPacket *> iter(mHash);
+    while(iter.hasNext()) {
+        pack = iter.next().value();
+        if(pack) {
+            if(pack->pdu_id == id) {
+                pack->en = 0;
+                pack->offLine = -1;
+            }
+        }
+    }
+}
+
+void DataPackets::delCab(uint id)
+{
+    sDataPacket *pack = nullptr;
+    QHashIterator<QString, sDataPacket *> iter(mHash);
+
+    while(iter.hasNext()) {
+        pack = iter.next().value();
+        if(pack) {
+            if(pack->cab_id == id) {
+                pack->en = 0;
+                pack->offLine = -1;
+            }
+        }
+    }
+}
+
+void DataPackets::delRoom(uint id)
+{
+    sDataPacket *pack = nullptr;
+    QHashIterator<QString, sDataPacket *> iter(mHash);
+
+    while(iter.hasNext())
+    {
+        pack = iter.next().value();
+        if(pack) {
+            if(pack->room_id == id) {
+                pack->en = 0;
+                pack->offLine = -1;
+            }
+        }
+    }
+}
+
+
+
+
+
+void DataPackets::workDown()
+{
+    QHashIterator<QString, sDataPacket *> iter(mHash);
+    while(iter.hasNext())
+    {
+        iter.next();
+        if(iter.value()) {
+            sDataPacket *pack = iter.value();
+            if((pack->offLine > 0) && (pack->en)) {
+                pack->offLine--;
+                pack->count++;
+
+                QSqlDatabase::database().transaction();
+                workDown(pack);
+                QSqlDatabase::database().commit();
+            }
+        }
+        msleep(15 + rand()%15);
+    }
+}
+
+void DataPackets::run()
+{
+    initFun();
+    while (isRun) {
+        sleep(1);
+        workDown();
+    }
+}

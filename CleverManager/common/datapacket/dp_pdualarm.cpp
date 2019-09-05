@@ -1,6 +1,6 @@
 #include "dp_pdualarm.h"
 #include "sound.h"
-#include "dbpdualarm.h"
+
 
 Dp_PduAlarm::Dp_PduAlarm(QObject *parent) : QObject(parent)
 {
@@ -17,7 +17,15 @@ Dp_PduAlarm *Dp_PduAlarm::bulid(QObject *parent)
     return sington;
 }
 
-bool Dp_PduAlarm::alarmSalve(const QString&str, uchar value)
+
+
+bool Dp_PduAlarm::saveItem(sDbAlarmItem &item)
+{
+//    QCoreApplication::processEvents(QEventLoop::AllEvents,15);
+    return DbPduAlarm::bulid()->insertItem(item);
+}
+
+sDbAlarmItem Dp_PduAlarm::initItem()
 {
     sDbAlarmItem item;
     item.room = mPack->room;
@@ -28,9 +36,16 @@ bool Dp_PduAlarm::alarmSalve(const QString&str, uchar value)
     item.ip = mPack->ip.ip;
     item.dev_num = mPack->dev_num;
 
+    return item;
+}
+
+bool Dp_PduAlarm::alarmSave(const QString&str, uchar value)
+{
+    sDbAlarmItem item = initItem();
+
     item.item = str;
     item.msg = tr("报警值 %1").arg(value/10.0);
-    return DbPduAlarm::bulid()->insertItem(item);
+    return saveItem(item);
 }
 
 bool Dp_PduAlarm::alarmDataUnit(sDataUnit &unit, int size)
@@ -40,7 +55,7 @@ bool Dp_PduAlarm::alarmDataUnit(sDataUnit &unit, int size)
         if((unit.value[i] > unit.max[i]) || (unit.value[i] < unit.min[i])) {
             if( 0 == unit.alarm[i]) {
                 QString str = mItemStr.arg(i+1);
-                ret = alarmSalve(str, unit.value[i]);
+                ret = alarmSave(str, unit.value[i]);
                 if(ret) Sound::bulid()->play();
             }
 
@@ -59,7 +74,6 @@ bool Dp_PduAlarm::alarmDataUnit(sDataUnit &unit, int size)
 
     return ret;
 }
-
 
 bool Dp_PduAlarm::alarmObjDataUnit(sObjData &obj)
 {
@@ -87,24 +101,41 @@ bool Dp_PduAlarm::alarmEnvData(sEnvData &env)
 
 bool Dp_PduAlarm::alarmDevData(sDevData &dev)
 {
-    mItemStr = "line %1 ";
+    mItemStr = "Line %1 ";
     bool ret = alarmObjDataUnit(dev.line);
 
-    mItemStr = tr("回路") + " %1 ";
+    mItemStr = "Loop %1 ";
     ret = ret || alarmObjDataUnit(dev.loop);
 
-    mItemStr = tr("输出位") + " %1 ";
+    mItemStr = "Output %1 ";
     ret = ret || alarmObjDataUnit(dev.output);
     ret = ret || alarmEnvData(dev.env);
 
     return ret;
 }
 
-bool Dp_PduAlarm::alarm(sDataPacket *pack)
+bool Dp_PduAlarm::offlineSave()
 {
-    bool ret = alarmDevData(pack->data);
-    if(ret) {
-        pack->alarm = 1;
+    sDbAlarmItem item = initItem();
+
+    item.item = tr("设备离线");
+    item.msg = tr("检测到此设备离线");
+    return saveItem(item);;
+}
+
+bool Dp_PduAlarm::alarm(sDataPacket *pack)
+{    
+    bool ret = false;
+    mPack = pack;
+
+    if(pack->offLine > 0) {
+        ret = alarmDevData(pack->data);
+        if(ret) {
+            pack->alarm = 1;
+        }
+    } else if(pack->offLine == 0) {
+        pack->offLine = -1;
+        offlineSave();
     }
 
     return ret;
