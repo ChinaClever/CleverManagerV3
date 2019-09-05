@@ -47,6 +47,7 @@ void Dp_PduPackets::initPacket(PduDeviceItem &it)
     sDataPacket *pack = get(it.ip, it.dev_num);
     if(pack) {
         pack->en = 1;
+        pack->count = 0;
         pack->pdu_id = it.id;
         pack->room_id = it.room_id;
         pack->cab_id = it.cab_id;

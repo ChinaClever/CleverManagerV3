@@ -75,7 +75,6 @@ struct sTgObjData
     int pf; // 功率因素
     int activePow; // 袖在功率
     int tem;
-    uchar status;
 };
 
 /**
@@ -181,9 +180,10 @@ struct sBusPacket : public sDataPacket
 
 struct sCabPacket
 {
-    sCabPacket() {m=s=nullptr; count=0;}
+    sCabPacket() {m=s=nullptr; count=0;en=1;}
 
-    uint room_id, cab_id, count;
+    uchar status;
+    uint en, room_id, cab_id, count;
     QString room,modular,cab;
     sDataPacket *m, *s;
     sTgObjData tg;
