@@ -34,14 +34,21 @@ void LogMainWid::initFunSLot()
     mCabHrs->initWid(DbCabHrs::bulid(), new Log_CabHrsQueryDlg(this));
     ui->stackedWid->addWidget(mCabHrs);
 
-    mCabElec = new ElecComWid(ui->stackedWid);
-    mCabElec->initWid(DbCabElec::bulid(), new Log_CabElecQueryDlg(this));
-    ui->stackedWid->addWidget(mCabElec);
+    mRoomHrs = new LogComWid(ui->stackedWid);
+    mRoomHrs->initWid(DbRoomHrs::bulid(), new Log_RoomHrsQueryDlg(this));
+    ui->stackedWid->addWidget(mRoomHrs);
 
     mPduElec = new ElecComWid(ui->stackedWid);
     mPduElec->initWid(DbPduElec::bulid(), new Log_PduElecQueryDlg(this));
     ui->stackedWid->addWidget(mPduElec);
 
+    mCabElec = new ElecComWid(ui->stackedWid);
+    mCabElec->initWid(DbCabElec::bulid(), new Log_CabElecQueryDlg(this));
+    ui->stackedWid->addWidget(mCabElec);
+
+    mRoomElec = new ElecComWid(ui->stackedWid);
+    mRoomElec->initWid(DbRoomElec::bulid(), new Log_RoomElecQueryDlg(this));
+    ui->stackedWid->addWidget(mRoomElec);
 }
 
 void LogMainWid::on_comboBox_currentIndexChanged(int index)

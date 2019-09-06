@@ -35,13 +35,9 @@ QStringList Log_CabElecQueryDlg::getCabs()
     } else {
         QString room = ui->roomEdit->text();
         QString cmd = QString(" where room=\'%1\'").arg(room);
-        QStringList cabs, rets = DbCabHrs::bulid()->listColumn("cab", cmd);
+        QStringList rets = DbCabHrs::bulid()->listColumn("cab", cmd);
         for(int i=0; i<rets.size(); i++) {
-            cab = rets.at(i);
-            if(!cabs.contains(cab)) {
-                cabs << cab;
-                list << QString(" and cab like '%%1%'").arg(cab);
-            }
+            list << QString(" and cab like '%%1%'").arg(rets.at(i));
         }
     }
 

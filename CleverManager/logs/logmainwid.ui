@@ -59,12 +59,22 @@
       </item>
       <item>
        <property name="text">
-        <string>机柜电能计算</string>
+        <string>机房数据纪录</string>
        </property>
       </item>
       <item>
        <property name="text">
         <string>PDU电能计算</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>机柜电能计算</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>机房电能计算</string>
        </property>
       </item>
      </widget>

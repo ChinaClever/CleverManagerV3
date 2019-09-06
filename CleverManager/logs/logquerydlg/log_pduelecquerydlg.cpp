@@ -36,13 +36,9 @@ QStringList Log_PduElecQueryDlg::getItems()
 
     QString item = mDateBar->getDate();
     QString cmd = QString(" where %1").arg(item);
-    QStringList items, rets = DbPduHrs::bulid()->listColumn("item", cmd);
+    QStringList rets = DbPduHrs::bulid()->listColumn("item", cmd);
     for(int i=0; i<rets.size(); i++) {
-        item = rets.at(i);
-        if(!items.contains(item)) {
-            items << item;
-            list << QString(" and item like '%%1%'").arg(item);
-        }
+        list << QString(" and item like '%%1%'").arg(rets.at(i));
     }
 
     return list;
