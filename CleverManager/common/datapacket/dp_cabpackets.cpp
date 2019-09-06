@@ -25,39 +25,7 @@ Dp_CabPackets *Dp_CabPackets::bulid(QObject *parent)
     return sington;
 }
 
-sCabPacket *Dp_CabPackets::find(const QString &key)
-{
-    sCabPacket * node = nullptr;
-    bool ret = contains(key);
-    if(ret) {
-        auto index = mHash.find(key);
-        if(index != mHash.end()) {
-            node = index.value();
-        }
-    }
 
-    return node;
-}
-
-void Dp_CabPackets::remove(const QString &key)
-{
-    sCabPacket * node = find(key);
-    if(node) {
-        mHash.remove(key);
-        delete node;
-    }
-}
-
-sCabPacket *Dp_CabPackets::insert(const QString &key)
-{
-    sCabPacket *node = find(key);
-    if(!node) {
-        node = new sCabPacket;
-        mHash.insert(key, node);
-    }
-
-    return node;
-}
 
 sCabPacket *Dp_CabPackets::get(const QString &room, const QString &cab)
 {
@@ -181,35 +149,6 @@ int Dp_CabPackets::getStatus(sDataPacket *pack)
 }
 
 
-int Dp_CabPackets::tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs)
-{
-    int size=0, ret=0;
-    memset(tg, 0, sizeof(sTgObjData));
-    for(int i=0; i<packs.size(); ++i)
-    {
-        sDataPacket *m = packs.at(i);
-        if(!m) continue;
-
-        if((m->offLine > 0) && m->en) {
-            tg->vol += m->data.tg.vol;
-            tg->cur += m->data.tg.cur;
-            tg->pow += m->data.tg.pow;
-            tg->ele += m->data.tg.ele;
-            tg->activePow = m->data.tg.activePow;
-            if(m->data.tg.vol > 100) size++;
-            ret += m->alarm;
-        }
-    }
-
-    tg->vol /= size;
-    if(tg->activePow > 0)
-        tg->pf = (tg->pow * 100.0 / tg->activePow);
-    else
-        tg->pf = 0;
-    if(tg->pf>99) tg->pf = 99;
-
-    return ret;
-}
 
 
 
@@ -218,7 +157,7 @@ void Dp_CabPackets::tgCabData(sCabPacket *cab)
     sTgObjData *tg = &(cab->tg);
     QVector<sDataPacket *> packs;
     packs << cab->m << cab->s;
-    tgDataPackts(tg, packs);
+    mPdus->tgDataPackts(tg, packs);
 
     cab->status = getStatus(cab->m);
     cab->status += getStatus(cab->s);

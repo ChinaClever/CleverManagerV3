@@ -188,4 +188,16 @@ struct sCabPacket
     sDataPacket *m, *s;
     sTgObjData tg;
 };
+
+struct sRoomPacket
+{
+    sRoomPacket() {status=0; en=1; count=0;}
+
+    QString room;
+    uint status, en, room_id, count;
+    sTgObjData tg;
+};
+
+
+
 #endif // DATAPACKET_H

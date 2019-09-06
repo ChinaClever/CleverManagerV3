@@ -3,9 +3,9 @@
 
 #include <QObject>
 #include "datapacket.h"
-#include <QHash>
+#include "dp_hashbasic.h"
 
-class DataPackets : public QThread
+class DataPackets : public QThread , public Dp_HashBasic<sDataPacket *>
 {
     Q_OBJECT
 public:
@@ -14,6 +14,7 @@ public:
 
     sDataPacket *get(const QString &ip, int devNum);
     sDataPacket *get(const QString &ip, const QString &dev_num);
+    int tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs);
 
     sDataPacket *getByPdu(uint id);
     QVector<sDataPacket *> getByCab(uint id);
@@ -30,17 +31,11 @@ protected:
 
     virtual void initFun()=0;
     virtual void workDown(sDataPacket *pack)=0;
-    virtual sDataPacket *newDataPacket()=0;
-
-    sDataPacket *find(const QString &key);
-    sDataPacket *insert(const QString &key);
-    bool contains(const QString &key) {return mHash.contains(key);}
-
     int averData(ushort *data, int len);
     void tgDevData(sDevData &dev);
+
 protected:
     bool isRun;
-    QHash<QString, sDataPacket *> mHash;
 };
 
 #endif // DATAPACKETS_H

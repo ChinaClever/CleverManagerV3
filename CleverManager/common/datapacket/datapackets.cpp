@@ -14,31 +14,6 @@ DataPackets::~DataPackets()
 }
 
 
-sDataPacket *DataPackets::find(const QString &key)
-{
-    sDataPacket * node = nullptr;
-    bool ret = contains(key);
-    if(ret) {
-        auto index = mHash.find(key);
-        if(index != mHash.end()) {
-            node = index.value();
-        }
-    }
-
-    return node;
-}
-
-sDataPacket *DataPackets::insert(const QString &key)
-{
-    sDataPacket *node = find(key);
-    if(!node) {
-        node = newDataPacket();
-        mHash.insert(key, node);
-    }
-
-    return node;
-}
-
 sDataPacket *DataPackets::get(const QString &ip, const QString &dev_num)
 {
     QString key = ip +";"+ dev_num;
@@ -54,6 +29,35 @@ sDataPacket *DataPackets::get(const QString &ip, int devNum)
 }
 
 
+int DataPackets::tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs)
+{
+    int size=0, ret=0;
+    memset(tg, 0, sizeof(sTgObjData));
+    for(int i=0; i<packs.size(); ++i)
+    {
+        sDataPacket *m = packs.at(i);
+        if(!m) continue;
+
+        if((m->offLine > 0) && m->en) {
+            tg->vol += m->data.tg.vol;
+            tg->cur += m->data.tg.cur;
+            tg->pow += m->data.tg.pow;
+            tg->ele += m->data.tg.ele;
+            tg->activePow = m->data.tg.activePow;
+            if(m->data.tg.vol > 100) size++;
+            ret += m->alarm;
+        }
+    }
+
+    tg->vol /= size;
+    if(tg->activePow > 0)
+        tg->pf = (tg->pow * 100.0 / tg->activePow);
+    else
+        tg->pf = 0;
+    if(tg->pf>99) tg->pf = 99;
+
+    return ret;
+}
 
 /**
  * @brief 获取平均数据 0视无效数据
