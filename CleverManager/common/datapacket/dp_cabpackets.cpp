@@ -158,7 +158,7 @@ void Dp_CabPackets::delCab(uint id)
     if(pack) {
         pack->en = 0;
     }
-     mPdus->delCab(id);
+    mPdus->delCab(id);
 }
 
 void Dp_CabPackets::delRoom(uint id)
@@ -168,61 +168,60 @@ void Dp_CabPackets::delRoom(uint id)
     mPdus->delRoom(id);
 }
 
-int Dp_CabPackets::getStatus(sTgObjData *tg, sDataPacket *pack)
+int Dp_CabPackets::getStatus(sDataPacket *pack)
 {
     int ret = -1;
-    if((pack->offLine > 0) && pack->en){
-        ret = pack->alarm;
-        *tg = pack->data.tg;
-    }
-
-    return ret;
-}
-
-
-
-
-int Dp_CabPackets::getStatus(sTgObjData *tg, sDataPacket *m,  sDataPacket *s)
-{
-    int ret = -1;
-    if((m->offLine > 0) && m->en  && (s->offLine > 0) && s->en){
-        tg->vol = m->data.tg.vol + s->data.tg.vol;
-        tg->cur = m->data.tg.cur + s->data.tg.cur;
-        tg->pow = m->data.tg.pow + s->data.tg.pow;
-        tg->ele = m->data.tg.ele + s->data.tg.ele;
-        tg->activePow = m->data.tg.activePow + s->data.tg.activePow;
-        if( m->data.tg.vol && s->data.tg.vol) {
-            tg->vol /= 2;
+    if(pack) {
+        if((pack->offLine > 0) && pack->en){
+            ret = pack->alarm;
         }
-
-        if(tg->activePow > 0)
-            tg->pf = (tg->pow * 100.0 / tg->activePow);
-        else
-            tg->pf = 0;
-        if(tg->pf>99) tg->pf = 99;
-
-        ret = m->alarm + s->alarm;
-    } else if ((m->offLine > 0) && m->en) {
-        ret = getStatus(tg, m);
-    } else if((s->offLine > 0) && s->en) {
-        ret = getStatus(tg, s);
     }
 
     return ret;
 }
 
-void Dp_CabPackets::tgData(sCabPacket *cab)
+
+int Dp_CabPackets::tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs)
+{
+    int size=0, ret=0;
+    memset(tg, 0, sizeof(sTgObjData));
+    for(int i=0; i<packs.size(); ++i)
+    {
+        sDataPacket *m = packs.at(i);
+        if(!m) continue;
+
+        if((m->offLine > 0) && m->en) {
+            tg->vol += m->data.tg.vol;
+            tg->cur += m->data.tg.cur;
+            tg->pow += m->data.tg.pow;
+            tg->ele += m->data.tg.ele;
+            tg->activePow = m->data.tg.activePow;
+            if(m->data.tg.vol > 100) size++;
+            ret += m->alarm;
+        }
+    }
+
+    tg->vol /= size;
+    if(tg->activePow > 0)
+        tg->pf = (tg->pow * 100.0 / tg->activePow);
+    else
+        tg->pf = 0;
+    if(tg->pf>99) tg->pf = 99;
+
+    return ret;
+}
+
+
+
+void Dp_CabPackets::tgCabData(sCabPacket *cab)
 {
     sTgObjData *tg = &(cab->tg);
-    memset(tg, 0, sizeof(sTgObjData));
+    QVector<sDataPacket *> packs;
+    packs << cab->m << cab->s;
+    tgDataPackts(tg, packs);
 
-    if(cab->m && cab->s) {
-        cab->status = getStatus(tg, cab->m, cab->s);
-    } else if(cab->m) {
-        cab->status = getStatus(tg, cab->m);
-    } else if(cab->s) {
-        cab->status = getStatus(tg, cab->s);
-    }
+    cab->status = getStatus(cab->m);
+    cab->status += getStatus(cab->s);
 }
 
 void Dp_CabPackets::workDown()
@@ -235,7 +234,7 @@ void Dp_CabPackets::workDown()
             sCabPacket *pack = iter.value();
             if(pack->en) {
                 pack->count++;
-                tgData(pack);
+                tgCabData(pack);
                 mCabHrs->save(pack);
             }
         }

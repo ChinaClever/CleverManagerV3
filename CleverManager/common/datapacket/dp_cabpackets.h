@@ -19,6 +19,8 @@ public:
     void delCab(uint id);
     void delRoom(uint id);
 
+    int tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs);
+
 protected:
     void run();
     void initFun();
@@ -26,9 +28,8 @@ protected:
     void initPacket(CabinetItem &it);
     void dels(QVector<sCabPacket *> &packs);
 
-    void tgData(sCabPacket *cab);
-    int getStatus(sTgObjData *tg, sDataPacket *pack);
-    int getStatus(sTgObjData *tg, sDataPacket *m,  sDataPacket *s);
+    void tgCabData(sCabPacket *cab);
+    int getStatus(sDataPacket *pack);
 
 private:
     sCabPacket *insert(const QString &key);
