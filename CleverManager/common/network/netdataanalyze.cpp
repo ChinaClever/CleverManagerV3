@@ -24,6 +24,7 @@ NetDataAnalyze::NetDataAnalyze(QObject *parent) : QThread(parent)
     mPacket = new net_data_packet;
     mDevData = new net_dev_data;
     mPduData = new pdu_devData_packet;
+    mDataSave = Net_DataSave::bulid();
     mRecvBuf = (uchar *)malloc(DATA_MSG_SIZE+10);
     QTimer::singleShot(5,this,SLOT(start())); //延时初始化
 }
@@ -72,8 +73,7 @@ void NetDataAnalyze::recvData(void)
 
                     mPduData->code = &mPacket->code;
                     mPduData->data = mDevData;
-
-//                    pdu_hashData_save(mPduData); // 进行数据的保存
+                    mDataSave->dataSave(mPduData);  // 进行数据的保存
                 }
                 // else
                 //      qDebug() << "dev data analytic err" << rtn;

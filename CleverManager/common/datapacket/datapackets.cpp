@@ -1,16 +1,14 @@
 #include "datapackets.h"
 #include <QtSql>
 
-DataPackets::DataPackets(QObject *parent) : QThread(parent)
+DataPackets::DataPackets(QObject *parent) : Dp_BasicThread(parent)
 {
-    isRun = true;
-    start();
+
 }
 
 DataPackets::~DataPackets()
 {
-    isRun = false;
-    wait();
+
 }
 
 
@@ -115,7 +113,8 @@ sDataPacket *DataPackets::getByPdu(uint id)
         pack = iter.next().value();
         if(pack) {
             if(pack->pdu_id == id) {
-                break;
+                if(pack->en)
+                    break;
             }
         }
     }
@@ -142,7 +141,8 @@ QVector<sDataPacket *> DataPackets::getByCab(uint id)
         pack = iter.next().value();
         if(pack) {
             if(pack->cab_id == id) {
-                packs.append(pack);
+                if(pack->en)
+                    packs.append(pack);
             }
         }
     }
@@ -160,7 +160,8 @@ QVector<sDataPacket *> DataPackets::getByRoom(uint id)
         pack = iter.next().value();
         if(pack) {
             if(pack->room_id == id) {
-                packs.append(pack);
+                if(pack->en)
+                    packs.append(pack);
             }
         }
     }
@@ -188,34 +189,4 @@ void DataPackets::delRoom(uint id)
 {
     QVector<sDataPacket *> packs = getByRoom(id);
     dels(packs);
-}
-
-void DataPackets::workDown()
-{
-    QHashIterator<QString, sDataPacket *> iter(mHash);
-    while(iter.hasNext())
-    {
-        iter.next();
-        if(iter.value()) {
-            sDataPacket *pack = iter.value();
-            if((pack->offLine > 0) && (pack->en)) {
-                pack->offLine--;
-                pack->count++;
-
-                QSqlDatabase::database().transaction();
-                workDown(pack);
-                QSqlDatabase::database().commit();
-            }
-        }
-        msleep(15 + rand()%15);
-    }
-}
-
-void DataPackets::run()
-{
-    initFun();
-    while (isRun) {
-        sleep(1);
-        workDown();
-    }
 }

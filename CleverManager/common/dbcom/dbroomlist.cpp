@@ -30,7 +30,7 @@ void DbRoomList::createTable()
     QString cmd =
             "create table if not exists %1("
             "id                INTEGER primary key autoincrement not null,"
-            "name              TEXT not null,"
+            "room              TEXT not null,"
             "address           TEXT);";
     QSqlQuery query;
     if(!query.exec(cmd.arg(tableName())))
@@ -42,17 +42,17 @@ void DbRoomList::createTable()
 void DbRoomList::insertItem(RoomItem &item)
 {
     item.id = maxId()+1;
-    QString cmd = "insert into %1 (id,name,address) values(:id,:name,:address)";
+    QString cmd = "insert into %1 (id,room,address) values(:id,:room,:address)";
     modifyItem(item,cmd.arg(tableName()));
     emit itemChanged(item.id,Insert);
 }
 
 void DbRoomList::updateItem(const RoomItem &item)
 {
-    QString roomName = findById(item.id).name;
-    emit updateSig(roomName, item.name);
+    QString roomName = findById(item.id).room;
+    emit updateSig(roomName, item.room);
 
-    QString cmd = "update %1 set name = :name,address = :address where id = :id";
+    QString cmd = "update %1 set room = :room,address = :address where id = :id";
     modifyItem(item,cmd.arg(tableName()));
     emit itemChanged(item.id,Update);
 }
@@ -62,7 +62,7 @@ void DbRoomList::modifyItem(const RoomItem &item, const QString &cmd)
     QSqlQuery query;
     query.prepare(cmd);
     query.bindValue(":id",item.id);
-    query.bindValue(":name",item.name);
+    query.bindValue(":room",item.room);
     query.bindValue(":address",item.address);
     if(!query.exec())
         throwError(query.lastError());
@@ -71,38 +71,38 @@ void DbRoomList::modifyItem(const RoomItem &item, const QString &cmd)
 void DbRoomList::selectItem(QSqlQuery &query,RoomItem &item)
 {
     item.id = query.value("id").toInt();
-    item.name = query.value("name").toString();
+    item.room = query.value("room").toString();
     item.address = query.value("address").toString();
 }
 
 QStringList DbRoomList::list()
 {
-    return listColumn("name", "");
+    return listColumn("room", "");
 }
 
-int DbRoomList::contains(const QString &name)
+int DbRoomList::contains(const QString &room)
 {
-    QString condition = QString("where name=\'%1\'").arg(name);
+    QString condition = QString("where room=\'%1\'").arg(room);
     return count("id", condition);
 }
 
-RoomItem DbRoomList::find(const QString& name)
+RoomItem DbRoomList::find(const QString& room)
 {
-    QVector<RoomItem> items = selectItems(QString("where name = \'%1\'").arg(name));
+    QVector<RoomItem> items = selectItems(QString("where room = \'%1\'").arg(room));
     return items.first();
 }
 
-int DbRoomList::findId(const QString& name)
+int DbRoomList::findId(const QString& room)
 {
-     RoomItem item = find(name);
+     RoomItem item = find(room);
      return item.id;
 }
 
-void DbRoomList::removeRoom(const QString& name)
+void DbRoomList::removeRoom(const QString& room)
 {
-    RoomItem item = find(name);
+    RoomItem item = find(room);
     bool ret = remove(item.id);
     if(ret) {
-        emit delSig(item.name);
+        emit delSig(item.room);
     }
 }

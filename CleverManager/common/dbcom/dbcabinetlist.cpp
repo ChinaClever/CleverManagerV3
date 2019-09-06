@@ -127,7 +127,7 @@ void DbCabinetList::roomItemChange(int roomId, int type)
     QString cmd = QString("room_id=%1").arg(roomId);
     switch (type) {
     case Remove: remove(cmd); break;
-    case Update: updateColumn("room", DbRoomList::get()->findById(roomId).name, cmd);  break;
+    case Update: updateColumn("room", DbRoomList::get()->findById(roomId).room, cmd);  break;
     }
 }
 

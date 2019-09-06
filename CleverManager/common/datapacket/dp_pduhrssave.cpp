@@ -19,7 +19,6 @@ Dp_PduHrsSave *Dp_PduHrsSave::bulid(QObject *parent)
 
 bool Dp_PduHrsSave::saveItem(sDbPduHrsItem &item)
 {
-//    QCoreApplication::processEvents(QEventLoop::AllEvents,15);
     return DbPduHrs::bulid()->insertItem(item);
 }
 

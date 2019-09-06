@@ -3,9 +3,9 @@
 
 #include <QObject>
 #include "datapacket.h"
-#include "dp_hashbasic.h"
+#include "dp_basicthread.h"
 
-class DataPackets : public QThread , public Dp_HashBasic<sDataPacket *>
+class DataPackets : public Dp_BasicThread<sDataPacket *>
 {
     Q_OBJECT
 public:
@@ -26,16 +26,10 @@ public:
     void delRoom(uint id);
 
 protected:
-    void run();
-    void workDown();
-
     virtual void initFun()=0;
     virtual void workDown(sDataPacket *pack)=0;
     int averData(ushort *data, int len);
     void tgDevData(sDevData &dev);
-
-protected:
-    bool isRun;
 };
 
 #endif // DATAPACKETS_H

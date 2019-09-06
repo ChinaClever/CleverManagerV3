@@ -3,7 +3,7 @@
 #include <QtCore>
 
 template <typename T>
-class Dp_HashBasic
+class Dp_BasicHash
 {
 protected:
     virtual T newDataPacket()=0;

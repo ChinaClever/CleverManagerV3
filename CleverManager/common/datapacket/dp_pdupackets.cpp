@@ -76,13 +76,17 @@ void Dp_PduPackets::pduItemChange(int id,int type)
         PduDeviceItem it = mDb->findById(id);
         initPacket(it);
     } else {
-       delPdu(id);
+        delPdu(id);
     }
 }
 
 void Dp_PduPackets::workDown(sDataPacket *pack)
 {
-    mAlarm->alarm(pack);
-    mHrs->save(pack);
-    tgDevData(pack->data);
+    if(pack->offLine > 0) {
+        pack->offLine--;
+
+        mAlarm->alarm(pack);
+        mHrs->save(pack);
+        tgDevData(pack->data);
+    }
 }

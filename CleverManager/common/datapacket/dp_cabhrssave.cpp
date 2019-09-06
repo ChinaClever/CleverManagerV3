@@ -17,7 +17,6 @@ Dp_CabHrsSave *Dp_CabHrsSave::bulid(QObject *parent)
 
 bool Dp_CabHrsSave::saveItem(sDbCabHrsItem &item)
 {
-    //    QCoreApplication::processEvents(QEventLoop::AllEvents,15);
     return DbCabHrs::bulid()->insertItem(item);
 }
 
@@ -74,12 +73,11 @@ void Dp_CabHrsSave::save(sCabPacket *cab)
 {
     mCab = cab;
     bool ret = checkCount(cab->count);
-    if(ret) {        
-        QSqlDatabase::database().transaction();
+    if(ret) {
+        cab->count = 0;
         tgObjData(tr("统计"), cab->tg);
         dataPacket(tr("主路"), cab->m);
-        dataPacket(tr("备路"), cab->s);        
-        QSqlDatabase::database().commit();
+        dataPacket(tr("备路"), cab->s);
     }
 }
 

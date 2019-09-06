@@ -3,7 +3,7 @@
 
 #include "dp_cabhrssave.h"
 
-class Dp_CabPackets : public QThread, public Dp_HashBasic<sCabPacket *>
+class Dp_CabPackets : public Dp_BasicThread<sCabPacket *>
 {
     Q_OBJECT
     explicit Dp_CabPackets(QObject *parent = nullptr);
@@ -12,7 +12,6 @@ public:
     ~Dp_CabPackets();
 
     sCabPacket *get(const QString &room, const QString &cab);
-
     sCabPacket *getByCab(uint id);
     QVector<sCabPacket *> getByRoom(uint id);
 
@@ -20,9 +19,9 @@ public:
     void delRoom(uint id);
 
 protected:
-    void run();
     void initFun();
-    void workDown();
+    void workDown(sCabPacket *pack);
+
     void initPacket(CabinetItem &it);
     void dels(QVector<sCabPacket *> &packs);
 
@@ -36,7 +35,7 @@ private slots:
     void cabinetItemChange(int, int);
 
 private:
-    bool isRun;
+    int mCount;
     Dp_PduPackets *mPdus;
     DbCabinetList *mDb;
     Dp_CabHrsSave *mCabHrs;

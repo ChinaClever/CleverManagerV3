@@ -1,19 +1,16 @@
 #include "dp_cabpackets.h"
 
-Dp_CabPackets::Dp_CabPackets(QObject *parent) : QThread(parent)
+Dp_CabPackets::Dp_CabPackets(QObject *parent) : Dp_BasicThread(parent)
 {
-    isRun = true;
+    mCount = 1;
     mDb = DbCabinetList::get();
     mPdus = Dp_PduPackets::bulid(this);
     mCabHrs = Dp_CabHrsSave::bulid(this);
     connect(mDb,SIGNAL(itemChanged(int,int)),SLOT(cabinetItemChange(int,int)));
-    start();
 }
 
 Dp_CabPackets::~Dp_CabPackets()
 {
-    isRun = false;
-    wait();
 }
 
 Dp_CabPackets *Dp_CabPackets::bulid(QObject *parent)
@@ -85,7 +82,8 @@ sCabPacket *Dp_CabPackets::getByCab(uint id)
         pack = iter.next().value();
         if(pack) {
             if(pack->cab_id == id) {
-                break;
+                if(pack->en)
+                    break;
             }
         }
     }
@@ -103,7 +101,8 @@ QVector<sCabPacket *> Dp_CabPackets::getByRoom(uint id)
         pack = iter.next().value();
         if(pack) {
             if(pack->room_id == id) {
-                packs.append(pack);
+                if(pack->en)
+                    packs.append(pack);
             }
         }
     }
@@ -149,9 +148,6 @@ int Dp_CabPackets::getStatus(sDataPacket *pack)
 }
 
 
-
-
-
 void Dp_CabPackets::tgCabData(sCabPacket *cab)
 {
     sTgObjData *tg = &(cab->tg);
@@ -163,29 +159,11 @@ void Dp_CabPackets::tgCabData(sCabPacket *cab)
     cab->status += getStatus(cab->s);
 }
 
-void Dp_CabPackets::workDown()
+void Dp_CabPackets::workDown(sCabPacket *pack)
 {
-    QHashIterator<QString, sCabPacket *> iter(mHash);
-    while(iter.hasNext())
-    {
-        iter.next();
-        if(iter.value()) {
-            sCabPacket *pack = iter.value();
-            if(pack->en) {
-                pack->count++;
-                tgCabData(pack);
-                mCabHrs->save(pack);
-            }
-        }
-        msleep(15 + rand()%15);
+    if(mCount++ % 3 == 0) {
+        tgCabData(pack);
+        mCabHrs->save(pack);
     }
 }
 
-void Dp_CabPackets::run()
-{
-    initFun();
-    while (isRun) {
-        sleep(1);
-        workDown();
-    }
-}

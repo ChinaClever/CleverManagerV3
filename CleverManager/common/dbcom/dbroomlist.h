@@ -7,9 +7,9 @@ struct RoomItem: public DbBasicItem
 {
     bool unequal(const RoomItem& item) const
     {
-        return id!=item.id || name!=item.name || address!=item.address;
+        return id!=item.id || room!=item.room || address!=item.address;
     }
-    QString name,address;
+    QString room,address;
 };
 Q_DECLARE_METATYPE(RoomItem)
 
@@ -24,10 +24,10 @@ public:
     void updateItem(const RoomItem& item);
 
     QStringList list();
-    int contains(const QString &name);
-    int findId(const QString& Name);
-    RoomItem find(const QString& name);
-    void removeRoom(const QString& name);
+    int contains(const QString &room);
+    int findId(const QString& room);
+    RoomItem find(const QString& room);
+    void removeRoom(const QString& room);
 
 signals:
     void delSig(QString);

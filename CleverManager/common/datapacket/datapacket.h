@@ -25,6 +25,9 @@
  */
 struct sDataUnit
 {
+    sDataUnit() {size=0;}
+
+    ushort size;
     ushort value[PACK_ARRAY_SIZE]; // 值
     ushort min[PACK_ARRAY_SIZE]; // 最小值
     ushort max[PACK_ARRAY_SIZE]; // 最大值
@@ -46,23 +49,23 @@ struct sObjData
     sDataUnit cur; // 电流
 
     QString name[PACK_ARRAY_SIZE];
-    ushort pow[PACK_ARRAY_SIZE]; // 功率
+    uint pow[PACK_ARRAY_SIZE]; // 功率
     uint ele[PACK_ARRAY_SIZE]; // 电能
 
-    uchar pf[PACK_ARRAY_SIZE]; // 功率因素
+    ushort pf[PACK_ARRAY_SIZE]; // 功率因素
     uchar sw[PACK_ARRAY_SIZE]; // 开关状态 0 表示未启用
 
     uchar hz[PACK_ARRAY_SIZE]; // 电压频率
-    ushort activePow[PACK_ARRAY_SIZE]; // 有功功率值
+    uint activePow[PACK_ARRAY_SIZE]; // 有功功率值
 
     uint ratedCur[PACK_ARRAY_SIZE]; // 额定电流
     uint wave[PACK_ARRAY_SIZE]; // 谐波值
     uint tem[PACK_ARRAY_SIZE];
     uchar delay[PACK_ARRAY_SIZE];
 
-    ushort pl[PACK_ARRAY_SIZE]; // 负载百分比
-    ushort curThd[PACK_ARRAY_SIZE]; // 电流谐波含量
-    ushort volThd[PACK_ARRAY_SIZE]; // 电压谐波含量
+    uchar pl[PACK_ARRAY_SIZE]; // 负载百分比
+    uint curThd[PACK_ARRAY_SIZE]; // 电流谐波含量
+    uint volThd[PACK_ARRAY_SIZE]; // 电压谐波含量
 };
 
 struct sTgObjData
@@ -122,10 +125,12 @@ struct sRtuCount
 
 struct sIpAddr
 {
+    sIpAddr() {mode=0;}
+    uchar mode;
     QString ip;
     QString mask;
     QString gw;
-    QString dns;
+    QString dns, dns2;
     QString mac;
 };
 
@@ -139,10 +144,10 @@ struct sDataPacket
     uchar id, en;  // 设备号
     uint devType; //设备类型
     uchar devSpec; // 设备规格 A\B\C\D
-    uchar txType; // 通讯类型 0  1:SNMP  2：Zebra
+    uchar txType; // 通讯类型 1 UDP  3:SNMP  4：Zebra
 
     uchar alarm; // 工作状态 ==0 正常
-    char offLine; //离线标志 > 0在线
+    ushort offLine; //离线标志 > 0在线
 
     QString name; // 设备名称
     QString user, pwd;
@@ -195,6 +200,8 @@ struct sRoomPacket
 
     QString room;
     uint status, en, room_id, count;
+    uint cabs, pdus, line, offline, alarm;
+
     sTgObjData tg;
 };
 

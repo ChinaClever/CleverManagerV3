@@ -21,7 +21,6 @@ Dp_PduAlarm *Dp_PduAlarm::bulid(QObject *parent)
 
 bool Dp_PduAlarm::saveItem(sDbAlarmItem &item)
 {
-//    QCoreApplication::processEvents(QEventLoop::AllEvents,15);
     return DbPduAlarm::bulid()->insertItem(item);
 }
 

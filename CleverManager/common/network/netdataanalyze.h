@@ -1,7 +1,7 @@
 #ifndef NETDATAANALYZE_H
 #define NETDATAANALYZE_H
 #include "udp/recv/udpsocketlist.h"
-#include "net_pdu/netpackdata.h"
+#include "net_data/net_datasave.h"
 #include "udp/sent/udpheartbeat.h"
 
 class NetDataAnalyze : public QThread
@@ -25,6 +25,7 @@ private:
 
     QString mIP;
     uchar *mRecvBuf; //数据缓冲区
+    Net_DataSave *mDataSave;
     net_data_packet *mPacket; //网络数据包
     net_dev_data *mDevData; //设备数据结构体
     pdu_devData_packet *mPduData; //设备数据包结构体

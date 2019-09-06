@@ -11,7 +11,10 @@ HEADERS += \
     $$PWD/dp_pdupackets.h \
     $$PWD/dp_cabpackets.h \
     $$PWD/dp_cabhrssave.h \
-    $$PWD/dp_hashbasic.h
+    $$PWD/dp_basichash.h \
+    $$PWD/dp_basicthread.h \
+    $$PWD/dp_roomhrssave.h \
+    $$PWD/dp_roompackets.h
 	
 SOURCES += \	
     $$PWD/datapackets.cpp \
@@ -19,7 +22,9 @@ SOURCES += \
     $$PWD/dp_pduhrssave.cpp \
     $$PWD/dp_pdupackets.cpp \
     $$PWD/dp_cabpackets.cpp \
-    $$PWD/dp_cabhrssave.cpp
+    $$PWD/dp_cabhrssave.cpp \
+    $$PWD/dp_roomhrssave.cpp \
+    $$PWD/dp_roompackets.cpp
 
 FORMS += \
 
