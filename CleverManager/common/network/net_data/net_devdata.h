@@ -1,6 +1,8 @@
 #ifndef NETDEVDATA_H
 #define NETDEVDATA_H
+
 #include "net_datacom.h"
+#include "dp_roompackets.h"
 
 enum PDU_CMD_DATA_TYPE{
     PDU_CMD_VALUE =1,

@@ -1,9 +1,7 @@
 #ifndef NET_DATASAVE_H
 #define NET_DATASAVE_H
 
-#include <QObject>
 #include "net_devdata.h"
-
 
 class Net_DataSave
 {
@@ -23,7 +21,6 @@ protected:
 private:
     Net_DevData *mDevData;
     Net_DataCom *mDataCom;
-    Dp_PduPackets *mPduPackets;
 };
 
 #endif // NET_DATASAVE_H

@@ -1,7 +1,6 @@
 #ifndef NET_DATACOM_H
 #define NET_DATACOM_H
 
-#include "dp_roompackets.h"
 #include "net_pack/netpackdata.h"
 
 #define NET_DATA_VERSION	1 /*IP设备通讯类型*/

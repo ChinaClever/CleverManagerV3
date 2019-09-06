@@ -19,7 +19,11 @@ public:
     ~MainWindow();
 
 protected slots:
-    void initFunSLot();
+//    void initFunSLot();
+    void initPacksSLot();
+    void initNetWork();
+    void initWidSLot();
+
     void navBarSlot(int);
 
 private:

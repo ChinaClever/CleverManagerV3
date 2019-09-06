@@ -1,5 +1,5 @@
-#ifndef DATAPACKET_H
-#define DATAPACKET_H
+#ifndef UP_DATAPACKET_H
+#define UP_DATAPACKET_H
 #include <QtCore>
 
 /**

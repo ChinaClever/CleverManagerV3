@@ -1,4 +1,5 @@
 #include "net_datasave.h"
+#include "dp_pdupackets.h"
 
 #define STRING_SPLIT "; " //字符串分割符
 
@@ -26,7 +27,7 @@ Net_DataSave::Net_DataSave()
 {
     mDevData = Net_DevData::bulid();
     mDataCom = Net_DataCom::bulid();
-    mPduPackets = Dp_PduPackets::bulid();
+//    mPduPackets = Dp_PduPackets::bulid();
 }
 
 Net_DataSave *Net_DataSave::bulid()
@@ -170,6 +171,7 @@ void Net_DataSave::dataFun(sDataPacket *dev,pdu_dev_data *data)
  */
 void Net_DataSave::dataSave(pdu_devData_packet *packet)
 {
+    static Dp_PduPackets *ps = Dp_PduPackets::bulid();
     bool ret = mDataCom->check(packet->code->type, packet->code->trans);   /*网络传输类型、传输方向验证*/
     if(ret)
     {
@@ -177,7 +179,7 @@ void Net_DataSave::dataSave(pdu_devData_packet *packet)
         if(devType > 0)
         {
             uchar addr = packet->data->addr;
-            sDataPacket *dev = mPduPackets->get(packet->ip, addr);
+            sDataPacket *dev = ps->get(packet->ip, addr);
             if(packet->code->version == NET_DATA_VERSION) //版本号的验证
             {
                 dev->devType = devType; //设备型号
