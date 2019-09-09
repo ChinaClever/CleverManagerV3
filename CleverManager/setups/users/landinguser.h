@@ -2,6 +2,8 @@
 #define LANDINGUSER_H
 #include "dbuserlog.h"
 
+QString land_user_name();
+
 class LandingUser
 {
     LandingUser();

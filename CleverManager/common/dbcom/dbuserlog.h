@@ -1,9 +1,13 @@
 #ifndef DBUSERLANDLOG_H
 #define DBUSERLANDLOG_H
 #include "db_user.h"
+#include "landinguser.h"
 
+extern QString land_user_name();
 struct sUserLogItem : public DbBasicItem{
-    sUserLogItem(){}
+    sUserLogItem(){
+        name = land_user_name();
+    }
     QString name,remarks;
 };
 

@@ -12,3 +12,9 @@ Pdu_MainWid::~Pdu_MainWid()
 {
     delete ui;
 }
+
+
+void Pdu_MainWid::on_comboBox_currentIndexChanged(int index)
+{
+
+}

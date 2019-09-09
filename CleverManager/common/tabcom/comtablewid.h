@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QGridLayout>
 #include "backcolourcom.h"
+#include "datapacket.h"
+#include <QTableWidgetItem>
 
 namespace Ui {
 class ComTableWid;
@@ -33,8 +35,13 @@ protected:
     void setItemColor(int id, int column, int alarm);
     void scrollToBottomTable();
 
-protected slots:
+    int currentRow();
+    int currentColumn();
+
+public slots:
     virtual void timeoutDone(){}
+    virtual void itemDoubleSlot(){}
+    virtual void itemDoubleClicked(QTableWidgetItem *);
 
 protected:
     QTimer *timer;

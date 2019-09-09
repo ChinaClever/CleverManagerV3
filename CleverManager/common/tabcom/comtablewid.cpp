@@ -7,7 +7,7 @@
  */
 #include "comtablewid.h"
 #include "ui_comtablewid.h"
-#include <QTableWidgetItem>
+
 
 ComTableWid::ComTableWid(QWidget *parent) :
     QWidget(parent),
@@ -46,6 +46,8 @@ void ComTableWid::initTableWidget(QStringList &header)
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(ui->tableWidget,SIGNAL(itemDoubleClicked(QTableWidgetItem*)),
+                this,SLOT(itemDoubleClicked(QTableWidgetItem *)));
 
     // ui->tableWidget->setColumnHidden(0, true);
     // ui->tableWidget->setColumnWidth(0,200);
@@ -127,6 +129,16 @@ void ComTableWid::setTableItem(int id, int column, const QString &str)
     }
 }
 
+int ComTableWid::currentRow()
+{
+    return ui->tableWidget->currentRow();
+}
+
+int ComTableWid::currentColumn()
+{
+    return ui->tableWidget->currentColumn();
+}
+
 /**
  * @brief 设置一行数据
  * @param id 行号
@@ -172,8 +184,11 @@ void ComTableWid::delTableRows(int line)
  */
 void ComTableWid::checkTableRow(int line)
 {
-    addTableRows(line);
-    delTableRows(line);
+    int row = ui->tableWidget->rowCount();
+    if(row != line) {
+        addTableRows(line);
+        delTableRows(line);
+    }
 }
 
 /**
@@ -263,4 +278,12 @@ int ComTableWid::getList(QList<QStringList> list)
     }
 
     return list.size();
+}
+
+void ComTableWid::itemDoubleClicked(QTableWidgetItem *)
+{
+    bool jur = true; // 有权进行操作
+    if(jur) {
+        itemDoubleSlot();
+    }
 }

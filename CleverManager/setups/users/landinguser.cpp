@@ -6,6 +6,12 @@ bool land_usr_jur()
     return LandingUser::get()->user.jur;
 }
 
+QString land_user_name()
+{
+     return LandingUser::get()->user.name;
+}
+
+
 LandingUser::LandingUser()
 {
     land = false;

@@ -15,6 +15,9 @@ public:
     explicit Pdu_MainWid(QWidget *parent = 0);
     ~Pdu_MainWid();
 
+private slots:
+    void on_comboBox_currentIndexChanged(int index);
+
 private:
     Ui::Pdu_MainWid *ui;
 };
