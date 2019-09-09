@@ -6,7 +6,7 @@
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "netanalyzedata.h"
+#include "net_analyzedata.h"
 
 
 NetAnalyticData *NetAnalyticData::bulid()
@@ -82,7 +82,7 @@ int NetAnalyticData::data_packet_sync(uchar *buf, ushort len)
  * 出口参数：code->打包之后MSG
  * 返回:长度
  */
-int NetAnalyticData::data_packet_getCode(uchar *buf, net_dev_code *code)
+int NetAnalyticData::data_packet_getCode(uchar *buf, Net_sDevCode *code)
 {
     uchar i,*ptr=buf;
 
@@ -110,7 +110,7 @@ int NetAnalyticData::data_packet_getCode(uchar *buf, net_dev_code *code)
  * 出口参数：msg->打包之后MSG
  * 返  回:长度 	-1 出错
  */
-int NetAnalyticData::data_packet_getDomain(uchar *buf, net_data_packet *msg)
+int NetAnalyticData::data_packet_getDomain(uchar *buf, Net_sDataPacket *msg)
 {
     uchar XOR,*ptr = buf;
 
@@ -146,7 +146,7 @@ int NetAnalyticData::data_packet_getDomain(uchar *buf, net_data_packet *msg)
  * 返回:  > 0 表示接收成功
  * 说明：当收到数据包时就会调用此函数把数据解包成MSG格式
  */
-int NetAnalyticData::net_data_analytic(uchar *buf, ushort len, net_data_packet *msg)
+int NetAnalyticData::net_data_analytic(uchar *buf, ushort len, Net_sDataPacket *msg)
 {
     int ret;
     uchar *ptr=buf;
@@ -180,7 +180,7 @@ int NetAnalyticData::net_data_analytic(uchar *buf, ushort len, net_data_packet *
  * 出口参数：pkt->打包之后MSG
  * 返回:TRUE
  */
-int NetAnalyticData::dev_data_analytic(uchar *buf, ushort len, net_dev_data *pkt)
+int NetAnalyticData::dev_data_analytic(uchar *buf, ushort len, Net_sDevData *pkt)
 {
     uchar *ptr=buf;
 

@@ -9,14 +9,14 @@ class Net_DataSave
 public:
     static Net_DataSave *bulid();
 
-    void dataSave(pdu_devData_packet *packet);
+    void dataSave(Net_sPacket *packet);
 
 protected:
-    void dataFun(sDataPacket *dev,pdu_dev_data *data);
-    void outputName(QString *name, pdu_dev_data *data);
-    void user(QString &user, QString &pwd, pdu_dev_data *data);
-    void iPAddr(sIpAddr &ip,pdu_dev_data *data);
-    void devName(QString &name,pdu_dev_data *data);
+    void dataFun(sDataPacket *dev,Net_sDevData *data);
+    void outputName(QString *name, Net_sDevData *data);
+    void user(QString &user, QString &pwd, Net_sDevData *data);
+    void iPAddr(sIpAddr &ip,Net_sDevData *data);
+    void devName(QString &name,Net_sDevData *data);
 
 private:
     Net_DevData *mDevData;

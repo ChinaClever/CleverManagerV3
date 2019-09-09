@@ -1,7 +1,9 @@
 #include "dp_pdupackets.h"
+#include "udp/sent/udpheartbeat.h"
 
 Dp_PduPackets::Dp_PduPackets(QObject *parent) : DataPackets(parent)
 {
+    mCount = 0;
     mDb = DbPduDevices::get();
     mHrs = Dp_PduHrsSave::bulid(this);
     mAlarm = Dp_PduAlarm::bulid(this);
@@ -80,8 +82,18 @@ void Dp_PduPackets::pduItemChange(int id,int type)
     }
 }
 
+void Dp_PduPackets::sendHeartBeat(sDataPacket *pack)
+{
+    if(mCount++ % 5) return;
+    if(0 == pack->id) {
+        QString ip = pack->ip.ip;
+        UdpHeartBeat::bulid(this)->sent(ip);
+    }
+}
+
 void Dp_PduPackets::workDown(sDataPacket *pack)
 {
+    sendHeartBeat(pack);
     if(pack->offLine > 0) {
         pack->offLine--;
 

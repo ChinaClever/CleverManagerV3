@@ -53,12 +53,12 @@ class Net_DevData
 public:
     static Net_DevData *bulid();
 
-    void save(sDevData &dev, pdu_dev_data *data);
+    void save(sDevData &dev, Net_sDevData *data);
 
 protected:
-    int unitData(sDataUnit &unit, pdu_dev_data *data);
-    int objData(sObjData &obj, pdu_dev_data *data);
-    void envData(sEnvData &env,pdu_dev_data *data);
+    int unitData(sDataUnit &unit, Net_sDevData *data);
+    int objData(sObjData &obj, Net_sDevData *data);
+    void envData(sEnvData &env,Net_sDevData *data);
 
 private:
     Net_DataCom *mDataCom;

@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "netdataanalyze.h"
+#include "net_dataanalyze.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

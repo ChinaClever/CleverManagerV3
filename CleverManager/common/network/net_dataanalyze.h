@@ -26,11 +26,11 @@ private:
     QString mIP;
     uchar *mRecvBuf; //数据缓冲区
     Net_DataSave *mDataSave;
-    net_data_packet *mPacket; //网络数据包
-    net_dev_data *mDevData; //设备数据结构体
-    pdu_devData_packet *mPduData; //设备数据包结构体
+    Net_sDataPacket *mPacket; //网络数据包
+    Net_sDevData *mDevData; //设备数据结构体
+    Net_sPacket *mPduData; //设备数据包结构体
 };
 
-extern void pdu_hashData_save(pdu_devData_packet *packet);
+extern void pdu_hashData_save(Net_sPacket *packet);
 
 #endif // NETDATAANALYZE_H

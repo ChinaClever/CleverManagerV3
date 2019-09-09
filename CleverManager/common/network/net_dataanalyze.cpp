@@ -11,7 +11,7 @@
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "netdataanalyze.h"
+#include "net_dataanalyze.h"
 
 NetDataAnalyze::NetDataAnalyze(QObject *parent) : QThread(parent)
 {
@@ -21,9 +21,9 @@ NetDataAnalyze::NetDataAnalyze(QObject *parent) : QThread(parent)
     mSocketList = UdpSocketList::bulid(this); //初始化套接字
     mNetAnalytic = NetAnalyticData::bulid();
 
-    mPacket = new net_data_packet;
-    mDevData = new net_dev_data;
-    mPduData = new pdu_devData_packet;
+    mPacket = new Net_sDataPacket;
+    mDevData = new Net_sDevData;
+    mPduData = new Net_sPacket;
     mDataSave = Net_DataSave::bulid();
     mRecvBuf = (uchar *)malloc(DATA_MSG_SIZE+10);
     QTimer::singleShot(5,this,SLOT(start())); //延时初始化

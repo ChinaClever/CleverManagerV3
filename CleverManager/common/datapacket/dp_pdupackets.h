@@ -15,14 +15,15 @@ public:
 protected:
     void initFun();
     void initPacket(PduDeviceItem &it);
-
     void workDown(sDataPacket *pack);
+    void sendHeartBeat(sDataPacket *pack);
     sDataPacket *newDataPacket();
 
 protected slots:
     void pduItemChange(int,int);
 
 private:
+    int mCount;
     DbPduDevices *mDb;
     Dp_PduAlarm *mAlarm;
     Dp_PduHrsSave *mHrs;

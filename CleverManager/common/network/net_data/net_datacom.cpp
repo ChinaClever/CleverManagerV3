@@ -145,7 +145,7 @@ bool Net_DataCom::toString(QString &str, uchar *data, ushort len)
  * @param name
  * @param data
  */
-bool Net_DataCom::saveStr(QString &str, pdu_dev_data *data)
+bool Net_DataCom::saveStr(QString &str, Net_sDevData *data)
 {
     return toString(str, data->data, data->len);
 }

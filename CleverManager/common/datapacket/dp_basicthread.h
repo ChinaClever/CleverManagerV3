@@ -18,10 +18,11 @@ public:
     ~Dp_BasicThread() { isRun = false; wait();}
 
 protected:
-    void run(){
+    void run() {
+        mdelay(1980);
         initFun();
         while (isRun) {
-            msleep(1000 + rand()%230);
+            mdelay(1000 + rand()%245);
             static QReadWriteLock lock;
             QWriteLocker locker(&lock);
 
@@ -30,13 +31,18 @@ protected:
         }
     }
 
+    void mdelay(int d) {
+        for(int i=0; i<d; ++i) {
+            if(isRun)msleep(1);
+        }
+    }
+
     void workDown() {
         QHashIterator<QString, T> iter(mHash);
         while(iter.hasNext())
         {
-            iter.next();
-            if(iter.value()) {
-                T pack = iter.value();
+            T pack = iter.next().value();
+            if(pack) {
                 if(pack->en) {
                     pack->count++;
                     workDown(pack);

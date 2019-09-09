@@ -19,7 +19,7 @@ Net_DevData *Net_DevData::bulid()
  * @param unit
  * @param data
  */
-int  Net_DevData::unitData(sDataUnit &unit, pdu_dev_data *data)
+int  Net_DevData::unitData(sDataUnit &unit, Net_sDevData *data)
 {
     ushort ret=0, *ptr = NULL;
 
@@ -75,7 +75,7 @@ int  Net_DevData::unitData(sDataUnit &unit, pdu_dev_data *data)
  * @param obj
  * @param data
  */
-int Net_DevData::objData(sObjData &obj,pdu_dev_data *data)
+int Net_DevData::objData(sObjData &obj,Net_sDevData *data)
 {
     uint *pInt = nullptr;
     uchar *pChart = nullptr;
@@ -132,7 +132,7 @@ int Net_DevData::objData(sObjData &obj,pdu_dev_data *data)
  * @param env
  * @param data
  */
-void Net_DevData::envData(sEnvData &env,pdu_dev_data *data)
+void Net_DevData::envData(sEnvData &env,Net_sDevData *data)
 {
     uchar ret=0, *ptr = NULL;
 
@@ -174,7 +174,7 @@ void Net_DevData::envData(sEnvData &env,pdu_dev_data *data)
  * @param dev
  * @param data
  */
-void Net_DevData::save(sDevData &dev,pdu_dev_data *data)
+void Net_DevData::save(sDevData &dev,Net_sDevData *data)
 {
     int fn = data->fn[0]; // 处理功能码第一位数据
     switch (fn)

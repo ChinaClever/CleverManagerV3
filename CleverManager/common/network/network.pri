@@ -11,13 +11,13 @@ HEADERS += \
     $$PWD/tftp/tftp.h \
     $$PWD/udp/recv/udpdataque.h \
     $$PWD/udp/recv/udpsocketlist.h \
-    $$PWD/net_pack/netdataformat.h \
-    $$PWD/net_pack/netanalyzedata.h \
-    $$PWD/net_pack/netpackdata.h \
-    $$PWD/netdataanalyze.h \
     $$PWD/net_data/net_datasave.h \
     $$PWD/net_data/net_datacom.h \
-    $$PWD/net_data/net_devdata.h
+    $$PWD/net_data/net_devdata.h \
+    $$PWD/net_pack/net_dataformat.h \
+    $$PWD/net_pack/net_analyzedata.h \
+    $$PWD/net_pack/net_packdata.h \
+    $$PWD/net_dataanalyze.h
 
 	
 SOURCES += \
@@ -29,12 +29,12 @@ SOURCES += \
     $$PWD/tftp/tftp.cpp \
     $$PWD/udp/recv/udpdataque.cpp \
     $$PWD/udp/recv/udpsocketlist.cpp \
-    $$PWD/net_pack/netanalyzedata.cpp \
-    $$PWD/net_pack/netpackdata.cpp \
-    $$PWD/netdataanalyze.cpp \
     $$PWD/net_data/net_datasave.cpp \
     $$PWD/net_data/net_datacom.cpp \
-    $$PWD/net_data/net_devdata.cpp
+    $$PWD/net_data/net_devdata.cpp \
+    $$PWD/net_pack/net_analyzedata.cpp \
+    $$PWD/net_pack/net_packdata.cpp \
+    $$PWD/net_dataanalyze.cpp
 
 FORMS += \
 

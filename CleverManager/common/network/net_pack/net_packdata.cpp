@@ -5,7 +5,7 @@
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "netpackdata.h"
+#include "net_packdata.h"
 
 
 NetPackData *NetPackData::bulid()
@@ -23,7 +23,7 @@ NetPackData *NetPackData::bulid()
  * 入口参数：pkt->包结构休
  * 返回值：
  */
-void NetPackData::data_packet_head(net_data_packet *pkt)
+void NetPackData::data_packet_head(Net_sDataPacket *pkt)
 {
     pkt->hdr = DATA_MSG_HDR;	/*信息头*/
     pkt->stx = DATA_MSG_STX; /*标识字*/
@@ -37,7 +37,7 @@ void NetPackData::data_packet_head(net_data_packet *pkt)
  * 出口参数：buf->数据包首地址
  * 返回值：数据包长度
  */
-int NetPackData::data_packet_code(net_dev_code *msg, uchar *buf)
+int NetPackData::data_packet_code(Net_sDevCode *msg, uchar *buf)
 {
     ushort i,rtn=DATA_MSG_CODE_SIZE; /*代码段字节数为9*/
     uchar *ptr = buf;
@@ -62,7 +62,7 @@ int NetPackData::data_packet_code(net_dev_code *msg, uchar *buf)
  * 出口参数：buf->数据包首地址
  * 返回值：数据包长度
  */
-int NetPackData::data_packet_domain(net_data_packet *msg, uchar *buf)
+int NetPackData::data_packet_domain(Net_sDataPacket *msg, uchar *buf)
 {
     ushort i,rtn=0;
     uchar *ptr = buf;
@@ -89,7 +89,7 @@ int NetPackData::data_packet_domain(net_data_packet *msg, uchar *buf)
  * 返回值：数据包长度
  * 说明：当要发送数据时就会调用此函数把数据打包
  */
-int NetPackData::data_msg_packet(net_data_packet *pkt, uchar *buf)
+int NetPackData::data_msg_packet(Net_sDataPacket *pkt, uchar *buf)
 {
     ushort rtn=0;
     uchar *ptr = buf;
@@ -116,7 +116,7 @@ int NetPackData::data_msg_packet(net_data_packet *pkt, uchar *buf)
  * 返回值：数据包长度
  * 说明：当要发送数据时就会调用此函数把数据打包
  */
-int NetPackData::dev_data_pack(net_dev_data *pkt, uchar *buf)
+int NetPackData::dev_data_pack(Net_sDevData *pkt, uchar *buf)
 {
     ushort i,rtn=0;
     uchar *ptr = buf;
@@ -168,12 +168,12 @@ int NetPackData::int_to_uchar(int form, uchar *to)
  * @param type 通讯类型
  * @param code 设备代号段指针
  */
-pdu_dev_code *NetPackData::get_dev_code(int num, uchar type)
+Net_sDevCode *NetPackData::get_dev_code(int num, uchar type)
 {
-    static pdu_dev_code *code = NULL;
+    static Net_sDevCode *code = NULL;
     if(code == NULL)
-        code = (pdu_dev_code*)malloc(sizeof(pdu_dev_code));
-    memset(code, 0, sizeof(pdu_dev_code));
+        code = (Net_sDevCode*)malloc(sizeof(Net_sDevCode));
+    memset(code, 0, sizeof(Net_sDevCode));
 
     int_to_uchar(num, code->devCode);
     code->type = type;
@@ -192,13 +192,13 @@ pdu_dev_code *NetPackData::get_dev_code(int num, uchar type)
  * @param len 数据长度
  * @return 网络数据包指针
  */
-net_data_packet *NetPackData::get_data_packet(net_dev_code *code, uchar *buf, ushort len)
+Net_sDataPacket *NetPackData::get_data_packet(Net_sDevCode *code, uchar *buf, ushort len)
 {
-    static net_data_packet *msg = NULL;
+    static Net_sDataPacket *msg = NULL;
     if(msg == NULL)
-        msg = (net_data_packet*)malloc(sizeof(net_data_packet));
+        msg = (Net_sDataPacket*)malloc(sizeof(Net_sDataPacket));
 
-    memset(msg, 0, sizeof(net_data_packet));
+    memset(msg, 0, sizeof(Net_sDataPacket));
     msg->code = *code; /*代号段*/
     msg->len = len; /*数据长度 */
     msg->data = buf;	/*数据段*/
@@ -215,7 +215,7 @@ net_data_packet *NetPackData::get_data_packet(net_dev_code *code, uchar *buf, us
  * @param buf 接收缓冲区
  * @return  数据长度
  */
-int NetPackData::net_data_packets(int num, pdu_dev_data *pkt, uchar *buf,uchar type)
+int NetPackData::net_data_packets(int num, Net_sDevData *pkt, uchar *buf,uchar type)
 {
     uchar *sentBuf = mSentBuf;
     QWriteLocker locker(&lock); //上锁
@@ -228,8 +228,8 @@ int NetPackData::net_data_packets(int num, pdu_dev_data *pkt, uchar *buf,uchar t
     memset(sentBuf,0,DATA_MSG_SIZE);
     ushort len = dev_data_pack(pkt, sentBuf);
 
-    pdu_dev_code *code = get_dev_code(num, type);
-    net_data_packet *msg = get_data_packet(code, sentBuf, len);
+    Net_sDevCode *code = get_dev_code(num, type);
+    Net_sDataPacket *msg = get_data_packet(code, sentBuf, len);
 
     return data_msg_packet(msg, buf);
 }

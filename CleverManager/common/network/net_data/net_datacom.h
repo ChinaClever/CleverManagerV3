@@ -1,7 +1,7 @@
 #ifndef NET_DATACOM_H
 #define NET_DATACOM_H
 
-#include "net_pack/netpackdata.h"
+#include "net_pack/net_packdata.h"
 
 #define NET_DATA_VERSION	1 /*IP设备通讯类型*/
 #define PDU_OFF_LINE_TIME   10
@@ -45,7 +45,7 @@ public:
 
     int uchar_to_int(int *dest, ushort len, uchar *buf, int size);
     bool toString(QString &str, uchar *data, ushort len);
-    bool saveStr(QString &str, pdu_dev_data *data);
+    bool saveStr(QString &str, Net_sDevData *data);
 
 private:
     int mBuf[512];

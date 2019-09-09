@@ -14,7 +14,7 @@ struct DbBasicItem {
         time = dateTime.toString("hh:mm:ss");
     }
 
-    int id;
+    uint id;
     QString date, time;
 };
 
@@ -23,7 +23,7 @@ struct DbBasicElecItem {
         startele=endele=ele=price=fees=0;
     }
 
-    int id;
+    uint id;
     QString startdt, enddt;
     double startele, endele, ele, price, fees;
 };

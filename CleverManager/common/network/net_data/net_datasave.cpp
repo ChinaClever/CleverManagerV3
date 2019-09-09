@@ -44,7 +44,7 @@ Net_DataSave *Net_DataSave::bulid()
  * @param name
  * @param data
  */
-void Net_DataSave::outputName(QString *name, pdu_dev_data *data)
+void Net_DataSave::outputName(QString *name, Net_sDevData *data)
 {
     int output = data->fn[1];
     if((output >= 0) && (output < 64))    // 输出位最大32位
@@ -64,7 +64,7 @@ void Net_DataSave::outputName(QString *name, pdu_dev_data *data)
  * @param usrHash
  * @param data
  */
-void Net_DataSave::user(QString &user, QString &pwd, pdu_dev_data *data)
+void Net_DataSave::user(QString &user, QString &pwd, Net_sDevData *data)
 {
     QString str;
     mDataCom->saveStr(str,data);
@@ -83,7 +83,7 @@ void Net_DataSave::user(QString &user, QString &pwd, pdu_dev_data *data)
  * @param ip
  * @param data
  */
-void Net_DataSave::iPAddr(sIpAddr &ip,pdu_dev_data *data)
+void Net_DataSave::iPAddr(sIpAddr &ip,Net_sDevData *data)
 {
     int fc = data->fn[1] & 0x0f; // 获取高四位
     switch (fc) {
@@ -104,7 +104,7 @@ void Net_DataSave::iPAddr(sIpAddr &ip,pdu_dev_data *data)
  * @param info
  * @param data
  */
-void Net_DataSave::devName(QString &name,pdu_dev_data *data)
+void Net_DataSave::devName(QString &name,Net_sDevData *data)
 {
     int fc = data->fn[1] & 0x0f;
     switch (fc)
@@ -122,7 +122,7 @@ void Net_DataSave::devName(QString &name,pdu_dev_data *data)
  * @param dev
  * @param data
  */
-void Net_DataSave::dataFun(sDataPacket *dev,pdu_dev_data *data)
+void Net_DataSave::dataFun(sDataPacket *dev,Net_sDevData *data)
 {
     int fc = data->fn[0]; //根据功能码，进行分支处理
 
@@ -169,7 +169,7 @@ void Net_DataSave::dataFun(sDataPacket *dev,pdu_dev_data *data)
  *      根据IP、代号段中的设备类型、设备号来查找对应的设备数据节点
  * @param packet
  */
-void Net_DataSave::dataSave(pdu_devData_packet *packet)
+void Net_DataSave::dataSave(Net_sPacket *packet)
 {
     static Dp_PduPackets *ps = Dp_PduPackets::bulid();
     bool ret = mDataCom->check(packet->code->type, packet->code->trans);   /*网络传输类型、传输方向验证*/
