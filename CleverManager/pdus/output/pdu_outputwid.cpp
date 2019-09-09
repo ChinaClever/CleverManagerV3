@@ -1,5 +1,5 @@
 #include "pdu_outputwid.h"
-#include "pdu_setswitchdlg.h"
+#include "pdu_setoutputdlg.h"
 
 Pdu_OutputWid::Pdu_OutputWid(QWidget *parent) : ComTableWid(parent)
 {
@@ -111,17 +111,11 @@ void Pdu_OutputWid::timeoutDone()
 */
 void Pdu_OutputWid::switchControl(int row)
 {
-    //    int row = mTableWidget->currentRow();
-    //    QString name = mTableWidget->item(row, 0)->text(); // 输出位名称
-
-    //    if(mDataPacket)
-    //    {
-    //        setSwitchDlg dlg(this);
-    //        dlg.setMode(row, name,mDataPacket);
-    //        int ret = dlg.exec();
-    //        if(ret == QDialog::Accepted)
-    //            updateData();
-    //    }
+    Pdu_SetSwitchDlg dlg(this);
+    dlg.setMode(row, mPacket);
+    int ret = dlg.exec();
+    if(ret == QDialog::Accepted)
+        updateData();
 }
 
 /**
@@ -129,7 +123,7 @@ void Pdu_OutputWid::switchControl(int row)
 */
 void Pdu_OutputWid::setOutput(int row)
 {
-    Pdu_SetSwitchDlg dlg(this);
+    Pdu_SetOutputDlg dlg(this);
     dlg.setMode(row, mPacket);
     int ret = dlg.exec();
     if(ret == QDialog::Accepted)

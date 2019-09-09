@@ -4,16 +4,16 @@
 #include "pdu_setswitchdlg.h"
 
 namespace Ui {
-class SetOutputDlg;
+class Pdu_SetOutputDlg;
 }
 
-class SetOutputDlg : public QDialog
+class Pdu_SetOutputDlg : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit SetOutputDlg(QWidget *parent = 0);
-    ~SetOutputDlg();
+    explicit Pdu_SetOutputDlg(QWidget *parent = 0);
+    ~Pdu_SetOutputDlg();
 
     void setMode(int id, sDataPacket *packet);
 
@@ -30,7 +30,7 @@ private slots:
     void on_saveBtn_clicked();
 
 private:
-    Ui::SetOutputDlg *ui;
+    Ui::Pdu_SetOutputDlg *ui;
 
     int mId;
     sDataPacket *mPacket;

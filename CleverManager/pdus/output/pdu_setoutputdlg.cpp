@@ -5,19 +5,19 @@
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "setoutputdlg.h"
+#include "pdu_setoutputdlg.h"
 #include "ui_setoutputdlg.h"
 
-SetOutputDlg::SetOutputDlg(QWidget *parent) :
+Pdu_SetOutputDlg::Pdu_SetOutputDlg(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SetOutputDlg)
+    ui(new Ui::Pdu_SetOutputDlg)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("单元设置"));
     groupBox_background_icon(this);
 }
 
-SetOutputDlg::~SetOutputDlg()
+Pdu_SetOutputDlg::~Pdu_SetOutputDlg()
 {
     delete ui;
 }
@@ -27,7 +27,7 @@ SetOutputDlg::~SetOutputDlg()
  * @brief 初始化数据
  * @param id
  */
-void SetOutputDlg::initData(int id)
+void Pdu_SetOutputDlg::initData(int id)
 {
     sDataUnit *unit = &(mPacket->data.output.cur);
 
@@ -58,7 +58,7 @@ void SetOutputDlg::initData(int id)
  * @brief 设置工作模式
  * @param mode
  */
-void SetOutputDlg::setMode(int id, sDataPacket *packet)
+void Pdu_SetOutputDlg::setMode(int id, sDataPacket *packet)
 {
     mPacket = packet;
     initData(id);
@@ -70,7 +70,7 @@ void SetOutputDlg::setMode(int id, sDataPacket *packet)
  * @brief 检查输入是否合法
  * @return true
  */
-bool SetOutputDlg::checkData()
+bool Pdu_SetOutputDlg::checkData()
 {
     int min = ui->minSpin->value() * COM_RATE_CUR;
     int max = ui->maxSpin->value() * COM_RATE_CUR;
@@ -111,7 +111,7 @@ bool SetOutputDlg::checkData()
 /**
  * @brief 增加日志信息
  */
-void SetOutputDlg::saveLog()
+void Pdu_SetOutputDlg::saveLog()
 {
     sUserLogItem log;
     log.remarks = tr("单元阈值修改：");
@@ -145,7 +145,7 @@ void SetOutputDlg::saveLog()
  * @param buf
  * @return
  */
-uchar *SetOutputDlg::getData(uchar *buf)
+uchar *Pdu_SetOutputDlg::getData(uchar *buf)
 {
     int offset=0;
 
@@ -172,7 +172,7 @@ uchar *SetOutputDlg::getData(uchar *buf)
  * @brief 发送设备数据
  * @return
  */
-bool SetOutputDlg::sentData()
+bool Pdu_SetOutputDlg::sentData()
 {
     Net_sDevData pkt;
     pkt.addr = mPacket->id;
@@ -210,7 +210,7 @@ bool SetOutputDlg::sentData()
 /**
  * @brief 保存数据
  */
-void SetOutputDlg::saveData()
+void Pdu_SetOutputDlg::saveData()
 {
     int min = ui->minSpin->value() * COM_RATE_CUR;
     int max = ui->maxSpin->value() * COM_RATE_CUR;
@@ -239,7 +239,7 @@ void SetOutputDlg::saveData()
 }
 
 
-void SetOutputDlg::on_saveBtn_clicked()
+void Pdu_SetOutputDlg::on_saveBtn_clicked()
 {
     bool ret = checkData();
     if(ret) {

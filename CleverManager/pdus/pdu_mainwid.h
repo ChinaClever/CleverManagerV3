@@ -1,7 +1,7 @@
 #ifndef PDU_MAINWID_H
 #define PDU_MAINWID_H
 
-#include <QWidget>
+#include "output/pdu_outputwid.h"
 
 namespace Ui {
 class Pdu_MainWid;
@@ -15,11 +15,15 @@ public:
     explicit Pdu_MainWid(QWidget *parent = 0);
     ~Pdu_MainWid();
 
-private slots:
+
+protected slots:
+    void initWidSlot();
     void on_comboBox_currentIndexChanged(int index);
 
 private:
     Ui::Pdu_MainWid *ui;
+
+    Pdu_OutputWid *mOutputWid;
 };
 
 #endif // PDU_MAINWID_H

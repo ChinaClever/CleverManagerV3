@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SetOutputDlg</class>
- <widget class="QDialog" name="SetOutputDlg">
+ <class>Pdu_SetOutputDlg</class>
+ <widget class="QDialog" name="Pdu_SetOutputDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -275,7 +275,7 @@ color: rgb(0, 0, 0);</string>
   <connection>
    <sender>cancelBtn</sender>
    <signal>clicked()</signal>
-   <receiver>SetOutputDlg</receiver>
+   <receiver>Pdu_SetOutputDlg</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
