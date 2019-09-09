@@ -89,11 +89,8 @@ int Pdu_OutputWid::updateDev(sDevData &dev)
 void Pdu_OutputWid::updateData()
 {
     int row = 0;
-
-    if(mPacket) {
-        if((mPacket->en) && (mPacket->offLine > 0)) {
-            row = updateDev(mPacket->data);
-        }
+    if((mPacket->en) && (mPacket->offLine > 0)) {
+        row = updateDev(mPacket->data);
     }
 
     checkTableRow(row);
@@ -102,7 +99,9 @@ void Pdu_OutputWid::updateData()
 
 void Pdu_OutputWid::timeoutDone()
 {
-    updateData();
+    if(mPacket) {
+        updateData();
+    }
 }
 
 

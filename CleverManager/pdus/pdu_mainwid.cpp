@@ -21,7 +21,8 @@ void Pdu_MainWid::initWidSlot()
     mOutputWid = new Pdu_OutputWid(ui->stackedWid);
     ui->stackedWid->addWidget(mOutputWid);
 
-
+    mEnvWid = new Pdu_EnvWid(ui->stackedWid);
+    ui->stackedWid->addWidget(mEnvWid);
 }
 
 void Pdu_MainWid::on_comboBox_currentIndexChanged(int index)

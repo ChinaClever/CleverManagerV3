@@ -25,6 +25,7 @@ protected:
     void initTableWid(QStringList &header, int line, const QString &title);
     void setTableItem(int id, int column, const QString &str);
     void setTableRow(int id, QStringList &listStr);
+    void setTableRow(int id, int col, QStringList &listStr);
     void appendTableRow(QStringList &listStr, bool c=false);
     void checkTableRow(int line);
 
