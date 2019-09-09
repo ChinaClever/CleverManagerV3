@@ -50,10 +50,15 @@ void NavBarWid::on_userBtn_clicked()
 
 void NavBarWid::on_setupBtn_clicked()
 {
-    emit navBarSig(1);
+    emit navBarSig(0);
 }
 
 void NavBarWid::on_logBtn_clicked()
 {
-    emit navBarSig(2);
+    emit navBarSig(1);
+}
+
+void NavBarWid::on_pduBtn_clicked()
+{
+     emit navBarSig(2);
 }

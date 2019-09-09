@@ -19,7 +19,7 @@
   <widget class="QPushButton" name="setupBtn">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>560</x>
      <y>20</y>
      <width>93</width>
      <height>28</height>
@@ -32,7 +32,7 @@
   <widget class="QPushButton" name="logBtn">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>680</x>
      <y>20</y>
      <width>93</width>
      <height>28</height>
@@ -45,7 +45,7 @@
   <widget class="QPushButton" name="userBtn">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>790</x>
      <y>20</y>
      <width>93</width>
      <height>28</height>
@@ -53,6 +53,19 @@
    </property>
    <property name="text">
     <string>用户登陆</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pduBtn">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>20</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>设备管理</string>
    </property>
   </widget>
  </widget>

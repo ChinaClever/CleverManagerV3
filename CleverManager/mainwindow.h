@@ -5,6 +5,7 @@
 #include "navbarwid.h"
 #include "setupmainwid.h"
 #include "logmainwid.h"
+#include "pdu_mainwid.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,7 @@ private:
     SetUpMainWid *mSetup;
     LogMainWid *mLog;
     UserMainWid *mUserWid;
+    Pdu_MainWid *mPduWid;
 };
 
 #endif // MAINWINDOW_H

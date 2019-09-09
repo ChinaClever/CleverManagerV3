@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Pdu_MainWid</class>
+ <widget class="QWidget" name="Pdu_MainWid">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>876</width>
+    <height>666</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>221</width>
+     <height>481</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStackedWidget" name="stackedWid">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>90</y>
+     <width>600</width>
+     <height>505</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>30</y>
+     <width>87</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>设备相信息</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>输出位状态</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>环境状态</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>设备设置</string>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

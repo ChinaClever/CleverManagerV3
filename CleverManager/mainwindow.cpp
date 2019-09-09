@@ -38,15 +38,14 @@ void MainWindow::initWidSLot()
 
     mLog = new LogMainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mLog);
+
+    mPduWid = new Pdu_MainWid(ui->stackedWid);
+    ui->stackedWid->addWidget(mPduWid);
 }
 
 
 
 void MainWindow::navBarSlot(int id)
 {
-
-    switch (id) {
-    case 1: ui->stackedWid->setCurrentWidget(mSetup); break;
-    case 2: ui->stackedWid->setCurrentWidget(mLog); break;
-    }
+    ui->stackedWid->setCurrentIndex(id);
 }
