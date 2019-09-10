@@ -6,7 +6,7 @@
  *      Author: Lzy
  */
 #include "pdu_setthresholddlg.h"
-#include "ui_setthresholddlg.h"
+#include "ui_pdu_setthresholddlg.h"
 
 Pdu_SetThresholdDlg::Pdu_SetThresholdDlg(QWidget *parent) :
     QDialog(parent),

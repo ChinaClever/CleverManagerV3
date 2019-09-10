@@ -1,6 +1,7 @@
 #ifndef PDU_MAINWID_H
 #define PDU_MAINWID_H
 
+#include "pdu_line/pdu_linewid.h"
 #include "pdu_env/pdu_envwid.h"
 
 namespace Ui {
@@ -23,6 +24,7 @@ protected slots:
 private:
     Ui::Pdu_MainWid *ui;
 
+    Pdu_LineWid *mLineWid;
     Pdu_EnvWid *mEnvWid;
     Pdu_OutputWid *mOutputWid;
 };

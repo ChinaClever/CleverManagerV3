@@ -1,9 +1,8 @@
 #ifndef DS_DATASHOWWID_H
 #define DS_DATASHOWWID_H
 
-#include <QWidget>
 #include <QProgressBar>
-#include "datapacket.h"
+#include "pdu_linegraph.h"
 
 namespace Ui {
 class Pdu_LineWid;
@@ -57,5 +56,6 @@ private:
     int mLine;
     QTimer *mTimer;
     sDataPacket *mPacket;
+    Pdu_LineGraph *mGraph;
 };
 #endif // DS_DATASHOWWID_H

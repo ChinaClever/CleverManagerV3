@@ -1,14 +1,14 @@
-﻿/*
+/*
  * drawgraphic.cpp
  * 画布的基本操作
  *
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "drawgraphic.h"
+#include "line_drawgraphic.h"
 
 
-DrawGraphic::DrawGraphic(QWidget *parent) : QWidget(parent)
+Line_DrawGraphic::Line_DrawGraphic(QWidget *parent) : QWidget(parent)
 {
     customPlot = new QCustomPlot(this);
     layout = new QGridLayout(this);
@@ -25,7 +25,7 @@ DrawGraphic::DrawGraphic(QWidget *parent) : QWidget(parent)
     //  customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
 
-DrawGraphic::~DrawGraphic()
+Line_DrawGraphic::~Line_DrawGraphic()
 {
 
 }
@@ -33,7 +33,7 @@ DrawGraphic::~DrawGraphic()
 /**
   * @brief 默认初始化
   */
- void DrawGraphic::initCurVolFun(void)
+ void Line_DrawGraphic::initCurVolFun(void)
  {
      initxAxis();  //初始化时间轴
      setxAxis(60); //设置时间轴的范围为60S
@@ -59,7 +59,7 @@ DrawGraphic::~DrawGraphic()
    * @param name
    * @return
    */
- QCPGraph *DrawGraphic::addPowerGraph(QString name)
+ QCPGraph *Line_DrawGraphic::addPowerGraph(const QString &name)
  {
      QCPGraph *graph = customPlot->addGraph();
 
@@ -82,7 +82,7 @@ DrawGraphic::~DrawGraphic()
  * @param graph
  * @param value
  */
-void DrawGraphic::addData(QCPGraph *graph, double value,bool onlyEnlarge)
+void Line_DrawGraphic::addData(QCPGraph *graph, double value,bool onlyEnlarge)
 {
     int key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000; //获取当前时间
 
@@ -102,7 +102,7 @@ void DrawGraphic::addData(QCPGraph *graph, double value,bool onlyEnlarge)
   * @brief 清除所有数据
   * @param graph
   */
- void DrawGraphic::clearData(QCPGraph *graph)
+ void Line_DrawGraphic::clearData(QCPGraph *graph)
  {
      graph->clearData();
  }
@@ -110,7 +110,7 @@ void DrawGraphic::addData(QCPGraph *graph, double value,bool onlyEnlarge)
 /**
  * @brief 增加电压画布
  */
-QCPGraph *DrawGraphic::addVoltageGraph(QString name)
+QCPGraph *Line_DrawGraphic::addVoltageGraph(const QString &name)
 {
     QCPGraph *graph = customPlot->addGraph(customPlot->xAxis, customPlot->yAxis2);
 
@@ -131,7 +131,7 @@ QCPGraph *DrawGraphic::addVoltageGraph(QString name)
   * @param name
   * @return
   */
- QCPGraph *DrawGraphic::addVolAlarmGraph(void)
+ QCPGraph *Line_DrawGraphic::addVolAlarmGraph(void)
  {
      QCPGraph *graph = customPlot->addGraph(customPlot->xAxis, customPlot->yAxis2);
 
@@ -145,7 +145,7 @@ QCPGraph *DrawGraphic::addVoltageGraph(QString name)
 /**
  * @brief 增加电流画布
  */
-QCPGraph *DrawGraphic::addCurrentGraph(QString name)
+QCPGraph *Line_DrawGraphic::addCurrentGraph(const QString &name)
 {
     QCPGraph *graph = customPlot->addGraph();
 
@@ -164,7 +164,7 @@ QCPGraph *DrawGraphic::addCurrentGraph(QString name)
   * @brief 增加电流报警画布
   * @return
   */
- QCPGraph *DrawGraphic::addCurAlarmtGraph(void)
+ QCPGraph *Line_DrawGraphic::addCurAlarmtGraph(void)
  {
      QCPGraph *graph = customPlot->addGraph();
 
@@ -179,7 +179,7 @@ QCPGraph *DrawGraphic::addCurrentGraph(QString name)
 /**
   * @brief 显示legend
   */
-void DrawGraphic::initLegende(void)
+void Line_DrawGraphic::initLegende(void)
 {
     customPlot->legend->setVisible(true);
     // set locale to english, so we get english decimal separator:
@@ -199,7 +199,7 @@ void DrawGraphic::initLegende(void)
  * @brief 报警时选择形状
  *
  */
-void DrawGraphic::setScatterStyle(QCPGraph *graph, int id)
+void Line_DrawGraphic::setScatterStyle(QCPGraph *graph, int id)
 {
     QVector<QCPScatterStyle::ScatterShape> shapes;
     shapes << QCPScatterStyle::ssCross;
@@ -227,7 +227,7 @@ void DrawGraphic::setScatterStyle(QCPGraph *graph, int id)
 /**
  * @brief X轴初始化
  */
-void DrawGraphic::initxAxis(void)
+void Line_DrawGraphic::initxAxis(void)
 {
     customPlot->xAxis->setTickLabelType(QCPAxis::ltDateTime);
     customPlot->xAxis->setDateTimeFormat("hh:mm:ss");
@@ -246,7 +246,7 @@ void DrawGraphic::initxAxis(void)
  * @brief 时间轴范围增大
  * @param range
  */
-void DrawGraphic::addxAxis(int range)
+void Line_DrawGraphic::addxAxis(int range)
 {
     m_xRange += range;
     customPlot->xAxis->setRange(m_startTime, m_xRange,Qt::AlignLeft);
@@ -256,7 +256,7 @@ void DrawGraphic::addxAxis(int range)
 /**
  * @brief X轴花园设置 以时间 S为单位
  */
-void DrawGraphic::setxAxis(int range)
+void Line_DrawGraphic::setxAxis(int range)
 {
     m_startTime = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000; //获取当前时间
 
@@ -267,12 +267,12 @@ void DrawGraphic::setxAxis(int range)
 /**
  * @brief Y轴初始化
  */
-void DrawGraphic::inityAxis(QString lab)
+void Line_DrawGraphic::inityAxis(const QString &lab)
 {
     customPlot->yAxis->setLabel(lab);
 }
 
-void DrawGraphic::setyAxis(double lower, double upper)
+void Line_DrawGraphic::setyAxis(double lower, double upper)
 {
     customPlot->yAxis->setRange(lower, upper);
 }
@@ -280,7 +280,7 @@ void DrawGraphic::setyAxis(double lower, double upper)
 /**
   * @brief 上轴初始化
   */
-void DrawGraphic::initxAxis2(void)
+void Line_DrawGraphic::initxAxis2(void)
 {
     customPlot->xAxis2->setVisible(false);
     customPlot->xAxis2->setTickLabels(false);
@@ -290,7 +290,7 @@ void DrawGraphic::initxAxis2(void)
 /**
   * @brief 右轴初始化
   */
-void DrawGraphic::inityAxis2(QString lab)
+void Line_DrawGraphic::inityAxis2(const QString &lab)
 {
     customPlot->yAxis2->setVisible(true);
     customPlot->yAxis2->setLabel(lab);
@@ -300,7 +300,7 @@ void DrawGraphic::inityAxis2(QString lab)
 /**
   * @brief 设置右轴
   */
-void DrawGraphic::setyAxis2(double lower, double upper)
+void Line_DrawGraphic::setyAxis2(double lower, double upper)
 {
     customPlot->yAxis2->setRange(lower, upper);
 }
@@ -309,7 +309,7 @@ void DrawGraphic::setyAxis2(double lower, double upper)
 /**
  * @brief 设置标题
  */
-void DrawGraphic::setTitle(QString title)
+void Line_DrawGraphic::setTitle(const QString &title)
 {
     customPlot->plotLayout()->insertRow(0);  // set title of plot:
     customPlot->plotLayout()->addElement(0, 0, new QCPPlotTitle(customPlot, title));
@@ -319,7 +319,7 @@ void DrawGraphic::setTitle(QString title)
 /**
  * @brief 设置画布名字
  */
-void DrawGraphic::setName(QString name)
+void Line_DrawGraphic::setName(const QString &name)
 {
     customPlot->graph()->setName(name); // set graph name, will show up in legend next to icon:
 }
@@ -327,7 +327,7 @@ void DrawGraphic::setName(QString name)
 /**
  * @brief 初始化Axis 设置刻度显示方式
  */
-void DrawGraphic::initAxis(QCPAxis *Axis)
+void Line_DrawGraphic::initAxis(QCPAxis *Axis)
 {
     Axis->setBasePen(QPen(Qt::white, 1));
     Axis->setTickPen(QPen(Qt::white, 1));
@@ -344,7 +344,7 @@ void DrawGraphic::initAxis(QCPAxis *Axis)
 /**
  * @brief 设置背景
  */
-void DrawGraphic::setBackground(void)
+void Line_DrawGraphic::setBackground(void)
 {
     QLinearGradient plotGradient;
     plotGradient.setStart(0, 0);

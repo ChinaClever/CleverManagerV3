@@ -18,6 +18,9 @@ Pdu_MainWid::~Pdu_MainWid()
 
 void Pdu_MainWid::initWidSlot()
 {
+    mLineWid = new Pdu_LineWid(ui->stackedWid);
+    ui->stackedWid->addWidget(mLineWid);
+
     mOutputWid = new Pdu_OutputWid(ui->stackedWid);
     ui->stackedWid->addWidget(mOutputWid);
 

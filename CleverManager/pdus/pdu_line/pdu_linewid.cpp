@@ -1,5 +1,5 @@
 #include "pdu_linewid.h"
-#include "ui_ds_datashowwid.h"
+#include "ui_pdu_linewid.h"
 #include <QDesktopServices>
 #include "pdu_set/pdu_setthresholddlg.h"
 
@@ -13,6 +13,9 @@ Pdu_LineWid::Pdu_LineWid(QWidget *parent) :
 
     mLine = 0;
     mPacket = NULL;
+    mGraph = new Pdu_LineGraph(ui->graphWid);
+
+
     mTimer = new QTimer(this);
     connect(mTimer, SIGNAL(timeout()), this, SLOT(timeoutDone()));
     mTimer->start(1000);
@@ -284,7 +287,7 @@ void Pdu_LineWid::packetSlot(sDataPacket *p)
     mPacket = p;
     mLine = 0;
     timeoutDone();
-    emit selectDevSig(p, mLine);
+    mGraph->packetSlot(p, mLine);
 }
 
 
@@ -292,7 +295,7 @@ void Pdu_LineWid::packetSlot(sDataPacket *p)
 void Pdu_LineWid::on_comboBox_currentIndexChanged(int index)
 {
     mLine = index;
-    emit selectDevSig(mPacket, mLine);
+    mGraph->packetSlot(mPacket, mLine);
 }
 
 void Pdu_LineWid::on_webBtn_clicked()

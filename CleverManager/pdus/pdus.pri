@@ -12,7 +12,8 @@ HEADERS += \
     $$PWD/pdu_set/pdu_setthresholddlg.h \
     $$PWD/pdu_env/pdu_settemdlg.h \
     $$PWD/pdu_env/pdu_sethumdlg.h \
-    $$PWD/pdu_line/pdu_linewid.h
+    $$PWD/pdu_line/pdu_linewid.h \
+    $$PWD/pdu_line/pdu_linegraph.h
 
 	
 SOURCES += \	
@@ -24,7 +25,8 @@ SOURCES += \
     $$PWD/pdu_set/pdu_setthresholddlg.cpp \
     $$PWD/pdu_env/pdu_settemdlg.cpp \
     $$PWD/pdu_env/pdu_sethumdlg.cpp \
-    $$PWD/pdu_line/pdu_linewid.cpp
+    $$PWD/pdu_line/pdu_linewid.cpp \
+    $$PWD/pdu_line/pdu_linegraph.cpp
 
 
 FORMS += \

@@ -1,15 +1,15 @@
-﻿/*
+/*
  * curvolgraphic.cpp
  * 电流、电压画布
  *
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "curvolgraphic.h"
+#include "line_vcgraphic.h"
 
-CurVolGraphic::CurVolGraphic(QWidget *parent) : QWidget(parent)
+Line_VcGraphic::Line_VcGraphic(QWidget *parent) : QWidget(parent)
 {
-    draw = new DrawGraphic(this);
+    draw = new Line_DrawGraphic(this);
     layout = new QGridLayout(this);
     layout->addWidget(draw);    
     layout->setSpacing(0);
@@ -19,12 +19,12 @@ CurVolGraphic::CurVolGraphic(QWidget *parent) : QWidget(parent)
     initData();
 }
 
-CurVolGraphic::~CurVolGraphic()
+Line_VcGraphic::~Line_VcGraphic()
 {
 
 }
 
-void CurVolGraphic::initData(void)
+void Line_VcGraphic::initData(void)
 {
     m_tick = 0;
     mRange = 60;
@@ -39,7 +39,7 @@ void CurVolGraphic::initData(void)
   * @brief 自动调整时间轴
   * @param step 每次绘图时间间隔
   */
-void CurVolGraphic::setAutoRange(int step, int range)
+void Line_VcGraphic::setAutoRange(int step, int range)
 {    
     if(m_tick<range)
     {
@@ -60,7 +60,7 @@ void CurVolGraphic::setAutoRange(int step, int range)
  * @param value
  * @param alarm
  */
-void CurVolGraphic::addCurData(double value,bool alarm)
+void Line_VcGraphic::addCurData(double value,bool alarm)
 {
     bool ret =setCurRange(value); //调整范围
 
@@ -72,7 +72,7 @@ void CurVolGraphic::addCurData(double value,bool alarm)
 /**
  * @brief 清除数据
  */
-void CurVolGraphic::clearData(void)
+void Line_VcGraphic::clearData(void)
 {
     draw->clearData(m_pCurGraph);
     draw->clearData(m_pCurAlarmGraph);
@@ -89,20 +89,19 @@ void CurVolGraphic::clearData(void)
  * @param value
  * @param alarm
  */
-void CurVolGraphic::addVolData(int value,bool alarm)
+void Line_VcGraphic::addVolData(int value,bool alarm)
 {
     bool ret = setVolRange(value);
 
     draw->addData(m_pVolGraph,value,ret);
-    if(alarm)
-        draw->addData(m_pVolAlarmGraph,value);
+    if(alarm) draw->addData(m_pVolAlarmGraph,value);
 }
 
 /**
   * @brief 自动调整电压范围
   * @param range
   */
-bool CurVolGraphic::setVolRange(int value)
+bool Line_VcGraphic::setVolRange(int value)
 {
     bool ret = true;
     int range = mVolRange;
@@ -151,7 +150,7 @@ bool CurVolGraphic::setVolRange(int value)
  * @param value
  * 电流范围：0~10 0~16 0~20 0~32
  */
-bool CurVolGraphic::setCurRange(double value)
+bool Line_VcGraphic::setCurRange(double value)
 {
     bool ret = true;
     int range = mCurRange;
@@ -205,7 +204,7 @@ bool CurVolGraphic::setCurRange(double value)
 /**
  * @brief 初始化电流电压画布
  */
-void CurVolGraphic::initCurVolGraph(void)
+void Line_VcGraphic::initCurVolGraph(void)
 {
     draw->initCurVolFun();
 

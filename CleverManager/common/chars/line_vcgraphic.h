@@ -1,14 +1,14 @@
-﻿#ifndef CURVOLGRAPHIC_H
+#ifndef CURVOLGRAPHIC_H
 #define CURVOLGRAPHIC_H
 
-#include "barcharts.h"
+#include "line_drawgraphic.h"
 
-class CurVolGraphic : public QWidget
+class Line_VcGraphic : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CurVolGraphic(QWidget *parent = 0);
-    ~CurVolGraphic();
+    explicit Line_VcGraphic(QWidget *parent = 0);
+    ~Line_VcGraphic();
 
     void initCurVolGraph(void);
 
@@ -28,7 +28,7 @@ public slots:
 
 private:
     QGridLayout *layout;
-    DrawGraphic *draw;
+    Line_DrawGraphic *draw;
     int m_tick;
     int mRange;
 
