@@ -18,14 +18,19 @@ Pdu_MainWid::~Pdu_MainWid()
 
 void Pdu_MainWid::initWidSlot()
 {
+    mList = new Pdu_ListWid(ui->listWid);
+
     mLineWid = new Pdu_LineWid(ui->stackedWid);
     ui->stackedWid->addWidget(mLineWid);
+    connect(mList, SIGNAL(selectedSig(sDataPacket*)), mLineWid, SLOT(packetSlot(sDataPacket*)));
 
     mOutputWid = new Pdu_OutputWid(ui->stackedWid);
     ui->stackedWid->addWidget(mOutputWid);
+    connect(mList, SIGNAL(selectedSig(sDataPacket*)), mOutputWid, SLOT(packetSlot(sDataPacket*)));
 
     mEnvWid = new Pdu_EnvWid(ui->stackedWid);
     ui->stackedWid->addWidget(mEnvWid);
+    connect(mList, SIGNAL(selectedSig(sDataPacket*)), mEnvWid, SLOT(packetSlot(sDataPacket*)));
 }
 
 void Pdu_MainWid::on_comboBox_currentIndexChanged(int index)

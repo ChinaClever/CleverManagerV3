@@ -8,7 +8,7 @@ class Dp_CabPackets : public Dp_BasicThread<sCabPacket *>
     Q_OBJECT
     explicit Dp_CabPackets(QObject *parent = nullptr);
 public:
-    static Dp_CabPackets *bulid(QObject *parent);
+    static Dp_CabPackets *bulid(QObject *parent = nullptr);
     ~Dp_CabPackets();
 
     sCabPacket *get(const QString &room, const QString &cab);

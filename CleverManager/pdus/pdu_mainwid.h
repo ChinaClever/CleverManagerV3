@@ -3,6 +3,7 @@
 
 #include "pdu_line/pdu_linewid.h"
 #include "pdu_env/pdu_envwid.h"
+#include "pdu_list/pdu_listwid.h"
 
 namespace Ui {
 class Pdu_MainWid;
@@ -24,6 +25,7 @@ protected slots:
 private:
     Ui::Pdu_MainWid *ui;
 
+    Pdu_ListWid *mList;
     Pdu_LineWid *mLineWid;
     Pdu_EnvWid *mEnvWid;
     Pdu_OutputWid *mOutputWid;
