@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SetThresholdDlg</class>
- <widget class="QDialog" name="SetThresholdDlg">
+ <class>Pdu_SetThresholdDlg</class>
+ <widget class="QDialog" name="Pdu_SetThresholdDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -166,7 +166,7 @@ color: rgb(0, 0, 0);</string>
   <connection>
    <sender>cancelBtn</sender>
    <signal>clicked()</signal>
-   <receiver>SetThresholdDlg</receiver>
+   <receiver>Pdu_SetThresholdDlg</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">

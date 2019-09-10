@@ -1,4 +1,5 @@
 #include "pdu_envwid.h"
+#include "pdu_sethumdlg.h"
 
 Pdu_EnvWid::Pdu_EnvWid(QWidget *parent) : ComTableWid(parent)
 {
@@ -162,10 +163,14 @@ void Pdu_EnvWid::itemDoubleSlot()
 
     if(mPacket){
         if(row < 4) {
-            //            mode = SET_CMD_ENV_TEM;
+            Pdu_SetTemDlg dlg(this);
+            dlg.init(row, mPacket);
+            dlg.exec();
         } else if(row < 8) {
-            //            mode = SET_CMD_ENV_HUM;
-            row -= 4;
+            Pdu_SetHumDlg dlg(this);
+            dlg.init(row-4, mPacket);
+            dlg.exec();
         }
+        updateData();
     }
 }

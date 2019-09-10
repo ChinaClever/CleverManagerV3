@@ -4,7 +4,6 @@
 #include "datapacket.h"
 #include "net_dataanalyze.h"
 #include "dbuserlog.h"
-#include "landinguser.h"
 
 namespace Ui {
 class Pdu_SetSwitchDlg;

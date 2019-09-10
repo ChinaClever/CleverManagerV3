@@ -20,6 +20,12 @@
 #define COM_RATE_TEM	1.0    // 温度
 #define COM_RATE_HUM	1.0    // 湿度
 
+#define PDU_TYPE_IP_PDU     0x01010101
+#define PDU_TYPE_M_PDU      0x01020101
+#define PDU_TYPE_NPM_PDU    0x01030101
+#define PDU_TYPE_RPDU       0x01040101
+#define PDU_TYPE_ZPDU       0x01050101
+
 /**
  * 数据单元：包括当前值，阈值，临界值，告警状态等
  */

@@ -221,7 +221,7 @@ void Pdu_SetOutputDlg::saveData()
     bool ret = ui->uniteCheckBox->isChecked();
     if(ret) // 统一设置
     {
-        for(int i=0; i<mPacket->data.output.size; ++i) {
+        for(int i=0; i<unit->size; ++i) {
             unit->min[i] = min;
             unit->max[i] = max;
             unit->crMin[i] = crMin;

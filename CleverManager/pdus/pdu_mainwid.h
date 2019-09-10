@@ -1,7 +1,7 @@
 #ifndef PDU_MAINWID_H
 #define PDU_MAINWID_H
 
-#include "env/pdu_envwid.h"
+#include "pdu_env/pdu_envwid.h"
 
 namespace Ui {
 class Pdu_MainWid;

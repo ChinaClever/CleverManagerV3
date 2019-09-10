@@ -1,7 +1,7 @@
 #ifndef PDU_ENVWID_H
 #define PDU_ENVWID_H
 
-#include "output/pdu_outputwid.h"
+#include "pdu_output/pdu_outputwid.h"
 
 class Pdu_EnvWid : public ComTableWid
 {
