@@ -23,8 +23,6 @@ Room_BarGraph::~Room_BarGraph()
 
 }
 
-
-
 /**
  * @brief 初始化窗口
  */
@@ -58,7 +56,6 @@ void Room_BarGraph::initWidget()
     //    m_pLayout->addWidget(groupBox,1,0);
     m_pLayout->setContentsMargins(0, 0, 0, 0);
 }
-
 
 
 void Room_BarGraph::updateData()
