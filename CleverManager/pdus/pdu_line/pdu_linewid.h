@@ -54,8 +54,8 @@ private slots:
 private:
     Ui::Pdu_LineWid *ui;
 
-    QTimer *mTimer;
     int mLine;
+    QTimer *mTimer;
     sDataPacket *mPacket;
 };
 #endif // DS_DATASHOWWID_H

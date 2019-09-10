@@ -16,8 +16,6 @@ Pdu_LineWid::Pdu_LineWid(QWidget *parent) :
     mTimer = new QTimer(this);
     connect(mTimer, SIGNAL(timeout()), this, SLOT(timeoutDone()));
     mTimer->start(1000);
-
-    //    QTimer::singleShot(1*1000,this,SLOT(initFun())); // 延时
 }
 
 Pdu_LineWid::~Pdu_LineWid()
