@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 include(logs/logs.pri)
 include(pdus/pdus.pri)
+include(rooms/rooms.pri)
 include(common/common.pri)
 include(setups/setups.pri)
 

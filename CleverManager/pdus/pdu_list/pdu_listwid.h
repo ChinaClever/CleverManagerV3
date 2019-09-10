@@ -35,6 +35,9 @@ public slots:
     bool selectedItemSlot(QTreeWidgetItem*,int);
 
 
+private slots:
+    void on_btn_clicked();
+
 private:
     Ui::Pdu_ListWid *ui;
 };
