@@ -34,7 +34,7 @@ void Room_BarGraph::initWidget()
     bar->setTitle(tr("设备工作状态"));
 
     QGroupBox *groupBox = new QGroupBox("",this);
-    m_barChart = new BarCharts(groupBox);
+    m_barChart = new Bar_ChartsWid(groupBox);
     groupBox->setStyleSheet("border:none; background-color:white");
 
     lab = new QLabel(groupBox);
