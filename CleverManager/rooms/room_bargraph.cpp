@@ -11,11 +11,16 @@
 Room_BarGraph::Room_BarGraph(QWidget *parent) : QWidget(parent)
 {
     initWidget();
-//    set_background_color(this, Qt::white);
+    //    set_background_color(this, Qt::white);
 
+    mPacket = nullptr;
     timer = new QTimer(this);
     connect( timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
     timer->start(5*1000);
+
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
 }
 
 Room_BarGraph::~Room_BarGraph()
@@ -58,14 +63,10 @@ void Room_BarGraph::initWidget()
 }
 
 
-void Room_BarGraph::updateData()
-{
-    Bar_sChartData data;
-    data.number = mPacket->pdus; // 设备总数
-    data.line = mPacket->line; // 在线设备数量
-    data.alarm = mPacket->alarm; //  报警数量
-    data.offLine = mPacket->offline; // 离线数量
 
+
+void Room_BarGraph::updateData(Bar_sChartData &data)
+{
     lab->setText(tr("总数：%1       在线：%2       报警：%3       离线：%4").arg(data.number)
                  .arg(data.line)
                  .arg(data.alarm)
@@ -78,7 +79,14 @@ void Room_BarGraph::updateData()
 
 void Room_BarGraph::timeoutDone()
 {
+    Bar_sChartData data;
     if(mPacket) {
-        updateData();
+        data.number = mPacket->pdus; // 设备总数
+        data.line = mPacket->line; // 在线设备数量
+        data.alarm = mPacket->alarm; //  报警数量
+        data.offLine = mPacket->offline; // 离线数量
+    } else {
+        memset(&data, 0, sizeof(Bar_sChartData));
     }
+    updateData(data);
 }

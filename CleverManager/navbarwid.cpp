@@ -62,3 +62,8 @@ void NavBarWid::on_pduBtn_clicked()
 {
      emit navBarSig(2);
 }
+
+void NavBarWid::on_roomBtn_clicked()
+{
+    emit navBarSig(3);
+}

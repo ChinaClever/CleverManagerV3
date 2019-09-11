@@ -10,7 +10,7 @@ Pdu_ListWid::Pdu_ListWid(QWidget *parent) :
     //ui->treeWidget->setHeaderHidden(true);
     ui->treeWidget->setSortingEnabled(true);
     connect(ui->treeWidget,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),this,SLOT(selectedItemSlot(QTreeWidgetItem*,int)));
-    connect(ui->treeWidget, SIGNAL(clicked(QModelIndex)), this,SLOT(clickedSLot(QModelIndex)));
+    connect(ui->treeWidget, SIGNAL(clicked(QModelIndex)), this,SLOT(clickedSlot(QModelIndex)));
     setHeader();
 }
 

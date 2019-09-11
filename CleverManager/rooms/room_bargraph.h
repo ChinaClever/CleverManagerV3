@@ -12,7 +12,7 @@ public:
     explicit Room_BarGraph(QWidget *parent = 0);
     ~Room_BarGraph();
 
-    void updateData();
+    void updateData(Bar_sChartData &data);
 
 protected:
     void initWidget();

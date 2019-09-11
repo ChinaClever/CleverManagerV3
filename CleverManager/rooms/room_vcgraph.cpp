@@ -18,6 +18,10 @@ Room_VcGraph::Room_VcGraph(QWidget *parent) : QWidget(parent)
     timer = new QTimer(this);
     connect( timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
     timer->start(5*1000);
+
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
 }
 
 Room_VcGraph::~Room_VcGraph()

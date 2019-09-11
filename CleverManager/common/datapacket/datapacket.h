@@ -76,14 +76,14 @@ struct sObjData
 
 struct sTgObjData
 {
-    int vol; // 电压
-    int cur;  // 电流
-    int pow; // 功率
+    uint vol; // 电压
+    uint cur;  // 电流
+    uint pow; // 功率
 
-    int ele; // 电能
-    int pf; // 功率因素
-    int activePow; // 袖在功率
-    int tem;
+    uint ele; // 电能
+    uint pf; // 功率因素
+    uint activePow; // 袖在功率
+    uint tem;
 };
 
 /**

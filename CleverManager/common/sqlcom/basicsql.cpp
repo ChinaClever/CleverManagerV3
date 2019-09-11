@@ -204,7 +204,7 @@ QVector<int> BasicSql::selectIds(const QString &condition)
  */
 void BasicSql::throwError(const QSqlError &err)
 {
-    qCritical() << "Sql_Error:" << err.text() << err.type();
+    qCritical() <<  tableName() << "Sql_Error:" << err.text() << err.type();
 }
 
 bool BasicSql::clear()

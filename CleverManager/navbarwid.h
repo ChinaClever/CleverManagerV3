@@ -28,6 +28,8 @@ private slots:
 
     void on_pduBtn_clicked();
 
+    void on_roomBtn_clicked();
+
 private:
     Ui::NavBarWid *ui;
 };

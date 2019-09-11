@@ -41,6 +41,9 @@ void MainWindow::initWidSLot()
 
     mPduWid = new Pdu_MainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mPduWid);
+
+    mRoom = new TG_RoomWidget(ui->stackedWid);
+    ui->stackedWid->addWidget(mRoom);
 }
 
 

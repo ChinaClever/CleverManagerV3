@@ -1,60 +1,52 @@
-﻿/*
+/*
  * tg_powergraph.cpp
  * 总功率曲线图
  *
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "tg_powergraph.h"
+#include "room_powergraph.h"
 
 
-TG_PowerGraph::TG_PowerGraph(QWidget *parent) : QWidget(parent)
+Room_PowerGraph::Room_PowerGraph(QWidget *parent) : QWidget(parent)
 {
     initView();
     initFun();
     QTimer::singleShot(4*1240,this,SLOT(initSlot()));
+
     isBig = false; // 大小端模式，false 为小端模式，  true 为大端模式
+    mPacket = nullptr;
+    timer = new QTimer(this);
+    connect( timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
+    timer->start(5*1000);
+
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
 }
 
-TG_PowerGraph::~TG_PowerGraph()
+Room_PowerGraph::~Room_PowerGraph()
 {
 
 }
 
-void TG_PowerGraph::initView()
+void Room_PowerGraph::initView()
 {
-#if 0
-    groupBox = new QGroupBox(tr("总功率曲线"),this);
-    m_pDraw = new DrawGraphic(groupBox);
-
-    QGridLayout *layout = new QGridLayout(groupBox);
-    layout->addWidget(m_pDraw);
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
-
-    m_pLayout = new QGridLayout(this);
-    m_pLayout->addWidget(groupBox);
-#else
-
-    mBar = new TitleBar(this);
+    mBar = new Room_TitleBar(this);
     mBar->setTitle(tr("总功率曲线(kW)"));
 
-
-    m_pDraw = new DrawGraphic(this);
+    m_pDraw = new Line_DrawGraphic(this);
     QWidget *out_widget=new QWidget(this);
     out_widget->setStyleSheet("background-color:rgb(0,17,55)");
 
     QVBoxLayout *out_layout=new QVBoxLayout(out_widget);
     out_layout->addWidget(mBar);
     out_layout->addWidget(m_pDraw);
-    //    out_layout->addLayout(little_layout);
 
     QGridLayout *layout = new QGridLayout(this);
     layout->addWidget(out_widget, 0,0);
-    //    layout->addWidget(m_pDraw,1,0);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#endif
 }
 
 
@@ -64,7 +56,7 @@ void TG_PowerGraph::initView()
   * @brief 自动调整时间轴
   * @param step 每次绘图时间间隔
   */
-void TG_PowerGraph::setAutoRange(int step)
+void Room_PowerGraph::setAutoRange(int step)
 {
     if(mTick < 24*60*60)
     {
@@ -83,7 +75,7 @@ void TG_PowerGraph::setAutoRange(int step)
  * @param value
  * @return
  */
-double TG_PowerGraph::getData(qint64 value)
+double Room_PowerGraph::getData(qint64 value)
 {
     if(value > 1000*1000) { // 大于1千kW时，功率单位就变为K*kW
         value /= 1000;
@@ -108,7 +100,7 @@ double TG_PowerGraph::getData(qint64 value)
   * @param value
   * @param step
   */
-void TG_PowerGraph::addPowData(qint64 pow,int step)
+void Room_PowerGraph::addPowData(qint64 pow,int step)
 {
     double value = getData(pow);
     if(value >= 0)
@@ -127,7 +119,7 @@ void TG_PowerGraph::addPowData(qint64 pow,int step)
 /**
   * @brief 清除前5S空白
   */
-void TG_PowerGraph::initSlot(void)
+void Room_PowerGraph::initSlot()
 {
     mRange = 5;
     mTick = 0;
@@ -139,8 +131,8 @@ void TG_PowerGraph::initSlot(void)
 /**
   * @brief 初始化
   */
-void TG_PowerGraph::initFun(void)
-{    
+void Room_PowerGraph::initFun()
+{
     mRange = 5;
     mTick = 0;
     mTrange = 60;
@@ -151,4 +143,27 @@ void TG_PowerGraph::initFun(void)
 
     m_pDraw->inityAxis("");  //初始化功率轴
     m_pDraw->setyAxis(0,mRange); //范围为
+}
+
+
+bool Room_PowerGraph::checkPack()
+{
+    bool ret = false;
+
+    if(mPacket) {
+        if(mPacket->en)
+            ret = true;
+    }
+
+    return ret;
+}
+
+void Room_PowerGraph::timeoutDone()
+{
+    bool ret = checkPack();
+    if(ret) {
+        addPowData(mPacket->tg.pow, 5);
+    } else {
+        initSlot();
+    }
 }
