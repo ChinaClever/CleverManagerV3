@@ -6,6 +6,7 @@ Dp_CabPackets::Dp_CabPackets(QObject *parent) : Dp_BasicThread(parent)
     mDb = DbCabinetList::get();
     mPdus = Dp_PduPackets::bulid(this);
     mCabHrs = Dp_CabHrsSave::bulid(this);
+    mAlarm = Dp_CabAlarm::bulid(this);
     connect(mDb,SIGNAL(itemChanged(int,int)),SLOT(cabinetItemChange(int,int)));
 }
 
@@ -38,6 +39,8 @@ void Dp_CabPackets::initPacket(CabinetItem &it)
         cab->count = 0;
         cab->room_id = it.room_id;
         cab->cab_id = it.id;
+        cab->pow = it.pow;
+        cab->powAlarm = 0;
 
         if(!it.main_ip.isEmpty()) {
             cab->m = mPdus->get(it.main_ip, it.main_num);
@@ -164,6 +167,7 @@ void Dp_CabPackets::workDown(sCabPacket *pack)
     if(mCount++ % 3 == 0) {
         tgCabData(pack);
         mCabHrs->save(pack);
+        mAlarm->alarm(pack);
     }
 }
 

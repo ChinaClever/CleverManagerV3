@@ -21,6 +21,9 @@ public:
     int Exec() {return this->exec();}
     virtual bool inputCheck() {return true;}
 
+protected:
+    void setRoadHidden();
+
 protected slots:
     void on_okBtn_clicked();
     void on_quitBtn_clicked();

@@ -12,7 +12,8 @@ HEADERS += \
     $$PWD/logquerydlg/log_cabelecquerydlg.h \
     $$PWD/logquerydlg/log_pduelecquerydlg.h \
     $$PWD/logquerydlg/log_roomhrsquerydlg.h \
-    $$PWD/logquerydlg/log_roomelecquerydlg.h
+    $$PWD/logquerydlg/log_roomelecquerydlg.h \
+    $$PWD/logquerydlg/log_cabalarmquerydlg.h
 	
 SOURCES += \	
     $$PWD/logmainwid.cpp \
@@ -22,7 +23,8 @@ SOURCES += \
     $$PWD/logquerydlg/log_cabelecquerydlg.cpp \
     $$PWD/logquerydlg/log_pduelecquerydlg.cpp \
     $$PWD/logquerydlg/log_roomhrsquerydlg.cpp \
-    $$PWD/logquerydlg/log_roomelecquerydlg.cpp
+    $$PWD/logquerydlg/log_roomelecquerydlg.cpp \
+    $$PWD/logquerydlg/log_cabalarmquerydlg.cpp
 
 FORMS += \
     $$PWD/logmainwid.ui \

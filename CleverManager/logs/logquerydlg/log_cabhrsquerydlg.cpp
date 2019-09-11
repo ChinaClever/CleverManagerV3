@@ -16,6 +16,11 @@ Log_CabHrsQueryDlg::~Log_CabHrsQueryDlg()
     delete ui;
 }
 
+void Log_CabHrsQueryDlg::setRoadHidden()
+{
+    ui->roadCmb->setHidden(true);
+    ui->roadLab->setHidden(true);
+}
 
 QString Log_CabHrsQueryDlg::getCmd()
 {

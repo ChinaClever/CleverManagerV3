@@ -1,7 +1,7 @@
 #ifndef LOG_CABELECQUERYDLG_H
 #define LOG_CABELECQUERYDLG_H
 #include "dbcabelec.h"
-#include "log_cabhrsquerydlg.h"
+#include "log_cabalarmquerydlg.h"
 
 namespace Ui {
 class Log_CabHrsQueryDlg;

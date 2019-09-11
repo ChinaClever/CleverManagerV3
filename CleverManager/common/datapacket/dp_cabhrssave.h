@@ -1,8 +1,8 @@
 #ifndef DP_CABHRSSAVE_H
 #define DP_CABHRSSAVE_H
 
-#include "dp_pdupackets.h"
-#include "dbcabhrs.h"
+
+#include "dp_cabalarm.h"
 
 class Dp_CabHrsSave : public QObject
 {

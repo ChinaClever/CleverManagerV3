@@ -27,7 +27,8 @@ private:
     Ui::LogMainWid *ui;
 
     LogComWid *mLandLog;
-    LogComWid *mPduALarmLog;
+    LogComWid *mPduALarm;
+    LogComWid *mCabAlarm;
     LogComWid *mPduHrs;
     LogComWid *mCabHrs;
     ElecComWid *mCabElec;

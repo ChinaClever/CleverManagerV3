@@ -22,9 +22,13 @@ void LogMainWid::initFunSLot()
     mLandLog->initWid(DbUserLog::bulid(), new Log_UserQueryDlg(this));
     ui->stackedWid->addWidget(mLandLog);
 
-    mPduALarmLog = new LogComWid(ui->stackedWid);
-    mPduALarmLog->initWid(DbPduAlarm::bulid(), new Log_PduAlarmQueryDlg(this));
-    ui->stackedWid->addWidget(mPduALarmLog);
+    mPduALarm = new LogComWid(ui->stackedWid);
+    mPduALarm->initWid(DbPduAlarm::bulid(), new Log_PduAlarmQueryDlg(this));
+    ui->stackedWid->addWidget(mPduALarm);
+
+    mCabAlarm = new LogComWid(ui->stackedWid);
+    mCabAlarm->initWid(DbCabHrs::bulid(), new Log_CabAlarmQueryDlg(this));
+    ui->stackedWid->addWidget(mCabAlarm);
 
     mPduHrs = new LogComWid(ui->stackedWid);
     mPduHrs->initWid(DbPduHrs::bulid(), new Log_PduAlarmQueryDlg(this));

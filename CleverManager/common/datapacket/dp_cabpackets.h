@@ -39,6 +39,7 @@ private:
     Dp_PduPackets *mPdus;
     DbCabinetList *mDb;
     Dp_CabHrsSave *mCabHrs;
+    Dp_CabAlarm *mAlarm;
 };
 
 #endif // DP_CABPACKETS_H

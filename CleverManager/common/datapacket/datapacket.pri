@@ -14,7 +14,8 @@ HEADERS += \
     $$PWD/dp_basichash.h \
     $$PWD/dp_basicthread.h \
     $$PWD/dp_roomhrssave.h \
-    $$PWD/dp_roompackets.h
+    $$PWD/dp_roompackets.h \
+    $$PWD/dp_cabalarm.h
 	
 SOURCES += \	
     $$PWD/datapackets.cpp \
@@ -24,7 +25,8 @@ SOURCES += \
     $$PWD/dp_cabpackets.cpp \
     $$PWD/dp_cabhrssave.cpp \
     $$PWD/dp_roomhrssave.cpp \
-    $$PWD/dp_roompackets.cpp
+    $$PWD/dp_roompackets.cpp \
+    $$PWD/dp_cabalarm.cpp
 
 FORMS += \
 

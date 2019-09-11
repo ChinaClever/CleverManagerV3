@@ -49,6 +49,11 @@
       </item>
       <item>
        <property name="text">
+        <string>机柜报警日志</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>PDU数据纪录</string>
        </property>
       </item>

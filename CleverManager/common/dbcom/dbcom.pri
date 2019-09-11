@@ -13,7 +13,8 @@ HEADERS += \
     $$PWD/dbcabinetlist.h \
     $$PWD/dbconsumerdevices.h \
     $$PWD/dbpdudevices.h \
-    $$PWD/dbroomhrs.h
+    $$PWD/dbroomhrs.h \
+    $$PWD/dbcabalarm.h
 	
 SOURCES += \ 	
     $$PWD/db_user.cpp \
@@ -25,7 +26,8 @@ SOURCES += \
     $$PWD/dbcabinetlist.cpp \
     $$PWD/dbconsumerdevices.cpp \
     $$PWD/dbpdudevices.cpp \
-    $$PWD/dbroomhrs.cpp
+    $$PWD/dbroomhrs.cpp \
+    $$PWD/dbcabalarm.cpp
 
 FORMS += \
 

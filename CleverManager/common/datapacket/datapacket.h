@@ -191,10 +191,11 @@ struct sBusPacket : public sDataPacket
 
 struct sCabPacket
 {
-    sCabPacket() {m=s=nullptr; count=0;en=1;status=-1;}
+    sCabPacket() {m=s=nullptr; count=0;en=1;status=-1; pow=6000; powAlarm=0;}
 
     char status;
-    uint en, room_id, cab_id, count;
+    uint en, room_id, cab_id, count, pow;
+    uint pow, powAlarm;
     QString room,modular,cab;
     sDataPacket *m, *s;
     sTgObjData tg;

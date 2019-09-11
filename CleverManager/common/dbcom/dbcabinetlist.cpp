@@ -14,7 +14,7 @@ DbCabinetList::DbCabinetList()
     tableTile = tr("机柜列表");
     hiddens << 1;
     headList.clear();
-    headList << tr("编号") << tr("机房ID") << tr("机房") << tr("机柜") << tr("高度")
+    headList << tr("编号") << tr("机房ID") << tr("机房") << tr("机柜") << tr("高度") << tr("功率")
              << tr("主用IP")  << tr("主用级联") << tr("主用类型")
              << tr("备用IP")  << tr("备用级联") << tr("备用类型")
              << tr("横坐标") << tr("纵坐标") ;
@@ -38,6 +38,7 @@ void DbCabinetList::createTable()
                   "room              VCHAR,"
                   "cab               VCHAR,"
                   "height            INTEGER,"
+                  "pow               INTEGER,"
                   "main_ip           VCHAR,"
                   "main_num          VCHAR,"
                   "main_type         VCHAR,"
@@ -59,8 +60,8 @@ void DbCabinetList::insertItem(CabinetItem &item)
     item.id = maxId()+1;
     item.room_id = DbRoomList::get()->findId(item.room);
 
-    QString cmd = "insert into %1 (id,room_id,room,cab,height,main_ip,main_num,main_type,spare_ip,spare_num,spare_type,row,column) "
-                  "values(:id,:room_id,:room,:cab,:height,:main_ip,:main_num,:main_type,:spare_ip,:spare_num,:spare_type,:row,:column)";
+    QString cmd = "insert into %1 (id,room_id,room,cab,height,pow,main_ip,main_num,main_type,spare_ip,spare_num,spare_type,row,column) "
+                  "values(:id,:room_id,:room,:cab,:height,:pow,:main_ip,:main_num,:main_type,:spare_ip,:spare_num,:spare_type,:row,:column)";
     modifyItem(item,cmd.arg(tableName()));
     emit itemChanged(item.id,Insert);
 }
@@ -73,6 +74,7 @@ bool DbCabinetList::updateItem(const CabinetItem &item)
             "room_id           = :room_id,"
             "cab              = :cab,"
             "height            = :height,"
+            "pow            = :pow,"
             "main_ip       = :main_ip,"
             "main_num     = :main_num,"
             "main_type     = :main_type,"
@@ -170,6 +172,7 @@ bool DbCabinetList::modifyItem(const CabinetItem &item, const QString &cmd)
     query.bindValue(":id",item.id);
     query.bindValue(":cab",item.cab);
     query.bindValue(":height",item.height);
+    query.bindValue(":pow",item.pow);
     query.bindValue(":main_ip",item.main_ip);
     query.bindValue(":spare_ip",item.spare_ip);
     query.bindValue(":room_id",item.room_id);
@@ -191,6 +194,7 @@ void DbCabinetList::selectItem(QSqlQuery &query, CabinetItem &item)
     item.cab = query.value("cab").toString();
     item.room = query.value("room").toString();
     item.height = query.value("height").toInt();
+    item.pow = query.value("pow").toInt();
     item.room_id = query.value("room_id").toInt();
     item.main_ip = query.value("main_ip").toString();
     item.spare_ip = query.value("spare_ip").toString();
