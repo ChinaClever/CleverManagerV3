@@ -1,4 +1,5 @@
 #include "dp_cabalarm.h"
+#include "sound.h"
 
 Dp_CabAlarm::Dp_CabAlarm(QObject *parent) : QObject(parent)
 {
@@ -17,8 +18,6 @@ Dp_CabAlarm *Dp_CabAlarm::bulid(QObject *parent)
 
 void Dp_CabAlarm::alarm(sCabPacket *cab)
 {
-    mCab = cab;
-
     if(cab->tg.pow > cab->pow) {
         if(cab->powAlarm == 0) {
             cab->powAlarm = 1;
@@ -29,6 +28,9 @@ void Dp_CabAlarm::alarm(sCabPacket *cab)
             item.modular = cab->modular;
             item.item = tr("功率过大");
             item.msg = tr("机柜最大功率 %1 实际功率 %2").arg(cab->pow).arg(cab->tg.pow);
+
+            DbCabAlarm::bulid()->insertItem(item);
+            Sound::bulid()->play();
         }
     } else {
          cab->powAlarm = 0;

@@ -11,7 +11,6 @@ class Dp_CabAlarm : public QObject
 public:
     static Dp_CabAlarm *bulid(QObject *parent);
     void alarm(sCabPacket *cab);
-
 };
 
 #endif // DP_CABALARM_H
