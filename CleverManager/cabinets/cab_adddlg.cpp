@@ -107,7 +107,7 @@ void Cab_AddDlg::on_quitBtn_clicked()
 
 
 
-DialogModifyCabinet::DialogModifyCabinet(QWidget *parent) :
+Cab_ModifyDlg::Cab_ModifyDlg(QWidget *parent) :
     Cab_AddDlg(parent)
 {
     this->setWindowTitle(tr("修改机柜"));
@@ -115,7 +115,7 @@ DialogModifyCabinet::DialogModifyCabinet(QWidget *parent) :
 }
 
 
-void DialogModifyCabinet::save()
+void Cab_ModifyDlg::save()
 {
     DbCabinetList::get()->updateItem(m_item);
 }

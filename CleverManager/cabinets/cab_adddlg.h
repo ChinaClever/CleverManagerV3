@@ -34,12 +34,12 @@ protected:
     CabinetItem m_item;
 };
 
-class DialogModifyCabinet : public Cab_AddDlg
+class Cab_ModifyDlg : public Cab_AddDlg
 {
     Q_OBJECT
 
 public:
-    explicit DialogModifyCabinet(QWidget* parent);
+    explicit Cab_ModifyDlg(QWidget* parent);
 
 protected:
     void save();
