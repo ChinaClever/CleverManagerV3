@@ -31,7 +31,7 @@ sCabPacket *Dp_CabPackets::get(const QString &room, const QString &cab)
     return insert(key);
 }
 
-void Dp_CabPackets::setPacket(CabinetItem &it, sCabPacket *pack)
+void Dp_CabPackets::setPacket(CabinetItem &it, sDataPacket *pack)
 {
     pack->en = 1;
     pack->cab = it.cab;
