@@ -6,16 +6,16 @@
 #include "room_bargraph.h"
 
 namespace Ui {
-class TG_RoomWidget;
+class Room_MainWid;
 }
 
-class TG_RoomWidget : public QWidget
+class Room_MainWid : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit TG_RoomWidget(QWidget *parent = 0);
-    ~TG_RoomWidget();
+    explicit Room_MainWid(QWidget *parent = 0);
+    ~Room_MainWid();
 
 
 protected:
@@ -35,7 +35,7 @@ private slots:
     void on_comboBox_currentIndexChanged(const QString &arg1);
 
 private:
-    Ui::TG_RoomWidget *ui;
+    Ui::Room_MainWid *ui;
 
     Room_BarGraph *mBar;
     Room_DataWid *mData;

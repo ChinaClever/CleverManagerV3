@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TG_RoomWidget</class>
- <widget class="QWidget" name="TG_RoomWidget">
+ <class>Room_MainWid</class>
+ <widget class="QWidget" name="Room_MainWid">
   <property name="geometry">
    <rect>
     <x>0</x>

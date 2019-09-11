@@ -10,7 +10,7 @@ HEADERS += \
     $$PWD/room_powergraph.h \
     $$PWD/room_lcdwid.h \
     $$PWD/room_datawid.h \
-    $$PWD/tg_roomwidget.h
+    $$PWD/room_mainwid.h
 
 SOURCES += \
     $$PWD/room_vcgraph.cpp \
@@ -19,13 +19,13 @@ SOURCES += \
     $$PWD/room_powergraph.cpp \
     $$PWD/room_lcdwid.cpp \
     $$PWD/room_datawid.cpp \
-    $$PWD/tg_roomwidget.cpp
+    $$PWD/room_mainwid.cpp
 
 FORMS += \
     $$PWD/room_titlebar.ui \
     $$PWD/room_lcdwid.ui \
     $$PWD/room_datawid.ui \
-    $$PWD/tg_roomwidget.ui
+    $$PWD/room_mainwid.ui
 
 
 

@@ -5,14 +5,13 @@
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
-#include "tg_roomwidget.h"
-#include "ui_tg_roomwidget.h"
-#include<fstream>
+#include "room_mainwid.h"
+#include "ui_room_mainwid.h"
 #include "dp_roompackets.h"
 
-TG_RoomWidget::TG_RoomWidget(QWidget *parent) :
+Room_MainWid::Room_MainWid(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TG_RoomWidget)
+    ui(new Ui::Room_MainWid)
 {
     ui->setupUi(this);
 
@@ -21,13 +20,13 @@ TG_RoomWidget::TG_RoomWidget(QWidget *parent) :
     connect(DbRoomList::get(), SIGNAL(itemChanged(int,int)), this,SLOT(itemChangedSlot(int,int)));
 }
 
-TG_RoomWidget::~TG_RoomWidget()
+Room_MainWid::~Room_MainWid()
 {
     delete ui;
 }
 
 
-void TG_RoomWidget::initFunSLot()
+void Room_MainWid::initFunSLot()
 {
     ui->comboBox->clear();
     QStringList rooms = DbRoomList::get()->list();
@@ -39,7 +38,7 @@ void TG_RoomWidget::initFunSLot()
 }
 
 
-void TG_RoomWidget::initWid()
+void Room_MainWid::initWid()
 {
     mBar = new Room_BarGraph(ui->barWid);
     connect(this, SIGNAL(roomSelectSig(sRoomPacket*)), mBar, SLOT(packetSlot(sRoomPacket*)));
@@ -59,7 +58,7 @@ void TG_RoomWidget::initWid()
  * @param id
  * @param type
  */
-void TG_RoomWidget::itemChangedSlot(int,int)
+void Room_MainWid::itemChangedSlot(int,int)
 {
     initFunSLot();
 }
@@ -67,7 +66,7 @@ void TG_RoomWidget::itemChangedSlot(int,int)
 /**
  * @brief 上一机房
  */
-void TG_RoomWidget::on_upBtn_clicked()
+void Room_MainWid::on_upBtn_clicked()
 {
     int index = ui->comboBox->currentIndex()-1;
     if(index < 0) index = ui->comboBox->count() -1;
@@ -77,7 +76,7 @@ void TG_RoomWidget::on_upBtn_clicked()
 /**
  * @brief 下一机房
  */
-void TG_RoomWidget::on_downBtn_clicked()
+void Room_MainWid::on_downBtn_clicked()
 {
     int index = ui->comboBox->currentIndex()+1;
     if(index >= ui->comboBox->count())
@@ -87,7 +86,7 @@ void TG_RoomWidget::on_downBtn_clicked()
 
 
 
-void TG_RoomWidget::on_comboBox_currentIndexChanged(const QString &arg1)
+void Room_MainWid::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     if(arg1.isEmpty()) return;
     ui->roomLabel->setText(tr("机房:") + arg1);

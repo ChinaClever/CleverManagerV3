@@ -6,7 +6,7 @@
  *      Author: Lzy
  */
 #include "pdu_setoutputdlg.h"
-#include "ui_setoutputdlg.h"
+#include "ui_pdu_setoutputdlg.h"
 
 Pdu_SetOutputDlg::Pdu_SetOutputDlg(QWidget *parent) :
     QDialog(parent),

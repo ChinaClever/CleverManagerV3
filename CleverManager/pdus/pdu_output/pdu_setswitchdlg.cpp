@@ -6,7 +6,7 @@
  *      Author: Lzy
  */
 #include "pdu_setswitchdlg.h"
-#include "ui_setswitchdlg.h"
+#include "ui_pdu_setswitchdlg.h"
 
 
 Pdu_SetSwitchDlg::Pdu_SetSwitchDlg(QWidget *parent) :
