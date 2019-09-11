@@ -21,6 +21,7 @@ public:
 protected:
     void initFun();
     void workDown(sCabPacket *pack);
+    void setPacket(CabinetItem &it, sCabPacket *pack);
 
     void initPacket(CabinetItem &it);
     void dels(QVector<sCabPacket *> &packs);

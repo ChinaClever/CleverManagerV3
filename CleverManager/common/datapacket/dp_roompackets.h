@@ -16,6 +16,7 @@ public:
 
 protected:
     void initFun();
+    void setPacket(RoomItem &item);
     void initPacket(RoomItem &it);
     void tgRoomData(sRoomPacket *room);
     void workDown(sRoomPacket *pack);

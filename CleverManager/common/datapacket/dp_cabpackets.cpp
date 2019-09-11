@@ -31,6 +31,16 @@ sCabPacket *Dp_CabPackets::get(const QString &room, const QString &cab)
     return insert(key);
 }
 
+void Dp_CabPackets::setPacket(CabinetItem &it, sCabPacket *pack)
+{
+    pack->en = 1;
+    pack->cab = it.cab;
+    pack->cab_id = it.id;
+    pack->room = it.room;
+    pack->room_id = it.room_id;
+}
+
+
 void Dp_CabPackets::initPacket(CabinetItem &it)
 {
     sCabPacket *cab = get(it.room, it.cab);
@@ -44,14 +54,14 @@ void Dp_CabPackets::initPacket(CabinetItem &it)
 
         if(!it.main_ip.isEmpty()) {
             cab->m = mPdus->get(it.main_ip, it.main_num);
-            cab->m->en = 1;
+            setPacket(it, cab->m);
         } else {
             cab->m = nullptr;
         }
 
         if(!it.spare_ip.isEmpty()) {
             cab->s = mPdus->get(it.spare_ip, it.spare_num);
-            cab->s->en = 1;
+            setPacket(it, cab->m);
         } else {
             cab->s = nullptr;
         }

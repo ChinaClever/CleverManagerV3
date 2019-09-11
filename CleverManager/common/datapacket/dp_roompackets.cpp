@@ -26,6 +26,22 @@ sRoomPacket *Dp_RoomPackets::get(const QString &room)
     return insert(key);
 }
 
+void Dp_RoomPackets::setPacket(RoomItem &item)
+{
+    QVector<sCabPacket *> cabs = mCabs->getByRoom(item.id);
+    for(int i=0; i<cabs.size(); ++i) {
+        sCabPacket *cab = cabs.at(i);
+        cab->room = item.room;
+        cab->room_id = item.id;
+    }
+
+    QVector<sDataPacket *> ps = mPdus->getByRoom(item.id);
+    for(int i=0; i<ps.size(); ++i) {
+        sDataPacket *p = ps.at(i);
+        p->room = item.room;
+        p->room_id = item.id;
+    }
+}
 
 void Dp_RoomPackets::initPacket(RoomItem &it)
 {
@@ -34,6 +50,7 @@ void Dp_RoomPackets::initPacket(RoomItem &it)
         room->en = 1;
         room->count = 0;
         room->room_id = it.id;
+        setPacket(it);
     }
     QCoreApplication::processEvents(QEventLoop::AllEvents,1);
 }
