@@ -23,7 +23,7 @@ protected:
 public slots:
     void clearSlot();
     void timeoutDone();
-    void packetSlot(sRoomPacket *p) {mPacket=p;}
+    void packetSlot(sRoomPacket *p);
 
 private:
     Line_VcGraphic *m_pGraph;

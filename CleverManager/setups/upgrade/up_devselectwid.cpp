@@ -1,5 +1,5 @@
 #include "up_devselectwid.h"
-#include "ui_devselectwid.h"
+#include "ui_up_devselectwid.h"
 #include "msgbox.h"
 
 Up_DevSelectWid::Up_DevSelectWid(QWidget *parent) :

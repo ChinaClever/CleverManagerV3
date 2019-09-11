@@ -23,7 +23,7 @@ signals:
 public slots:
     void initSlot();
     void timeoutDone();
-    void packetSlot(sRoomPacket *p) {mPacket=p;}
+    void packetSlot(sRoomPacket *p);
 
 private:
     Line_DrawGraphic *m_pDraw;

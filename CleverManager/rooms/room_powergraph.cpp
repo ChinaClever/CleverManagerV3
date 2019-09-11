@@ -167,3 +167,9 @@ void Room_PowerGraph::timeoutDone()
         initSlot();
     }
 }
+
+void Room_PowerGraph::packetSlot(sRoomPacket *p)
+{
+    mPacket=p;
+    initSlot();
+}

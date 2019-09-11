@@ -134,3 +134,9 @@ void Room_VcGraph::timeoutDone()
         clearSlot();
     }
 }
+
+void Room_VcGraph::packetSlot(sRoomPacket *p)
+{
+    mPacket=p;
+    clearSlot();
+}

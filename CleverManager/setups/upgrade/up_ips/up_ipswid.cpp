@@ -1,5 +1,5 @@
 #include "up_ipswid.h"
-#include "ui_ipswid.h"
+#include "ui_up_ipswid.h"
 #include <QFileDialog>
 #include "msgbox.h"
 #include <QHostAddress>
