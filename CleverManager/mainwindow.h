@@ -7,7 +7,7 @@
 #include "logmainwid.h"
 #include "pdu_mainwid.h"
 #include "room_mainwid.h"
-#include "topologywidget.h"
+#include "tp_topologywid.h"
 
 namespace Ui {
 class MainWindow;
