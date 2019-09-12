@@ -11,11 +11,9 @@ TopologyWidget::TopologyWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     mCabAdd = new Cab_AddDlg(this);
     mCabs = Dp_CabPackets::bulid(this);
     mPdus = Dp_PduPackets::bulid(this);
-    ui->pushButton->setVisible(false);
 
     initWidget();
     initMenu();

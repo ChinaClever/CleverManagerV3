@@ -7,9 +7,9 @@ QString user_land_name();
 class LandingUser : public QObject
 {
     Q_OBJECT
-    LandingUser();
+    LandingUser(QObject *parent = 0);
 public:
-    static LandingUser* get();
+    static LandingUser* get(QObject *parent = 0);
     sUserItem user;
     bool land;
 

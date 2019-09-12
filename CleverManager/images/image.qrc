@@ -6,4 +6,26 @@
         <file>titlebar.jpg</file>
         <file>usr_land.jpg</file>
     </qresource>
+    <qresource prefix="/topology">
+        <file>topology/1.png</file>
+        <file>topology/2.png</file>
+        <file>topology/an2.png</file>
+        <file>topology/ask.png</file>
+        <file>topology/cmm.png</file>
+        <file>topology/deng.png</file>
+        <file>topology/deng2.png</file>
+        <file>topology/fou.png</file>
+        <file>topology/guan.png</file>
+        <file>topology/guan_.png</file>
+        <file>topology/hj.png</file>
+        <file>topology/jh.png</file>
+        <file>topology/jia.png</file>
+        <file>topology/jj.png</file>
+        <file>topology/kai.png</file>
+        <file>topology/kai_.png</file>
+        <file>topology/shi.png</file>
+        <file>topology/st.png</file>
+        <file>topology/xg.png</file>
+        <file>topology/yd.png</file>
+    </qresource>
 </RCC>

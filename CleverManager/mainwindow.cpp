@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    LandingUser::get(this);
     mNavBar = new NavBarWid(ui->navWId);
     QTimer::singleShot(5,this,SLOT(initPacksSLot()));
     QTimer::singleShot(500,this,SLOT(initWidSLot()));

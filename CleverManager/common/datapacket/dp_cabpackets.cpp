@@ -189,6 +189,8 @@ void Dp_CabPackets::tgCabData(sCabPacket *cab)
     mPdus->tgDataPackts(tg, packs);
 
     cab->status = MAX(getStatus(cab->m), getStatus(cab->s));
+    if(cab->powAlarm) cab->status = 2;
+
     cab->color = getColor(cab->status);
     cab->tmpColor = cm_temp2Color(cab->tg.tem/COM_RATE_TEM);
 }

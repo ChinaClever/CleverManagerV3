@@ -12,18 +12,19 @@ QString user_land_name()
 }
 
 
-LandingUser::LandingUser()
+LandingUser::LandingUser(QObject *parent) :
+    QObject(parent)
 {
     land = false;
     init();
 }
 
 
-LandingUser *LandingUser::get()
+LandingUser *LandingUser::get(QObject *parent)
 {
     static LandingUser* sington = nullptr;
     if(sington == nullptr)
-        sington = new LandingUser();
+        sington = new LandingUser(parent);
     return sington;
 }
 
