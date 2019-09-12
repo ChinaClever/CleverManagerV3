@@ -50,7 +50,7 @@ void NavBarWid::on_userBtn_clicked()
 
 void NavBarWid::on_setupBtn_clicked()
 {
-    emit navBarSig(0);
+    emit navBarSig(4);
 }
 
 void NavBarWid::on_logBtn_clicked()
@@ -66,4 +66,9 @@ void NavBarWid::on_pduBtn_clicked()
 void NavBarWid::on_roomBtn_clicked()
 {
     emit navBarSig(3);
+}
+
+void NavBarWid::on_tpBtn_clicked()
+{
+    emit navBarSig(0);
 }

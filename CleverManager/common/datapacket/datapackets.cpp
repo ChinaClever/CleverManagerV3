@@ -29,7 +29,7 @@ sDataPacket *DataPackets::get(const QString &ip, int devNum)
 
 int DataPackets::tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs)
 {
-    int size=0, ret=0;
+    int size=0, ret=0, ts=0;
     memset(tg, 0, sizeof(sTgObjData));
     for(int i=0; i<packs.size(); ++i)
     {
@@ -41,13 +41,18 @@ int DataPackets::tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs)
             tg->cur += m->data.tg.cur;
             tg->pow += m->data.tg.pow;
             tg->ele += m->data.tg.ele;
+
             tg->activePow = m->data.tg.activePow;
-            if(m->data.tg.vol > 100) size++;
+            if(m->data.tg.vol > 50) size++;
+            tg->tem += m->data.tg.tem;
+            if(m->data.tg.tem) ts++;
+
             ret += m->alarm;
         }
     }
 
     tg->vol /= size;
+    tg->tem /= ts;
     if(tg->activePow > 0)
         tg->pf = (tg->pow * 100.0 / tg->activePow);
     else
@@ -97,6 +102,7 @@ void DataPackets::tgDevData(sDevData &dev)
         tg->activePow += obj->activePow[i];
     }
     tg->vol = averData(obj->vol.value, size);
+    tg->tem = averData(dev.env.tem.value, dev.env.size);
     if(tg->activePow > 0)
         tg->pf = (tg->pow * 100.0 / tg->activePow);
     else

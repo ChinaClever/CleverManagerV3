@@ -71,7 +71,33 @@
   <widget class="QPushButton" name="roomBtn">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>280</x>
+     <y>20</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>机房统计</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="tpBtn">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>20</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>机房拓扑</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="roomBtn_3">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
      <y>20</y>
      <width>93</width>
      <height>28</height>

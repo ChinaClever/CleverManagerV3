@@ -11,6 +11,28 @@
 /* 获得焦点BTN背景颜色 */
 #define    BTN_FOCUS_BACK_COLOR    "QPushButton:focus{background-color: rgb(96,238,250);}"
 
+
+QColor cm_color(int index)
+{
+    static QColor colorArray[] =
+    {QColor(52,233,0),QColor(220,223,0),QColor(255,162,0),QColor(0,147,138),QColor(0,240,226),
+     QColor(0,158,240),QColor(0,96,145),QColor(203,161,255),QColor(119,80,168),QColor(248,127,136),
+     QColor(169,65,72),QColor(138,196,139),QColor(81,120,82)};
+
+    index = index%(sizeof(colorArray)/sizeof(colorArray[0]));
+    return colorArray[index];
+}
+
+QColor cm_temp2Color(int value)
+{
+    if(value>35)return QColor(255,90,0,255);
+    if(value>30)return QColor(255,255,0,255);
+    if(value>25)return QColor(100,200,105,255);
+    if(value>22)return QColor(100,128,255,255);
+    if(value>0)return QColor(0,128,255,255);
+    return QColor(200,200,200,255);
+}
+
 /**
  * @brief 设置背景颜色
  * @param str 窗口标题名

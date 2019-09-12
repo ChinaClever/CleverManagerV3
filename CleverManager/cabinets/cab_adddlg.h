@@ -4,7 +4,7 @@
 #include <QDialog>
 #include "dbcabinetlist.h"
 #include <QTableWidget>
-
+#include "dbuserlog.h"
 
 namespace Ui {
 class Cab_AddDlg;
@@ -18,12 +18,15 @@ public:
     explicit Cab_AddDlg(QWidget *parent);
     ~Cab_AddDlg();
 
-    void init(CabinetItem &item);
+    CabinetItem *getItem() {return &m_item;}
+    virtual void save();
+
+    void del(CabinetItem &item);
 
 protected:
+    void init(CabinetItem &item);
     bool checkInput();
     void getInput();
-    virtual void save();
 
 private slots:
     void on_quitBtn_clicked();
@@ -39,7 +42,7 @@ class Cab_ModifyDlg : public Cab_AddDlg
     Q_OBJECT
 
 public:
-    explicit Cab_ModifyDlg(QWidget* parent);
+    explicit Cab_ModifyDlg(QWidget* parent, CabinetItem &it);
 
 protected:
     void save();

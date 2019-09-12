@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogAddCabinetDevice</class>
- <widget class="QDialog" name="DialogAddCabinetDevice">
+ <class>Cab_AddDeviceDlg</class>
+ <widget class="QDialog" name="Cab_AddDeviceDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>172</height>
+    <width>492</width>
+    <height>198</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -157,7 +157,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_ok">
+      <widget class="QPushButton" name="okBtn">
        <property name="minimumSize">
         <size>
          <width>70</width>
@@ -184,22 +184,5 @@ color: rgb(255, 255, 255);</string>
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButton_ok</sender>
-   <signal>clicked()</signal>
-   <receiver>DialogAddCabinetDevice</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>318</x>
-     <y>145</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>182</x>
-     <y>83</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -88,7 +88,9 @@ bool UsrLandDlg::quitWidget(void)
         item.name = name;
         item.remarks = tr("用户退出");
         DbUserLog::bulid()->insertItem(item);
+        LandingUser::get()->user.jur = false;
         LandingUser::get()->land = false;
+        emit LandingUser::get()->landSig();
     }
 
     return ret;
@@ -115,6 +117,7 @@ void UsrLandDlg::usrLand(void)
                 {
                     LandingUser::get()->land = true;
                     LandingUser::get()->user = user;
+                    emit LandingUser::get()->landSig();
 
                     sUserLogItem item;
                     item.name = name;

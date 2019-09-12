@@ -1,4 +1,5 @@
 #include "dp_cabpackets.h"
+#define MAX(a,b) (a>b?a:b)
 
 Dp_CabPackets::Dp_CabPackets(QObject *parent) : Dp_BasicThread(parent)
 {
@@ -150,15 +151,34 @@ void Dp_CabPackets::delRoom(uint id)
 
 int Dp_CabPackets::getStatus(sDataPacket *pack)
 {
-    int ret = -1;
-    if(pack) {
-        if((pack->offLine > 0) && pack->en){
-            ret = pack->alarm;
-        }
+    int ret = -1; //-1表示没有Pdu设备,0表示正常, 1表示离线，2表示警告
+    if(pack)
+    {
+        if((pack->offLine > 0) && pack->en)
+            ret = pack->alarm == 0?0:2;
+        else
+            ret = 1;
     }
 
     return ret;
 }
+
+
+QColor Dp_CabPackets::getColor(int status)
+{
+    QColor color;
+
+    switch (status) {
+    case -1: color = cm::gray;
+    case 0: color =  cm::green;
+    case 1: color =  cm::blue;
+    case 2: color =  cm::orange;
+    case 3: color =  cm::yellow;
+    }
+
+    return color;
+}
+
 
 
 void Dp_CabPackets::tgCabData(sCabPacket *cab)
@@ -168,8 +188,9 @@ void Dp_CabPackets::tgCabData(sCabPacket *cab)
     packs << cab->m << cab->s;
     mPdus->tgDataPackts(tg, packs);
 
-    cab->status = getStatus(cab->m);
-    cab->status += getStatus(cab->s);
+    cab->status = MAX(getStatus(cab->m), getStatus(cab->s));
+    cab->color = getColor(cab->status);
+    cab->tmpColor = cm_temp2Color(cab->tg.tem/COM_RATE_TEM);
 }
 
 void Dp_CabPackets::workDown(sCabPacket *pack)

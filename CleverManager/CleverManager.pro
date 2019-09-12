@@ -27,6 +27,7 @@ include(pdus/pdus.pri)
 include(rooms/rooms.pri)
 include(common/common.pri)
 include(setups/setups.pri)
+include(topology/topology.pri)
 include(cabinets/cabinets.pri)
 
 SOURCES += \

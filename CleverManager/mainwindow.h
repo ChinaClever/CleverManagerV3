@@ -7,6 +7,7 @@
 #include "logmainwid.h"
 #include "pdu_mainwid.h"
 #include "room_mainwid.h"
+#include "topologywidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,7 @@ private:
     UserMainWid *mUserWid;
     Pdu_MainWid *mPduWid;
     Room_MainWid *mRoom;
+    TopologyWidget *mTpWid;
 };
 
 #endif // MAINWINDOW_H

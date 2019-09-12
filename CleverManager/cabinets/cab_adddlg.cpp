@@ -83,10 +83,24 @@ void Cab_AddDlg::getInput()
     m_item.pow = ui->powSpin->value();
 }
 
+void Cab_AddDlg::del(CabinetItem &item)
+{
+    DbCabinetList::get()->remove(item.id);
+
+    sUserLogItem log;
+    log.remarks = tr("机房%1 ：").arg(item.room);
+    log.remarks += tr("删除机柜:%1").arg(item.cab);
+    DbUserLog::bulid()->insertItem(log);
+}
 
 void Cab_AddDlg::save()
 {
     DbCabinetList::get()->insertItem(m_item);
+
+    sUserLogItem log;
+    log.remarks = tr("机房%1 ：").arg(m_item.room);
+    log.remarks += tr("添加机柜:%1").arg(m_item.cab);
+    DbUserLog::bulid()->insertItem(log);
 }
 
 
@@ -95,7 +109,6 @@ void Cab_AddDlg::on_okBtn_clicked()
     bool ret = checkInput();
     if(ret) {
         getInput();
-        save();
         accept();
     }
 }
@@ -107,15 +120,21 @@ void Cab_AddDlg::on_quitBtn_clicked()
 
 
 
-Cab_ModifyDlg::Cab_ModifyDlg(QWidget *parent) :
+Cab_ModifyDlg::Cab_ModifyDlg(QWidget *parent, CabinetItem &it) :
     Cab_AddDlg(parent)
 {
     this->setWindowTitle(tr("修改机柜"));
     ui->label_describe->setText(tr("请填写修改机柜的详细信息："));
+    init(it);
 }
 
 
 void Cab_ModifyDlg::save()
 {
     DbCabinetList::get()->updateItem(m_item);
+
+    sUserLogItem log;
+    log.remarks = tr("机房%1 ：").arg(m_item.room);
+    log.remarks += tr("修改机柜:%1").arg(m_item.cab);
+    DbUserLog::bulid()->insertItem(log);
 }

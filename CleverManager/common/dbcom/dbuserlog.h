@@ -3,10 +3,10 @@
 #include "db_user.h"
 #include "landinguser.h"
 
-extern QString land_user_name();
+extern QString user_land_name();
 struct sUserLogItem : public DbBasicItem{
     sUserLogItem(){
-        name = land_user_name();
+        name = user_land_name();
     }
     QString name,remarks;
 };

@@ -33,8 +33,8 @@ void MainWindow::initNetWork()
 
 void MainWindow::initWidSLot()
 {
-    mSetup = new SetUpMainWid(ui->stackedWid);
-    ui->stackedWid->addWidget(mSetup);
+    mTpWid = new TopologyWidget(ui->stackedWid);
+    ui->stackedWid->addWidget(mTpWid);
 
     mLog = new LogMainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mLog);
@@ -44,6 +44,9 @@ void MainWindow::initWidSLot()
 
     mRoom = new Room_MainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mRoom);
+
+    mSetup = new SetUpMainWid(ui->stackedWid);
+    ui->stackedWid->addWidget(mSetup);
 }
 
 

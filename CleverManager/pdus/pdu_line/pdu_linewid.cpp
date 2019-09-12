@@ -3,7 +3,7 @@
 #include <QDesktopServices>
 #include "pdu_set/pdu_setthresholddlg.h"
 
-extern bool land_usr_jur();
+extern bool usr_land_jur();
 
 Pdu_LineWid::Pdu_LineWid(QWidget *parent) :
     QWidget(parent),
@@ -311,7 +311,7 @@ void Pdu_LineWid::on_webBtn_clicked()
 
 void Pdu_LineWid::setThreshold(int mode, int id)
 {
-    bool ret = land_usr_jur();
+    bool ret = usr_land_jur();
     if(ret==false){
         InfoMsgBox box(this,tr("您权限不够，无法操作"));
         return;

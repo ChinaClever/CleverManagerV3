@@ -5,17 +5,17 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/cab_adddlg.h \
-    $$PWD/dialogaddcabinetdevice.h
+    $$PWD/cab_adddevicedlg.h
 
 	
 SOURCES += \
     $$PWD/cab_adddlg.cpp \
-    $$PWD/dialogaddcabinetdevice.cpp
+    $$PWD/cab_adddevicedlg.cpp
 
 
 FORMS += \
     $$PWD/cab_adddlg.ui \
-    $$PWD/dialogaddcabinetdevice.ui
+    $$PWD/cab_adddevicedlg.ui
 
 
 

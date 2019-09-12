@@ -30,6 +30,8 @@ private slots:
 
     void on_roomBtn_clicked();
 
+    void on_tpBtn_clicked();
+
 private:
     Ui::NavBarWid *ui;
 };

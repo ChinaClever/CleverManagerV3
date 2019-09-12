@@ -1,6 +1,6 @@
 #include "sqlbtnbar.h"
 #include "ui_sqlbtnbar.h"
-extern bool land_usr_jur();
+extern bool usr_land_jur();
 
 SqlBtnBar::SqlBtnBar(QWidget *parent) :
     QWidget(parent),

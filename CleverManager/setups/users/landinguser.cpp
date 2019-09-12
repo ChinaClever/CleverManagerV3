@@ -1,12 +1,12 @@
 #include "landinguser.h"
 
 
-bool land_usr_jur()
+bool usr_land_jur()
 {
     return LandingUser::get()->user.jur;
 }
 
-QString land_user_name()
+QString user_land_name()
 {
      return LandingUser::get()->user.name;
 }

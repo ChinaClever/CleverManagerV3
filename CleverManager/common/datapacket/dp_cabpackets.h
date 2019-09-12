@@ -28,7 +28,7 @@ protected:
 
     void tgCabData(sCabPacket *cab);
     int getStatus(sDataPacket *pack);
-
+    QColor getColor(int status);
     sCabPacket *newDataPacket() {return new sCabPacket;}
 
 

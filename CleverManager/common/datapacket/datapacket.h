@@ -1,6 +1,7 @@
 #ifndef DATAPACKET_H
 #define DATAPACKET_H
 #include <QtCore>
+#include <QColor>
 
 #define LINE_NUM  3
 #define LOOP_NUM  6
@@ -194,6 +195,7 @@ struct sCabPacket
     sCabPacket() {m=s=nullptr; count=0;en=1;status=-1; pow=6000; powAlarm=0;}
 
     char status;
+    QColor color, tmpColor;
     uint en, room_id, cab_id, count;
     uint pow, powAlarm;
     QString room,modular,cab;
