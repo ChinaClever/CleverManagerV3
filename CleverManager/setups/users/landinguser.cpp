@@ -3,6 +3,7 @@
 
 bool usr_land_jur()
 {
+    LandingUser::get()->user.jur = true; ///=== 调用用
     return LandingUser::get()->user.jur;
 }
 

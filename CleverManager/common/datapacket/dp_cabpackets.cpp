@@ -166,7 +166,7 @@ int Dp_CabPackets::getStatus(sDataPacket *pack)
 
 QColor Dp_CabPackets::getColor(int status)
 {
-    QColor color;
+    QColor color(cm::gray);
 
     switch (status) {
     case -1: color = cm::gray;

@@ -41,17 +41,21 @@ void Cab_AddDlg::init(CabinetItem &item)
 bool Cab_AddDlg::checkInput()
 {
     QString ipAddr = ui->ipEdit_1->text();
-    bool ret = cm_isIPaddress(ipAddr);
-    if(!ret) {
-        CriticalMsgBox box(this,tr("主机IP地址无效(%1)!").arg(ipAddr));
-        return false;
+    if(!ipAddr.isEmpty()) {
+        bool ret = cm_isIPaddress(ipAddr);
+        if(!ret) {
+            CriticalMsgBox box(this,tr("主机IP地址无效(%1)!").arg(ipAddr));
+            return false;
+        }
     }
 
     ipAddr = ui->ipEdit_2->text();
-    ret = cm_isIPaddress(ipAddr);
-    if(!ret) {
-        CriticalMsgBox box(this,tr("备机IP地址无效(%1)!").arg(ipAddr));
-        return false;
+    if(!ipAddr.isEmpty()) {
+        bool ret = cm_isIPaddress(ipAddr);
+        if(!ret) {
+            CriticalMsgBox box(this,tr("备机IP地址无效(%1)!").arg(ipAddr));
+            return false;
+        }
     }
 
     QString name = ui->cabEdit->text();
@@ -61,6 +65,8 @@ bool Cab_AddDlg::checkInput()
     }
 
     int rtn = DbCabinetList::get()->contains(m_item.room, name);
+    qDebug() << "AAAAAAAA" << rtn << m_item.room << name;
+
     if(rtn > 0)  {
         CriticalMsgBox box(this,tr("机柜中已有对应名称机柜(%1),请重命名！").arg(name));
         return false;
@@ -120,7 +126,7 @@ void Cab_AddDlg::on_quitBtn_clicked()
 
 
 
-Cab_ModifyDlg::Cab_ModifyDlg(QWidget *parent, CabinetItem &it) :
+Cab_ModifyDlg::Cab_ModifyDlg(QTableWidget *parent, CabinetItem &it) :
     Cab_AddDlg(parent)
 {
     this->setWindowTitle(tr("修改机柜"));

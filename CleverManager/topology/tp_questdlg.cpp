@@ -23,10 +23,6 @@ Tp_RequestDlg::~Tp_RequestDlg()
     delete ui;
 }
 
-void Tp_RequestDlg::accept()
-{
-    QDialog::accept();
-}
 
 void Tp_RequestDlg::delRoom(int id, const QString &name)
 {
@@ -36,4 +32,9 @@ void Tp_RequestDlg::delRoom(int id, const QString &name)
     log.remarks = tr("机房管理：");
     log.remarks += tr("删除机房:%1").arg(name);
     DbUserLog::bulid()->insertItem(log);
+}
+
+void Tp_RequestDlg::on_okBtn_clicked()
+{
+    accept();
 }

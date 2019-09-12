@@ -17,8 +17,10 @@ public:
     ~Tp_RequestDlg();
 
     void delRoom(int id, const QString &name);
-public slots:
-    void accept();
+
+private slots:
+    void on_okBtn_clicked();
+
 private:
     Ui::Tp_RequestDlg *ui;
 };

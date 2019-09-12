@@ -42,7 +42,7 @@ class Cab_ModifyDlg : public Cab_AddDlg
     Q_OBJECT
 
 public:
-    explicit Cab_ModifyDlg(QWidget* parent, CabinetItem &it);
+    explicit Cab_ModifyDlg(QTableWidget* parent, CabinetItem &it);
 
 protected:
     void save();

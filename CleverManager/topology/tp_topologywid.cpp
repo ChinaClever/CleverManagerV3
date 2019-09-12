@@ -34,11 +34,12 @@ Tp_TopologyWid::~Tp_TopologyWid()
 
 void Tp_TopologyWid::initWidget()
 {
+    ui->tableWidget_cabinetMap->setColumnCount(26);
+    ui->tableWidget_cabinetMap->setRowCount(20);
+
     QStringList hor_header;
     for(int i=0; i<26; ++i) hor_header << QString('A'+i);
     ui->tableWidget_cabinetMap->setHorizontalHeaderLabels(hor_header);
-    ui->tableWidget_cabinetMap->setColumnCount(hor_header.size());
-    ui->tableWidget_cabinetMap->setRowCount(20);
 
     //初始化机柜table行列间距相等
     ui->tableWidget_cabinetMap->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -101,7 +102,7 @@ QListWidgetItem *Tp_TopologyWid::createRoomItem(const RoomItemExt &rItem)
 
 QColor Tp_TopologyWid::getColor(sCabPacket *packet)
 {
-    QColor color;
+    QColor color(cm::gray);
     if(packet) {
         color = packet->color;
         if(ui->pushButton_state->isChecked()){ //若是为温度云分布图，则提取温度信息.
@@ -405,6 +406,10 @@ void Tp_TopologyWid::on_tableWidget_cabinetMap_customContextMenuRequested(const 
 void Tp_TopologyWid::on_action_addCabinet_triggered()
 {
     CabinetItem *item = mCabAdd->getItem();
+    RoomItemExt rItem = currentRoomItem();
+    item->room_id = rItem.id;
+    item->room = rItem.room;
+
     if(QDialog::Accepted == mCabAdd->exec())
     {
         //找到空位置。
@@ -420,14 +425,11 @@ void Tp_TopologyWid::on_action_addCabinet_triggered()
         }
 
         if(pass){
-            RoomItemExt rItem = currentRoomItem();
-            item->room_id = rItem.id;
-            item->room = rItem.room;
             mCabAdd->save();
-            if(m_preCabinetItem) {
-                m_preCabinetItem = createCabinetItem(*item);
-                m_preCabinetItem->setBackgroundColor(getColor(*item));
-            }
+            m_preCabinetItem = ui->tableWidget_cabinetMap->currentItem();
+            m_preCabinetItem = createCabinetItem(*item);
+            m_preCabinetItem->setBackgroundColor(getColor(*item));
+
         } else {
             QMessageBox::warning(this,tr("警告"),tr("当前机房已满！"));
         }

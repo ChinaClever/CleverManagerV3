@@ -113,7 +113,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_ok">
+      <widget class="QPushButton" name="okBtn">
        <property name="minimumSize">
         <size>
          <width>75</width>
@@ -141,22 +141,5 @@
  <resources>
   <include location="../images/image.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>pushButton_ok</sender>
-   <signal>clicked()</signal>
-   <receiver>Tp_RequestDlg</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>300</x>
-     <y>185</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>173</x>
-     <y>103</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
