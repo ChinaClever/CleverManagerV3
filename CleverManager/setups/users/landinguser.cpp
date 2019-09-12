@@ -12,8 +12,7 @@ QString user_land_name()
 }
 
 
-LandingUser::LandingUser(QObject *parent) :
-    QObject(parent)
+LandingUser::LandingUser(QObject *parent) : QObject(parent)
 {
     land = false;
     init();

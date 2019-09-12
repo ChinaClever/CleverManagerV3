@@ -13,6 +13,8 @@ public:
     sUserItem user;
     bool land;
 
+    void sig() {emit landSig();}
+
 signals:
     void landSig();
 

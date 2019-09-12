@@ -34,7 +34,7 @@ void MainWindow::initNetWork()
 
 void MainWindow::initWidSLot()
 {
-    mTpWid = new TopologyWidget(ui->stackedWid);
+    mTpWid = new Tp_TopologyWid(ui->stackedWid);
     ui->stackedWid->addWidget(mTpWid);
 
     mLog = new LogMainWid(ui->stackedWid);

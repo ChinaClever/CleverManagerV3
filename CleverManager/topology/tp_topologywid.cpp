@@ -1,13 +1,13 @@
 #include <atomic>
-#include "topologywidget.h"
-#include "ui_topologywidget.h"
-#include "dialoginforequest.h"
+#include "tp_topologywid.h"
+#include "ui_tp_topologywid.h"
+#include "tp_questdlg.h"
 
 extern bool usr_land_jur(void);
 
-TopologyWidget::TopologyWidget(QWidget *parent) :
+Tp_TopologyWid::Tp_TopologyWid(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::TopologyWidget)
+    ui(new Ui::Tp_TopologyWid)
 {
     ui->setupUi(this);
 
@@ -26,13 +26,13 @@ TopologyWidget::TopologyWidget(QWidget *parent) :
     connect(LandingUser::get(),SIGNAL(landSig()),SLOT(loginStateChange()));
 }
 
-TopologyWidget::~TopologyWidget()
+Tp_TopologyWid::~Tp_TopologyWid()
 {
     delete ui;
 }
 
 
-void TopologyWidget::initWidget()
+void Tp_TopologyWid::initWidget()
 {
     QStringList hor_header;
     for(int i=0; i<26; ++i) hor_header << QString('A'+i);
@@ -60,7 +60,7 @@ void TopologyWidget::initWidget()
 /**
  * @brief 菜单初始化
  */
-void TopologyWidget::initMenu()
+void Tp_TopologyWid::initMenu()
 {
     //初始化机柜、机房菜单列表。
     m_menuCabinetModify = new QMenu(this); //右键菜单
@@ -84,7 +84,7 @@ void TopologyWidget::initMenu()
  * @param rItem
  * @return
  */
-QListWidgetItem *TopologyWidget::createRoomItem(const RoomItemExt &rItem)
+QListWidgetItem *Tp_TopologyWid::createRoomItem(const RoomItemExt &rItem)
 {
     QIcon icon;
     icon.addFile(QStringLiteral(":/topology/topology/1.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -99,7 +99,7 @@ QListWidgetItem *TopologyWidget::createRoomItem(const RoomItemExt &rItem)
 }
 
 
-QColor TopologyWidget::getColor(sCabPacket *packet)
+QColor Tp_TopologyWid::getColor(sCabPacket *packet)
 {
     QColor color;
     if(packet) {
@@ -112,7 +112,7 @@ QColor TopologyWidget::getColor(sCabPacket *packet)
     return color;
 }
 
-void TopologyWidget::createPduPacket(QTableWidgetItem* item)
+void Tp_TopologyWid::createPduPacket(QTableWidgetItem* item)
 {
     if(item) {
         CabinetItem cItem = item->data(Qt::UserRole).value<CabinetItem>();
@@ -124,7 +124,7 @@ void TopologyWidget::createPduPacket(QTableWidgetItem* item)
 }
 
 
-void TopologyWidget::updateBackgroundColor()
+void Tp_TopologyWid::updateBackgroundColor()
 {
     //更新机房内机柜信息
     QList<QTableWidgetItem*> items = ui->tableWidget_cabinetMap->findItems("",Qt::MatchContains);
@@ -139,7 +139,7 @@ void TopologyWidget::updateBackgroundColor()
 /**
  * @brief 加载数据库中的机房列表、及指定机柜地图的数据信息。
  */
-void TopologyWidget::initData()
+void Tp_TopologyWid::initData()
 {
     //1.加载数据
     QVector<RoomItem> items = DbRoomList::get()->allItems(); // 获取所有机房列表
@@ -160,7 +160,7 @@ void TopologyWidget::initData()
 /**
  * @brief 增加机房
  */
-void TopologyWidget::on_toolButton_addRoom_clicked()
+void Tp_TopologyWid::on_toolButton_addRoom_clicked()
 {
     Tp_AddRoomDlg dlg(ui->listWidget_roomList);
     if(QDialog::Accepted == dlg.exec())
@@ -177,7 +177,7 @@ void TopologyWidget::on_toolButton_addRoom_clicked()
  * @param item
  * @return
  */
-QTableWidgetItem *TopologyWidget::createCabinetItem(const CabinetItem &item)
+QTableWidgetItem *Tp_TopologyWid::createCabinetItem(const CabinetItem &item)
 {
     QTableWidgetItem* wItem = new QTableWidgetItem(item.cab,item.id);
     wItem->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
@@ -189,7 +189,7 @@ QTableWidgetItem *TopologyWidget::createCabinetItem(const CabinetItem &item)
 
 
 
-void TopologyWidget:: updateRoomShow(const RoomItemExt &rItem)
+void Tp_TopologyWid:: updateRoomShow(const RoomItemExt &rItem)
 {
     bool b = usr_land_jur();
     ui->pushButton_editRoomMap->setVisible(b&&rItem.tempState==false);
@@ -213,7 +213,7 @@ void TopologyWidget:: updateRoomShow(const RoomItemExt &rItem)
  * @param item
  * @return
  */
-bool TopologyWidget::updateRoomItem(QListWidgetItem* wItem,const RoomItemExt &item)
+bool Tp_TopologyWid::updateRoomItem(QListWidgetItem* wItem,const RoomItemExt &item)
 {
     if(wItem == nullptr) {
         return false;
@@ -236,14 +236,14 @@ bool TopologyWidget::updateRoomItem(QListWidgetItem* wItem,const RoomItemExt &it
 }
 
 
-QColor TopologyWidget::getColor(const CabinetItem &item)
+QColor Tp_TopologyWid::getColor(const CabinetItem &item)
 {
     sCabPacket *cab = mCabs->getByCab(item.id);
     return getColor(cab);
 }
 
 
-void TopologyWidget::updateAllBackgroundColor()
+void Tp_TopologyWid::updateAllBackgroundColor()
 {
     QListWidgetItem* item = ui->listWidget_roomList->currentItem();
     if(item){
@@ -264,7 +264,7 @@ void TopologyWidget::updateAllBackgroundColor()
 
 
 //更新机房背景色，分为告警、被选中、其他三种状态
-void TopologyWidget::updateWarningRoom()
+void Tp_TopologyWid::updateWarningRoom()
 {
     for(int row =0;row < ui->listWidget_roomList->count();++row){
         QListWidgetItem * item = ui->listWidget_roomList->item(row);
@@ -291,7 +291,7 @@ void TopologyWidget::updateWarningRoom()
  * @param current
  * @param previous
  */
-void TopologyWidget::on_listWidget_roomList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *)
+void Tp_TopologyWid::on_listWidget_roomList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *)
 {
     if(current){
         ui->stackedWidget_cabinet->setCurrentIndex(0);
@@ -315,7 +315,7 @@ void TopologyWidget::on_listWidget_roomList_currentItemChanged(QListWidgetItem *
  * @brief 机房列表右键菜单
  * @param pos
  */
-void TopologyWidget::on_listWidget_roomList_customContextMenuRequested(const QPoint &pos)
+void Tp_TopologyWid::on_listWidget_roomList_customContextMenuRequested(const QPoint &pos)
 {
     if(usr_land_jur()==false)return;
     QModelIndex index = ui->listWidget_roomList->indexAt(pos);
@@ -327,7 +327,7 @@ void TopologyWidget::on_listWidget_roomList_customContextMenuRequested(const QPo
 /**
  * @brief 重命名机房
  */
-void TopologyWidget::on_action_renameRoom_triggered()
+void Tp_TopologyWid::on_action_renameRoom_triggered()
 {
     Tp_ModifyRoomDlg dlg(ui->listWidget_roomList);
     int currentIndex = ui->listWidget_roomList->currentRow();
@@ -348,10 +348,10 @@ void TopologyWidget::on_action_renameRoom_triggered()
 /**
  * @brief 删除机房
  */
-void TopologyWidget::on_action_deleteRoom_triggered()
+void Tp_TopologyWid::on_action_deleteRoom_triggered()
 {
     RoomItemExt rItem;
-    DialogInfoRequest dlg(this,tr("删除机房"),tr("确定删除选中的机房吗？"));
+    Tp_RequestDlg dlg(this,tr("删除机房"),tr("确定删除选中的机房吗？"));
     if(QDialog::Accepted == dlg.exec())
     {
         QListWidgetItem* item = ui->listWidget_roomList->currentItem();
@@ -367,7 +367,7 @@ void TopologyWidget::on_action_deleteRoom_triggered()
  * @brief 当鼠标进入不同的机柜槽中
  * @param index
  */
-void TopologyWidget::on_tableWidget_cabinetMap_entered(const QModelIndex &index)
+void Tp_TopologyWid::on_tableWidget_cabinetMap_entered(const QModelIndex &index)
 {
     if(m_preCabinetItem!=nullptr && index.isValid()){
         QTableWidgetItem* item = ui->tableWidget_cabinetMap->item(index.row(),index.column());
@@ -383,7 +383,7 @@ void TopologyWidget::on_tableWidget_cabinetMap_entered(const QModelIndex &index)
  * @brief 机柜地图右键菜单
  * @param pos
  */
-void TopologyWidget::on_tableWidget_cabinetMap_customContextMenuRequested(const QPoint &pos)
+void Tp_TopologyWid::on_tableWidget_cabinetMap_customContextMenuRequested(const QPoint &pos)
 {
     if(ui->pushButton_editRoomMap->isChecked()&&ui->pushButton_editRoomMap->isVisible())
     {
@@ -402,7 +402,7 @@ void TopologyWidget::on_tableWidget_cabinetMap_customContextMenuRequested(const 
 /**
  * @brief 添加机柜
  */
-void TopologyWidget::on_action_addCabinet_triggered()
+void Tp_TopologyWid::on_action_addCabinet_triggered()
 {
     CabinetItem *item = mCabAdd->getItem();
     if(QDialog::Accepted == mCabAdd->exec())
@@ -437,7 +437,7 @@ void TopologyWidget::on_action_addCabinet_triggered()
 /**
  * @brief 移动机柜
  */
-void TopologyWidget::on_action_moveCabinet_triggered()
+void Tp_TopologyWid::on_action_moveCabinet_triggered()
 {
     m_preCabinetItem = ui->tableWidget_cabinetMap->currentItem();
 }
@@ -445,7 +445,7 @@ void TopologyWidget::on_action_moveCabinet_triggered()
 
 
 
-bool TopologyWidget::updateCabinetItem(QTableWidgetItem* wItem,const CabinetItem &cItem)
+bool Tp_TopologyWid::updateCabinetItem(QTableWidgetItem* wItem,const CabinetItem &cItem)
 {
     if(wItem == nullptr)return false;
     CabinetItem oldItem = wItem->data(Qt::UserRole).value<CabinetItem>();
@@ -466,7 +466,7 @@ bool TopologyWidget::updateCabinetItem(QTableWidgetItem* wItem,const CabinetItem
 /**
  * @brief 锁定机柜
  */
-void TopologyWidget::on_action_lockCabinet_triggered()
+void Tp_TopologyWid::on_action_lockCabinet_triggered()
 {
     if(m_preCabinetItem)
     {
@@ -483,7 +483,7 @@ void TopologyWidget::on_action_lockCabinet_triggered()
 /**
  * @brief 修改机柜
  */
-void TopologyWidget::on_action_modifyCabinet_triggered()
+void Tp_TopologyWid::on_action_modifyCabinet_triggered()
 {
     QTableWidgetItem* item = ui->tableWidget_cabinetMap->currentItem();
     if(item){
@@ -498,7 +498,7 @@ void TopologyWidget::on_action_modifyCabinet_triggered()
 /**
  * @brief 删除机柜
  */
-void TopologyWidget::on_action_deleteCabinet_triggered()
+void Tp_TopologyWid::on_action_deleteCabinet_triggered()
 {
     QTableWidgetItem* item = ui->tableWidget_cabinetMap->currentItem();
     if(item) {
@@ -511,10 +511,10 @@ void TopologyWidget::on_action_deleteCabinet_triggered()
 /**
  * @brief 确定是否编辑机房地图
  */
-void TopologyWidget::on_pushButton_editRoomMap_clicked(bool checked)
+void Tp_TopologyWid::on_pushButton_editRoomMap_clicked(bool checked)
 {
     if(checked){
-        DialogInfoRequest dlg(this,tr("编辑机房地图"),tr("是否启用机房地图编辑？"));
+        Tp_RequestDlg dlg(this,tr("编辑机房地图"),tr("是否启用机房地图编辑？"));
         if(QDialog::Accepted != dlg.exec()){
             ui->pushButton_editRoomMap->setChecked(false);
             return;
@@ -539,7 +539,7 @@ void TopologyWidget::on_pushButton_editRoomMap_clicked(bool checked)
  * @brief 双击进入机柜位置对话框
  * @param index
  */
-void TopologyWidget::on_tableWidget_cabinetMap_doubleClicked(const QModelIndex &index)
+void Tp_TopologyWid::on_tableWidget_cabinetMap_doubleClicked(const QModelIndex &index)
 {
     if(index.isValid()){
         QTableWidgetItem* item = ui->tableWidget_cabinetMap->item(index.row(),index.column());
@@ -558,7 +558,7 @@ void TopologyWidget::on_tableWidget_cabinetMap_doubleClicked(const QModelIndex &
 }
 
 
-void TopologyWidget::loginStateChange()
+void Tp_TopologyWid::loginStateChange()
 {
     QListWidgetItem* item = ui->listWidget_roomList->currentItem();
     if(item){
@@ -568,7 +568,7 @@ void TopologyWidget::loginStateChange()
 }
 
 
-RoomItemExt TopologyWidget::currentRoomItem()
+RoomItemExt Tp_TopologyWid::currentRoomItem()
 {
     RoomItemExt rItem;
     QListWidgetItem* item = ui->listWidget_roomList->currentItem();

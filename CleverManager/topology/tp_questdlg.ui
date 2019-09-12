@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogInfoRequest</class>
- <widget class="QDialog" name="DialogInfoRequest">
+ <class>Tp_RequestDlg</class>
+ <widget class="QDialog" name="Tp_RequestDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>239</width>
-    <height>167</height>
+    <height>173</height>
    </rect>
   </property>
   <property name="font">
@@ -145,7 +145,7 @@
   <connection>
    <sender>pushButton_ok</sender>
    <signal>clicked()</signal>
-   <receiver>DialogInfoRequest</receiver>
+   <receiver>Tp_RequestDlg</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">

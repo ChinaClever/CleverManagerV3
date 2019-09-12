@@ -14,7 +14,7 @@ class QListWidgetItem;
 class QTableWidgetItem;
 
 namespace Ui {
-class TopologyWidget;
+class Tp_TopologyWid;
 }
 
 struct RoomItemExt:public RoomItem{
@@ -25,13 +25,13 @@ struct RoomItemExt:public RoomItem{
 };
 Q_DECLARE_METATYPE(RoomItemExt)
 
-class TopologyWidget : public QWidget
+class Tp_TopologyWid : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit TopologyWidget(QWidget *parent = 0);
-    ~TopologyWidget();
+    explicit Tp_TopologyWid(QWidget *parent = 0);
+    ~Tp_TopologyWid();
 
 protected:
     void initMenu();
@@ -79,7 +79,7 @@ protected:
     void createPduPacket(QTableWidgetItem* item);
     inline RoomItemExt currentRoomItem();
 private:
-    Ui::TopologyWidget *ui;
+    Ui::Tp_TopologyWid *ui;
 
     QTimer *timer;
     Cab_AddDlg *mCabAdd;

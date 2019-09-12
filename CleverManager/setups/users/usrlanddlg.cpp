@@ -90,7 +90,7 @@ bool UsrLandDlg::quitWidget(void)
         DbUserLog::bulid()->insertItem(item);
         LandingUser::get()->user.jur = false;
         LandingUser::get()->land = false;
-        emit LandingUser::get()->landSig();
+        LandingUser::get()->sig();
     }
 
     return ret;
@@ -117,7 +117,7 @@ void UsrLandDlg::usrLand(void)
                 {
                     LandingUser::get()->land = true;
                     LandingUser::get()->user = user;
-                    emit LandingUser::get()->landSig();
+                    LandingUser::get()->sig();
 
                     sUserLogItem item;
                     item.name = name;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TopologyWidget</class>
- <widget class="QWidget" name="TopologyWidget">
+ <class>Tp_TopologyWid</class>
+ <widget class="QWidget" name="Tp_TopologyWid">
   <property name="geometry">
    <rect>
     <x>0</x>

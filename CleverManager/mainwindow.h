@@ -37,7 +37,7 @@ private:
     UserMainWid *mUserWid;
     Pdu_MainWid *mPduWid;
     Room_MainWid *mRoom;
-    TopologyWidget *mTpWid;
+    Tp_TopologyWid *mTpWid;
 };
 
 #endif // MAINWINDOW_H
