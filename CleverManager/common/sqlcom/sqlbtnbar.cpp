@@ -47,8 +47,8 @@ void SqlBtnBar::setNoEdit()
 
 void SqlBtnBar::on_refreshBtn_clicked()
 {
-    InfoMsgBox box(this, tr("刷新成功!"));
     emit refreshSig();
+    InfoMsgBox box(this, tr("刷新成功!"));
 }
 
 bool SqlBtnBar::checkJur()

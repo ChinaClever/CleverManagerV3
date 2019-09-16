@@ -74,16 +74,16 @@ void Pdu_LineWid::initLineName()
         lineNum = phaseNum;
         ui->comboBox->clear();
         for(int i = 1; i <= lineNum; i++){
-            ui->comboBox->addItem(QString(tr("Line %1").arg(i)));
+            ui->comboBox->addItem(QString("Line %1").arg(i));
         }
     }
 
     QString numStr;
     if(phaseNum>1) {
-        numStr = QString(tr("%1相").arg(phaseNum));
+        numStr = tr("%1相").arg(phaseNum);
         ui->comboBox->setEnabled(true);
     } else {
-        numStr = QString(tr("单相"));
+        numStr = tr("单相");
         ui->comboBox->setEnabled(false);
     }
 
@@ -96,9 +96,7 @@ void Pdu_LineWid::initLineName()
 void Pdu_LineWid::dsyDevInfo()
 {
     ui->typeLab->setText(mPacket->dev_type);
-    QString str = mPacket->ip.ip +"  ";
-    if(mPacket->id) str += tr(" 副机%1:").arg(mPacket->id);
-    else str += tr(" 主机");
+    QString str = mPacket->ip.ip +"  " + mPacket->dev_num;
     ui->ipLab->setText(str);
 
     ui->nameLab->setText(mPacket->name);
@@ -205,7 +203,7 @@ void Pdu_LineWid::updatePow()
     sObjData *obj = &(mPacket->data.line);
 
     int data = obj->pow[line];
-    QString str = str = QString::number((data/rate), 'f', 3)+ "kW";
+    QString str = QString::number((data/rate), 'f', 3)+ "kW";
     ui->powLab->setText(str);
     if(data >= 0) {
         int curMaxData = obj->cur.max[line];
@@ -278,7 +276,7 @@ void Pdu_LineWid::timeoutDone()
     if(ret) {
         dsyDevInfo();
         updateData();
-        checkStatus();
+//        checkStatus();
     }
 }
 
@@ -287,7 +285,7 @@ void Pdu_LineWid::packetSlot(sDataPacket *p)
     mPacket = p;
     mLine = 0;
     timeoutDone();
-    mGraph->packetSlot(p, mLine);
+//    mGraph->packetSlot(p, mLine);
 }
 
 

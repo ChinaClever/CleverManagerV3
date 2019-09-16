@@ -9,9 +9,14 @@ Pdu_ListWid::Pdu_ListWid(QWidget *parent) :
 
     //ui->treeWidget->setHeaderHidden(true);
     ui->treeWidget->setSortingEnabled(true);
+    QTimer::singleShot(2500,this,SLOT(on_btn_clicked()));
     connect(ui->treeWidget,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),this,SLOT(selectedItemSlot(QTreeWidgetItem*,int)));
     connect(ui->treeWidget, SIGNAL(clicked(QModelIndex)), this,SLOT(clickedSlot(QModelIndex)));
     setHeader();
+
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
 }
 
 Pdu_ListWid::~Pdu_ListWid()
@@ -38,27 +43,31 @@ void Pdu_ListWid::initWidget()
 }
 
 
-void Pdu_ListWid::getDevList(QTreeWidgetItem *item, sCabPacket *cap)
+int Pdu_ListWid::getDevList(QTreeWidgetItem *item, sCabPacket *cap)
 {
+    QStringList list;
     if(cap->en) {
-        QStringList list;
         sDataPacket *p = cap->m;
         if(p) {
             if(p->en) {
-                list << tr("主路") + QString(": %1: %2").arg(p->ip.ip).arg(p->id) ;
+                list << tr("主路") + QString(": %1: %2").arg(p->ip.ip).arg(p->dev_num) ;
             }
         }
 
-        p = cap->m;
+        p = cap->s;
         if(p) {
             if(p->en) {
-                list << tr("备路") + QString(": %1: %2").arg(p->ip.ip).arg(p->id) ;
+                list << tr("备路") + QString(": %1: %2").arg(p->ip.ip).arg(p->dev_num) ;
             }
         }
 
-        QTreeWidgetItem *subItem = new QTreeWidgetItem(item, list);
-        item->addChild(subItem);
+        if(list.size()) {
+            QTreeWidgetItem *subItem = new QTreeWidgetItem(item, list);
+            item->addChild(subItem);
+        }
     }
+
+    return list.size();
 }
 
 
@@ -68,11 +77,11 @@ int Pdu_ListWid::getCabList(QTreeWidgetItem *item, const QString &room)
     for(int i=0; i<cabs.size(); ++i)
     {
         QTreeWidgetItem *subItem = new QTreeWidgetItem(item);
-        subItem->setText(0, cabs.at(i));
-        sCabPacket *cap = Dp_CabPackets::bulid()->get(room,  cabs.at(i));
+        subItem->setText(0, tr("机柜: ")+cabs.at(i));
+        sCabPacket *cap = Dp_CabPackets::bulid()->get(room, cabs.at(i));
         if(cap) {
-            getDevList(subItem, cap);
-            item->addChild(subItem);
+            int ret = getDevList(subItem, cap);
+            if(ret > 0) item->addChild(subItem);
         }
     }
     return cabs.size();
@@ -89,7 +98,7 @@ void Pdu_ListWid::getRoomList()
     for(int i=0; i<list.size(); ++i)
     {
         QTreeWidgetItem *item = new QTreeWidgetItem(ui->treeWidget);
-        item->setText(0, list.at(i));
+        item->setText(0, tr("机房: ")+list.at(i));
         rootList.append(item);
         int rtn = getCabList(item, list.at(i));
         if(rtn == 0) { // 没有分组时，不显示设备种类
@@ -120,8 +129,8 @@ sDataPacket *Pdu_ListWid::getPacket(const QString &str)
     QStringList strlist = str.split(": ",QString::SkipEmptyParts);
     if(strlist.size() == 3) {
         QString ip = strlist.at(1);
-        short num = strlist.at(2).toInt();
-        p = Dp_PduPackets::bulid()->get(ip, num);
+        QString dev_num = strlist.at(2);
+        p = Dp_PduPackets::bulid()->get(ip, dev_num);
     }
 
     return p;

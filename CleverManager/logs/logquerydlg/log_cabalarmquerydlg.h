@@ -2,6 +2,7 @@
 #define LOG_CABALARMQUERYDLG_H
 
 #include "log_cabhrsquerydlg.h"
+#include "dbcabalarm.h"
 
 class Log_CabAlarmQueryDlg : public Log_CabHrsQueryDlg
 {

@@ -24,7 +24,7 @@ protected:
     void initWidget();
     void updateWidget();
 
-    void getDevList(QTreeWidgetItem *item, sCabPacket *cap);
+    int getDevList(QTreeWidgetItem *item, sCabPacket *cap);
     int getCabList(QTreeWidgetItem *item, const QString &room);
     void getRoomList();
 

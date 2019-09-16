@@ -2,7 +2,8 @@
 #include "ui_cab_adddlg.h"
 #include <QMessageBox>
 #include <QIntValidator>
-
+#include "dp_basicthread.h"
+#include "datapacket.h"
 
 Cab_AddDlg::Cab_AddDlg(QWidget *parent) :
     QDialog(parent),
@@ -21,7 +22,7 @@ void Cab_AddDlg::init(CabinetItem &item)
     ui->cabEdit->setText(item.cab);
     ui->ipEdit_1->setText(item.main_ip);
     ui->ipEdit_2->setText(item.spare_ip);
-    ui->powSpin->setValue(item.pow);
+    ui->powSpin->setValue(item.pow/COM_RATE_POW);
     ui->heightSpin->setValue(item.height);
 
     if(!item.main_ip.isEmpty()) {
@@ -37,6 +38,19 @@ void Cab_AddDlg::init(CabinetItem &item)
 }
 
 
+bool Cab_AddDlg::nameCheck(const QString &name)
+{
+    bool ret = false;
+    int rtn = DbCabinetList::get()->contains(m_item.room, name);
+    if(rtn > 0)  {
+        CriticalMsgBox box(this,tr("机柜中已有对应名称机柜(%1),请重命名！").arg(name));
+    } else  {
+        ret = true;
+    }
+
+
+    return ret;
+}
 
 bool Cab_AddDlg::checkInput()
 {
@@ -64,33 +78,31 @@ bool Cab_AddDlg::checkInput()
         return false;
     }
 
-    int rtn = DbCabinetList::get()->contains(m_item.room, name);
-    qDebug() << "AAAAAAAA" << rtn << m_item.room << name;
-
-    if(rtn > 0)  {
-        CriticalMsgBox box(this,tr("机柜中已有对应名称机柜(%1),请重命名！").arg(name));
-        return false;
-    }
-
-    return true;
+    return nameCheck(name);
 }
 
 void Cab_AddDlg::getInput()
 {
     m_item.cab = ui->cabEdit->text();
     m_item.main_ip = ui->ipEdit_1->text();
-    m_item.main_num = ui->comboBox_1->currentText();
-    m_item.main_type = ui->typeCb_1->currentText();
+    if(!m_item.main_ip.isEmpty()) {
+        m_item.main_num = ui->comboBox_1->currentText();
+        m_item.main_type = ui->typeCb_1->currentText();
+    }
 
     m_item.spare_ip = ui->ipEdit_2->text();
-    m_item.spare_num = ui->comboBox_2->currentText();
-    m_item.spare_type = ui->typeCb_2->currentText();
+    if(!m_item.spare_ip.isEmpty()) {
+        m_item.spare_num = ui->comboBox_2->currentText();
+        m_item.spare_type = ui->typeCb_2->currentText();
+    }
+
     m_item.height = ui->heightSpin->value();
-    m_item.pow = ui->powSpin->value();
+    m_item.pow = ui->powSpin->value() * COM_RATE_POW;
 }
 
 void Cab_AddDlg::del(CabinetItem &item)
 {
+    Dp_DbTran tran; // 数据库事物操作
     DbCabinetList::get()->remove(item.id);
 
     sUserLogItem log;
@@ -101,6 +113,7 @@ void Cab_AddDlg::del(CabinetItem &item)
 
 void Cab_AddDlg::save()
 {
+    Dp_DbTran tran; // 数据库事物操作
     DbCabinetList::get()->insertItem(m_item);
 
     sUserLogItem log;
@@ -137,6 +150,7 @@ Cab_ModifyDlg::Cab_ModifyDlg(QTableWidget *parent, CabinetItem &it) :
 
 void Cab_ModifyDlg::save()
 {
+    Dp_DbTran tran; // 数据库事物操作
     DbCabinetList::get()->updateItem(m_item);
 
     sUserLogItem log;

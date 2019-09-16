@@ -3,7 +3,7 @@
 
 Dp_CabPackets::Dp_CabPackets(QObject *parent) : Dp_BasicThread(parent)
 {
-    mCount = 1;
+    mCount = 0;
     mDb = DbCabinetList::get();
     mPdus = Dp_PduPackets::bulid(this);
     mCabHrs = Dp_CabHrsSave::bulid(this);
@@ -11,9 +11,6 @@ Dp_CabPackets::Dp_CabPackets(QObject *parent) : Dp_BasicThread(parent)
     connect(mDb,SIGNAL(itemChanged(int,int)),SLOT(cabinetItemChange(int,int)));
 }
 
-Dp_CabPackets::~Dp_CabPackets()
-{
-}
 
 Dp_CabPackets *Dp_CabPackets::bulid(QObject *parent)
 {
@@ -49,7 +46,9 @@ void Dp_CabPackets::initPacket(CabinetItem &it)
         cab->en = 1;
         cab->count = 0;
         cab->room_id = it.room_id;
+        cab->room = it.room;
         cab->cab_id = it.id;
+        cab->cab = it.cab;
         cab->pow = it.pow;
         cab->powAlarm = 0;
 
@@ -169,11 +168,11 @@ QColor Dp_CabPackets::getColor(int status)
     QColor color(cm::gray);
 
     switch (status) {
-    case -1: color = cm::gray;
-    case 0: color =  cm::green;
-    case 1: color =  cm::blue;
-    case 2: color =  cm::orange;
-    case 3: color =  cm::yellow;
+    case -1: color = cm::gray; break;
+    case 0: color =  cm::green; break;
+    case 1: color =  cm::blue; break;
+    case 2: color =  cm::orange; break;
+    case 3: color =  cm::yellow; break;
     }
 
     return color;

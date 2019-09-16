@@ -72,6 +72,7 @@ bool DbCabinetList::updateItem(const CabinetItem &item)
     QString cmd = "update %1 set "
             //                  "id                = :id,"
             "room_id           = :room_id,"
+            "room           = :room,"
             "cab              = :cab,"
             "height            = :height,"
             "pow            = :pow,"
@@ -137,7 +138,7 @@ void DbCabinetList::roomItemChange(int roomId, int type)
 QStringList DbCabinetList::list(const QString &room)
 {
     QString cmd = QString("where room = \'%1\'").arg(room);
-    return listColumn("name", cmd);
+    return listColumn("cab", cmd);
 }
 
 int DbCabinetList::contains(const QString &room,  const QString &cab)
@@ -176,6 +177,7 @@ bool DbCabinetList::modifyItem(const CabinetItem &item, const QString &cmd)
     query.bindValue(":main_ip",item.main_ip);
     query.bindValue(":spare_ip",item.spare_ip);
     query.bindValue(":room_id",item.room_id);
+    query.bindValue(":room",item.room);
     query.bindValue(":main_num",item.main_num);
     query.bindValue(":spare_num",item.spare_num);
     query.bindValue(":main_type",item.main_type);

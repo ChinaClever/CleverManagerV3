@@ -56,6 +56,8 @@ QStringList Log_PduElecQueryDlg::getCmds()
 
     str = ui->devtypeCmb->currentText();
     cmd += QString(" and dev_type like '%%1%'").arg(str);
+
+    str = ui->ipEdit->text();
     cmd += QString(" and ip like '%%1%'").arg(str);
 
     str = ui->devnumCmb->currentText();
@@ -73,7 +75,7 @@ QStringList Log_PduElecQueryDlg::getCmds()
 QString Log_PduElecQueryDlg::getCmd()
 {
     QStringList list = getCmds();
-    DbCabElec::bulid()->elec(list);
+    DbPduElec::bulid()->elec(list);
 
     return "";
 }

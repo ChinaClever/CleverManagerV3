@@ -27,7 +27,7 @@ void Dp_CabAlarm::alarm(sCabPacket *cab)
             item.cab = cab->cab;
             item.modular = cab->modular;
             item.item = tr("功率过大");
-            item.msg = tr("机柜最大功率 %1 实际功率 %2").arg(cab->pow).arg(cab->tg.pow);
+            item.msg = tr("机柜最大功率 %1Kw 实际功率 %2Kw").arg(cab->pow/COM_RATE_POW).arg(cab->tg.pow/COM_RATE_POW);
 
             DbCabAlarm::bulid()->insertItem(item);
             Sound::bulid()->play();

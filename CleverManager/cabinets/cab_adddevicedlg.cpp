@@ -1,6 +1,7 @@
 #include "cab_adddevicedlg.h"
 #include "ui_cab_adddevicedlg.h"
 #include <QMessageBox>
+#include "dp_basicthread.h"
 
 Cab_AddDeviceDlg::Cab_AddDeviceDlg(QWidget *parent) :
     QDialog(parent),

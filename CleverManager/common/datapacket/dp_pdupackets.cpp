@@ -25,23 +25,43 @@ sDataPacket *Dp_PduPackets::newDataPacket()
 {
     sDataPacket *pack = new sDataPacket;
     if(pack) {
+        sObjData *obj = &(pack->data.line);
         for(int i=0; i<LINE_NUM; ++i) {
-            pack->data.line.name[i] = QString("Line %1").arg(i+1);
+            obj->name[i] = QString("Line %1").arg(i+1);
         }
+        memset(&(obj->cur), 0, sizeof(sDataUnit));
+        memset(&(obj->vol), 0, sizeof(sDataUnit));
 
+        obj = &(pack->data.loop);
         for(int i=0; i<LOOP_NUM; ++i) {
-            pack->data.loop.name[i] = QString("Loop %1").arg(i+1);
+            obj->name[i] = QString("Loop %1").arg(i+1);
         }
+        memset(&(obj->cur), 0, sizeof(sDataUnit));
+        memset(&(obj->vol), 0, sizeof(sDataUnit));
 
+        obj = &(pack->data.output);
         for(int i=0; i<OUTPUT_NUM; ++i) {
-            pack->data.output.name[i] = QString("Output %1").arg(i+1);
+            obj->name[i] = QString("Output %1").arg(i+1);
         }
+        memset(&(obj->cur), 0, sizeof(sDataUnit));
+        memset(&(obj->vol), 0, sizeof(sDataUnit));
+
     } else {
         qDebug() << "Dp_PduPackets new err";
     }
 
 
     return pack;
+}
+
+int Dp_PduPackets::getDevNum(const QString &dev_num)
+{
+    bool ok;
+    QString str = dev_num.right(1);
+    int ret = str.toInt(&ok);
+    if(!ok) ret = 0;
+
+    return ret;
 }
 
 void Dp_PduPackets::initPacket(PduDeviceItem &it)
@@ -60,6 +80,7 @@ void Dp_PduPackets::initPacket(PduDeviceItem &it)
         pack->ip.ip = it.ip;
         pack->dev_num = it.dev_num;
         pack->dev_type = it.dev_type;
+        pack->id = getDevNum(it.dev_num);
     }
     QCoreApplication::processEvents(QEventLoop::AllEvents,1);
 }

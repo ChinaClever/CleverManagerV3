@@ -129,11 +129,16 @@ void SqlTableView::refreshSlot()
  */
 void SqlTableView::clearTableSlot()
 {
-    model->model->setTable("markingtable");
-    BasicSql* db = mDb;
-    db->clear();
-    db->createTable();
-    initTable(mDb);
+    if(model->removeRow(0)) {
+        QTimer::singleShot(10,this,SLOT(clearTableSlot()));
+    } else {
+
+    }
+//    model->model->setTable("markingtable");
+//    BasicSql* db = mDb;
+//    db->clear();
+//    db->createTable();
+//    initTable(mDb);
 }
 
 /**

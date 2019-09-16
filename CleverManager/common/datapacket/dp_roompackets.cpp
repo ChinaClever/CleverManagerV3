@@ -2,7 +2,7 @@
 
 Dp_RoomPackets::Dp_RoomPackets(QObject *parent) : Dp_BasicThread(parent)
 {
-    mCount = 1;
+    mCount = 0;
     mDb = DbRoomList::get();
     mPdus = Dp_PduPackets::bulid(this);
     mCabs = Dp_CabPackets::bulid(this);
@@ -50,6 +50,7 @@ void Dp_RoomPackets::initPacket(RoomItem &it)
         room->en = 1;
         room->count = 0;
         room->room_id = it.id;
+        room->room = it.room;
         setPacket(it);
     }
     QCoreApplication::processEvents(QEventLoop::AllEvents,1);

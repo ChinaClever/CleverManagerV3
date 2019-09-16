@@ -26,11 +26,12 @@ public:
 protected:
     void init(CabinetItem &item);
     bool checkInput();
+    virtual bool nameCheck(const QString &name);
     void getInput();
 
-private slots:
+protected slots:
     void on_quitBtn_clicked();
-    void on_okBtn_clicked();
+    virtual void on_okBtn_clicked();
 
 protected:
     Ui::Cab_AddDlg *ui;
@@ -46,6 +47,7 @@ public:
 
 protected:
     void save();
+    bool nameCheck(const QString &name){return true;}
 };
 
 #endif // DIALOGADDCABINET_H

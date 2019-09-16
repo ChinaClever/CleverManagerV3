@@ -18,6 +18,7 @@ protected:
     void workDown(sDataPacket *pack);
     void sendHeartBeat(sDataPacket *pack);
     sDataPacket *newDataPacket();
+    int getDevNum(const QString &dev_num);
 
 protected slots:
     void pduItemChange(int,int);

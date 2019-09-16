@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include <QListWidget>
 #include "common.h"
-
+#include "dp_basicthread.h"
 
 Tp_AddRoomDlg::Tp_AddRoomDlg(QWidget *parent) :
     QDialog(parent),
@@ -55,6 +55,7 @@ bool Tp_AddRoomDlg::inputCheck()
 
 int Tp_AddRoomDlg::save(const QString &name)
 {
+    Dp_DbTran tran; // 数据库事物操作
     RoomItem item;
     item.room = name;
     DbRoomList::get()->insertItem(item);
@@ -84,12 +85,13 @@ Tp_ModifyRoomDlg::Tp_ModifyRoomDlg(QWidget *parent) :
 
 void Tp_ModifyRoomDlg::init(RoomItem &it)
 {
-     ui->lineEdit_name->setText(it.room);
-     item = it;
+    ui->lineEdit_name->setText(it.room);
+    item = it;
 }
 
 int Tp_ModifyRoomDlg::save(const QString &name)
 {
+    Dp_DbTran tran; // 数据库事物操作
     item.room = name;
     DbRoomList::get()->updateItem(item);
 

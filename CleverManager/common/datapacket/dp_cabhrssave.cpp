@@ -48,8 +48,7 @@ bool Dp_CabHrsSave::tgObjData(const QString &road, sTgObjData &obj)
 
 void Dp_CabHrsSave::dataPacket(const QString &road, sDataPacket *pack)
 {
-    if(pack)
-    {
+    if(pack) {
         if((pack->offLine > 0) &&(pack->en)) {
             tgObjData(road, pack->data.tg);
         }

@@ -6,12 +6,6 @@ DataPackets::DataPackets(QObject *parent) : Dp_BasicThread(parent)
 
 }
 
-DataPackets::~DataPackets()
-{
-
-}
-
-
 sDataPacket *DataPackets::get(const QString &ip, const QString &dev_num)
 {
     QString key = ip +";"+ dev_num;
@@ -23,7 +17,10 @@ sDataPacket *DataPackets::get(const QString &ip, int devNum)
     QString dev_num = tr("主机");
     if(devNum) dev_num = tr("副机%1").arg(devNum);
 
-    return get(ip, dev_num);
+    sDataPacket * p = get(ip, dev_num);
+    if(p) p->id = devNum;
+
+    return p;
 }
 
 
@@ -51,8 +48,9 @@ int DataPackets::tgDataPackts(sTgObjData *tg, QVector<sDataPacket *> &packs)
         }
     }
 
-    tg->vol /= size;
-    tg->tem /= ts;
+    if(size)  tg->vol /= size;
+    if(ts) tg->tem /= ts;
+
     if(tg->activePow > 0)
         tg->pf = (tg->pow * 100.0 / tg->activePow);
     else

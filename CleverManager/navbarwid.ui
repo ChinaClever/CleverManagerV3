@@ -94,7 +94,7 @@
     <string>机房拓扑</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="roomBtn_3">
+  <widget class="QPushButton" name="cabBtn">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -104,7 +104,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>机房统计</string>
+    <string>机柜列表</string>
    </property>
   </widget>
  </widget>

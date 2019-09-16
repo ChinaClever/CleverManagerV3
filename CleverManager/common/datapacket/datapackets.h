@@ -10,7 +10,6 @@ class DataPackets : public Dp_BasicThread<sDataPacket *>
     Q_OBJECT
 public:
     explicit DataPackets(QObject *parent = nullptr);
-    ~DataPackets();
 
     sDataPacket *get(const QString &ip, int devNum);
     sDataPacket *get(const QString &ip, const QString &dev_num);

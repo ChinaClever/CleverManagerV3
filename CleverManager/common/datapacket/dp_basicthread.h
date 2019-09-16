@@ -2,6 +2,7 @@
 #define DP_BASICTHREAD_H
 #include "dp_basichash.h"
 #include <QtSql>
+#include <QtCore>
 
 class Dp_DbTran
 {
@@ -11,7 +12,7 @@ public:
 };
 
 template <typename T>
-class Dp_BasicThread : public QThread, public Dp_BasicHash<T>
+class Dp_BasicThread : public QThread
 {
 public:
     Dp_BasicThread(QObject *parent = nullptr): QThread(parent) {isRun=true; start();}
@@ -25,9 +26,7 @@ protected:
             mdelay(1000 + rand()%245);
             static QReadWriteLock lock;
             QWriteLocker locker(&lock);
-
-            Dp_DbTran db;
-            workDown();
+            if(isRun) workDown();
         }
     }
 
@@ -38,6 +37,7 @@ protected:
     }
 
     void workDown() {
+        Dp_DbTran db;
         QHashIterator<QString, T> iter(mHash);
         while(iter.hasNext())
         {
@@ -53,6 +53,41 @@ protected:
 
     virtual void initFun()=0;
     virtual void workDown(T pack)=0;
+
+
+protected:
+    virtual T newDataPacket()=0;
+    T insert(const QString &key) {
+        T node = find(key);
+        if(!node) {
+            node = newDataPacket();
+            mHash.insert(key, node);
+        }
+
+        return node;
+    }
+
+    T find(const QString &key) {
+        T node = nullptr;
+        bool ret = contains(key);
+        if(ret) {
+            auto index = mHash.find(key);
+            if(index != mHash.end()) {
+                node = index.value();
+            }
+        }
+        return node;
+    }
+
+    void remove(const QString &key) {
+        T node = find(key);
+        if(node) {
+            mHash.remove(key);
+            delete node;
+        }
+    }
+
+    bool contains(const QString &key) {return mHash.contains(key);}
 
 protected:
     bool isRun;

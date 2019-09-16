@@ -81,7 +81,7 @@ bool Dp_PduAlarm::alarmObjDataUnit(sObjData &obj)
     mItemStr = str + tr("电压");
     bool ret = alarmDataUnit(obj.vol, obj.size);
 
-    mItemStr =str + tr("电压");
+    mItemStr = str + tr("电压");
     ret = ret || alarmDataUnit(obj.cur, obj.size);
 
     return ret;

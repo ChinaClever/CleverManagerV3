@@ -52,8 +52,8 @@ DbPduElec *DbPduElec::bulid()
 
 bool DbPduElec::insertItem(sPduElecItem &item)
 {
-    QString cmd = "insert into %1 (room,modular,cab,road,dev_type,ip,dev_num,item,startdt,startele,enddt,ele,price,fees) "
-                  "values(:room,:modular,:cab,:road,:dev_type,:ip,:dev_num,:item,:startdt,:startele,:enddt,:ele,:price,:fees)";
+    QString cmd = "insert into %1 (room,modular,cab,road,dev_type,ip,dev_num,item,startdt,startele,enddt,endele,ele,price,fees) "
+                  "values(:room,:modular,:cab,:road,:dev_type,:ip,:dev_num,:item,:startdt,:startele,:enddt,:endele,:ele,:price,:fees)";
     return modifyItem(item,cmd.arg(tableName()));
 }
 
@@ -73,6 +73,7 @@ bool DbPduElec::modifyItem(const sPduElecItem &item, const QString &cmd)
     query.bindValue(":startdt",item.startdt);
     query.bindValue(":startele",item.startele);
     query.bindValue(":enddt",item.enddt);
+    query.bindValue(":endele",item.endele);
     query.bindValue(":ele",item.ele);
     query.bindValue(":price",item.price);
     query.bindValue(":fees",item.fees);

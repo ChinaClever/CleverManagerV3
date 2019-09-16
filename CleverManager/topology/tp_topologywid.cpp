@@ -409,7 +409,6 @@ void Tp_TopologyWid::on_action_addCabinet_triggered()
     RoomItemExt rItem = currentRoomItem();
     item->room_id = rItem.id;
     item->room = rItem.room;
-
     if(QDialog::Accepted == mCabAdd->exec())
     {
         //找到空位置。
@@ -492,6 +491,7 @@ void Tp_TopologyWid::on_action_modifyCabinet_triggered()
         CabinetItem cItem = item->data(Qt::UserRole).value<CabinetItem>();
         Cab_ModifyDlg dlg(ui->tableWidget_cabinetMap, cItem);
         if(QDialog::Accepted == dlg.exec()){
+            cItem = *dlg.getItem();
             updateCabinetItem(item,cItem);
         }
     }

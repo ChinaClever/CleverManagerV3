@@ -41,7 +41,7 @@ void Room_DataWid::initView()
     mPowLcd->setUnit(tr("功率"), "kW");
 
     mPfLcd = new Room_LcdWid(ui->pfWid);
-    mPfLcd->setUnit(tr("电能"), "");
+    mPfLcd->setUnit(tr("功数"), "");
 }
 
 
@@ -101,6 +101,8 @@ void Room_DataWid::updateData(sTgObjData &data)
     long double value;
 
     value = data.vol/COM_RATE_VOL;
+    mVolLcd->display((double)value);
+
     value = data.cur/COM_RATE_CUR;
     changeCurMode(value);
 
@@ -108,6 +110,7 @@ void Room_DataWid::updateData(sTgObjData &data)
     changePowMode(value);
 
     value = data.pf/COM_RATE_PF;
+    mPfLcd->display((double)value, 2);
 }
 
 

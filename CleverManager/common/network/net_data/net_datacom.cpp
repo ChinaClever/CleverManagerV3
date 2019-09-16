@@ -133,7 +133,7 @@ bool Net_DataCom::toString(QString &str, uchar *data, ushort len)
     memset(strBuf,0, 512);
     for(int i=0; i<len; ++i)
         strBuf[i] = data[i];
-    str.append(strBuf);
+    str = strBuf;
 
     return true;
 }

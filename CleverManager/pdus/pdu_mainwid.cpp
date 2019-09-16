@@ -14,8 +14,6 @@ Pdu_MainWid::~Pdu_MainWid()
     delete ui;
 }
 
-
-
 void Pdu_MainWid::initWidSlot()
 {
     mList = new Pdu_ListWid(ui->listWid);

@@ -46,7 +46,7 @@ bool Dp_RoomHrsSave::tgObjData(sTgObjData &obj)
 bool Dp_RoomHrsSave::checkCount(int count)
 {
     bool ret = false;
-    if(count > 60) { // 数据纪录间隔时间
+    if(count > 6) { // 数据纪录间隔时间
         ret =  true;
     }
 

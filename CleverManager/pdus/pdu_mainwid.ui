@@ -13,56 +13,67 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="listWid" native="true">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>90</y>
-     <width>221</width>
-     <height>481</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStackedWidget" name="stackedWid">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>90</y>
-     <width>600</width>
-     <height>505</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>30</y>
-     <width>87</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>设备相信息</string>
-    </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>35</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>35</height>
+      </size>
+     </property>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>10</y>
+        <width>87</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>设备相信息</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>输出位状态</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>环境状态</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>设备设置</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
    </item>
-   <item>
-    <property name="text">
-     <string>输出位状态</string>
-    </property>
+   <item row="1" column="0">
+    <widget class="QWidget" name="listWid" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>240</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
    </item>
-   <item>
-    <property name="text">
-     <string>环境状态</string>
-    </property>
+   <item row="1" column="1">
+    <widget class="QStackedWidget" name="stackedWid"/>
    </item>
-   <item>
-    <property name="text">
-     <string>设备设置</string>
-    </property>
-   </item>
-  </widget>
+  </layout>
  </widget>
  <resources/>
  <connections/>

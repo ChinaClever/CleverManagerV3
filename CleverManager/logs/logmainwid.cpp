@@ -27,7 +27,7 @@ void LogMainWid::initFunSLot()
     ui->stackedWid->addWidget(mPduALarm);
 
     mCabAlarm = new LogComWid(ui->stackedWid);
-    mCabAlarm->initWid(DbCabHrs::bulid(), new Log_CabAlarmQueryDlg(this));
+    mCabAlarm->initWid(DbCabAlarm::bulid(), new Log_CabAlarmQueryDlg(this));
     ui->stackedWid->addWidget(mCabAlarm);
 
     mPduHrs = new LogComWid(ui->stackedWid);

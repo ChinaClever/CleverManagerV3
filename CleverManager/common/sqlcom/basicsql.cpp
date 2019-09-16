@@ -35,7 +35,6 @@ bool BasicSql::remove(const QString &condition)
     QSqlQuery query;
     bool ret = query.exec(QString("DELETE FROM %1 WHERE %2").arg(tableName()).arg(condition));
     if(!ret) {
-        qDebug()<< "remove:" << query.lastError();
         throwError(query.lastError());
     }
 
@@ -67,7 +66,7 @@ int BasicSql::maxId()
         if(query.next())
             id = query.value(0).toInt();
     } else {
-        qDebug()<< "maxId:" << query.lastError();
+       throwError(query.lastError());
     }
 
     return id;
@@ -88,7 +87,7 @@ int BasicSql::maxId(const QString &idName, const QString &condition)
         if(query.next())
             id = query.value(0).toInt();
     } else
-        qDebug()<< "maxId:" << query.lastError();
+        throwError(query.lastError());
     return id;
 }
 
@@ -106,7 +105,7 @@ int BasicSql::minId(const QString &idName, const QString &condition)
         if(query.next())
             id = query.value(0).toInt();
     } else
-        qDebug()<< "maxId:" << query.lastError();
+        throwError(query.lastError());
     return id;
 }
 
@@ -128,7 +127,7 @@ int BasicSql::count(const QString &column_name, const QString &condition)
         if(query.next())
             count = query.value(0).toInt();
     } else
-        qDebug()<< "sqlcom count:" << query.lastError();
+       throwError(query.lastError());
     return count;
 }
 
@@ -151,7 +150,7 @@ QStringList BasicSql::listColumn(const QString &column_name, const QString &cond
         while(query.next())
             list << query.value(0).toString();
     } else
-        qDebug()<< "sqlcom listColumnStr:" << query.lastError();
+       throwError(query.lastError());
     return list;
 }
 
@@ -172,8 +171,7 @@ bool BasicSql::updateColumn(const QString& column_name, double value, const QStr
     bool ret = false;
     QSqlQuery query;
     ret = query.exec(QString("update  %1 set %2=%3 %4").arg(tableName()).arg(column_name).arg(value).arg(condition));
-    if(!ret)
-        qDebug()<< "sqlcom updateColumn 1:" << query.lastError();
+    if(!ret) throwError(query.lastError());
     return ret;
 }
 
@@ -182,8 +180,7 @@ bool BasicSql::updateColumn(const QString& column_name, const QString& value, co
     bool ret = false;
     QSqlQuery query;
     ret = query.exec(QString("update  %1 set %2=\'%3\' where %4").arg(tableName()).arg(column_name).arg(value).arg(condition));
-    if(!ret)
-        qDebug()<< "sqlcom updateColumn 2:" << query.lastError();
+    if(!ret) throwError(query.lastError());
     return ret;
 }
 
@@ -214,7 +211,7 @@ bool BasicSql::clear()
     QSqlQuery query(cmd);
     bool ret = query.exec(cmd);
     if(!ret){
-        qDebug()<< "sqlcom clear :" << query.lastError();
+        throwError(query.lastError());
     } else {
         createTable();
     }
@@ -304,8 +301,7 @@ bool db_select_dateList(const QString &tableName, QStringList &dateList)
     QSqlQuery query;
     query.setForwardOnly(true); // 为了节省内存开销
     bool ret = query.exec(str);
-    if(ret)
-    {
+    if(ret) {
         while(query.next()) //开始就先执行一次next()函数，那么query 指向结果集的第一条记录
         {
             str = query.value(1).toString();  //日期

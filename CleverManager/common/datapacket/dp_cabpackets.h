@@ -9,7 +9,6 @@ class Dp_CabPackets : public Dp_BasicThread<sCabPacket *>
     explicit Dp_CabPackets(QObject *parent = nullptr);
 public:
     static Dp_CabPackets *bulid(QObject *parent = nullptr);
-    ~Dp_CabPackets();
 
     sCabPacket *get(const QString &room, const QString &cab);
     sCabPacket *getByCab(uint id);

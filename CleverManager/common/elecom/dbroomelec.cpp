@@ -44,8 +44,8 @@ DbRoomElec *DbRoomElec::bulid()
 
 bool DbRoomElec::insertItem(sRoomElecItem &item)
 {
-    QString cmd = "insert into %1 (room,startdt,startele,enddt,ele,price,fees) "
-                  "values(:room,:startdt,:startele,:enddt,:ele,:price,:fees)";
+    QString cmd = "insert into %1 (room,startdt,startele,enddt,endele,ele,price,fees) "
+                  "values(:room,:startdt,:startele,:enddt,:endele,:ele,:price,:fees)";
     return modifyItem(item,cmd.arg(tableName()));
 }
 
@@ -58,6 +58,7 @@ bool DbRoomElec::modifyItem(const sRoomElecItem &item, const QString &cmd)
     query.bindValue(":startdt",item.startdt);
     query.bindValue(":startele",item.startele);
     query.bindValue(":enddt",item.enddt);
+    query.bindValue(":endele",item.endele);
     query.bindValue(":ele",item.ele);
     query.bindValue(":price",item.price);
     query.bindValue(":fees",item.fees);

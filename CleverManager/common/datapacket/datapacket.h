@@ -13,13 +13,13 @@
 #define PACK_ARRAY_SIZE 42
 
 // 倍率定义
-#define COM_RATE_VOL	1.0    // 电压
+#define COM_RATE_VOL	10.0    // 电压
 #define COM_RATE_CUR	10.0    // 电流
 #define COM_RATE_POW	1000.0  // 功率
 #define COM_RATE_ELE	10.0    // 电能
 #define COM_RATE_PF     100.0   // 功率因素
-#define COM_RATE_TEM	1.0    // 温度
-#define COM_RATE_HUM	1.0    // 湿度
+#define COM_RATE_TEM	10.0    // 温度
+#define COM_RATE_HUM	10.0    // 湿度
 
 #define PDU_TYPE_IP_PDU     0x01010101
 #define PDU_TYPE_M_PDU      0x01020101
@@ -146,7 +146,7 @@ struct sIpAddr
  */
 struct sDataPacket
 {
-    sDataPacket() {offLine=0; alarm=0; count=0; en=1;}
+    sDataPacket() {id=0; offLine=0; alarm=0; count=0; en=1;}
 
     uchar id, en;  // 设备号
     uint devType; //设备类型
