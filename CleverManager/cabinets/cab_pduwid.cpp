@@ -14,7 +14,7 @@ Cab_PduWid::Cab_PduWid(QWidget *parent) :
 
     mTimer = new QTimer(this);
     connect(mTimer, SIGNAL(timeout()), this, SLOT(timeoutDone()));
-    mTimer->start(2000);
+    mTimer->start(2500);
 }
 
 Cab_PduWid::~Cab_PduWid()
@@ -42,10 +42,8 @@ void Cab_PduWid::setAlignType(bool left)
 void Cab_PduWid::timeoutDone()
 {
     if(mPacket) {
-        if((mPacket->offLine > 0) && (mPacket->en)) {
-            updateLine(mPacket);
-            updateOutput(mPacket);
-        }
+        updateLine(mPacket);
+        updateOutput(mPacket);
         setIpAddr(mPacket->ip.ip, mPacket->dev_num);
     }
 }
@@ -77,7 +75,7 @@ void Cab_PduWid::updateLine(sDataPacket *packet)
 
 void Cab_PduWid::updateOutput(sDataPacket *packet)
 {
-    if(packet->devType != PDU_TYPE_IP_PDU && packet->devSpec != 1)
+    if(packet->devType != PDU_TYPE_IP_PDU && (packet->offLine > 0) && packet->devSpec != 1)
     {
         uchar *sw = packet->data.output.sw;
         sDataUnit *cur = &(packet->data.output.cur);
