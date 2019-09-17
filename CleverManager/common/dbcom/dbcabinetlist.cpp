@@ -150,7 +150,7 @@ int DbCabinetList::contains(const QString &room,  const QString &cab)
 
 CabinetItem DbCabinetList::find(const QString& room, const QString &cab)
 {
-    QVector<CabinetItem> items = selectItems(QString("where room=\'%1\' and=\'%2\'").arg(room).arg(cab));
+    QVector<CabinetItem> items = selectItems(QString("where room=\'%1\' and cab=\'%2\'").arg(room).arg(cab));
     return items.first();
 }
 

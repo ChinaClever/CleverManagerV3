@@ -39,7 +39,7 @@ protected:
     void initData();
 
 signals:
-    void selectSig(sCabPacket *);
+    void selectSig(int id);
 
 protected:
     //房间操作

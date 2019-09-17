@@ -35,7 +35,6 @@ Pdu_LineGraph::Pdu_LineGraph(QWidget *parent) : QWidget(parent)
     connect( timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
     timer->start(2*1000);
 
-
     QGridLayout *gridLayout = new QGridLayout(parent);
     gridLayout->setContentsMargins(0, 0, 0, 0);
     gridLayout->addWidget(this);

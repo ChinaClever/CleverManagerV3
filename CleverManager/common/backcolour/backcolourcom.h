@@ -12,6 +12,12 @@ const QColor orange(255,0,0);//报警，原为橘红，现为红色
 const QColor blue(200,200,200);//离线，原为男色，现为灰色
 const QColor yellow(255, 255, 0);//预警，黄色
 
+template <typename T>
+bool bInBound(const T & min, const T & value, const T & max)
+{
+    return value >= min && value <= max;
+}
+
 }
 
 

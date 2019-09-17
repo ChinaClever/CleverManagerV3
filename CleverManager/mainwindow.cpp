@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     LandingUser::get(this);
     mNavBar = new NavBarWid(ui->navWId);
     QTimer::singleShot(5,this,SLOT(initPacksSLot()));
-    QTimer::singleShot(10,this,SLOT(initNetWork()));
+    QTimer::singleShot(50,this,SLOT(initNetWork()));
     QTimer::singleShot(500,this,SLOT(initWidSLot()));
     connect(mNavBar, SIGNAL(navBarSig(int)), this, SLOT(navBarSlot(int)));
 }
@@ -48,6 +48,10 @@ void MainWindow::initWidSLot()
 
     mSetup = new SetUpMainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mSetup);
+
+    mCab = new Cab_MainWid(ui->stackedWid);
+    ui->stackedWid->addWidget(mCab);
+    connect(mTpWid, SIGNAL(selectSig(int)), mCab, SIGNAL(selectedSig(int)));
 }
 
 

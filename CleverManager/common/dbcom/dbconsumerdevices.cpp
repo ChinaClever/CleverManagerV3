@@ -30,8 +30,9 @@ DbConsumerDevices *DbConsumerDevices::get()
     return sington;
 }
 
-void DbConsumerDevices::insertItem(const ConsumerDeviceItem &item)
+void DbConsumerDevices::insertItem(ConsumerDeviceItem &item)
 {
+    item.id = maxId()+1;
     QString cmd = "insert into %1(id,cabinet_id,name,main_pdu_port,spare_pdu_port,address,occupy_height) "
                   "values(:id,:cabinet_id,:name,:main_pdu_port,:spare_pdu_port,:address,:occupy_height)";
     modifyItem(item,cmd.arg(tableName()));

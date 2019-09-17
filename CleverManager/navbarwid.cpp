@@ -72,3 +72,8 @@ void NavBarWid::on_tpBtn_clicked()
 {
     emit navBarSig(0);
 }
+
+void NavBarWid::on_cabBtn_clicked()
+{
+    emit navBarSig(5);
+}

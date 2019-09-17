@@ -549,11 +549,7 @@ void Tp_TopologyWid::on_tableWidget_cabinetMap_doubleClicked(const QModelIndex &
             CabinetItem cItem  = item->data(Qt::UserRole).value<CabinetItem>();
             sCabPacket *cab = mCabs->getByCab(cItem.id);
             if(cab) {
-                emit selectSig(cab);
-                //////////////
-                //            DialogCabinetPostion dlg(,this);
-                //            dlg.setEditable(ui->pushButton_editRoomMap->isChecked() && ui->pushButton_editRoomMap->isVisible());
-                //            dlg.exec();
+                emit selectSig(cab->cab_id);
             }
         }
     }

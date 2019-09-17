@@ -17,6 +17,7 @@ public:
     ~Cab_AddDeviceDlg();
 
     void init(ConsumerDeviceItem& item,int left,int right,int height);
+    ConsumerDeviceItem getItem() {return m_item;}
 
 protected:
     bool inputCheck();

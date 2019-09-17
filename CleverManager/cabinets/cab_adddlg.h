@@ -47,7 +47,7 @@ public:
 
 protected:
     void save();
-    bool nameCheck(const QString &name){return true;}
+    bool nameCheck(const QString &){return true;}
 };
 
 #endif // DIALOGADDCABINET_H

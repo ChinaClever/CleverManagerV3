@@ -8,6 +8,7 @@
 #include "pdu_mainwid.h"
 #include "room_mainwid.h"
 #include "tp_topologywid.h"
+#include "cab_mainwid.h"
 
 namespace Ui {
 class MainWindow;
@@ -38,6 +39,7 @@ private:
     Pdu_MainWid *mPduWid;
     Room_MainWid *mRoom;
     Tp_TopologyWid *mTpWid;
+    Cab_MainWid *mCab;
 };
 
 #endif // MAINWINDOW_H

@@ -32,6 +32,8 @@ private slots:
 
     void on_tpBtn_clicked();
 
+    void on_cabBtn_clicked();
+
 private:
     Ui::NavBarWid *ui;
 };

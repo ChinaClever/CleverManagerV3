@@ -19,7 +19,7 @@ class DbConsumerDevices : public SqlBasic<ConsumerDeviceItem>
 public:
     static DbConsumerDevices *get();
     QString tableName(){return "consumer_devices";}
-    void insertItem(const ConsumerDeviceItem& item);
+    void insertItem(ConsumerDeviceItem &item);
     void updateItem(const ConsumerDeviceItem& item);
     void removeItemsByCabinetId(int cabinetId);
     bool containName(int cabinetId, const QString &name);
