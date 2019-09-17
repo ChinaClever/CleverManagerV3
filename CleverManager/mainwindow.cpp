@@ -52,11 +52,15 @@ void MainWindow::initWidSLot()
     mCab = new Cab_MainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mCab);
     connect(mTpWid, SIGNAL(selectSig(int)), mCab, SIGNAL(selectedSig(int)));
+    connect(mTpWid, SIGNAL(selectSig(int)), this, SLOT(selectSlot(int)));
 }
-
-
 
 void MainWindow::navBarSlot(int id)
 {
     ui->stackedWid->setCurrentIndex(id);
+}
+
+void MainWindow::selectSlot(int)
+{
+    ui->stackedWid->setCurrentWidget(mCab);
 }

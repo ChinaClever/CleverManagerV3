@@ -29,6 +29,7 @@ protected slots:
     void initWidSLot();
 
     void navBarSlot(int);
+    void selectSlot(int);
 
 private:
     Ui::MainWindow *ui;
