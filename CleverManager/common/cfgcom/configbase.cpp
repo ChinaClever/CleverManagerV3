@@ -14,6 +14,13 @@ ConfigBase::ConfigBase()
     item->elePrice = getElePrice();
 }
 
+ConfigBase *ConfigBase::bulid()
+{
+    static ConfigBase* sington = nullptr;
+    if(sington == nullptr)
+        sington = new ConfigBase();
+    return sington;
+}
 
 /**
  * @brief 获取日志存储时间隔
