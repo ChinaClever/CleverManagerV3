@@ -18,10 +18,6 @@ Pdu_SetMainWid::Pdu_SetMainWid(QWidget *parent) :
     ui->groupBox->setStyleSheet("border:0px");
     set_background_color(this, QColor(0,17,55));
     btnBlue_style_sheet(this);
-
-    QGridLayout *gridLayout = new QGridLayout(parent);
-    gridLayout->setContentsMargins(0, 0, 0, 0);
-    gridLayout->addWidget(this);
 }
 
 Pdu_SetMainWid::~Pdu_SetMainWid()
