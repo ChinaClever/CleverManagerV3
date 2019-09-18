@@ -78,7 +78,9 @@ void Dp_PduHrsSave::devData(sDevData &dev)
 bool Dp_PduHrsSave::checkCount(int count)
 {
     bool ret = false;
-    if(count > 60) { // 数据纪录间隔时间
+    ConfigBase *con = ConfigBase::bulid();
+    int sec = con->item->logTimes * 60 * 60;
+    if(count > sec) { // 数据纪录间隔时间
         ret =  true;
     }
 

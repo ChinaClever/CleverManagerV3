@@ -31,6 +31,10 @@ private slots:
 
     void on_alarmCmb_currentIndexChanged(int index);
 
+    void on_logSpin_valueChanged(int arg1);
+
+    void on_priceSPin_valueChanged(double arg1);
+
 private:
     Ui::SetUpMainWid *ui;
     UserMainWid *mUserWid;

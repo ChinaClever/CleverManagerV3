@@ -36,7 +36,7 @@ bool Dp_RoomHrsSave::tgObjData(sTgObjData &obj)
     bool ret = false;
     sDbRoomHrsItem item = initItem();
 
-    item.vol = obj.vol / COM_RATE_VOL;
+    item.vol = (int)(obj.vol / COM_RATE_VOL);
     item.cur = obj.cur/ COM_RATE_CUR;
     item.pow = obj.pow/ COM_RATE_POW;
     item.pf = obj.pf/ COM_RATE_PF;
@@ -51,7 +51,9 @@ bool Dp_RoomHrsSave::tgObjData(sTgObjData &obj)
 bool Dp_RoomHrsSave::checkCount(int count)
 {
     bool ret = false;
-    if(count > 6) { // 数据纪录间隔时间
+    ConfigBase *con = ConfigBase::bulid();
+    int sec = con->item->logTimes * 60 * 60;
+    if(count > sec) { // 数据纪录间隔时间
         ret =  true;
     }
 

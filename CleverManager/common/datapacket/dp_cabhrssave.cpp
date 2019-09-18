@@ -65,7 +65,9 @@ void Dp_CabHrsSave::dataPacket(const QString &road, sDataPacket *pack)
 bool Dp_CabHrsSave::checkCount(int count)
 {
     bool ret = false;
-    if(count > 60) { // 数据纪录间隔时间
+    ConfigBase *con = ConfigBase::bulid();
+    int sec = con->item->logTimes * 60 * 60;
+    if(count > sec) { // 数据纪录间隔时间
         ret =  true;
     }
 

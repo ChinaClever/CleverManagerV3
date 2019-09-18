@@ -41,7 +41,10 @@ Cab_CabinetWid::~Cab_CabinetWid()
 
 void Cab_CabinetWid::init(const CabinetItem& item)
 {
-    this->setWindowTitle(tr("机柜位置:(%1,%2)  名称:%3").arg(item.row+1).arg(item.column+1).arg(item.cab));
+    QString title = tr("机房：%1 机柜：%2 位置:(%3,%4)").arg(item.room).arg(item.cab)
+            .arg(item.row+1).arg(item.column+1);
+    ui->titleLab->setText(title);
+
     int rouCount = item.height;
     ui->tableWidget_cabinet->setRowCount(rouCount);
     for(int i=0 ; i < rouCount ; i+=2){

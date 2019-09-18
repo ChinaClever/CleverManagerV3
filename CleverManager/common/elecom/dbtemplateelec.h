@@ -1,6 +1,7 @@
 #ifndef DBTEMPLATEELEC_H
 #define DBTEMPLATEELEC_H
 #include <QtCore>
+#include "configbase.h"
 
 template <typename T1,typename T2,typename T3>
 bool elec_start_get(T1* db, T2 &it, T3 &ele, const QString &cmd)
@@ -41,7 +42,8 @@ bool elec_fees_get(T3 &ele)
     bool ret = true;
 
     if(ele.endele >= ele.startele) {
-        ele.price = 0.58;
+        sConfigItem *item = ConfigBase::bulid()->item;
+        ele.price = item->elePrice;
         ele.ele = ele.endele - ele.startele;
         ele.fees = ele.ele * ele.price;
     } else {
