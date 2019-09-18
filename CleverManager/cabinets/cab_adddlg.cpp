@@ -107,7 +107,7 @@ void Cab_AddDlg::getInput()
 
 void Cab_AddDlg::del(CabinetItem &item)
 {
-    Dp_DbTran tran; // 数据库事物操作
+    Db_Tran tran; // 数据库事物操作
     DbCabinetList::get()->remove(item.id);
 
     sUserLogItem log;
@@ -118,7 +118,7 @@ void Cab_AddDlg::del(CabinetItem &item)
 
 void Cab_AddDlg::save()
 {
-    Dp_DbTran tran; // 数据库事物操作
+    Db_Tran tran; // 数据库事物操作
     DbCabinetList::get()->insertItem(m_item);
 
     sUserLogItem log;
@@ -155,7 +155,7 @@ Cab_ModifyDlg::Cab_ModifyDlg(QTableWidget *parent, CabinetItem &it) :
 
 void Cab_ModifyDlg::save()
 {
-    Dp_DbTran tran; // 数据库事物操作
+    Db_Tran tran; // 数据库事物操作
     DbCabinetList::get()->updateItem(m_item);
 
     sUserLogItem log;

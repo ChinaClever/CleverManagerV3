@@ -25,6 +25,7 @@ public:
 
     bool submitChanges(void);
     void revertChanges(void);
+    bool removeRows();
 
 signals:
     

@@ -63,6 +63,14 @@ bool SqlTableModel::removeRow(int curRow)
     return ret;
 }
 
+bool SqlTableModel::removeRows()
+{
+    bool ret = model->removeRows(0, model->rowCount());
+    if(ret) ret = submitChanges();
+
+    return ret;
+}
+
 
 /**
  * @brief 查询字段

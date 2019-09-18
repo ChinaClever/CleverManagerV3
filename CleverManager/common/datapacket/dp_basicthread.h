@@ -1,15 +1,6 @@
 #ifndef DP_BASICTHREAD_H
 #define DP_BASICTHREAD_H
-#include "dp_basichash.h"
-#include <QtSql>
-#include <QtCore>
-
-class Dp_DbTran
-{
-public:
-    Dp_DbTran() {QSqlDatabase::database().transaction();}
-    ~Dp_DbTran() {QSqlDatabase::database().commit();}
-};
+#include "basicsql.h"
 
 template <typename T>
 class Dp_BasicThread : public QThread
@@ -37,7 +28,7 @@ protected:
     }
 
     void workDown() {
-        Dp_DbTran db;
+        Db_Tran db;
         QHashIterator<QString, T> iter(mHash);
         while(iter.hasNext())
         {

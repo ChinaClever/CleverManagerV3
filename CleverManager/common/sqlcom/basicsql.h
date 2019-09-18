@@ -7,6 +7,13 @@
 
 #define LOG_DELAY 1
 
+class Db_Tran
+{
+public:
+    Db_Tran() {QSqlDatabase::database().transaction();}
+    ~Db_Tran() {QSqlDatabase::database().commit();}
+};
+
 struct DbBasicItem {
     DbBasicItem():id(-1){
         QDateTime dateTime = QDateTime::currentDateTime();

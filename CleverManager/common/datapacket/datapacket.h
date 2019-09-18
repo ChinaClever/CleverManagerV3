@@ -146,7 +146,7 @@ struct sIpAddr
  */
 struct sDataPacket
 {
-    sDataPacket() {id=0; offLine=0; alarm=0; count=0; en=1;}
+    sDataPacket() {id=0; offLine=0; alarm=0; count=0; en=0;}
 
     uchar id, en;  // 设备号
     uint devType; //设备类型

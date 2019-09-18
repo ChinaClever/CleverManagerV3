@@ -134,16 +134,12 @@ void SqlTableView::refreshSlot()
  */
 void SqlTableView::clearTableSlot()
 {
-    if(model->removeRow(0)) {
-        QTimer::singleShot(10,this,SLOT(clearTableSlot()));
-    } else {
-
+    bool ret = model->removeRows();
+    if(ret) {
+        QCoreApplication::processEvents(QEventLoop::AllEvents,10);
+        int row = model->model->rowCount();
+        if(row > 0)  QTimer::singleShot(5,this,SLOT(clearTableSlot()));
     }
-//    model->model->setTable("markingtable");
-//    BasicSql* db = mDb;
-//    db->clear();
-//    db->createTable();
-//    initTable(mDb);
 }
 
 /**

@@ -74,6 +74,7 @@ bool DbRoomElec::modifyItem(const sRoomElecItem &item, const QString &cmd)
 
 void DbRoomElec::elec(QStringList &list)
 {
+    Db_Tran tran;
     sDbRoomHrsItem it;
     sRoomElecItem ele;
 

@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     LandingUser::get(this);
     mNavBar = new NavBarWid(ui->navWId);
     QTimer::singleShot(5,this,SLOT(initPacksSLot()));
-    QTimer::singleShot(50,this,SLOT(initNetWork()));
     QTimer::singleShot(500,this,SLOT(initWidSLot()));
+    QTimer::singleShot(1500,this,SLOT(initNetWork()));
     connect(mNavBar, SIGNAL(navBarSig(int)), this, SLOT(navBarSlot(int)));
 }
 

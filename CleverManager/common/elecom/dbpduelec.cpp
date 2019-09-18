@@ -89,6 +89,7 @@ bool DbPduElec::modifyItem(const sPduElecItem &item, const QString &cmd)
 
 void DbPduElec::elec(QStringList &list)
 {
+    Db_Tran tran;
     sDbPduHrsItem it;
     sPduElecItem ele;
 

@@ -55,7 +55,7 @@ bool Tp_AddRoomDlg::inputCheck()
 
 int Tp_AddRoomDlg::save(const QString &name)
 {
-    Dp_DbTran tran; // 数据库事物操作
+    Db_Tran tran; // 数据库事物操作
     RoomItem item;
     item.room = name;
     DbRoomList::get()->insertItem(item);
@@ -91,7 +91,7 @@ void Tp_ModifyRoomDlg::init(RoomItem &it)
 
 int Tp_ModifyRoomDlg::save(const QString &name)
 {
-    Dp_DbTran tran; // 数据库事物操作
+    Db_Tran tran; // 数据库事物操作
     item.room = name;
     DbRoomList::get()->updateItem(item);
 

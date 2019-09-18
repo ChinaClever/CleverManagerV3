@@ -23,7 +23,10 @@ sDataPacket *DataPackets::get(const QString &ip, int devNum)
     if(devNum) dev_num = tr("副机%1").arg(devNum);
 
     sDataPacket * p = get(ip, dev_num);
-    if(p) p->id = devNum;
+    if(p) {
+        p->id = devNum;
+        p->dev_num = dev_num;
+    }
 
     return p;
 }

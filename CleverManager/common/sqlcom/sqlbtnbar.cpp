@@ -122,15 +122,17 @@ void SqlBtnBar::on_clearBtn_clicked()
     bool ret = box.Exec();
     if(ret) {
         emit clearSig();
+        QCoreApplication::processEvents(QEventLoop::AllEvents,2250);
+        emit refreshSig();
     }
 }
 
 void SqlBtnBar::on_queryBtn_clicked()
 {
-   QString str = queryBtn();
-   if(!str.isEmpty()) {
-       emit querySig(str);
-   }
+    QString str = queryBtn();
+    if(!str.isEmpty()) {
+        emit querySig(str);
+    }
 }
 
 void SqlBtnBar::on_exportBtn_clicked()

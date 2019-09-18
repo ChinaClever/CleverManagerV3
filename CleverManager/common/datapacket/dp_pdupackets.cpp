@@ -114,6 +114,7 @@ void Dp_PduPackets::sendHeartBeat(sDataPacket *pack)
     if(0 == pack->id) {
         QString ip = pack->ip.ip;
         UdpHeartBeat::bulid(this)->sent(ip);
+        msleep(1+rand()%5);
     }
 }
 

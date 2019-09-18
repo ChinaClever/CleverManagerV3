@@ -80,6 +80,7 @@ bool DbCabElec::modifyItem(const sCabElecItem &item, const QString &cmd)
 
 void DbCabElec::elec(QStringList &list)
 {
+    Db_Tran tran;
     sDbCabHrsItem it;
     sCabElecItem ele;
 

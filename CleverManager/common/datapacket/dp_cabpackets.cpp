@@ -56,6 +56,7 @@ void Dp_CabPackets::initPacket(CabinetItem &it)
         cab->cab = it.cab;
         cab->pow = it.pow;
         cab->powAlarm = 0;
+        memset(&(cab->tg), 0, sizeof(sTgObjData));
 
         if(!it.main_ip.isEmpty()) {
             cab->m = mPdus->get(it.main_ip, it.main_num);
@@ -66,7 +67,7 @@ void Dp_CabPackets::initPacket(CabinetItem &it)
 
         if(!it.spare_ip.isEmpty()) {
             cab->s = mPdus->get(it.spare_ip, it.spare_num);
-            setPacket(it, cab->m);
+            setPacket(it, cab->s);
         } else {
             cab->s = nullptr;
         }
