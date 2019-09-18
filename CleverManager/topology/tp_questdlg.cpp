@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "tp_questdlg.h"
 #include "ui_tp_questdlg.h"
 #include <QMessageBox>

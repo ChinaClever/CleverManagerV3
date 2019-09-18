@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "cab_cabinetwid.h"
 #include "ui_cab_cabinetwid.h"
 #include "cab_adddevicedlg.h"

@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "setup_cabquerydlg.h"
 #include "ui_setup_cabquerydlg.h"
 

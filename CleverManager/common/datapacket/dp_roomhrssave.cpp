@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "dp_roomhrssave.h"
 
 Dp_RoomHrsSave::Dp_RoomHrsSave(QObject *parent) : QObject(parent)

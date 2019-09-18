@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "setup_pdusbtnbar.h"
 
 Setup_PdusBtnBar::Setup_PdusBtnBar(QWidget *parent) : SqlBtnBar(parent)

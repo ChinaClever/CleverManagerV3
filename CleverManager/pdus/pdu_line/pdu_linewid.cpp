@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "pdu_linewid.h"
 #include "ui_pdu_linewid.h"
 #include <QDesktopServices>

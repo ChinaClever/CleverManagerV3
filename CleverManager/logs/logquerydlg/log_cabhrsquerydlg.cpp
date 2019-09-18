@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "log_cabhrsquerydlg.h"
 #include "ui_log_cabhrsquerydlg.h"
 

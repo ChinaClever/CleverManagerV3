@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "room_lcdwid.h"
 #include "ui_room_lcdwid.h"
 

@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "sqltablewid.h"
 #include "ui_sqltablewid.h"
 

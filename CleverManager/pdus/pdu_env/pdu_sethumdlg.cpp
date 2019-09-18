@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "pdu_sethumdlg.h"
 
 Pdu_SetHumDlg::Pdu_SetHumDlg(QWidget *parent) : Pdu_SetThresholdDlg(parent)

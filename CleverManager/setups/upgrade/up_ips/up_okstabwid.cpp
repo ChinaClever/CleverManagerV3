@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "up_okstabwid.h"
 
 Up_OksTabWid::Up_OksTabWid(QWidget *parent) : Up_ErrsTabWid(parent)

@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "dp_roompackets.h"
 
 Dp_RoomPackets::Dp_RoomPackets(QObject *parent) : Dp_BasicThread(parent)

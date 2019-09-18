@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "sqlbtnbar.h"
 #include "ui_sqlbtnbar.h"
 extern bool usr_land_jur();

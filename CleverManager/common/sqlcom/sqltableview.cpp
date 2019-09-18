@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "sqltableview.h"
 
 SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)

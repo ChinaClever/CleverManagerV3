@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "pdu_outputwid.h"
 #include "pdu_setoutputdlg.h"
 

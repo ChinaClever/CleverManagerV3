@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "log_roomhrsquerydlg.h"
 #include "ui_log_roomhrsquerydlg.h"
 
