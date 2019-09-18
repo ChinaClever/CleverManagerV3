@@ -34,6 +34,10 @@ void Pdu_MainWid::initWidSlot()
     mEnvWid = new Pdu_EnvWid(ui->stackedWid);
     ui->stackedWid->addWidget(mEnvWid);
     connect(mList, SIGNAL(selectedSig(sDataPacket*)), mEnvWid, SLOT(packetSlot(sDataPacket*)));
+
+    mSetWid = new Pdu_SetMainWid(ui->stackedWid);
+    ui->stackedWid->addWidget(mSetWid);
+    connect(mList, SIGNAL(selectedSig(sDataPacket*)), mSetWid, SIGNAL(selectSig(sDataPacket*)));
 }
 
 void Pdu_MainWid::on_comboBox_currentIndexChanged(int index)

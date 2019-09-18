@@ -239,7 +239,7 @@ bool Pdu_SetThresholdDlg::sentData()
     } else {
         UdpBDSent::bulid(this)->sent(buf, len);
     }
-    InfoMsgBox box(this, tr("阈值修改失败!"));
+    InfoMsgBox box(this, tr("阈值修改成功!"));
 
     return true;
 }

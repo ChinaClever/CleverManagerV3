@@ -4,6 +4,7 @@
 #include "pdu_line/pdu_linewid.h"
 #include "pdu_env/pdu_envwid.h"
 #include "pdu_list/pdu_listwid.h"
+#include "pdu_set/pdu_setmainwid.h"
 
 namespace Ui {
 class Pdu_MainWid;
@@ -29,6 +30,7 @@ private:
     Pdu_LineWid *mLineWid;
     Pdu_EnvWid *mEnvWid;
     Pdu_OutputWid *mOutputWid;
+    Pdu_SetMainWid *mSetWid;
 };
 
 #endif // PDU_MAINWID_H
