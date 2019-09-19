@@ -1,6 +1,7 @@
 
 INCLUDEPATH += $$PWD
 
+include(json/json.pri)
 include(excel/excel.pri)
 include(chars/chars.pri)
 include(dbcom/dbcom.pri)
@@ -12,6 +13,7 @@ include(logcom/logcom.pri)
 include(elecom/elecom.pri)
 include(tabcom/tabcom.pri)
 include(network/network.pri)
+include(websocket/websocket.pri)
 include(datapacket/datapacket.pri)
 include(backcolour/backcolour.pri)
 

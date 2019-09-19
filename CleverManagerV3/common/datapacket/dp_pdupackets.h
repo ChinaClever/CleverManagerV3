@@ -4,6 +4,7 @@
 #include "datapackets.h"
 #include "dp_pduhrssave.h"
 #include "dbpdudevices.h"
+#include "json_push.h"
 
 class Dp_PduPackets : public DataPackets
 {
@@ -24,10 +25,10 @@ protected slots:
     void pduItemChange(int,int);
 
 private:
-    int mCount;
     DbPduDevices *mDb;
     Dp_PduAlarm *mAlarm;
     Dp_PduHrsSave *mHrs;
+    Json_Push *mPush;
 };
 
 #endif // PDU_DATAPACKETS_H

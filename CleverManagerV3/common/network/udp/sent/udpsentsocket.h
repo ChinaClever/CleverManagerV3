@@ -15,7 +15,7 @@ public:
     ~UdpSentSocket();
 
     bool sentData(const QString &addr,uchar *buf, ushort len, quint16 port=UDP_SENT_PORT);
-    bool sentData(const QString &addr, QByteArray &msg, quint16 port=UDP_SENT_PORT);
+    bool sentData(const QString &addr, const QByteArray &msg, quint16 port=UDP_SENT_PORT);
     bool sentBroadcastData(uchar *buf, ushort len, quint16 port);
     bool sentBroadcastData(QByteArray &msg, quint16 port);
 

@@ -27,7 +27,6 @@ private slots:
     void roomItemChange(int, int);
 
 private:
-    int mCount;
     DbRoomList *mDb;
     Dp_PduPackets *mPdus;
     Dp_CabPackets *mCabs;

@@ -8,8 +8,8 @@
 
 Dp_PduPackets::Dp_PduPackets(QObject *parent) : DataPackets(parent)
 {
-    mCount = 0;
     mDb = DbPduDevices::get();
+    mPush = Json_Push::bulid(this);
     mHrs = Dp_PduHrsSave::bulid(this);
     mAlarm = Dp_PduAlarm::bulid(this);
     connect(mDb,SIGNAL(itemChanged(int,int)),SLOT(pduItemChange(int,int)));
@@ -110,7 +110,7 @@ void Dp_PduPackets::pduItemChange(int id,int type)
 
 void Dp_PduPackets::sendHeartBeat(sDataPacket *pack)
 {
-    if(mCount++ % 5) return;
+    if(pack->count % 5) return;
     if(0 == pack->id) {
         QString ip = pack->ip.ip;
         UdpHeartBeat::bulid(this)->sent(ip);
@@ -127,5 +127,6 @@ void Dp_PduPackets::workDown(sDataPacket *pack)
         mAlarm->alarm(pack);
         mHrs->save(pack);
         tgDevData(pack->data);
+        mPush->push(pack);
     }
 }

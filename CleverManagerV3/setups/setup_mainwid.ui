@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SetUpMainWid</class>
- <widget class="QWidget" name="SetUpMainWid">
+ <class>Setup_MainWid</class>
+ <widget class="QWidget" name="Setup_MainWid">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -40,6 +40,11 @@
       <item>
        <property name="text">
         <string>用户管理</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>数据推送</string>
        </property>
       </item>
       <item>

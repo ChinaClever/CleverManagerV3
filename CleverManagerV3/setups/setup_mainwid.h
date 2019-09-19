@@ -4,18 +4,19 @@
 #include "usermainwid.h"
 #include "dbpdudevices.h"
 #include "up_maindlg.h"
+#include "push/setup_pushwid.h"
 
 namespace Ui {
-class SetUpMainWid;
+class Setup_MainWid;
 }
 
-class SetUpMainWid : public QWidget
+class Setup_MainWid : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SetUpMainWid(QWidget *parent = 0);
-    ~SetUpMainWid();
+    explicit Setup_MainWid(QWidget *parent = 0);
+    ~Setup_MainWid();
 
 protected:
     void initPdusTable();
@@ -36,8 +37,9 @@ private slots:
     void on_priceSPin_valueChanged(double arg1);
 
 private:
-    Ui::SetUpMainWid *ui;
+    Ui::Setup_MainWid *ui;
     UserMainWid *mUserWid;
+    Setup_PushWid *mPush;
     Up_MainDlg *mUpdlg;
 };
 

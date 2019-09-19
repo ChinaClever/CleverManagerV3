@@ -5,7 +5,7 @@
  *      Author: Lzy
  */
 #include "pdu_setuserwid.h"
-#include "ui_setdevusrwid.h"
+#include "ui_pdu_setuserwid.h"
 
 Pdu_SetUserWid::Pdu_SetUserWid(QWidget *parent) :
     QWidget(parent),
