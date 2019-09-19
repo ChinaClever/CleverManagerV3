@@ -36,7 +36,6 @@ void MainWindow::initNetWork()
     NetDataAnalyze::bulid(this);
 }
 
-
 void MainWindow::initWidSLot()
 {
     mTpWid = new Tp_TopologyWid(ui->stackedWid);
