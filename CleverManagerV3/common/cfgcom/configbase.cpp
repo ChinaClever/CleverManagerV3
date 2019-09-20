@@ -154,7 +154,7 @@ int ConfigBase::getUdpPort(int id)
     QString prefix = getPrefix();
     QString str = QString("%1_Udp_port_%2").arg(prefix).arg(id);
     int ret = com_cfg_readInt(str, prefix);
-    if(ret <= 0)  ret = 2346;
+    if(ret <= 0)  ret = 8080;
     return ret;
 }
 
