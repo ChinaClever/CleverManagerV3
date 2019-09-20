@@ -1,7 +1,6 @@
 #ifndef JSON_PUSH_H
 #define JSON_PUSH_H
 #include "json_build.h"
-#include "websocketclient.h"
 
 class Json_Push : public QObject
 {
@@ -18,7 +17,6 @@ protected:
 private:
     Json_Build *mJson;
     sConfigItem *mItem;
-    WebSocketClient *mSocket;
 };
 
 #endif // JSON_PUSH_H

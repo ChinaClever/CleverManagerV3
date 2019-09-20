@@ -6,12 +6,12 @@
  */
 #include "json_push.h"
 #include "udp/sent/udpsentsocket.h"
+#include "websocket/websocketclient.h"
 
 Json_Push::Json_Push(QObject *parent) : QObject(parent)
 {
     mJson = Json_Build::bulid();
     mItem = ConfigBase::bulid()->item;
-    mSocket = WebSocketClient::bulid(this);
 }
 
 Json_Push *Json_Push::bulid(QObject *parent)
@@ -42,7 +42,8 @@ void Json_Push::wsPush(QString &str)
 {
     sConfigItem *item = ConfigBase::bulid()->item;
     if(item->wsEn && item->wsUrl.size()) {
-        mSocket->send(item->wsUrl, item->wsPort, str);
+        WebSocketClient *socket = WebSocketClient::bulid(this);
+        socket->send(item->wsUrl, item->wsPort, str);
     }
 }
 

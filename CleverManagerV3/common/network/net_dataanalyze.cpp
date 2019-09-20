@@ -12,11 +12,14 @@
  *      Author: Lzy
  */
 #include "net_dataanalyze.h"
+#include "websocket/websocketclient.h"
 
 NetDataAnalyze::NetDataAnalyze(QObject *parent) : QThread(parent)
 {
     isRun = true;
     UdpHeartBeat::bulid(this); //初始化心跳包
+    WebSocketClient::bulid(this);
+
     mDataQue = UdpDataQueue::bulid();
     mSocketList = UdpSocketList::bulid(this); //初始化套接字
     mNetAnalytic = NetAnalyticData::bulid();
