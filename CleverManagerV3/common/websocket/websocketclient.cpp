@@ -24,14 +24,7 @@ WebSocketClient *WebSocketClient::bulid(QObject *parent)
 
 QString WebSocketClient::getUrl(const QString &url, int port)
 {
-    QString host = "ws://";
-    if(url.contains(host)) {
-        host = url;
-    } else {
-        host += url;
-    }
-    host +=  ":" + QString::number(port);
-
+    QString host = url + ":" + QString::number(port);
     return host;
 }
 

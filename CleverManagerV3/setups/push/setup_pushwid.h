@@ -18,12 +18,13 @@ public:
 
 protected:
     void initWid();
+    bool checkWsUrl();
+    bool checkUdpUrl(int id);
 
 private slots:
     void on_btn_clicked();    
     void on_udpBtn_1_clicked();
     void on_udpBtn_2_clicked();
-
     void on_wsBtn_clicked();
 
 private:

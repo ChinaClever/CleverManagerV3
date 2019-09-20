@@ -12,7 +12,7 @@
  *      Author: Lzy
  */
 #include "net_dataanalyze.h"
-#include "websocket/websocketclient.h"
+#include "websocketclient.h"
 
 NetDataAnalyze::NetDataAnalyze(QObject *parent) : QThread(parent)
 {

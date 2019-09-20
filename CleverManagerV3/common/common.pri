@@ -13,6 +13,7 @@ include(logcom/logcom.pri)
 include(elecom/elecom.pri)
 include(tabcom/tabcom.pri)
 include(network/network.pri)
+include(websocket/websocket.pri)
 include(datapacket/datapacket.pri)
 include(backcolour/backcolour.pri)
 

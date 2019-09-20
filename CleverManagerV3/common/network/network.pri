@@ -18,8 +18,7 @@ HEADERS += \
     $$PWD/net_pack/net_dataformat.h \
     $$PWD/net_pack/net_analyzedata.h \
     $$PWD/net_pack/net_packdata.h \
-    $$PWD/net_dataanalyze.h \
-    $$PWD/websocket/websocketclient.h
+    $$PWD/net_dataanalyze.h
 
 	
 SOURCES += \
@@ -36,8 +35,7 @@ SOURCES += \
     $$PWD/net_data/net_devdata.cpp \
     $$PWD/net_pack/net_analyzedata.cpp \
     $$PWD/net_pack/net_packdata.cpp \
-    $$PWD/net_dataanalyze.cpp \
-    $$PWD/websocket/websocketclient.cpp
+    $$PWD/net_dataanalyze.cpp
 
 FORMS += \
 
