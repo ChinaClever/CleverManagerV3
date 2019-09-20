@@ -1,3 +1,8 @@
+/*
+ *
+ *  Created on: 2019年10月1日
+ *      Author: Lzy
+ */
 #include "setup_pushwid.h"
 #include "ui_setup_pushwid.h"
 #include "configbase.h"
@@ -136,7 +141,6 @@ bool Setup_PushWid::checkWsUrl()
             ret = false;
             WaringMsgBox box(this, tr("地址输入有误，请重新输入!"));
         }
-
     } else {
         ret = true;
     }
