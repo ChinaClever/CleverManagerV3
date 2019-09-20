@@ -3,6 +3,7 @@
 
 #include <QWidget>
 
+
 namespace Ui {
 class Setup_PushWid;
 }
@@ -15,8 +16,18 @@ public:
     explicit Setup_PushWid(QWidget *parent = 0);
     ~Setup_PushWid();
 
+protected:
+    void initWid();
+
+private slots:
+    void on_btn_clicked();    
+    void on_udpBtn_1_clicked();
+    void on_udpBtn_2_clicked();
+
+    void on_wsBtn_clicked();
+
 private:
-    Ui::Setup_PushWid *ui;
+    Ui::Setup_PushWid *ui;    
 };
 
 #endif // SETUP_PUSHWID_H
