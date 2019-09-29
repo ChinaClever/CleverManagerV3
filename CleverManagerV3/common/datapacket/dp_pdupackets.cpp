@@ -128,11 +128,9 @@ void Dp_PduPackets::pushData(sDataPacket *pack)
 
 void Dp_PduPackets::workDown(sDataPacket *pack)
 {
-
     sendHeartBeat(pack);
     if(pack->offLine > 0) {
         pack->offLine--;
-
         mAlarm->alarm(pack);
         mHrs->save(pack);
         tgDevData(pack->data);
