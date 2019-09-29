@@ -17,9 +17,7 @@ protected:
     virtual void pduInfo(sDataPacket *packet, QJsonObject &json);
 
     int objData(const QString &str, sObjData &ObjData, QJsonObject &obj);
-
-    void thresholdItem(const QString &str, sDataUnit &unit, double rate, QJsonObject &obj);
-    void thresholds(sDevData *devData, QJsonObject &json);
+    void thresholdItem(const QString &str, int i, sDataUnit &unit, double rate, QJsonObject &obj);
 
     void envItem(const QString &str, sDataUnit &unit, double rate, QJsonObject &json);
     void envs(sEnvData &ObjData, QJsonObject &json);

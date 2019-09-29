@@ -84,6 +84,22 @@ void Json_Build::pduInfo(sDataPacket *packet, QJsonObject &json)
     json.insert("pdu_info", QJsonValue(obj));
 }
 
+
+
+void Json_Build::thresholdItem(const QString &str,int i, sDataUnit &unit, double rate, QJsonObject &json)
+{
+    sConfigItem *item = ConfigBase::bulid()->item;
+    if(item->thresholdEn) {
+        json.insert(str+"_min", unit.min[i] / rate);
+        json.insert(str+"_max", unit.max[i] / rate);
+
+        if(unit.crMax[i]) {
+            json.insert(str+"_cr_max", unit.crMax[i] / rate);
+            json.insert(str+"_cr_min", unit.crMin[i] / rate);
+        }
+    }
+}
+
 int Json_Build::objData(const QString &str, sObjData &ObjData, QJsonObject &obj)
 {
     QJsonArray jsonArray;
@@ -95,10 +111,16 @@ int Json_Build::objData(const QString &str, sObjData &ObjData, QJsonObject &obj)
         subObj.insert("name", ObjData.name[i]);
 
         int value = ObjData.vol.value[i];
-        if(value > 0) subObj.insert("vol", value / COM_RATE_VOL);
+        if(value > 0) {
+            subObj.insert("vol", value / COM_RATE_VOL);
+            thresholdItem("vol", i, ObjData.vol, COM_RATE_VOL, subObj);
+        }
 
         value = ObjData.cur.value[i];
-        if(value >= 0) subObj.insert("cur", value / COM_RATE_CUR);
+        if(value >= 0) {
+            subObj.insert("cur", value / COM_RATE_CUR);
+            thresholdItem("cur", i, ObjData.cur, COM_RATE_CUR, subObj);
+        }
 
         value = ObjData.pow[i];
         if(value >= 0) subObj.insert("pow", value / COM_RATE_POW);
@@ -120,41 +142,6 @@ int Json_Build::objData(const QString &str, sObjData &ObjData, QJsonObject &obj)
 }
 
 
-void Json_Build::thresholdItem(const QString &str,sDataUnit &unit, double rate, QJsonObject &obj)
-{
-    QJsonArray jsonArray;
-    for(int i=0; i<unit.size; ++i)
-    {
-        QJsonObject json;
-        json.insert("id",  i+1);
-        json.insert("name", QString(str+" %1").arg(i+1));
-        json.insert("min", unit.min[i] / rate);
-        json.insert("max", unit.max[i] / rate);
-
-        if(unit.crMax[i]) {
-            json.insert("cr_max", unit.crMax[i] / rate);
-            json.insert("cr_min", unit.crMin[i] / rate);
-        }
-        jsonArray.append(json);
-    }
-    if(unit.size) obj.insert(QString("%1_threshold_items").arg(str), QJsonValue(jsonArray));
-}
-
-
-void Json_Build::thresholds(sDevData *devData, QJsonObject &json)
-{
-    QJsonObject obj;
-
-    thresholdItem("line_vol", devData->line.vol, COM_RATE_VOL, obj);
-    thresholdItem("line_cur", devData->line.cur, COM_RATE_CUR, obj);
-
-    thresholdItem("loop_vol", devData->loop.vol, COM_RATE_VOL, obj);
-    thresholdItem("loop_cur", devData->loop.cur, COM_RATE_CUR, obj);
-
-    thresholdItem("output_cur", devData->output.cur, COM_RATE_CUR, obj);
-    json.insert("threshold_item_list", QJsonValue(obj));
-}
-
 void Json_Build::envItem(const QString &str, sDataUnit &unit, double rate, QJsonObject &obj)
 {
     QJsonArray jsonArray;
@@ -163,8 +150,7 @@ void Json_Build::envItem(const QString &str, sDataUnit &unit, double rate, QJson
         json.insert("id",  i+1);
         json.insert("name",  QString(str+" %1").arg(i+1));
         json.insert("status", unit.value[i] / rate);
-        json.insert("min", unit.min[i] / rate);
-        json.insert("max", unit.max[i] / rate);
+        thresholdItem(str, i, unit, rate, json);
         jsonArray.append(json);
     }
     if(unit.size) obj.insert(QString("%1_items").arg(str), QJsonValue(jsonArray));
@@ -201,10 +187,6 @@ void Json_Build::devData(sDataPacket *packet, QJsonObject &obj)
     objData("output", devData->output, obj);
 
     sConfigItem *item = ConfigBase::bulid()->item;
-    if(item->thresholdEn) {
-        thresholds(devData, obj);
-    }
-
     if(item->envEn) {
         envs(devData->env, obj);
     }
