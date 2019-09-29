@@ -110,7 +110,7 @@ void Dp_PduPackets::pduItemChange(int id,int type)
 
 void Dp_PduPackets::sendHeartBeat(sDataPacket *pack)
 {
-    if(pack->count % 5) return;
+    if(pack->count%5) return;
     if(0 == pack->id) {
         QString ip = pack->ip.ip;
         UdpHeartBeat::bulid(this)->sent(ip);
