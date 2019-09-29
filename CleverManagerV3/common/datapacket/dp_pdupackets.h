@@ -18,6 +18,7 @@ protected:
     void initPacket(PduDeviceItem &it);
     void workDown(sDataPacket *pack);
     void sendHeartBeat(sDataPacket *pack);
+    void pushData(sDataPacket *pack);
     sDataPacket *newDataPacket();
     int getDevNum(const QString &dev_num);
 

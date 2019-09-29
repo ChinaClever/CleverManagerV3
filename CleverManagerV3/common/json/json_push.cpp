@@ -58,7 +58,7 @@ bool Json_Push::check(int count)
     return ret;
 }
 
-void Json_Push::push(sDataPacket *packet)
+bool Json_Push::push(sDataPacket *packet)
 {
     bool ret = check(packet->count);
     if(ret) {
@@ -71,4 +71,5 @@ void Json_Push::push(sDataPacket *packet)
             wsPush(str);
         }
     }
+    return ret;
 }

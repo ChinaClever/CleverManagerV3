@@ -8,7 +8,7 @@ class Json_Push : public QObject
     Json_Push(QObject *parent = nullptr);
 public:
     static Json_Push *bulid(QObject *parent = nullptr);
-    void push(sDataPacket *packet);
+    bool push(sDataPacket *packet);
 
 protected:
     void udpPush(QString &str);
