@@ -157,6 +157,11 @@
     </item>
     <item>
      <property name="text">
+      <string>SI-PDU</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>MPDU</string>
      </property>
     </item>
@@ -240,6 +245,11 @@
     <item>
      <property name="text">
       <string>IP-PDU</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SI-PDU</string>
      </property>
     </item>
     <item>
