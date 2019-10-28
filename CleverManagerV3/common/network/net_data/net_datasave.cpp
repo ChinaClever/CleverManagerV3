@@ -153,7 +153,7 @@ void Net_DataSave::dataFun(sDataPacket *dev,Net_sDevData *data)
         break;
 
     case PDU_CMD_DEVNET: // 设备网络信息
-        iPAddr(dev->ip,data);
+        iPAddr(dev->net,data);
         break;
 
     case PDU_CMD_OUTPUT_NAME: // 输出位名称
@@ -189,7 +189,7 @@ void Net_DataSave::dataSave(Net_sPacket *packet)
             {
                 dev->devType = devType; //设备型号
                 dev->id = packet->data->addr; // 设备地址
-                dev->ip.ip = packet->ip; //设备IP
+                dev->net.ip = packet->ip; //设备IP
                 dev->txType = NET_UDP_TYPE;
                 dev->offLine = PDU_OFF_LINE_TIME; // + get_pdu_lineNum(); //设备在线标识
                 if(dev->offLine > 10*60) dev->offLine = 600;

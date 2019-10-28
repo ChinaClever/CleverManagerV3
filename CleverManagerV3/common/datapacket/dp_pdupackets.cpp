@@ -82,7 +82,7 @@ void Dp_PduPackets::initPacket(PduDeviceItem &it)
         pack->room = it.room;
         pack->cab = it.cab;
         pack->road = it.road;
-        pack->ip.ip = it.ip;
+        pack->net.ip = it.ip;
         pack->dev_num = it.dev_num;
         pack->dev_type = it.dev_type;
         pack->id = getDevNum(it.dev_num);
@@ -112,9 +112,9 @@ void Dp_PduPackets::sendHeartBeat(sDataPacket *pack)
 {
     if(pack->count%5) return;
 
-//    if(0 == pack->id)
+    if((0 == pack->id) || (pack->dev_type == "SI_PDU"))
     {
-        QString ip = pack->ip.ip;
+        QString ip = pack->net.ip;
         UdpHeartBeat::bulid(this)->sent(ip);
         msleep(1+rand()%3);
     }
@@ -130,7 +130,7 @@ void Dp_PduPackets::pushData(sDataPacket *pack)
 
 void Dp_PduPackets::workDown(sDataPacket *pack)
 {
-    qDebug() << pack->ip.ip << pack->dev_num << pack->id;
+    qDebug() << pack->net.ip << pack->dev_num << pack->id;
 
     sendHeartBeat(pack);
     if(pack->offLine > 0) {

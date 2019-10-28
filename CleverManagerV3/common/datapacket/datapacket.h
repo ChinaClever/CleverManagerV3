@@ -163,7 +163,7 @@ struct sDataPacket
     QString room,modular,cab, road;
     QString versionStr;
 
-    sIpAddr ip; //设备IP
+    sIpAddr net; //设备IP
     sDevData data; //设备数据
     sRtuCount rtuCount; // 传输情况
 

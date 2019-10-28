@@ -55,14 +55,14 @@ int Pdu_ListWid::getDevList(QTreeWidgetItem *item, sCabPacket *cap)
         sDataPacket *p = cap->m;
         if(p) {
             if(p->en) {
-                list << tr("主路") + QString(": %1: %2").arg(p->ip.ip).arg(p->dev_num) ;
+                list << tr("主路") + QString(": %1: %2").arg(p->net.ip).arg(p->dev_num) ;
             }
         }
 
         p = cap->s;
         if(p) {
             if(p->en) {
-                list << tr("备路") + QString(": %1: %2").arg(p->ip.ip).arg(p->dev_num) ;
+                list << tr("备路") + QString(": %1: %2").arg(p->net.ip).arg(p->dev_num) ;
             }
         }
 

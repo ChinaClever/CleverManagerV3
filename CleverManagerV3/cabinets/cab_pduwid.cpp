@@ -49,7 +49,7 @@ void Cab_PduWid::timeoutDone()
     if(mPacket) {
         updateLine(mPacket);
         updateOutput(mPacket);
-        setIpAddr(mPacket->ip.ip, mPacket->dev_num);
+        setIpAddr(mPacket->net.ip, mPacket->dev_num);
     }
 }
 

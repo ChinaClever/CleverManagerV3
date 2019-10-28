@@ -35,7 +35,7 @@ sDbPduHrsItem Dp_PduHrsSave::initItem()
     item.cab = mPack->cab;
     item.road = mPack->road;
     item.dev_type = mPack->dev_type;
-    item.ip = mPack->ip.ip;
+    item.ip = mPack->net.ip;
     item.dev_num = mPack->dev_num;
 
     return item;

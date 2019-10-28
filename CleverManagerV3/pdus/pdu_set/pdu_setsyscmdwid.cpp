@@ -53,7 +53,7 @@ bool Pdu_SetSysCmdWid::sentData(Net_sDevData &pkt)
     NetPackData *pack = NetPackData::bulid();
     int len = pack->net_data_packets(mPacket->devType, &pkt, buf);
     if(on) {
-        QString ip = mPacket->ip.ip;
+        QString ip = mPacket->net.ip;
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
     } else {
         UdpBDSent::bulid(this)->sent(buf, len);
@@ -116,7 +116,7 @@ void Pdu_SetSysCmdWid::saveLog()
     sUserLogItem log;
     log.remarks = tr("设备维护");
 
-    QString str = tr("设备IP：%1 ").arg(mPacket->ip.ip);
+    QString str = tr("设备IP：%1 ").arg(mPacket->net.ip);
     bool ret = ui->defaultCheckBox->isChecked();
     if(ret) str += tr("设备恢复出厂设置 ");
 

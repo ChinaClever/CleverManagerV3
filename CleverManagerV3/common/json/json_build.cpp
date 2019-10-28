@@ -74,7 +74,7 @@ void Json_Build::uutInfo(sDataPacket *packet, QJsonObject &json)
 void Json_Build::pduInfo(sDataPacket *packet, QJsonObject &json)
 {
     QJsonObject obj;
-    obj.insert("pdu_ip",  packet->ip.ip);
+    obj.insert("pdu_ip",  packet->net.ip);
     obj.insert("pdu_num", packet->dev_num); //
 
     obj.insert("pdu_type", packet->dev_type);
@@ -192,7 +192,7 @@ void Json_Build::devData(sDataPacket *packet, QJsonObject &obj)
     }
 
     if(item->netAddrEn) {
-        netAddr(packet->ip, obj);
+        netAddr(packet->net, obj);
     }
 
     for(int i=0; i<6; ++i)  {
