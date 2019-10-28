@@ -1,11 +1,11 @@
-/*
+﻿/*
  * setdevusrwid.cpp
  *
  *  Created on: 2016年10月11日
  *      Author: Lzy
  */
 #include "pdu_setuserwid.h"
-#include "ui_setdevusrwid.h"
+#include "ui_pdu_setuserwid.h"
 
 Pdu_SetUserWid::Pdu_SetUserWid(QWidget *parent) :
     QWidget(parent),

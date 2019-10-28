@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -11,7 +11,7 @@ NavBarWid::NavBarWid(QWidget *parent) :
     ui(new Ui::NavBarWid)
 {
     ui->setupUi(this);
-    set_background_icon(this,":/image/title_back.jpg");
+    //set_background_icon(this,":/image/title_back.jpg");
 }
 
 NavBarWid::~NavBarWid()
