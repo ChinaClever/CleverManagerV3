@@ -1,4 +1,4 @@
-/*
+﻿/*
  * setdevusrwid.cpp
  *
  *  Created on: 2016年10月11日
