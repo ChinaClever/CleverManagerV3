@@ -21,9 +21,10 @@ public:
     int Exec() {return this->exec();}
     virtual bool inputCheck();
 
-private slots:
+protected slots:
     void on_quitBtn_clicked();
     void on_okBtn_clicked();
+    virtual void on_devnumCmb_currentIndexChanged(int index);
 
 protected:
     Ui::Log_PduAlarmQueryDlg *ui;

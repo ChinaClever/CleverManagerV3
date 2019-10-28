@@ -14,6 +14,10 @@ Log_PduAlarmQueryDlg::Log_PduAlarmQueryDlg(QWidget *parent) :
     this->setWindowTitle(tr("查询对话框"));
     groupBox_background_icon(this);
     mDateBar = new SqlDateBar(ui->dateWid);
+
+    on_devnumCmb_currentIndexChanged(0);
+    connect(ui->devnumCmb, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(on_devnumCmb_currentIndexChanged(int)));
 }
 
 Log_PduAlarmQueryDlg::~Log_PduAlarmQueryDlg()
@@ -33,6 +37,9 @@ QString Log_PduAlarmQueryDlg::getCmd()
     int ret = ui->devtypeCmb->currentIndex();
     if(ret) {
         str = ui->devtypeCmb->currentText();
+        if(ret > 1) {
+            str += QString::number(ui->spinBox->value());
+        }
         cmd += QString(" and dev_type like '%%1%'").arg(str);
     }
 
@@ -74,4 +81,14 @@ void Log_PduAlarmQueryDlg::on_okBtn_clicked()
     if(inputCheck()) {
         this->accept();
     }
+}
+
+
+void Log_PduAlarmQueryDlg::on_devnumCmb_currentIndexChanged(int index)
+{
+    bool en = true;
+    if(index > 1) {
+        en = false;
+    }
+    ui->spinBox->setHidden(en);
 }

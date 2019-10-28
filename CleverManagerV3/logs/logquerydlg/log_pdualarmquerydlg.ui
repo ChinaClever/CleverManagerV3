@@ -220,7 +220,7 @@
     <rect>
      <x>150</x>
      <y>390</y>
-     <width>191</width>
+     <width>101</width>
      <height>31</height>
     </rect>
    </property>
@@ -236,49 +236,22 @@
    </item>
    <item>
     <property name="text">
-     <string>副机1</string>
+     <string>副机</string>
     </property>
    </item>
-   <item>
-    <property name="text">
-     <string>副机2</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>副机3</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>副机4</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>副机5</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>副机6</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>副机7</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>副机8</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>副机9</string>
-    </property>
-   </item>
+  </widget>
+  <widget class="QSpinBox" name="spinBox">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>400</y>
+     <width>71</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
   </widget>
  </widget>
  <resources/>
