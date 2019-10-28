@@ -11,7 +11,6 @@ HEADERS += \
     $$PWD/dp_pdupackets.h \
     $$PWD/dp_cabpackets.h \
     $$PWD/dp_cabhrssave.h \
-    $$PWD/dp_basichash.h \
     $$PWD/dp_basicthread.h \
     $$PWD/dp_roomhrssave.h \
     $$PWD/dp_roompackets.h \

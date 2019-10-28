@@ -18,6 +18,7 @@ protected:
             static QReadWriteLock lock;
             QWriteLocker locker(&lock);
             if(isRun) workDown();
+            //qDebug() << mHash.size() <<mHash.keys();
         }
     }
 

@@ -289,6 +289,7 @@ void Pdu_LineWid::packetSlot(sDataPacket *p)
 {
     mPacket = p;
     mLine = 0;
+
     timeoutDone();
 //    mGraph->packetSlot(p, mLine);
 }
