@@ -21,6 +21,7 @@
 #define COM_RATE_TEM	10.0    // 温度
 #define COM_RATE_HUM	10.0    // 湿度
 
+#define PDU_TYPE_SI_PDU     0x01000101
 #define PDU_TYPE_IP_PDU     0x01010101
 #define PDU_TYPE_M_PDU      0x01020101
 #define PDU_TYPE_NPM_PDU    0x01030101

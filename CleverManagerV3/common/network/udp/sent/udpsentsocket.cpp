@@ -46,7 +46,7 @@ bool UdpSentSocket::sentData(const QString &addr, uchar *buf, ushort len, quint1
  * @param msg 数据内容
  * @return true
  */
-bool UdpSentSocket::sentData(const QString &addr, QByteArray &msg, quint16 port)
+bool UdpSentSocket::sentData(const QString &addr, const QByteArray &msg, quint16 port)
 {
     bool ret = true;
     QHostAddress host(addr);

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>733</width>
+    <width>785</width>
     <height>228</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>721</width>
+     <width>781</width>
      <height>176</height>
     </rect>
    </property>
@@ -157,6 +157,11 @@
     </item>
     <item>
      <property name="text">
+      <string>SI-PDU</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>MPDU</string>
      </property>
     </item>
@@ -244,6 +249,11 @@
     </item>
     <item>
      <property name="text">
+      <string>SI-PDU</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>MPDU</string>
      </property>
     </item>
@@ -314,13 +324,45 @@
      <string>额定功率：</string>
     </property>
    </widget>
+   <widget class="QSpinBox" name="spinBox_1">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>90</y>
+      <width>46</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>130</y>
+      <width>46</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+   </widget>
    <widget class="QComboBox" name="comboBox_1">
     <property name="geometry">
      <rect>
       <x>610</x>
       <y>90</y>
-      <width>98</width>
-      <height>33</height>
+      <width>87</width>
+      <height>21</height>
      </rect>
     </property>
     <item>
@@ -330,22 +372,7 @@
     </item>
     <item>
      <property name="text">
-      <string>副机1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>副机2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>副机3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>副机4</string>
+      <string>副机</string>
      </property>
     </item>
    </widget>
@@ -354,8 +381,8 @@
      <rect>
       <x>610</x>
       <y>130</y>
-      <width>98</width>
-      <height>33</height>
+      <width>87</width>
+      <height>21</height>
      </rect>
     </property>
     <item>
@@ -365,22 +392,7 @@
     </item>
     <item>
      <property name="text">
-      <string>副机1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>副机2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>副机3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>副机4</string>
+      <string>副机</string>
      </property>
     </item>
    </widget>
@@ -439,6 +451,19 @@
    </property>
    <property name="text">
     <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_deputyDescribe">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>190</y>
+     <width>411</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>副机（0代表：主机，1-9代表：副机序号）</string>
    </property>
   </widget>
  </widget>

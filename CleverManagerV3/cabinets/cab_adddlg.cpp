@@ -22,6 +22,17 @@ Cab_AddDlg::~Cab_AddDlg()
     delete ui;
 }
 
+int Cab_AddDlg::getDevNum(const QString &str)
+{
+    int ret = 0;
+    QString dev_num = str;
+    dev_num.remove(0, 2);
+    if(dev_num.size()) {
+        ret = dev_num.toInt();
+    }
+    return ret;
+}
+
 void Cab_AddDlg::init(CabinetItem &item)
 {
     ui->cabEdit->setText(item.cab);
@@ -31,12 +42,26 @@ void Cab_AddDlg::init(CabinetItem &item)
     ui->heightSpin->setValue(item.height);
 
     if(!item.main_ip.isEmpty()) {
-        ui->comboBox_1->setCurrentText(item.main_num);
+        int num = getDevNum(item.main_num);
+        if(num) {
+            ui->spinBox_1->setValue(num);
+            ui->comboBox_1->setCurrentIndex(1);
+        } else {
+            ui->comboBox_1->setCurrentIndex(0);
+        }
+        on_comboBox_1_currentIndexChanged(num);
         ui->typeCb_1->setCurrentText(item.main_type);
     }
 
     if(!item.spare_ip.isEmpty()) {
-        ui->comboBox_2->setCurrentText(item.spare_num);
+        int num = getDevNum(item.spare_num);
+        if(num) {
+            ui->spinBox_2->setValue(num);
+            ui->comboBox_2->setCurrentIndex(1);
+        } else {
+            ui->comboBox_2->setCurrentIndex(0);
+        }
+        on_comboBox_2_currentIndexChanged(num);
         ui->typeCb_2->setCurrentText(item.spare_type);
     }
     m_item = item;
@@ -91,13 +116,23 @@ void Cab_AddDlg::getInput()
     m_item.cab = ui->cabEdit->text();
     m_item.main_ip = ui->ipEdit_1->text();
     if(!m_item.main_ip.isEmpty()) {
-        m_item.main_num = ui->comboBox_1->currentText();
+        QString str = tr("主机");
+        if(ui->comboBox_1->currentIndex()) {
+             str = ui->comboBox_1->currentText();
+             str += QString::number(ui->spinBox_1->value());
+        }
+        m_item.main_num = str;
         m_item.main_type = ui->typeCb_1->currentText();
     }
 
     m_item.spare_ip = ui->ipEdit_2->text();
     if(!m_item.spare_ip.isEmpty()) {
-        m_item.spare_num = ui->comboBox_2->currentText();
+        QString str = tr("主机");
+        if(ui->comboBox_2->currentIndex()) {
+             str = ui->comboBox_2->currentText();
+             str += QString::number(ui->spinBox_2->value());
+        }
+         m_item.spare_num = str;
         m_item.spare_type = ui->typeCb_2->currentText();
     }
 
@@ -162,4 +197,23 @@ void Cab_ModifyDlg::save()
     log.remarks = tr("机房%1 ：").arg(m_item.room);
     log.remarks += tr("修改机柜:%1").arg(m_item.cab);
     DbUserLog::bulid()->insertItem(log);
+}
+
+
+void Cab_AddDlg::on_comboBox_1_currentIndexChanged(int index)
+{
+    bool en = true;
+    if(index) {
+        en = false;
+    }
+    ui->spinBox_1->setHidden(en);
+}
+
+void Cab_AddDlg::on_comboBox_2_currentIndexChanged(int index)
+{
+    bool en = true;
+    if(index) {
+        en = false;
+    }
+    ui->spinBox_2->setHidden(en);
 }

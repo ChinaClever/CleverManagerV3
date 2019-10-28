@@ -50,7 +50,7 @@ void MainWindow::initWidSLot()
     mRoom = new Room_MainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mRoom);
 
-    mSetup = new SetUpMainWid(ui->stackedWid);
+    mSetup = new Setup_MainWid(ui->stackedWid);
     ui->stackedWid->addWidget(mSetup);
 
     mCab = new Cab_MainWid(ui->stackedWid);

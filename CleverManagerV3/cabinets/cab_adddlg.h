@@ -28,14 +28,18 @@ protected:
     bool checkInput();
     virtual bool nameCheck(const QString &name);
     void getInput();
+    int getDevNum(const QString &str);
 
 protected slots:
     void on_quitBtn_clicked();
     virtual void on_okBtn_clicked();
+    void on_comboBox_1_currentIndexChanged(int index);
+    void on_comboBox_2_currentIndexChanged(int index);
 
 protected:
     Ui::Cab_AddDlg *ui;
     CabinetItem m_item;
+
 };
 
 class Cab_ModifyDlg : public Cab_AddDlg

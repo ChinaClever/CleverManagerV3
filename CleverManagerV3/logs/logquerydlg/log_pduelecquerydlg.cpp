@@ -17,7 +17,6 @@ bool Log_PduElecQueryDlg::inputCheck()
 {
     bool ret = false;
 
-
     QString msg, ip = ui->ipEdit->text();
     if(!ip.isEmpty()) {
         ret = cm_isIPaddress(ip);
@@ -66,6 +65,9 @@ QStringList Log_PduElecQueryDlg::getCmds()
     cmd += QString(" and ip like '%%1%'").arg(str);
 
     str = ui->devnumCmb->currentText();
+    if(ui->devnumCmb->currentIndex()) {
+         str += QString::number(ui->spinBox->value());
+    }
     cmd += QString(" and dev_num like '%%1%'").arg(str);
 
     QStringList list, items = getItems();
@@ -83,4 +85,14 @@ QString Log_PduElecQueryDlg::getCmd()
     DbPduElec::bulid()->elec(list);
 
     return "";
+}
+
+
+void Log_PduElecQueryDlg::on_devnumCmb_currentIndexChanged(int index)
+{
+    bool en = true;
+    if(index) {
+        en = false;
+    }
+    ui->spinBox->setHidden(en);
 }

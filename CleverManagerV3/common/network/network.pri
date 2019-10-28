@@ -1,4 +1,5 @@
 QT      += network
+QT      += websockets
 
 INCLUDEPATH += $$PWD
 

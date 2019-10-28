@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "navbarwid.h"
-#include "setupmainwid.h"
+#include "setup_mainwid.h"
 #include "logmainwid.h"
 #include "pdu_mainwid.h"
 #include "room_mainwid.h"
@@ -34,7 +34,7 @@ protected slots:
 private:
     Ui::MainWindow *ui;
     NavBarWid *mNavBar;
-    SetUpMainWid *mSetup;
+    Setup_MainWid *mSetup;
     LogMainWid *mLog;
     UserMainWid *mUserWid;
     Pdu_MainWid *mPduWid;

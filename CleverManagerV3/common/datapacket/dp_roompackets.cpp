@@ -7,7 +7,6 @@
 
 Dp_RoomPackets::Dp_RoomPackets(QObject *parent) : Dp_BasicThread(parent)
 {
-    mCount = 0;
     mDb = DbRoomList::get();
     mPdus = Dp_PduPackets::bulid(this);
     mCabs = Dp_CabPackets::bulid(this);
@@ -136,7 +135,7 @@ void Dp_RoomPackets::tgRoomData(sRoomPacket *room)
 
 void Dp_RoomPackets::workDown(sRoomPacket *pack)
 {
-    if(mCount++ % 4 == 0) {
+    if(pack->count % 4 == 0) {
         tgRoomData(pack);
         mRoomHrs->save(pack);
     }

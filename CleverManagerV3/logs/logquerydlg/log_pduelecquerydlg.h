@@ -19,6 +19,9 @@ protected:
     bool inputCheck();
     QStringList getItems();
     QStringList getCmds();
+
+protected slots:
+    void on_devnumCmb_currentIndexChanged(int index);
 };
 
 #endif // LOG_PDUELECQUERYDLG_H
