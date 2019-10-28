@@ -111,7 +111,9 @@ void Dp_PduPackets::pduItemChange(int id,int type)
 void Dp_PduPackets::sendHeartBeat(sDataPacket *pack)
 {
     if(pack->count%5) return;
-    if(0 == pack->id) {
+
+//    if(0 == pack->id)
+    {
         QString ip = pack->ip.ip;
         UdpHeartBeat::bulid(this)->sent(ip);
         msleep(1+rand()%3);
@@ -128,6 +130,8 @@ void Dp_PduPackets::pushData(sDataPacket *pack)
 
 void Dp_PduPackets::workDown(sDataPacket *pack)
 {
+    qDebug() << pack->ip.ip << pack->dev_num << pack->id;
+
     sendHeartBeat(pack);
     if(pack->offLine > 0) {
         pack->offLine--;

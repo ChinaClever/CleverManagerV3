@@ -195,13 +195,8 @@ void Net_DataSave::dataSave(Net_sPacket *packet)
                 if(dev->offLine > 10*60) dev->offLine = 600;
 
                 dataFun(dev, packet->data); //功能预处理
-            }
-            else
-                qDebug() << "NET DATA VERSION err";
-        }
-        else
-            qDebug() << "get pdu dev Code err";
-    }
-    else
-        qDebug() << "pdu netData check err";
+
+            } else qDebug() << "NET DATA VERSION err";
+        } else qDebug() << "get pdu dev Code err";
+    } else  qDebug() << "pdu netData check err";
 }
