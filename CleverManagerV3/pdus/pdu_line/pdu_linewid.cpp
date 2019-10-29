@@ -101,7 +101,7 @@ void Pdu_LineWid::initLineName()
 void Pdu_LineWid::dsyDevInfo()
 {
     ui->typeLab->setText(mPacket->dev_type);
-    QString str = mPacket->ip.ip +"  " + mPacket->dev_num;
+    QString str = mPacket->net.ip +"  " + mPacket->dev_num;
     ui->ipLab->setText(str);
 
     ui->nameLab->setText(mPacket->name);
@@ -289,6 +289,7 @@ void Pdu_LineWid::packetSlot(sDataPacket *p)
 {
     mPacket = p;
     mLine = 0;
+
     timeoutDone();
 //    mGraph->packetSlot(p, mLine);
 }
@@ -304,8 +305,8 @@ void Pdu_LineWid::on_comboBox_currentIndexChanged(int index)
 void Pdu_LineWid::on_webBtn_clicked()
 {    
     if(mPacket) {
-        if(!mPacket->ip.ip.isEmpty()) {
-            QString addr = "http://"+mPacket->ip.ip+"/";
+        if(!mPacket->net.ip.isEmpty()) {
+            QString addr = "http://"+mPacket->net.ip+"/";
             QDesktopServices::openUrl(QUrl(addr)); // 打开浏览器
         }
     }

@@ -116,7 +116,7 @@ void Pdu_SetOutputDlg::saveLog()
     sUserLogItem log;
     log.remarks = tr("单元阈值修改：");
 
-    QString str = tr("设备IP：") + mPacket->ip.ip;
+    QString str = tr("设备IP：") + mPacket->net.ip;
     int num = mPacket->id;
     if(num) str += tr(" 副机:%1").arg(QString::number(num));
 
@@ -197,7 +197,7 @@ bool Pdu_SetOutputDlg::sentData()
     NetPackData *pack = NetPackData::bulid();
     int len = pack->net_data_packets(mPacket->devType, &pkt, buf);
     if(on) {
-        QString ip = mPacket->ip.ip;
+        QString ip = mPacket->net.ip;
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
     } else {
         UdpBDSent::bulid(this)->sent(buf, len);

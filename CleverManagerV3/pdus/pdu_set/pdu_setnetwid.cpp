@@ -43,7 +43,7 @@ void Pdu_SetNetWid::setMode(char mode)
  */
 void Pdu_SetNetWid::initWidget()
 {
-    sIpAddr *net = &(mPacket->ip);
+    sIpAddr *net = &(mPacket->net);
     char mode = net->mode;
     setMode(mode);
 
@@ -83,7 +83,7 @@ void Pdu_SetNetWid::updateSlot(sDataPacket *packet)
     mPacket = packet;
     if(packet) {
         if(packet->id) {
-            mPacket = Dp_PduPackets::bulid(this)->get(packet->ip.ip, 0);
+            mPacket = Dp_PduPackets::bulid(this)->get(packet->net.ip, 0);
             if(mPacket) initWidget();
         }
     }
@@ -104,7 +104,7 @@ bool Pdu_SetNetWid::sentData(Net_sDevData &pkt)
     NetPackData *pack = NetPackData::bulid();
     int len = pack->net_data_packets(mPacket->devType, &pkt, buf);
     if(on) {
-        QString ip = mPacket->ip.ip;
+        QString ip = mPacket->net.ip;
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
     } else {
         UdpBDSent::bulid(this)->sent(buf, len);
@@ -147,7 +147,7 @@ bool Pdu_SetNetWid::checkMode()
 {
     bool ret = false;
     uchar mode = ui->comboBox->currentIndex();
-    if(mode != mPacket->ip.mode)
+    if(mode != mPacket->net.mode)
         ret = true;
 
     return ret;
@@ -161,7 +161,7 @@ bool Pdu_SetNetWid::saveNetMode()
     bool ret = checkMode();
     if(ret) {
         ret = sentNetMode();
-        mPacket->ip.mode = ui->comboBox->currentIndex();
+        mPacket->net.mode = ui->comboBox->currentIndex();
     }
 
     return ret;
@@ -199,7 +199,7 @@ bool Pdu_SetNetWid::saveNetData()
 {
     int fn = 1, flag=0;
 
-    sIpAddr *net = &(mPacket->ip);
+    sIpAddr *net = &(mPacket->net);
     QString str = ui->ipEdit->text();
     if(str != net->ip)
     {
@@ -247,7 +247,7 @@ bool Pdu_SetNetWid::saveNetData()
  */
 bool Pdu_SetNetWid::checkNetData()
 {
-    if(mPacket->ip.mode == 1) // 自动获取
+    if(mPacket->net.mode == 1) // 自动获取
         return false;
 
     QString str = ui->ipEdit->text();
@@ -303,7 +303,7 @@ void Pdu_SetNetWid::saveLog()
 {
     sUserLogItem log;
     log.remarks = tr("网络配置");
-    log.remarks +=  tr("设备IP：%1 设备网络信息已修改").arg(mPacket->ip.ip);
+    log.remarks +=  tr("设备IP：%1 设备网络信息已修改").arg(mPacket->net.ip);
     DbUserLog::bulid()->insertItem(log);
 }
 

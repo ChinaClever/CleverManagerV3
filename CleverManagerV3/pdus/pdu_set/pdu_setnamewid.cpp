@@ -88,7 +88,7 @@ bool Pdu_SetNameWid::sentData(Net_sDevData &pkt)
     NetPackData *pack = NetPackData::bulid();
     int len = pack->net_data_packets(mPacket->devType, &pkt, buf);
     if(on) {
-        QString ip = mPacket->ip.ip;
+        QString ip = mPacket->net.ip;
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
     } else {
         UdpBDSent::bulid(this)->sent(buf, len);
@@ -135,7 +135,7 @@ void Pdu_SetNameWid::saveDevNameLog()
 
     QString name = mPacket->name;
     QString newName = ui->lineEdit->text();
-    log.remarks += tr("设备IP：%1 设备名%2 改为：%3").arg(mPacket->ip.ip).arg(name).arg(newName);
+    log.remarks += tr("设备IP：%1 设备名%2 改为：%3").arg(mPacket->net.ip).arg(name).arg(newName);
 
     DbUserLog::bulid()->insertItem(log);
 }

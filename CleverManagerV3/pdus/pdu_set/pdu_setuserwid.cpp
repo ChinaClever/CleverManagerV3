@@ -90,7 +90,7 @@ bool Pdu_SetUserWid::sentData(Net_sDevData &pkt)
     NetPackData *pack = NetPackData::bulid();
     int len = pack->net_data_packets(mPacket->devType, &pkt, buf);
     if(on) {
-        QString ip = mPacket->ip.ip;
+        QString ip = mPacket->net.ip;
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
     } else {
         UdpBDSent::bulid(this)->sent(buf, len);
@@ -135,7 +135,7 @@ void Pdu_SetUserWid::saveLandLog()
 {
     sUserLogItem log;
     log.remarks = tr("设备配置");
-    log.remarks +=  tr("设备IP：%1 登录账号%2 修改为：%3").arg(mPacket->ip.ip).arg(mUsrName).arg(mPacket->user);
+    log.remarks +=  tr("设备IP：%1 登录账号%2 修改为：%3").arg(mPacket->net.ip).arg(mUsrName).arg(mPacket->user);
     DbUserLog::bulid()->insertItem(log);
 }
 
