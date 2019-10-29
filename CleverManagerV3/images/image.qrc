@@ -28,4 +28,28 @@
         <file>topology/xg.png</file>
         <file>topology/yd.png</file>
     </qresource>
+    <qresource prefix="/"/>
+    <qresource prefix="/toolbutton">
+        <file>toolbutton/detail_clicked.png</file>
+        <file>toolbutton/detail_normal.png</file>
+        <file>toolbutton/detail_select.png</file>
+        <file>toolbutton/dev_clicked.png</file>
+        <file>toolbutton/dev_normal.png</file>
+        <file>toolbutton/dev_select.png</file>
+        <file>toolbutton/log_clicked.png</file>
+        <file>toolbutton/log_normal.png</file>
+        <file>toolbutton/log_select.png</file>
+        <file>toolbutton/ser_clicked.png</file>
+        <file>toolbutton/ser_normal.png</file>
+        <file>toolbutton/ser_select.png</file>
+        <file>toolbutton/tg_clicked.png</file>
+        <file>toolbutton/tg_normal.png</file>
+        <file>toolbutton/tg_select.png</file>
+        <file>toolbutton/topo_clicked.png</file>
+        <file>toolbutton/topo_normal.png</file>
+        <file>toolbutton/topo_select.png</file>
+        <file>toolbutton/usr_clicked.png</file>
+        <file>toolbutton/usr_normal.png</file>
+        <file>toolbutton/usr_select.png</file>
+    </qresource>
 </RCC>

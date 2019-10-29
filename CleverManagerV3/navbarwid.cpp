@@ -11,6 +11,10 @@ NavBarWid::NavBarWid(QWidget *parent) :
     ui(new Ui::NavBarWid)
 {
     ui->setupUi(this);
+    QGridLayout *gridLayout = new QGridLayout(parent);//控制ToolBox自适应
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
+    initBtnColour();
     //set_background_icon(this,":/image/title_back.jpg");
 }
 
@@ -55,30 +59,70 @@ void NavBarWid::on_userBtn_clicked()
 
 void NavBarWid::on_setupBtn_clicked()
 {
+    setBtnClicked(ui->setupBtn, "ser");
     emit navBarSig(4);
 }
 
 void NavBarWid::on_logBtn_clicked()
 {
+    setBtnClicked(ui->logBtn, "log");
     emit navBarSig(1);
 }
 
 void NavBarWid::on_pduBtn_clicked()
 {
-     emit navBarSig(2);
+    setBtnClicked(ui->pduBtn, "dev");
+    emit navBarSig(2);
 }
 
 void NavBarWid::on_roomBtn_clicked()
 {
+    setBtnClicked(ui->roomBtn, "tg");
     emit navBarSig(3);
 }
 
 void NavBarWid::on_tpBtn_clicked()
 {
+    setBtnClicked(ui->tpBtn, "topo");
     emit navBarSig(0);
 }
 
 void NavBarWid::on_cabBtn_clicked()
 {
+    setBtnClicked(ui->cabBtn, "detail");
     emit navBarSig(5);
+}
+
+void NavBarWid::setBtndefault(QPushButton *btn, const QString &str)
+{
+    QString strNormal = tr("QPushButton{border-image: url(:/toolbutton/toolbutton/%1_normal.png);}").arg(str);
+    QString strSelect = tr("QPushButton:hover{border-image: url(:/toolbutton/toolbutton/%1_select.png);}").arg(str);
+    QString strClicked = tr("QPushButton:pressed{border-image: url(:/toolbutton/toolbutton/%1_clicked.png);}").arg(str);
+
+    btn->setStyleSheet(strNormal + strSelect + strClicked);
+    btn->setText("");
+}
+
+/**
+ * @brief 初始化按键颜色
+ */
+void NavBarWid::initBtnColour()
+{
+    setBtndefault(ui->tpBtn, "topo");
+    setBtndefault(ui->roomBtn, "tg");
+    setBtndefault(ui->cabBtn, "detail");
+    setBtndefault(ui->pduBtn, "dev");
+    setBtndefault(ui->setupBtn, "ser");
+    setBtndefault(ui->logBtn, "log");
+    setBtndefault(ui->userBtn, "usr");
+}
+
+void NavBarWid::setBtnClicked(QPushButton *btn, const QString &str)
+{
+    initBtnColour();
+    QString strNormal = tr("QPushButton{border-image: url(:/toolbutton/toolbutton/%1_clicked.png);}").arg(str);
+    QString strSelect = tr("QPushButton:hover{border-image: url(:/toolbutton/toolbutton/%1_select.png);}").arg(str);
+    QString strClicked = tr("QPushButton:pressed{border-image: url(:/toolbutton/toolbutton/%1_clicked.png);}").arg(str);
+
+    btn->setStyleSheet(strNormal + strSelect + strClicked);
 }

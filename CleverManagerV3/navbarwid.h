@@ -1,4 +1,4 @@
-#ifndef NAVBARWID_H
+﻿#ifndef NAVBARWID_H
 #define NAVBARWID_H
 
 #include "usermainwid.h"
@@ -35,7 +35,13 @@ private slots:
     void on_cabBtn_clicked();
 
 private:
+    void setBtndefault(QPushButton *btn, const QString &str);
+    void initBtnColour();
+    void setBtnClicked(QPushButton *btn, const QString &str);
+
+private:
     Ui::NavBarWid *ui;
+
 };
 
 #endif // NAVBARWID_H

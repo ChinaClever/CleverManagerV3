@@ -1,4 +1,4 @@
-/*
+﻿/*
  * usrlanddlg.cpp
  *  登录
  *
