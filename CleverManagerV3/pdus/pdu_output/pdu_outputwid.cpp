@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -54,7 +54,7 @@ void Pdu_OutputWid::setObjUnit(int id, sObjData &unit)
 
     if(unit.pow[id]) {
         value = unit.pow[id] / COM_RATE_POW;
-        list << QString::number(value) + "KW";
+        list << QString::number(value) + "kW";
     } else {
         list << "---";
     }
@@ -68,7 +68,7 @@ void Pdu_OutputWid::setObjUnit(int id, sObjData &unit)
 
     if(unit.ele[id]) {
         value = unit.ele[id] / COM_RATE_ELE;
-        list << QString::number(value) + "KWh";
+        list << QString::number(value) + "kWh";
     } else {
         list << "---";
     }

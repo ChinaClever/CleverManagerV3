@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -11,7 +11,7 @@ ElecComWid::ElecComWid(QWidget *parent) :
     ui(new Ui::ElecComWid)
 {
     ui->setupUi(this);
-    groupBox_background_icon(this);
+    //groupBox_background_icon(this);
     mSqlTableWid = new SqlTableWid(ui->widget);
 }
 

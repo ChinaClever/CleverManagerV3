@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -22,6 +22,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void changeToCab();
+
 protected slots:
 //    void initFunSLot();
     void initPacksSLot();
@@ -41,6 +44,8 @@ private:
     Room_MainWid *mRoom;
     Tp_TopologyWid *mTpWid;
     Cab_MainWid *mCab;
+    UsrLandDlg *mUserDlg;
+    QString mUserName;
 };
 
 #endif // MAINWINDOW_H

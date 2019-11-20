@@ -1,4 +1,4 @@
-/*
+﻿/*
  * setdevmainwid.cpp
  *
  *  Created on: 2016年10月11日
@@ -12,7 +12,7 @@ Pdu_SetMainWid::Pdu_SetMainWid(QWidget *parent) :
     ui(new Ui::Pdu_SetMainWid)
 {
     ui->setupUi(this);
-    ui->label->resize(1146,50);
+    //ui->label->resize(1146,50);
 
     initWidget();
     ui->groupBox->setStyleSheet("border:0px");

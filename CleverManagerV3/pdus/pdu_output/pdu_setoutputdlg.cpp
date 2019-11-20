@@ -1,4 +1,4 @@
-/*
+﻿/*
  * setoutputdlg.cpp
  * 输出位阈值设置窗口
  *

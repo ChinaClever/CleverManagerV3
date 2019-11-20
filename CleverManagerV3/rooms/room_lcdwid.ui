@@ -22,6 +22,12 @@
     <height>136</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -95,7 +101,7 @@
         <property name="font">
          <font>
           <family>微软雅黑</family>
-          <pointsize>11</pointsize>
+          <pointsize>12</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>

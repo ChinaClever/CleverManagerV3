@@ -1,4 +1,4 @@
-/*
+﻿/*
  * tableWidget公共蕨类
  *     提供接口，protect所有方法
  *
@@ -14,7 +14,7 @@ ComTableWid::ComTableWid(QWidget *parent) :
     ui(new Ui::ComTableWid)
 {
     ui->setupUi(this);
-    groupBox_background_icon(this);
+    //groupBox_background_icon(this);
 
     timer = new QTimer(this);
     timer->start(1*1000);

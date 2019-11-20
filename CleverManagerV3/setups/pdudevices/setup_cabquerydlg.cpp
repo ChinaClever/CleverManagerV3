@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -12,7 +12,7 @@ Setup_CabQueryDlg::Setup_CabQueryDlg(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("查询对话框"));
-    groupBox_background_icon(this);
+    //groupBox_background_icon(this);
 }
 
 Setup_CabQueryDlg::~Setup_CabQueryDlg()

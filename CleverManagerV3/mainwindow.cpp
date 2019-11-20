@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -6,6 +6,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "net_dataanalyze.h"
+#include "common/backcolour/backcolourcom.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,12 +14,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mUserDlg = new UsrLandDlg();
+    mUserDlg->exec();
     LandingUser::get(this);
     mNavBar = new NavBarWid(ui->navWId);
     QTimer::singleShot(5,this,SLOT(initPacksSLot()));
     QTimer::singleShot(500,this,SLOT(initWidSLot()));
     QTimer::singleShot(1500,this,SLOT(initNetWork()));
+    connect(mUserDlg,SIGNAL(sendUserNameSig(QString)),mNavBar,SLOT(recvUserNameSlot(QString)));
     connect(mNavBar, SIGNAL(navBarSig(int)), this, SLOT(navBarSlot(int)));
+    connect(this, SIGNAL(changeToCab()), mNavBar, SLOT(changeToCabSlot()));
 }
 
 MainWindow::~MainWindow()
@@ -57,6 +62,9 @@ void MainWindow::initWidSLot()
     ui->stackedWid->addWidget(mCab);
     connect(mTpWid, SIGNAL(selectSig(int)), mCab, SIGNAL(selectedSig(int)));
     connect(mTpWid, SIGNAL(selectSig(int)), this, SLOT(selectSlot(int)));
+    QColor color(0,17,55);  //黑色界面
+    set_background_color(ui->stackedWid,color);
+    button_style_sheet(ui->stackedWid);/*设置按键样式*/
 }
 
 void MainWindow::navBarSlot(int id)
@@ -66,5 +74,6 @@ void MainWindow::navBarSlot(int id)
 
 void MainWindow::selectSlot(int)
 {
+    emit changeToCab();
     ui->stackedWid->setCurrentWidget(mCab);
 }

@@ -13,7 +13,7 @@
   <property name="font">
    <font>
     <family>微软雅黑</family>
-    <pointsize>12</pointsize>
+    <pointsize>14</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -90,7 +90,7 @@
      </rect>
     </property>
     <property name="suffix">
-     <string>u</string>
+     <string>U</string>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -299,7 +299,7 @@
      </rect>
     </property>
     <property name="suffix">
-     <string>KW</string>
+     <string>kW</string>
     </property>
     <property name="minimum">
      <number>1</number>

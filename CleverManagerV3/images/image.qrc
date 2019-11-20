@@ -52,4 +52,26 @@
         <file>toolbutton/usr_normal.png</file>
         <file>toolbutton/usr_select.png</file>
     </qresource>
+    <qresource prefix="/other">
+        <file>other/back.png</file>
+        <file>other/dl_alarm.png</file>
+        <file>other/dl_close.png</file>
+        <file>other/dl_line.png</file>
+        <file>other/dl_offLine.png</file>
+        <file>other/icon_close.png</file>
+        <file>other/line.png</file>
+        <file>other/logo - 副本.jpg</file>
+        <file>other/serach.png</file>
+        <file>other/state_alarm.png</file>
+        <file>other/state_line.png</file>
+        <file>other/state_offLine.png</file>
+        <file>other/switch-off-icon.png</file>
+        <file>other/switch-on-icon.png</file>
+    </qresource>
+    <qresource prefix="/tg">
+        <file>tg/admin.png</file>
+        <file>tg/down.png</file>
+        <file>tg/up.png</file>
+        <file>tg/usr.png</file>
+    </qresource>
 </RCC>

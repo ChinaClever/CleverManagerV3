@@ -91,10 +91,12 @@ color: rgb(255, 255, 255);</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/other/line.png</pixmap>
+    <pixmap resource="../images/image.qrc">:/other/other/line.png</pixmap>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images/image.qrc"/>
+ </resources>
  <connections/>
 </ui>

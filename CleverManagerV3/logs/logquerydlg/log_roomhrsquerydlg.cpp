@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -11,7 +11,7 @@ Log_RoomHrsQueryDlg::Log_RoomHrsQueryDlg(QWidget *parent) :
     ui(new Ui::Log_RoomHrsQueryDlg)
 {
     ui->setupUi(this); this->setWindowTitle(tr("查询对话框"));
-    groupBox_background_icon(this);
+    //groupBox_background_icon(this);
     mDateBar = new SqlDateBar(ui->dateWid);
 }
 

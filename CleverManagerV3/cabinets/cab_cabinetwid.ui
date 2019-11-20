@@ -6,35 +6,48 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>597</width>
-    <height>656</height>
+    <width>1000</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
+    <width>1000</width>
     <height>700</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="3">
-    <widget class="QLabel" name="titleLab">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="1" column="2" rowspan="2">
+    <widget class="Cab_PduWid" name="widget_right" native="true">
      <property name="font">
       <font>
        <family>微软雅黑</family>
        <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
       </font>
      </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+     <property name="styleSheet">
+      <string notr="true">background-color: transparent;</string>
      </property>
     </widget>
    </item>
@@ -46,41 +59,22 @@
        <pointsize>12</pointsize>
       </font>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="label">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>12</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>机柜</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2" rowspan="2">
-    <widget class="Cab_PduWid" name="widget_right" native="true">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>12</pointsize>
-      </font>
+     <property name="styleSheet">
+      <string notr="true">background-color: transparent;</string>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
     <widget class="Cab_TableWid" name="tableWidget_cabinet">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
-       <width>180</width>
+       <width>200</width>
        <height>16777215</height>
       </size>
      </property>
@@ -108,19 +102,8 @@
 }
 QTableWidget::item
 {
-/*	border: 1px solid rgb(102,198,249);*/
 	color: gray;
-}
-/*QTableWidget::item:selected
-{
-	background: rgb(44,105,182);
-	color: white;
-}
-QTableWidget::item:hover:!selected
-{
-	background: rgb(102,198,249);
-	color: white;
-}*/</string>
+}</string>
      </property>
      <property name="sizeAdjustPolicy">
       <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -198,6 +181,42 @@ QTableWidget::item:hover:!selected
       <bool>false</bool>
      </attribute>
      <column/>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="titleLab">
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>机柜</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </item>
   </layout>

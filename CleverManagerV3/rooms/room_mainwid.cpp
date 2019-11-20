@@ -1,4 +1,4 @@
-/*
+﻿/*
  * tg_roomwidget.cpp
  * 统计界面机房列表处理
  *
@@ -33,8 +33,8 @@ void Room_MainWid::initFunSLot()
     ui->comboBox->addItems(rooms);
     if(rooms.size()) ui->comboBox->setCurrentIndex(0);
 
-    //this->setStyleSheet("background-color: rgb(0,45,130);color: rgb(0, 0, 0);");
-    //set_background_color(this, QColor(0,45,130));
+    this->setStyleSheet("background-color: rgb(0,45,130);color: rgb(0, 0, 0);");
+    set_background_color(this, QColor(0,45,130));
 }
 
 

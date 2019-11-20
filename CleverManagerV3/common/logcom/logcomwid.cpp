@@ -1,4 +1,4 @@
-/*
+﻿/*
  * 日志窗口公共基类
  *      只需要实现二个纯虚函数即可
  *       virtual BasicSql *getDb()=0;
@@ -15,7 +15,7 @@ LogComWid::LogComWid(QWidget *parent) :
     ui(new Ui::LogComWid)
 {
     ui->setupUi(this);
-    groupBox_background_icon(this);
+    //groupBox_background_icon(this);
 
     mSqlTableWid = new SqlTableWid(ui->widget);
     mDateWidget = new LOG_DateWidget(ui->dateWid);

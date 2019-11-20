@@ -99,7 +99,7 @@ bool UsrLandDlg::quitWidget(void)
 /**
  * @brief 用户登录验证
  */
-void UsrLandDlg::usrLand(void)
+void UsrLandDlg::usrLand()
 {
     QString str;
     QString name = ui->nameLineEdit->text();
@@ -125,6 +125,8 @@ void UsrLandDlg::usrLand(void)
                     DbUserLog::bulid()->insertItem(item);
 
                     this->accept();
+                    qDebug()<<"item.name"<<name;
+                    emit sendUserNameSig(name);
                 }
                 else
                     str = tr("密码错误");
@@ -139,6 +141,7 @@ void UsrLandDlg::usrLand(void)
         str = tr("账号不能为空");
 
     ui->stateLabel->setText(str);
+
 }
 
 /**

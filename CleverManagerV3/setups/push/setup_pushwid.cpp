@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -41,6 +41,11 @@ void Setup_PushWid::initWid()
     ui->wsEN->setChecked(it->wsEn);
     ui->wsUrl->setText(it->wsUrl);
     ui->wsPort->setValue(it->wsPort);
+
+    button_style_sheet(ui->btn);
+    button_style_sheet(ui->udpBtn_1);
+    button_style_sheet(ui->udpBtn_2);
+    button_style_sheet(ui->wsBtn);
 }
 
 bool Setup_PushWid::checkUdpUrl(int id)

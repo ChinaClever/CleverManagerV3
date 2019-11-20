@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -12,7 +12,7 @@ Setup_PdusTableWid::Setup_PdusTableWid(QWidget *parent) :
     ui(new Ui::Setup_PdusTableWid)
 {
     ui->setupUi(this);
-    groupBox_background_icon(this);
+    //groupBox_background_icon(this);
     mSqlTableWid = new SqlTableWid(ui->widget);
 }
 

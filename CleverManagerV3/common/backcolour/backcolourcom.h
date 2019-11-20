@@ -1,4 +1,4 @@
-#ifndef BACKCOLOURCOM_H
+﻿#ifndef BACKCOLOURCOM_H
 #define BACKCOLOURCOM_H
 #include <QWidget>
 #include <QHeaderView>
@@ -27,6 +27,7 @@ QColor cm_color(int index);
 /* 设置窗口背景色函数 */
 void com_setBackColour(const QString &,QWidget *target);
 
+void button_style_sheet(QWidget *target);
 void btnBlue_style_sheet(QWidget *target);
 void groupBox_background_icon(QWidget *target);
 void set_background_icon(QWidget *widget, const QString &icon);

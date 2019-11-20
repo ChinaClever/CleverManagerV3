@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -38,6 +38,9 @@ void Pdu_ListWid::setHeader()
 {
     QStringList head;
     head << tr("PDU设备列表") << "";
+    ui->treeWidget->setHeaderLabels(head);
+    ui->treeWidget->headerItem()->setTextAlignment(0,Qt::AlignHCenter|Qt::AlignVCenter);
+    ui->treeWidget->setStyleSheet(tr("font:12px \"微软雅黑\" "));
     ui->treeWidget->setHeaderLabels(head);
 }
 

@@ -15,6 +15,9 @@ NavBarWid::NavBarWid(QWidget *parent) :
     gridLayout->setContentsMargins(0, 0, 0, 0);
     gridLayout->addWidget(this);
     initBtnColour();
+    on_tpBtn_clicked();
+    initBtnQStr();
+    initLabText();
     //set_background_icon(this,":/image/title_back.jpg");
 }
 
@@ -35,8 +38,6 @@ void NavBarWid::enableBtn()
 }
 
 
-
-
 /**
  * @brief 用户登录
  */
@@ -47,7 +48,9 @@ void NavBarWid::on_userBtn_clicked()
     if(lang) {
         int ret = dlg.selectWork();
         if(ret == 1) // 用户切换
+        {
             dlg.exec();
+        }
         else if(ret == 2) // 用户退出
             dlg.quitWidget();
     } else {
@@ -114,7 +117,7 @@ void NavBarWid::initBtnColour()
     setBtndefault(ui->pduBtn, "dev");
     setBtndefault(ui->setupBtn, "ser");
     setBtndefault(ui->logBtn, "log");
-    setBtndefault(ui->userBtn, "usr");
+    setBtndefault(ui->userBtn, "usr"); 
 }
 
 void NavBarWid::setBtnClicked(QPushButton *btn, const QString &str)
@@ -125,4 +128,44 @@ void NavBarWid::setBtnClicked(QPushButton *btn, const QString &str)
     QString strClicked = tr("QPushButton:pressed{border-image: url(:/toolbutton/toolbutton/%1_clicked.png);}").arg(str);
 
     btn->setStyleSheet(strNormal + strSelect + strClicked);
+}
+
+void NavBarWid::initLabText()
+{
+    QLabel* lab = NULL;
+    QMapIterator<QPushButton*, QString> i(mBtnQStr);
+    while(i.hasNext()){
+        i.next();
+        lab = new QLabel(i.key());
+        if(i.key() == ui->userBtn)
+        {
+            mUserLab = lab;
+            mUserLab->setText(mUserName);
+        }
+        else
+            lab->setText(i.value());
+        lab->setStyleSheet("font:14px \"微软雅黑\";color: rgb(255, 255, 255);background-color: transparent;");
+        lab->move(i.key()->width()/2-27,i.key()->height()/2+13);
+    }
+}
+
+void NavBarWid::changeToCabSlot()
+{
+    setBtnClicked(ui->cabBtn, "detail");
+}
+
+void NavBarWid::initBtnQStr()
+{
+    QString str[7] = {tr("机房拓扑"),tr("机房统计"),tr("机柜列表"),tr("设备管理"),tr("服务设置"),tr("日志记录"),tr("用户登陆")};
+    QPushButton* btn[7] = {ui->tpBtn,ui->roomBtn,ui->cabBtn,ui->pduBtn,ui->setupBtn,ui->logBtn,ui->userBtn};
+    for(int i=0 ; i<7; i++ )
+        mBtnQStr.insert(btn[i],str[i]);
+}
+
+void NavBarWid::recvUserNameSlot(QString str)
+{
+    mUserName = str;
+    qDebug()<<mUserName<<mUserLab;
+    if(mUserLab)
+        mUserLab->setText(mUserName);
 }

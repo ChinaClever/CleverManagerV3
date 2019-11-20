@@ -1,4 +1,4 @@
-/*
+﻿/*
  * setthresholddlg.cpp
  * 设备阈值设置窗口
  *

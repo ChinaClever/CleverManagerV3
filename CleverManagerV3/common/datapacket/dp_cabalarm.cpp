@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -32,7 +32,7 @@ void Dp_CabAlarm::alarm(sCabPacket *cab)
             item.cab = cab->cab;
             item.modular = cab->modular;
             item.item = tr("功率过大");
-            item.msg = tr("机柜最大功率 %1Kw 实际功率 %2Kw").arg(cab->pow/COM_RATE_POW).arg(cab->tg.pow/COM_RATE_POW);
+            item.msg = tr("机柜最大功率 %1kW 实际功率 %2kW").arg(cab->pow/COM_RATE_POW).arg(cab->tg.pow/COM_RATE_POW);
 
             DbCabAlarm::bulid()->insertItem(item);
             Sound::bulid()->play();

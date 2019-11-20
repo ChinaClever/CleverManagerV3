@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -12,7 +12,7 @@ Log_PduAlarmQueryDlg::Log_PduAlarmQueryDlg(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("查询对话框"));
-    groupBox_background_icon(this);
+    //groupBox_background_icon(this);
     mDateBar = new SqlDateBar(ui->dateWid);
 
     on_devnumCmb_currentIndexChanged(0);

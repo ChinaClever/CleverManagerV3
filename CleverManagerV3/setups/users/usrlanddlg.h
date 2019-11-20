@@ -1,4 +1,4 @@
-#ifndef USRLANDDLG_H
+﻿#ifndef USRLANDDLG_H
 #define USRLANDDLG_H
 
 #include <QDialog>
@@ -18,9 +18,9 @@ public:
 
     bool quitWidget(void);
     int selectWork(void);
-
-protected:
-    void usrLand(void);
+    void usrLand();
+signals:
+    void sendUserNameSig(QString str);
 
 private slots:
     void on_landBtn_clicked();

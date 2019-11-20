@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -11,6 +11,7 @@ Room_DataWid::Room_DataWid(QWidget *parent) :
     ui(new Ui::Room_DataWid)
 {
     ui->setupUi(this);
+
 
     initView();
     mPacket = nullptr;
@@ -31,10 +32,11 @@ Room_DataWid::~Room_DataWid()
 
 void Room_DataWid::initView()
 {
-    Room_TitleBar *bar = new Room_TitleBar(this);
+    Room_TitleBar *bar = new Room_TitleBar(ui->titleWid);
     bar->setTitle(tr("设备状态信息"));
     bar->setFont(QFont("微软雅黑",12,75));
     bar->setFixedHeight(25);
+    bar->setStyleSheet("background-color: rgb(0,17,55)");
 
     mVolLcd = new Room_LcdWid(ui->volWid);
     mVolLcd->setUnit(tr("电压"), "V");

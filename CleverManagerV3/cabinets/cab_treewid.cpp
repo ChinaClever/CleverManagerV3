@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -40,6 +40,8 @@ void Cab_TreeWid::setHeader()
     QStringList head;
     head << tr("机柜列表") << "";
     ui->treeWidget->setHeaderLabels(head);
+    ui->treeWidget->headerItem()->setTextAlignment(0,Qt::AlignHCenter|Qt::AlignVCenter);
+    ui->treeWidget->setStyleSheet(tr("font:12px \"微软雅黑\""));
 }
 
 void Cab_TreeWid::initWidget()

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -40,6 +40,8 @@ void Setup_MainWid::initPdusTable()
     Setup_PdusTableWid *room = new Setup_PdusTableWid(ui->stackedWid);
     room->initWid(DbRoomList::get(), new Setup_RoomQueryDlg(this));
     ui->stackedWid->addWidget(room);
+
+    button_style_sheet(ui->upBtn);
 }
 
 

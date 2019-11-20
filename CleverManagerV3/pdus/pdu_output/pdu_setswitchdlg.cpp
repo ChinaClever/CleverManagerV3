@@ -1,4 +1,4 @@
-/*
+﻿/*
  * setswitchdlg.cpp
  * 输出位开关控制窗口
  *
