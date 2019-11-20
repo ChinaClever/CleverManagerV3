@@ -1,4 +1,4 @@
-﻿/*
+/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -14,16 +14,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    mUserDlg = new UsrLandDlg();
-    mUserDlg->exec();
     LandingUser::get(this);
     mNavBar = new NavBarWid(ui->navWId);
     QTimer::singleShot(5,this,SLOT(initPacksSLot()));
     QTimer::singleShot(500,this,SLOT(initWidSLot()));
     QTimer::singleShot(1500,this,SLOT(initNetWork()));
-    connect(mUserDlg,SIGNAL(sendUserNameSig(QString)),mNavBar,SLOT(recvUserNameSlot(QString)));
     connect(mNavBar, SIGNAL(navBarSig(int)), this, SLOT(navBarSlot(int)));
     connect(this, SIGNAL(changeToCab()), mNavBar, SLOT(changeToCabSlot()));
+
+    mUserDlg = new UsrLandDlg();
+    mUserDlg->exec();
+    connect(mUserDlg,SIGNAL(sendUserNameSig(QString)),mNavBar,SLOT(recvUserNameSlot(QString)));
 }
 
 MainWindow::~MainWindow()

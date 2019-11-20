@@ -80,18 +80,21 @@ void DT_DingTalk::requestFinished(QNetworkReply* reply)
 {
     QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     if(statusCode.isValid()) {
-        qDebug() << "status code=" << statusCode.toInt();
+        if(200 != statusCode.toInt())
+            qDebug() << "status code=" << statusCode.toInt();
     }
 
     QVariant reason = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
     if(reason.isValid()) {
-        qDebug() << "reason=" << reason.toString();
+        if("OK" != reason.toString())
+            qDebug() << "reason=" << reason.toString();
     }
 
     QNetworkReply::NetworkError err = reply->error();
     if(err != QNetworkReply::NoError) {
         qDebug() << "Failed: " << reply->errorString();
     } else {  // 获取返回内容
-        qDebug() << QString(reply->readAll());
+        QString str = QString(reply->readAll());
+        if(!str.contains("ok")) qDebug() << str;
     }
 }

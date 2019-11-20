@@ -1,4 +1,4 @@
-﻿/*
+/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -9,6 +9,7 @@
 #include "pdudevices/setup_pdustablewid.h"
 #include "sound.h"
 #include "configbase.h"
+#include "dt_mainwid.h"
 
 Setup_MainWid::Setup_MainWid(QWidget *parent) :
     QWidget(parent),
@@ -41,6 +42,7 @@ void Setup_MainWid::initPdusTable()
     room->initWid(DbRoomList::get(), new Setup_RoomQueryDlg(this));
     ui->stackedWid->addWidget(room);
 
+    new DT_MainWid(ui->groupBox);
     button_style_sheet(ui->upBtn);
 }
 
