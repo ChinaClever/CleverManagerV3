@@ -3,6 +3,7 @@ INCLUDEPATH += $$PWD
 
 include(users/users.pri)
 include(upgrade/upgrade.pri)
+include(dingtalk/dingtalk.pri)
 
 HEADERS += \	
     $$PWD/pdudevices/setup_pdusquerydlg.h \

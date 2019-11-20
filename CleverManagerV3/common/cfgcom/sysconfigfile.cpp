@@ -57,11 +57,10 @@ void com_cfg_close(void)
  * 功 能：读字符串配置文件
  * 开发人员：Lzy     2013 - 七夕
  */
-QString com_cfg_readStr(QString strParameterName, QString strGroup)
+QString com_cfg_readStr(const QString& str, const QString& strGroup)
 {
-    strParameterName = "/" + strGroup + "/" + strParameterName;
-
     com_cfg_open();
+    QString strParameterName = "/" + strGroup + "/" + str;
     QString strParameter = pConfigIni->value(strParameterName).toString();
     com_cfg_close();
 
@@ -72,7 +71,7 @@ QString com_cfg_readStr(QString strParameterName, QString strGroup)
  * 功 能：读整形串配置文件
  * 开发人员：Lzy     2016 - 七夕
  */
-int com_cfg_readInt(QString strParameterName, QString strGroup)
+int com_cfg_readInt(const QString& strParameterName, const QString& strGroup)
 {       
     bool ok;
 
@@ -86,7 +85,7 @@ int com_cfg_readInt(QString strParameterName, QString strGroup)
  * 功 能：读浮点形串配置文件
  * 开发人员：Lzy     2013 - 七夕
  */
-double com_cfg_readDouble(QString strParameterName, QString strGroup)
+double com_cfg_readDouble(const QString& strParameterName, const QString& strGroup)
 {
     bool ok;
 
@@ -100,9 +99,9 @@ double com_cfg_readDouble(QString strParameterName, QString strGroup)
  * 功 能：参数写入配置文件
  * 开发人员：Lzy     2016 - 七夕
  */
-void com_cfg_write(QString strParameterName, QString strParameter, QString strGroup)
+void com_cfg_write(const QString& str, const QString& strParameter, const QString& strGroup)
 {
-    strParameterName = "/" + strGroup + "/" + strParameterName;
+    QString strParameterName = "/" + strGroup + "/" + str;
     pConfigIni->setValue(strParameterName, strParameter);
 }
 
@@ -110,7 +109,7 @@ void com_cfg_write(QString strParameterName, QString strParameter, QString strGr
  * 功 能：写入参数
  * 开发人员：Lzy     2016 - 七夕
  */
-void com_cfg_writeParam(QString name, QString value, QString strGroup)
+void com_cfg_writeParam(const QString&  name, const QString&  value, const QString&  strGroup)
 {
     com_cfg_open();
     com_cfg_write(name, value, strGroup);
