@@ -5,7 +5,7 @@
  */
 #include "dp_pdualarm.h"
 #include "sound.h"
-
+#include "dt_dingtalk.h"
 
 Dp_PduAlarm::Dp_PduAlarm(QObject *parent) : QObject(parent)
 {
@@ -26,6 +26,9 @@ Dp_PduAlarm *Dp_PduAlarm::bulid(QObject *parent)
 
 bool Dp_PduAlarm::saveItem(sDbAlarmItem &item)
 {
+    QString str = tr("机房：") + item.room + tr(" 机柜:") + item.cab + item.road
+            + item.ip + item.msg;
+    DT_DingTalk::bulid(this)->talk(str);
     return DbPduAlarm::bulid()->insertItem(item);
 }
 

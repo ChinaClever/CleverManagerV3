@@ -1,10 +1,11 @@
-﻿/*
+/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
  */
 #include "dp_cabalarm.h"
 #include "sound.h"
+#include "dt_dingtalk.h"
 
 Dp_CabAlarm::Dp_CabAlarm(QObject *parent) : QObject(parent)
 {
@@ -33,6 +34,9 @@ void Dp_CabAlarm::alarm(sCabPacket *cab)
             item.modular = cab->modular;
             item.item = tr("功率过大");
             item.msg = tr("机柜最大功率 %1kW 实际功率 %2kW").arg(cab->pow/COM_RATE_POW).arg(cab->tg.pow/COM_RATE_POW);
+
+            QString str = tr("机房：")+item.room+tr(" 机柜:")+item.cab+item.item+item.msg;
+            DT_DingTalk::bulid(this)->talk(str);
 
             DbCabAlarm::bulid()->insertItem(item);
             Sound::bulid()->play();
