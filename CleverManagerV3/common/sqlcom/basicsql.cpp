@@ -51,6 +51,14 @@ bool BasicSql::remove(int id)
     return ret;
 }
 
+bool BasicSql::removeMinIds(int id)
+{
+    bool ret =  remove(QString("id < %1").arg(id));
+    if(ret) {
+        emit itemChanged(id, Remove);
+    }
+    return ret;
+}
 
 /**
  * @brief 获取最大ID
@@ -59,17 +67,7 @@ bool BasicSql::remove(int id)
  */
 int BasicSql::maxId()
 {
-    int id = 0;
-    QSqlQuery query;
-    if(query.exec(QString("select max(%1) from %2").arg("id").arg(tableName())))
-    {
-        if(query.next())
-            id = query.value(0).toInt();
-    } else {
-       throwError(query.lastError());
-    }
-
-    return id;
+    return maxId("id", "");
 }
 
 
@@ -114,6 +112,27 @@ int BasicSql::minId(const QString &condition)
     return minId("id", QString("where %1").arg(condition));
 }
 
+int BasicSql::minId()
+{
+    return minId("id", "");
+}
+
+bool BasicSql::minIdRemove()
+{
+    bool ret = false;
+    int id = minId();
+    if(id > 0) {
+        ret = remove(id);
+    }
+
+    return true;
+}
+
+bool BasicSql::minIdsRemove(int id)
+{
+   return removeMinIds(id);
+}
+
 /**
  * @brief 函数返回指定列的值的数目
  * @param column_name
@@ -134,6 +153,23 @@ int BasicSql::count(const QString &column_name, const QString &condition)
 int BasicSql::counts()
 {
     return count("id", "");
+}
+
+/**
+ * @brief 数据库最多保存多少条数据，删除掉其它的
+ * @param count
+ * @return
+ */
+bool BasicSql::countsRemove(int count)
+{
+    bool ret = false;
+    int rtn = counts();
+    if(rtn > count) {
+        int id = minId() + (rtn-count);
+        ret = minIdsRemove(id);
+    }
+
+    return ret;
 }
 
 /**

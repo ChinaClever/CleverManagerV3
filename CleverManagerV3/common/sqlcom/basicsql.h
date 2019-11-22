@@ -6,6 +6,7 @@
 #include "common.h"
 
 #define LOG_DELAY 1
+#define LOG_MAX_COUNT (10*10000)
 
 class Db_Tran
 {
@@ -49,16 +50,21 @@ public:
 
     bool remove(int id);
     bool remove(const QString &condition);
+    bool removeMinIds(int id);
 
     int maxId();
     int maxId(const QString &condition);
     int maxId(const QString &idName, const QString &condition);
 
+    int minId();
     int minId(const QString &condition);
     int minId(const QString &idName, const QString &condition);
+    bool minIdRemove();
+    bool minIdsRemove(int id);
 
     int counts();
     int count(const QString &column_name, const QString &condition);
+    bool countsRemove(int count);
 
     QStringList listColumn(const QString &column_name, const QString &condition);
     QVector<int> listColumnToInt(const QString &column_name, const QString &condition);
