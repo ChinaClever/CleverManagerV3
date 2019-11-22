@@ -9,6 +9,7 @@ struct sConfigItem
     int sound;
     double elePrice;
     int logTimes; // 日志间隔时间分钟
+    int logCount;
 
     int wsEn;
     QString wsUrl;
@@ -65,6 +66,9 @@ public:
 
     int getLogTime();
     void setLogTime(int num);
+
+    int getLogCount();
+    void setLogCount(int count);
 
     double getElePrice();
     void setElePrice(double p);

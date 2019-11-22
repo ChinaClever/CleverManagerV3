@@ -23,9 +23,9 @@ SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)
     gridLayout->addWidget(tableView);
 
     timer = new QTimer(this);
-    timer->start(6*60*1000);
+    timer->start(4*60*1000);
     connect(timer, SIGNAL(timeout()),this, SLOT(autoDelSlot()));
-    QTimer::singleShot(6*1000,this,SLOT(autoDelSlot()));
+    QTimer::singleShot(60*1000,this,SLOT(autoDelSlot()));
 }
 
 
@@ -136,10 +136,11 @@ void SqlTableView::refreshSlot()
 
 void SqlTableView::autoDelSlot()
 {
+    int size = ConfigBase::bulid()->item->logCount;
     int count = mDb->counts();
-    if(count > LOG_MAX_COUNT) {
+    if(count > size) {
         refreshSlot();
-        mDb->countsRemove(LOG_MAX_COUNT);
+        mDb->countsRemove(size);
     }
 }
 
