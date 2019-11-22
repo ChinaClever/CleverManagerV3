@@ -111,9 +111,9 @@ color:rgb(255,255,255)</string>
            <property name="geometry">
             <rect>
              <x>10</x>
-             <y>404</y>
+             <y>354</y>
              <width>186</width>
-             <height>181</height>
+             <height>211</height>
             </rect>
            </property>
            <property name="font">
@@ -206,6 +206,27 @@ color:rgb(255,255,255)</string>
              </layout>
             </item>
             <item row="3" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>日志数目</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="logCountSpin">
+                <property name="suffix">
+                 <string>万条</string>
+                </property>
+                <property name="minimum">
+                 <number>10</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="4" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
                <widget class="QLabel" name="label_12">
@@ -234,7 +255,7 @@ color:rgb(255,255,255)</string>
              <x>10</x>
              <y>130</y>
              <width>191</width>
-             <height>241</height>
+             <height>221</height>
             </rect>
            </property>
            <property name="font">
