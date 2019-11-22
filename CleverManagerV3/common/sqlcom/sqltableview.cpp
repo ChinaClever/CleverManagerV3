@@ -21,6 +21,11 @@ SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)
     QGridLayout *gridLayout = new QGridLayout(parent);
     gridLayout->setContentsMargins(0, 0, 0, 0);
     gridLayout->addWidget(tableView);
+
+    timer = new QTimer(this);
+    timer->start(6*60*1000);
+    connect(timer, SIGNAL(timeout()),this, SLOT(autoDelSlot()));
+    QTimer::singleShot(6*1000,this,SLOT(autoDelSlot()));
 }
 
 
@@ -127,6 +132,15 @@ void SqlTableView::setColumnHidden(int column)
 void SqlTableView::refreshSlot()
 {
     initTable(mDb);
+}
+
+void SqlTableView::autoDelSlot()
+{
+    int count = mDb->counts();
+    if(count > LOG_MAX_COUNT) {
+        refreshSlot();
+        mDb->countsRemove(LOG_MAX_COUNT);
+    }
 }
 
 /**

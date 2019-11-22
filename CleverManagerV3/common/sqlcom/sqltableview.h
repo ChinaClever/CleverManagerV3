@@ -36,11 +36,15 @@ public slots:
     void submitSlot();
     void querySlot(const QString &);
 
+protected slots:
+    void autoDelSlot();
+
 public:
     BasicSql *mDb;
     SqlTableModel *model;
 
 private:
+    QTimer *timer;
     QTableView *tableView;
 };
 
