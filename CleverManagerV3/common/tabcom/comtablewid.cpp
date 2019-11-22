@@ -110,6 +110,7 @@ void ComTableWid::initTableWid(QStringList &header, int line, const QString &tit
     for(int i=0; i<line; ++i)
         addInitRow();
     ui->groupBox->setTitle(title);
+    ui->groupBox->setStyleSheet(tr("color:rgb(0,0,0);"));
 }
 
 /**

@@ -16,6 +16,8 @@ Pdu_SetThresholdDlg::Pdu_SetThresholdDlg(QWidget *parent) :
     this->setWindowTitle(tr("阈值设置"));
     groupBox_background_icon(this);
     mRate = 1;
+    button_style_sheet(ui->saveBtn);
+    button_style_sheet(ui->cancelBtn);
 }
 
 Pdu_SetThresholdDlg::~Pdu_SetThresholdDlg()
