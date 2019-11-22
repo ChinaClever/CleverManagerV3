@@ -1,4 +1,4 @@
-#ifndef DT_DINGTALK_H
+﻿#ifndef DT_DINGTALK_H
 #define DT_DINGTALK_H
 #include "dt_cfg.h"
 #include <QObject>

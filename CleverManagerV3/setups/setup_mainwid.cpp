@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -45,8 +45,6 @@ void Setup_MainWid::initPdusTable()
     new DT_MainWid(ui->groupBox);
     button_style_sheet(ui->upBtn);
 }
-
-
 
 void Setup_MainWid::initFunSLot()
 {

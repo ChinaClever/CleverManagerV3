@@ -1,4 +1,4 @@
-#include "dt_setupdlg.h"
+﻿#include "dt_setupdlg.h"
 #include "ui_dt_setupdlg.h"
 #include "msgbox.h"
 
@@ -37,6 +37,9 @@ void DT_SetupDlg::initWid()
             ui->noRb->setChecked(true);
         }
     }
+    button_style_sheet(ui->cancelBtn);
+    button_style_sheet(ui->okBtn);
+    button_style_sheet(ui->testBtn);
 }
 
 bool DT_SetupDlg::inputCheck()

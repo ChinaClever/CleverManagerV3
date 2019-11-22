@@ -1,6 +1,6 @@
-#include "dt_mainwid.h"
+﻿#include "dt_mainwid.h"
 #include "ui_dt_mainwid.h"
-
+#include "common.h"
 DT_MainWid::DT_MainWid(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::DT_MainWid)
@@ -23,6 +23,7 @@ void DT_MainWid::initWid()
         str = tr("开启");
     }
     ui->statusLab->setText(str);
+    button_style_sheet(ui->btn);
 }
 
 void DT_MainWid::on_btn_clicked()
@@ -30,6 +31,6 @@ void DT_MainWid::on_btn_clicked()
     DT_SetupDlg dlg(this);
     int ret = dlg.exec();
     if(QDialog::Accepted == ret) {
-       initWid();
+        initWid();
     }
 }
