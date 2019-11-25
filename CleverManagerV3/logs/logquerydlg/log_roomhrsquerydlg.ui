@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#Log_RoomHrsQueryDlg{background-image: url(:/image/box_back.jpg);}</string>
+  </property>
   <widget class="QPushButton" name="quitBtn">
    <property name="geometry">
     <rect>
@@ -21,6 +24,12 @@
      <width>120</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>取消</string>
@@ -35,6 +44,12 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>确认</string>
    </property>
@@ -47,6 +62,12 @@
      <width>91</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>机房：</string>
@@ -64,6 +85,12 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>请输入查询信息</string>
    </property>
@@ -80,6 +107,12 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QWidget" name="dateWid" native="true">
    <property name="geometry">
@@ -89,6 +122,12 @@
      <width>450</width>
      <height>120</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
  </widget>

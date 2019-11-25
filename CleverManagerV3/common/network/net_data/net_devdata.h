@@ -23,7 +23,7 @@ enum PDU_CMD_OBJ{
     PDU_CMD_VOL, // 电压
     PDU_CMD_POW, // 功率
     PDU_CMD_ELE, // 电能
-    PDU_CMD_PF, // 功率因素
+    PDU_CMD_PF, // 功率因数
     PDU_CMD_SW, // 开关状态 0 表示未启用
     PDU_CMD_CA, // 排碳量
     PDU_CMD_RATE //电压频率

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -11,7 +11,7 @@ DbCabHrs::DbCabHrs()
     tableTile = tr("机柜数据纪录");
     hiddens  << 4;
     headList << tr("机房") << tr("模块") << tr("机柜")  << tr("主备路")
-             << tr("电压") << tr("电流") << tr("功率") << tr("功率因素") << tr("电能");
+             << tr("电压") << tr("电流") << tr("功率") << tr("功率因数") << tr("电能");
 }
 
 

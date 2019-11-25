@@ -61,6 +61,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
            </property>
@@ -80,6 +86,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
            </property>
@@ -95,6 +107,12 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
@@ -115,6 +133,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
            </property>
@@ -131,6 +155,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
            </property>
@@ -146,6 +176,12 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
@@ -183,6 +219,12 @@
              <width>80</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
@@ -234,6 +276,12 @@ color:rgb(0,0,0)</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>1推送</string>
            </property>
@@ -246,6 +294,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>地址：</string>
@@ -263,6 +317,12 @@ color:rgb(0,0,0)</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
           </widget>
          </item>
          <item row="0" column="3">
@@ -272,6 +332,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>端口：</string>
@@ -288,6 +354,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="minimum">
             <number>100</number>
@@ -320,6 +392,12 @@ color:rgb(0,0,0)</string>
              <height>30</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
            </property>
@@ -336,6 +414,12 @@ color:rgb(0,0,0)</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>2推送</string>
            </property>
@@ -348,6 +432,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>地址：</string>
@@ -365,6 +455,12 @@ color:rgb(0,0,0)</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
           </widget>
          </item>
          <item row="1" column="3">
@@ -374,6 +470,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>端口：</string>
@@ -390,6 +492,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="minimum">
             <number>100</number>
@@ -421,6 +529,12 @@ color:rgb(0,0,0)</string>
              <width>80</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>
@@ -472,6 +586,12 @@ color:rgb(0,0,0)</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>1推送</string>
            </property>
@@ -484,6 +604,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>地址：</string>
@@ -501,6 +627,12 @@ color:rgb(0,0,0)</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
           </widget>
          </item>
          <item>
@@ -510,6 +642,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>端口：</string>
@@ -526,6 +664,12 @@ color:rgb(0,0,0)</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="minimum">
             <number>100</number>
@@ -557,6 +701,12 @@ color:rgb(0,0,0)</string>
              <width>80</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>12</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">color:rgb(0,0,0)</string>

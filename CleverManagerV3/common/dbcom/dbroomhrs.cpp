@@ -10,7 +10,7 @@ DbRoomHrs::DbRoomHrs()
 {
     createTable();
     tableTile = tr("机房数据纪录");
-    headList << tr("机房") << tr("电压") << tr("电流") << tr("功率") << tr("功率因素") << tr("电能");
+    headList << tr("机房") << tr("电压") << tr("电流") << tr("功率") << tr("功率因数") << tr("电能");
 }
 
 

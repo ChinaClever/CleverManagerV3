@@ -106,7 +106,7 @@ int Net_DevData::objData(sObjData &obj,Net_sDevData *data)
         pInt = obj.ele;
         break;
 
-    case PDU_CMD_PF: // 功率因素
+    case PDU_CMD_PF: // 功率因数
         pShort = obj.pf;
         break;
 

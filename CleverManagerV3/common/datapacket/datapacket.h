@@ -1,4 +1,4 @@
-#ifndef DATAPACKET_H
+﻿#ifndef DATAPACKET_H
 #define DATAPACKET_H
 #include <QtCore>
 #include <QColor>
@@ -17,7 +17,7 @@
 #define COM_RATE_CUR	10.0    // 电流
 #define COM_RATE_POW	1000.0  // 功率
 #define COM_RATE_ELE	10.0    // 电能
-#define COM_RATE_PF     100.0   // 功率因素
+#define COM_RATE_PF     100.0   // 功率因数
 #define COM_RATE_TEM	10.0    // 温度
 #define COM_RATE_HUM	10.0    // 湿度
 
@@ -60,7 +60,7 @@ struct sObjData
     uint pow[PACK_ARRAY_SIZE]; // 功率
     uint ele[PACK_ARRAY_SIZE]; // 电能
 
-    ushort pf[PACK_ARRAY_SIZE]; // 功率因素
+    ushort pf[PACK_ARRAY_SIZE]; // 功率因数
     uchar sw[PACK_ARRAY_SIZE]; // 开关状态 0 表示未启用
 
     uchar hz[PACK_ARRAY_SIZE]; // 电压频率
@@ -83,7 +83,7 @@ struct sTgObjData
     uint pow; // 功率
 
     uint ele; // 电能
-    uint pf; // 功率因素
+    uint pf; // 功率因数
     uint activePow; // 袖在功率
     uint tem;
 };
