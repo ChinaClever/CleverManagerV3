@@ -36,6 +36,8 @@ private slots:
 
     void on_priceSPin_valueChanged(double arg1);
 
+    void on_logCountSpin_valueChanged(int arg1);
+
 private:
     Ui::Setup_MainWid *ui;
     UserMainWid *mUserWid;

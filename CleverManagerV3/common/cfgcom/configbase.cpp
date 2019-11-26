@@ -11,6 +11,7 @@ ConfigBase::ConfigBase()
     item = new sConfigItem();
     item->sound = getSound();
     item->logTimes = getLogTime();
+    item->logCount = getLogCount();
     item->elePrice = getElePrice();
 
     item->wsEn = getWsEn();
@@ -280,6 +281,29 @@ void ConfigBase::setLogTime(int num)
 }
 
 
+/**
+ * @brief 获取日志存储时间隔
+ * @return
+ */
+int ConfigBase::getLogCount()
+{
+    QString prefix = getPrefix();
+    QString str = QString("%1_log_count").arg(prefix);
+    int ret = com_cfg_readInt(str, prefix);
+    if(ret <= 0)  ret = 10*10000;
+    return ret;
+}
+
+/**
+ * @brief 设置日志存储时间间隔
+ * @param num
+ */
+void ConfigBase::setLogCount(int count)
+{
+    QString prefix = getPrefix();
+    QString str = QString("%1_log_count").arg(prefix);
+    com_cfg_writeParam(str, QString::number(count), prefix);
+}
 
 /**
  * @brief 获取单价

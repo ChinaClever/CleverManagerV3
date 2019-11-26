@@ -6,7 +6,6 @@
 #include "common.h"
 
 #define LOG_DELAY 1
-#define LOG_MAX_COUNT (10*10000)
 
 class Db_Tran
 {

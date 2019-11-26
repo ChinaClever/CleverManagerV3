@@ -1,4 +1,4 @@
-﻿/*
+/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -59,6 +59,7 @@ void Setup_MainWid::initFunSLot()
     ui->alarmCmb->setCurrentIndex(item->sound);
     ui->logSpin->setValue(item->logTimes);
     ui->priceSPin->setValue(item->elePrice);
+    ui->logCountSpin->setValue(item->logCount/10000);
 }
 
 void Setup_MainWid::on_comboBox_currentIndexChanged(int index)
@@ -92,4 +93,11 @@ void Setup_MainWid::on_priceSPin_valueChanged(double arg1)
     ConfigBase *con = ConfigBase::bulid();
     con->item->elePrice = arg1;
     con->setElePrice(arg1);
+}
+
+void Setup_MainWid::on_logCountSpin_valueChanged(int arg1)
+{
+    ConfigBase *con = ConfigBase::bulid();
+    con->item->logCount = arg1*10000;
+    con->setLogCount(arg1*10000);
 }
