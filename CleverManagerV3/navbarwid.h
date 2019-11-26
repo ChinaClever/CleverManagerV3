@@ -14,6 +14,7 @@ class NavBarWid : public QWidget
 public:
     explicit NavBarWid(QWidget *parent = 0);
     ~NavBarWid();
+    UsrLandDlg* mUserLand;
 
 
 signals:

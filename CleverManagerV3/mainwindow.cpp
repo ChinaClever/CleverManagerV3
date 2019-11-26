@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -23,8 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(changeToCab()), mNavBar, SLOT(changeToCabSlot()));
 
     mUserDlg = new UsrLandDlg();
-    mUserDlg->exec();
+    mNavBar->mUserLand = mUserDlg;
     connect(mUserDlg,SIGNAL(sendUserNameSig(QString)),mNavBar,SLOT(recvUserNameSlot(QString)));
+    mUserDlg->exec();
 }
 
 MainWindow::~MainWindow()

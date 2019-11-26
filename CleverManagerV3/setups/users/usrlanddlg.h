@@ -22,8 +22,10 @@ public:
 signals:
     void sendUserNameSig(QString str);
 
-private slots:
+public slots:
     void on_landBtn_clicked();
+
+private slots:
     void on_pushButton_clicked();
 
 private:

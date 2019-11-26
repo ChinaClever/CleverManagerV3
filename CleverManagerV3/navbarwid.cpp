@@ -43,18 +43,20 @@ void NavBarWid::enableBtn()
  */
 void NavBarWid::on_userBtn_clicked()
 {
-    UsrLandDlg dlg;
-    bool lang = LandingUser::get()->land;
-    if(lang) {
-        int ret = dlg.selectWork();
-        if(ret == 1) // 用户切换
-        {
-            dlg.exec();
+    if(mUserLand)
+    {
+        bool lang = LandingUser::get()->land;
+        if(lang) {
+            int ret = mUserLand->selectWork();
+            if(ret == 1) // 用户切换
+            {
+                mUserLand->exec();
+            }
+            else if(ret == 2) // 用户退出
+                mUserLand->quitWidget();
+        } else {
+            mUserLand->exec();
         }
-        else if(ret == 2) // 用户退出
-            dlg.quitWidget();
-    } else {
-        dlg.exec();
     }
 
     enableBtn();
@@ -165,7 +167,6 @@ void NavBarWid::initBtnQStr()
 void NavBarWid::recvUserNameSlot(QString str)
 {
     mUserName = str;
-    qDebug()<<mUserName<<mUserLab;
     if(mUserLab)
         mUserLab->setText(mUserName);
 }

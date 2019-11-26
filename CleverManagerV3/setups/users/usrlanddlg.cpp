@@ -125,7 +125,6 @@ void UsrLandDlg::usrLand()
                     DbUserLog::bulid()->insertItem(item);
 
                     this->accept();
-                    qDebug()<<"item.name"<<name;
                     emit sendUserNameSig(name);
                 }
                 else
