@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -71,7 +71,7 @@ void Pdu_EnvWid::setAlarm(int row, int id, sDataUnit &unit)
 
 int Pdu_EnvWid::setDataUnit(int row, sDataUnit &unit, const QString &str)
 {
-    for(int i=0; i<SENOR_NUM; ++i) {
+    for(int i=0; i<unit.size && i<SENOR_NUM; ++i) {
         QStringList list;
         if(unit.value[i]) {
             double value = unit.value[i] / COM_RATE_TEM;

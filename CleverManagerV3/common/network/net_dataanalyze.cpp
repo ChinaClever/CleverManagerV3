@@ -1,4 +1,4 @@
-/*
+﻿/*
  * netdataanalyze.cpp
  * 解析网络数据包
  *   此对象会创建UDP接收套接字，接收UDP数据，并创建心跳包对象，广播心跳包
@@ -17,7 +17,9 @@
 NetDataAnalyze::NetDataAnalyze(QObject *parent) : QThread(parent)
 {
     isRun = true;
+    UdpBDSent::bulid(this);
     UdpHeartBeat::bulid(this); //初始化心跳包
+    UdpSentSocket::bulid(this);
     WebSocketClient::bulid(this);
 
     mDataQue = UdpDataQueue::bulid();

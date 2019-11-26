@@ -28,7 +28,7 @@ void Pdu_OutputWid::setAlarm(int id, sObjData &unit)
     int column=1, swAlarm=0;
 
     int value = unit.sw[id];
-    if(value != 1) swAlarm = 2;
+    if(value == 1) swAlarm = 2;
     setItemColor(id, column++, swAlarm);
 
     value = unit.cur.alarm[id];
@@ -42,9 +42,9 @@ void Pdu_OutputWid::setObjUnit(int id, sObjData &unit)
     QStringList list;
     list << unit.name[id];
 
-    QString  str = tr("断开");;
+    QString  str = tr("接通");;
     if(1 == unit.sw[id]) {
-        str = tr("接通");
+        str = tr("断开");
     }
     list << str;
 
