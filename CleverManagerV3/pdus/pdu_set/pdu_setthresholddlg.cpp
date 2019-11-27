@@ -15,9 +15,11 @@ Pdu_SetThresholdDlg::Pdu_SetThresholdDlg(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle(tr("阈值设置"));
     groupBox_background_icon(this);
-    mRate = 1;
     button_style_sheet(ui->saveBtn);
     button_style_sheet(ui->cancelBtn);
+    mPacket = nullptr;
+    mUnit = nullptr;
+    mRate = 1;
 }
 
 Pdu_SetThresholdDlg::~Pdu_SetThresholdDlg()
@@ -86,6 +88,7 @@ void Pdu_SetThresholdDlg::setMode(int mode, int id, sDataPacket *packet)
         break;
 
     default:
+        qDebug()<<"Pdu_SetThresholdDlg::setMode err" << mode;
         return;
     }
 
@@ -235,7 +238,7 @@ bool Pdu_SetThresholdDlg::sentData()
 
     NetPackData *pack = NetPackData::bulid();
     int len = pack->net_data_packets(mPacket->devType, &pkt, buf);
-    if(on) {
+    if(!on) {
         QString ip = mPacket->net.ip;
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
     } else {

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * udpsentsocket.cpp
  * UDP 发送套接字
  *
@@ -72,7 +72,9 @@ bool UdpSentSocket::sentBroadcastData(uchar *buf, ushort len, quint16 port)
     QByteArray byte;
 
     for(int i=0; i<len; ++i)
+    {
         byte.append(buf[i]);
+    }
 
     return sentBroadcastData(byte,port);
 }

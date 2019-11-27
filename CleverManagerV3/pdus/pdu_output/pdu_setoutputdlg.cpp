@@ -196,7 +196,7 @@ bool Pdu_SetOutputDlg::sentData()
 
     NetPackData *pack = NetPackData::bulid();
     int len = pack->net_data_packets(mPacket->devType, &pkt, buf);
-    if(on) {
+    if(!on) {
         QString ip = mPacket->net.ip;
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
     } else {

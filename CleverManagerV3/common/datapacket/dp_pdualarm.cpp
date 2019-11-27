@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -139,6 +139,8 @@ bool Dp_PduAlarm::alarm(sDataPacket *pack)
         ret = alarmDevData(pack->data);
         if(ret) {
             pack->alarm = 1;
+        } else {
+             pack->alarm = 0;
         }
     } else if(pack->offLine == 0) {
         pack->offLine = -1;

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -8,13 +8,12 @@
 
 bool usr_land_jur()
 {
-    //LandingUser::get()->user.jur = true; ///=== 调用用
     return LandingUser::get()->user.jur;
 }
 
 QString user_land_name()
 {
-     return LandingUser::get()->user.name;
+    return LandingUser::get()->user.name;
 }
 
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -133,7 +133,9 @@ void Dp_PduPackets::workDown(sDataPacket *pack)
     sendHeartBeat(pack);
     if(pack->offLine > 0) {
         pack->offLine--;
-        mAlarm->alarm(pack);
+
+        if(pack->count>10)
+            mAlarm->alarm(pack);
         mHrs->save(pack);
         tgDevData(pack->data);
         pushData(pack);
