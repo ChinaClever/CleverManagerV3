@@ -14,29 +14,14 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="topMargin">
+    <number>15</number>
+   </property>
    <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
+    <widget class="QTableWidget" name="tableWidget">
      <property name="styleSheet">
-      <string notr="true">color:rgb(255,255,255)</string>
+      <string notr="true">color:rgb(0,0,0)</string>
      </property>
-     <property name="title">
-      <string>表格</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QTableWidget" name="tableWidget">
-        <property name="styleSheet">
-         <string notr="true">color:rgb(0,0,0)</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
   </layout>

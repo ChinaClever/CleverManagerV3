@@ -1,4 +1,4 @@
-﻿/*
+/*
  * tableWidget公共蕨类
  *     提供接口，protect所有方法
  *
@@ -109,8 +109,6 @@ void ComTableWid::initTableWid(QStringList &header, int line, const QString &tit
     initTableWidget(header);
     for(int i=0; i<line; ++i)
         addInitRow();
-    ui->groupBox->setTitle(title);
-    ui->groupBox->setStyleSheet(tr("color:rgb(0,0,0);"));
 }
 
 /**
