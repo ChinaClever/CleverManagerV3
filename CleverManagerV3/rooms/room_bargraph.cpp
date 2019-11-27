@@ -11,14 +11,11 @@
 Room_BarGraph::Room_BarGraph(QWidget *parent) : QWidget(parent)
 {
     initWidget();
-    //    set_background_color(this, Qt::white);
-
     mPacket = nullptr;
     timer = new QTimer(this);
     connect( timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));
     timer->start(5*1000);
 
-    QTimer::singleShot(500,this,SLOT(timeoutDone()));
     QGridLayout *gridLayout = new QGridLayout(parent);
     gridLayout->setContentsMargins(0, 0, 0, 0);
     gridLayout->addWidget(this);

@@ -1,4 +1,4 @@
-﻿/*
+/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -11,7 +11,6 @@ Room_DataWid::Room_DataWid(QWidget *parent) :
     ui(new Ui::Room_DataWid)
 {
     ui->setupUi(this);
-
 
     initView();
     mPacket = nullptr;
