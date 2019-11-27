@@ -14,6 +14,7 @@ SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)
     tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //禁用编辑功能
     tableView->resizeColumnsToContents();
 
+    mDb = nullptr;
     model = new SqlTableModel(tableView);
     tableView->setModel(model->model);
     tableView->horizontalHeader()->setStretchLastSection(true);
@@ -149,12 +150,9 @@ void SqlTableView::autoDelSlot()
  */
 void SqlTableView::clearTableSlot()
 {
-    bool ret = model->removeRows();
-    if(ret) {
-        QCoreApplication::processEvents(QEventLoop::AllEvents,10);
-        int row = model->model->rowCount();
-        if(row > 0)  QTimer::singleShot(5,this,SLOT(clearTableSlot()));
-    }
+    mDb->clear();
+    QCoreApplication::processEvents(QEventLoop::AllEvents,450);
+    refreshSlot();
 }
 
 /**
