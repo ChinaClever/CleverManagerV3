@@ -1,4 +1,4 @@
-﻿#ifndef DATAPACKET_H
+#ifndef DATAPACKET_H
 #define DATAPACKET_H
 #include <QtCore>
 #include <QColor>
@@ -193,7 +193,7 @@ struct sBusPacket : public sDataPacket
 
 struct sCabPacket
 {
-    sCabPacket() {m=s=nullptr; count=0;en=1;status=-1; pow=6000; powAlarm=0;}
+    sCabPacket() {m=s=nullptr; count=0;en=1;status=-1; pow=6000; powAlarm=0; color.setRgb(174,225,254);}
 
     char status;
     QColor color, tmpColor;
