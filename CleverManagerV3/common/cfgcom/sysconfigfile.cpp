@@ -18,7 +18,7 @@ static QSettings *pConfigIni = NULL;
 QString cm_pathOfData(const QString& name)
 {
     QDir dataDir(QDir::home());
-    QString dirName = ".CleverManager";
+    QString dirName = ".CleverManager_V3";
     if(!dataDir.exists(dirName))
         dataDir.mkdir(dirName);
     dataDir.cd(dirName);
