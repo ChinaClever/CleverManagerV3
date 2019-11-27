@@ -77,10 +77,10 @@ void Bar_ChartsWid::initXAxis(void)
  */
 void Bar_ChartsWid::setRange(int data)
 {
-    static int range=0;
+    static int range=-1;
     if(range < data)
     {
-        range = data + data/5;
+        range = data + data/5 + 10;
         m_drawChart->setRange(range);
     }
 }
