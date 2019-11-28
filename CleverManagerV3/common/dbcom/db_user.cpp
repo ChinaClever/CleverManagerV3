@@ -31,7 +31,7 @@ void DbUser::createTable()
             "telephone      VCHAR,"
             "remarks        VCHAR,"
             "jur            INTEGER);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName())))
     {
         throwError(query.lastError());
@@ -82,7 +82,7 @@ bool DbUser::updateItem(const sUserItem &item)
 
 bool DbUser::modifyItem(const sUserItem &item, const QString &cmd)
 {   
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":id",item.id);
     query.bindValue(":date",item.date);

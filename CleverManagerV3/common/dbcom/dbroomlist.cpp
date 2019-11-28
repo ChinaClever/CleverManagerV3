@@ -32,7 +32,7 @@ void DbRoomList::createTable()
             "id                INTEGER primary key autoincrement not null,"
             "room              TEXT not null,"
             "address           TEXT);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName())))
     {
         throwError(query.lastError());
@@ -59,7 +59,7 @@ void DbRoomList::updateItem(const RoomItem &item)
 
 void DbRoomList::modifyItem(const RoomItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":id",item.id);
     query.bindValue(":room",item.room);

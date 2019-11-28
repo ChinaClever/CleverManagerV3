@@ -12,7 +12,7 @@ extern QString cm_pathOfData(const QString& name);
 BasicSql::BasicSql(QObject *parent) :
     QObject(parent)
 {
-    initDb();
+    mDb = initDb();
     headList << tr("编号") << tr("日期") << tr("时间");
     hiddens << 0;
 
@@ -21,18 +21,22 @@ BasicSql::BasicSql(QObject *parent) :
                   "name TEXT primary key not null,"
                   "marking TEXT not null"
                   ");";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd))
         throwError(query.lastError());
 }
 
+BasicSql::~BasicSql()
+{
+
+}
 /**
  * @brief 删除
  * @param condition
  */
 bool BasicSql::remove(const QString &condition)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     bool ret = query.exec(QString("DELETE FROM %1 WHERE %2").arg(tableName()).arg(condition));
     if(!ret) {
         throwError(query.lastError());
@@ -79,7 +83,7 @@ int BasicSql::maxId()
 int BasicSql::maxId(const QString &idName, const QString &condition)
 {
     int id = 0;
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(query.exec(QString("select max(%1) from %2 %3").arg(idName).arg(tableName()).arg(condition)))
     {
         if(query.next())
@@ -97,7 +101,7 @@ int BasicSql::maxId(const QString &condition)
 int BasicSql::minId(const QString &idName, const QString &condition)
 {
     int id = 0;
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(query.exec(QString("select MIN(%1) from %2 %3").arg(idName).arg(tableName()).arg(condition)))
     {
         if(query.next())
@@ -130,7 +134,7 @@ bool BasicSql::minIdRemove()
 
 bool BasicSql::minIdsRemove(int id)
 {
-   return removeMinIds(id);
+    return removeMinIds(id);
 }
 
 /**
@@ -141,12 +145,12 @@ bool BasicSql::minIdsRemove(int id)
 int BasicSql::count(const QString &column_name, const QString &condition)
 {
     int count = -1;
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(query.exec(QString("select count(DISTINCT %1) from %2 %3").arg(column_name).arg(tableName()).arg(condition))){
         if(query.next())
             count = query.value(0).toInt();
     } else
-       throwError(query.lastError());
+        throwError(query.lastError());
     return count;
 }
 
@@ -181,12 +185,12 @@ bool BasicSql::countsRemove(int count)
 QStringList BasicSql::listColumn(const QString &column_name, const QString &condition)
 {
     QStringList list;
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(query.exec(QString("select DISTINCT %1 from %2 %3").arg(column_name).arg(tableName()).arg(condition))){
         while(query.next())
             list << query.value(0).toString();
     } else
-       throwError(query.lastError());
+        throwError(query.lastError());
     return list;
 }
 
@@ -205,7 +209,7 @@ QVector<int> BasicSql::listColumnToInt(const QString &column_name, const QString
 bool BasicSql::updateColumn(const QString& column_name, double value, const QString &condition)
 {
     bool ret = false;
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     ret = query.exec(QString("update  %1 set %2=%3 %4").arg(tableName()).arg(column_name).arg(value).arg(condition));
     if(!ret) throwError(query.lastError());
     return ret;
@@ -214,7 +218,7 @@ bool BasicSql::updateColumn(const QString& column_name, double value, const QStr
 bool BasicSql::updateColumn(const QString& column_name, const QString& value, const QString &condition)
 {
     bool ret = false;
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     ret = query.exec(QString("update  %1 set %2=\'%3\' where %4").arg(tableName()).arg(column_name).arg(value).arg(condition));
     if(!ret) throwError(query.lastError());
     return ret;
@@ -252,7 +256,7 @@ bool BasicSql::clear()
 QString BasicSql::tableMarking()
 {
     QString cmd = QString("SELECT * from markingtable where name = \'%1\'").arg(tableName());
-    QSqlQuery query(cmd);
+    QSqlQuery query(mDb);
     if(query.exec(cmd)){
         if(query.next())
             return query.value(1).toString();
@@ -270,7 +274,7 @@ void BasicSql::setTableMarking(const QString &marking)
 {
     QString ori = tableMarking();
     QString cmd = ori.isEmpty()?"insert into markingtable (name,marking) values(%1,%2)":"update markingtable set marking = %2 where name = \"%1\"";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()).arg(marking)))
         throwError(query.lastError());
 }
@@ -278,17 +282,20 @@ void BasicSql::setTableMarking(const QString &marking)
 /**
  * @brief 数据库初始化
  */
-void BasicSql::initDb()
+QSqlDatabase BasicSql::initDb()
 {
-    static bool s_initDbFinshed = false;
-    if(s_initDbFinshed == false){
-        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlDatabase db;
+    quint32 value = QRandomGenerator::global()->generate();
+    if (QSqlDatabase::contains(QString::number(value))) {
+        db = QSqlDatabase::database(QString::number(value));
+    } else {
+        db = QSqlDatabase::addDatabase("QSQLITE", QString::number(value));
         db.setDatabaseName(cm_pathOfData("test.db"));
         if (!db.open()) { //打开数据库
-            qDebug() << "init Db error !!!";
+            qDebug() << "init Db error !!!" << db.lastError().text();
         }
-        s_initDbFinshed = true;
     }
+    return db;
 }
 
 
@@ -297,7 +304,8 @@ void BasicSql::initDb()
  */
 void DB_selectTableByTime(QString &name, QString &start, QString &end, QList<QStringList> &list)
 {
-    QSqlQuery query;
+    QSqlDatabase db = BasicSql::initDb();
+    QSqlQuery query(db);
     QString cmd = QString("select * from %1 where date Between \'%2\' and  \'%3\'").arg(name).arg(start).arg(end);
     bool ret = query.exec(cmd);
     if(ret)
@@ -310,8 +318,7 @@ void DB_selectTableByTime(QString &name, QString &start, QString &end, QList<QSt
                 strList << query.value(i).toString();
             list.append(strList);
         }
-    }
-    else
+    } else
         qDebug() << cmd << "Err";
 }
 
@@ -324,7 +331,8 @@ bool db_select_dateList(const QString &tableName, QStringList &dateList)
 {
     QString str = QString("select * from %1").arg(tableName);
 
-    QSqlQuery query;
+    QSqlDatabase db = BasicSql::initDb();
+    QSqlQuery query(db);
     query.setForwardOnly(true); // 为了节省内存开销
     bool ret = query.exec(str);
     if(ret) {
@@ -334,8 +342,7 @@ bool db_select_dateList(const QString &tableName, QStringList &dateList)
             if(!dateList.contains(str))
                 dateList << str; // 加入链表中
         }
-    }
-    else
+    } else
         qDebug() << "db_select_dateList err: " << str;
 
     return ret;

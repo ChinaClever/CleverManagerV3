@@ -23,7 +23,7 @@ void DbUserLog::createTable()
             "time           VCHAR,"
             "name           VCHAR,"
             "remarks        VCHAR);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()))) {
         throwError(query.lastError());
     }
@@ -49,7 +49,7 @@ bool DbUserLog::insertItem(sUserLogItem &item)
 
 bool DbUserLog::modifyItem(const sUserLogItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":date",item.date);
     query.bindValue(":time",item.time);

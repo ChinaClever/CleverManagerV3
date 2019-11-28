@@ -39,7 +39,7 @@ void DbPduElec::createTable()
             "ele            DOUBLE,"
             "price          DOUBLE,"
             "fees           DOUBLE);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()))) {
         throwError(query.lastError());
     }
@@ -65,7 +65,7 @@ bool DbPduElec::insertItem(sPduElecItem &item)
 
 bool DbPduElec::modifyItem(const sPduElecItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":room",item.room);
     query.bindValue(":modular",item.modular);

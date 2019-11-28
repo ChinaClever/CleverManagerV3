@@ -31,7 +31,7 @@ void DbRoomElec::createTable()
             "ele            DOUBLE,"
             "price          DOUBLE,"
             "fees           DOUBLE);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()))) {
         throwError(query.lastError());
     }
@@ -57,7 +57,7 @@ bool DbRoomElec::insertItem(sRoomElecItem &item)
 
 bool DbRoomElec::modifyItem(const sRoomElecItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":room",item.room);
     query.bindValue(":startdt",item.startdt);
