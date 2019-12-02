@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string>删除机架设备</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/image/box_back.jpg);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -37,6 +40,12 @@
      <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="0,1">
       <item row="0" column="0">
        <widget class="QLabel" name="label_address">
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>主机位置：</string>
         </property>
@@ -44,6 +53,12 @@
       </item>
       <item row="0" column="1">
        <widget class="QSpinBox" name="spinBox">
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="minimum">
          <number>1</number>
         </property>
@@ -97,6 +112,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_ok">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>确定</string>
        </property>

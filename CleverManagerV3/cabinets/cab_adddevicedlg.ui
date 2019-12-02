@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>确认信息</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#Cab_AddDeviceDlg{background-image: url(:/image/box_back.jpg);}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="leftMargin">
     <number>0</number>
@@ -39,13 +42,26 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QLabel" name="label_name">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>增加机架设备名称：</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_name"/>
+         <widget class="QLineEdit" name="lineEdit_name">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -53,6 +69,12 @@
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>主要配电端口：</string>
           </property>
@@ -60,6 +82,12 @@
         </item>
         <item row="0" column="2">
          <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>备用配电端口：</string>
           </property>
@@ -67,6 +95,12 @@
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>机架位置：</string>
           </property>
@@ -74,6 +108,12 @@
         </item>
         <item row="1" column="1">
          <widget class="QSpinBox" name="spinBox_pos">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="maximum">
            <number>9999</number>
           </property>
@@ -81,6 +121,12 @@
         </item>
         <item row="1" column="2">
          <widget class="QLabel" name="label_6">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>占用高度：</string>
           </property>
@@ -88,6 +134,12 @@
         </item>
         <item row="1" column="3">
          <widget class="QSpinBox" name="spinBox_height">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="suffix">
            <string>U</string>
           </property>
@@ -106,10 +158,24 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_port"/>
+         <widget class="QLineEdit" name="lineEdit_port">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="0" column="3">
-         <widget class="QLineEdit" name="lineEdit_port2"/>
+         <widget class="QLineEdit" name="lineEdit_port2">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -169,6 +235,12 @@
          <width>70</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(0,90,173);
