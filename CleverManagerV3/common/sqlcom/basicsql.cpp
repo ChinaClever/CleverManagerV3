@@ -7,6 +7,7 @@
  *      Author: Lzy
  */
 #include "basicsql.h"
+
 extern QString cm_pathOfData(const QString& name);
 
 BasicSql::BasicSql(QObject *parent) :

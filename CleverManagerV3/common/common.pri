@@ -16,6 +16,7 @@ include(network/network.pri)
 include(websocket/websocket.pri)
 include(datapacket/datapacket.pri)
 include(backcolour/backcolour.pri)
+include(qtsingleapplication/qtsingleapplication.pri)
 
 HEADERS += \	
     $$PWD/common.h
