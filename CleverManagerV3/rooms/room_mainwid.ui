@@ -23,6 +23,12 @@
    <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
    <item row="0" column="0" colspan="2">
     <widget class="QWidget" name="titleWid" native="true">
      <property name="maximumSize">
@@ -50,6 +56,12 @@
       </item>
       <item row="0" column="1">
        <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>微软雅黑</family>
@@ -68,7 +80,7 @@
        <widget class="QComboBox" name="comboBox">
         <property name="minimumSize">
          <size>
-          <width>120</width>
+          <width>140</width>
           <height>26</height>
          </size>
         </property>

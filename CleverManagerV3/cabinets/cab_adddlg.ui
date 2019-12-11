@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Cab_AddDlg</class>
  <widget class="QDialog" name="Cab_AddDlg">
@@ -256,9 +256,9 @@
    <widget class="QLabel" name="label_deputy">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>530</x>
       <y>90</y>
-      <width>66</width>
+      <width>80</width>
       <height>27</height>
      </rect>
     </property>
@@ -384,9 +384,9 @@
    <widget class="QLabel" name="label_deputy_2">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>530</x>
       <y>130</y>
-      <width>66</width>
+      <width>80</width>
       <height>27</height>
      </rect>
     </property>
@@ -459,10 +459,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>81</y>
-      <width>91</width>
-      <height>31</height>
+      <x>710</x>
+      <y>90</y>
+      <width>60</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -484,10 +484,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>121</y>
-      <width>91</width>
-      <height>31</height>
+      <x>710</x>
+      <y>130</y>
+      <width>60</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -509,7 +509,7 @@
       <x>580</x>
       <y>80</y>
       <width>87</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -538,7 +538,7 @@
       <x>580</x>
       <y>120</y>
       <width>87</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">

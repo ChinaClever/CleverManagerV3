@@ -26,7 +26,7 @@ void DbCabAlarm::createTable()
             "cab            VCHAR,"
             "item           VCHAR,"
             "msg        VCHAR);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()))) {
         throwError(query.lastError());
     }
@@ -52,7 +52,7 @@ bool DbCabAlarm::insertItem(sDbCabAlarmItem &item)
 
 bool DbCabAlarm::modifyItem(const sDbCabAlarmItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":date",item.date);
     query.bindValue(":time",item.time);

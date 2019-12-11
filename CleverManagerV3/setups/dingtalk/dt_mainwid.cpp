@@ -1,4 +1,4 @@
-﻿#include "dt_mainwid.h"
+#include "dt_mainwid.h"
 #include "ui_dt_mainwid.h"
 #include "common.h"
 DT_MainWid::DT_MainWid(QWidget *parent) :
@@ -7,6 +7,10 @@ DT_MainWid::DT_MainWid(QWidget *parent) :
 {
     ui->setupUi(this);
     initWid();
+
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(11, 11, 11, 11);
+    gridLayout->addWidget(this);
 }
 
 DT_MainWid::~DT_MainWid()

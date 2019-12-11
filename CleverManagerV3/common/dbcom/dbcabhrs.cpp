@@ -31,7 +31,7 @@ void DbCabHrs::createTable()
             "pow            DOUBLE,"
             "pf             DOUBLE,"
             "ele            DOUBLE);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()))) {
         throwError(query.lastError());
     }
@@ -57,7 +57,7 @@ bool DbCabHrs::insertItem(sDbCabHrsItem &item)
 
 bool DbCabHrs::modifyItem(const sDbCabHrsItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":date",item.date);
     query.bindValue(":time",item.time);

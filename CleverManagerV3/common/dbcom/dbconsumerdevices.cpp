@@ -22,7 +22,7 @@ void DbConsumerDevices::createTable()
                   "spare_pdu_port    INTEGER,"
                   "address           INTEGER,"
                   "occupy_height     INTEGER);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()).arg(DbCabinetList::get()->tableName()).arg("id")))
         throwError(query.lastError());
 }
@@ -84,7 +84,7 @@ void DbConsumerDevices::cabinetItemChange(int cabinet_id, int type)
 
 void DbConsumerDevices::modifyItem(const ConsumerDeviceItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare( cmd );
     query.bindValue(":id",item.id);
     query.bindValue(":name",item.name);

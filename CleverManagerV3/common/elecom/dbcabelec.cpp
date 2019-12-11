@@ -34,7 +34,7 @@ void DbCabElec::createTable()
             "ele            DOUBLE,"
             "price          DOUBLE,"
             "fees           DOUBLE);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()))) {
         throwError(query.lastError());
     }
@@ -60,7 +60,7 @@ bool DbCabElec::insertItem(sCabElecItem &item)
 
 bool DbCabElec::modifyItem(const sCabElecItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":room",item.room);
     query.bindValue(":modular",item.modular);

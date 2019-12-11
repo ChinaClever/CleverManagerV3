@@ -31,7 +31,7 @@ void DbPduAlarm::createTable()
             "dev_num        VCHAR,"
             "item           VCHAR,"
             "msg        VCHAR);";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()))) {
         throwError(query.lastError());
     }
@@ -57,7 +57,7 @@ bool DbPduAlarm::insertItem(sDbAlarmItem &item)
 
 bool DbPduAlarm::modifyItem(const sDbAlarmItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":date",item.date);
     query.bindValue(":time",item.time);

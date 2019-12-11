@@ -1,4 +1,4 @@
-﻿/*
+/*
  * tg_roomwidget.cpp
  * 统计界面机房列表处理
  *
@@ -14,10 +14,7 @@ Room_MainWid::Room_MainWid(QWidget *parent) :
     ui(new Ui::Room_MainWid)
 {
     ui->setupUi(this);
-
-    initWid();
-    QTimer::singleShot(1000,this,SLOT(initFunSLot())); //延时初始化
-    connect(DbRoomList::get(), SIGNAL(itemChanged(int,int)), this,SLOT(itemChangedSlot(int,int)));
+    QTimer::singleShot(5*1000,this,SLOT(initFunSLot())); //延时初始化
 }
 
 Room_MainWid::~Room_MainWid()
@@ -35,6 +32,8 @@ void Room_MainWid::initFunSLot()
 
     this->setStyleSheet("background-color: rgb(0,45,130);color: rgb(0, 0, 0);");
     set_background_color(this, QColor(0,45,130));
+
+    initWid();
 }
 
 
@@ -51,6 +50,8 @@ void Room_MainWid::initWid()
 
     mVc = new Room_VcGraph(ui->vcWid);
     connect(this, SIGNAL(roomSelectSig(sRoomPacket*)), mVc, SLOT(packetSlot(sRoomPacket*)));
+
+    connect(DbRoomList::get(), SIGNAL(itemChanged(int,int)), this,SLOT(itemChangedSlot(int,int)));
 }
 
 /**

@@ -32,7 +32,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,18">
      <property name="spacing">
-      <number>30</number>
+      <number>15</number>
      </property>
      <property name="leftMargin">
       <number>0</number>
@@ -142,13 +142,13 @@ background-color: rgb(0,45,130);</string>
           </property>
           <property name="minimumSize">
            <size>
-            <width>120</width>
+            <width>140</width>
             <height>45</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>160</width>
             <height>45</height>
            </size>
           </property>

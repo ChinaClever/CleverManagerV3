@@ -32,7 +32,7 @@ void DbPduDevices::createTable()
                   "dev_type          VCHAR,"
                   "dev_num           VCHAR,"
                   "ip                VCHAR)";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()).arg(DbRoomList::get()->tableName()).arg("id")
                    .arg(DbCabinetList::get()->tableName()).arg("id")))
     {
@@ -175,7 +175,7 @@ int DbPduDevices::getDevNums(const QString &ip)
 
 void DbPduDevices::modifyItem(const PduDeviceItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare( cmd );
     query.bindValue(":id",item.id);
     query.bindValue(":room_id",item.room_id);

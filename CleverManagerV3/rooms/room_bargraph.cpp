@@ -11,8 +11,6 @@
 Room_BarGraph::Room_BarGraph(QWidget *parent) : QWidget(parent)
 {
     initWidget();
-    //    set_background_color(this, Qt::white);
-
     mPacket = nullptr;
     timer = new QTimer(this);
     connect( timer, SIGNAL(timeout()),this, SLOT(timeoutDone()));

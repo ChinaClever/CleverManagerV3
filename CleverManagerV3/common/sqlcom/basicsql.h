@@ -40,6 +40,7 @@ class BasicSql : public QObject
     Q_OBJECT
 public:
     explicit BasicSql(QObject *parent = 0);
+    ~BasicSql();
 
     QList<int> hiddens;
     QString tableTile;
@@ -75,14 +76,15 @@ public:
     bool clear(); // 清空 表
     virtual void createTable()=0;
 
+    QSqlDatabase mDb;
+    static QSqlDatabase initDb();
+
 signals:
     void itemChanged(int id,int type);
 protected:
     void throwError(const QSqlError& err); /// inline static
     QString tableMarking();
     void setTableMarking(const QString& marking);
-private:
-    static void initDb();    
 };
 
 
@@ -118,7 +120,7 @@ protected:
     QVector<T> selectItems(const QString &condition)
     {
         QVector<T> items;
-        QSqlQuery query;
+        QSqlQuery query(mDb);
         QString sqlcom = QString("SELECT * from %1 %2").arg(tableName()).arg(condition);
         query.prepare(sqlcom);
         if(query.exec()){

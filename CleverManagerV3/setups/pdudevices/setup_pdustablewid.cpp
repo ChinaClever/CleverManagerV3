@@ -1,4 +1,4 @@
-﻿/*
+/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -12,7 +12,6 @@ Setup_PdusTableWid::Setup_PdusTableWid(QWidget *parent) :
     ui(new Ui::Setup_PdusTableWid)
 {
     ui->setupUi(this);
-    //groupBox_background_icon(this);
     mSqlTableWid = new SqlTableWid(ui->widget);
 }
 
@@ -27,5 +26,4 @@ void Setup_PdusTableWid::initWid(BasicSql *db,  SqlQueryBase *btn)
     Setup_PdusBtnBar *bar = new Setup_PdusBtnBar;
     bar->setDlg(btn);
     mSqlTableWid->initWid(db, bar);
-    ui->groupBox->setTitle(db->tableTile);
 }

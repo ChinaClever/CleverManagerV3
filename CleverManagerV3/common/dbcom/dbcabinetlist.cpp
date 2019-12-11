@@ -53,7 +53,7 @@ void DbCabinetList::createTable()
                   "row               INTEGER,"
                   "column            INTEGER"
                   ")";
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     if(!query.exec(cmd.arg(tableName()).arg(DbRoomList::get()->tableName()).arg("id")))
     {
         throwError(query.lastError());
@@ -111,7 +111,7 @@ QVector<CabinetItem> DbCabinetList::selItemsByRoomId(int room_id)
 
 QVector<int> DbCabinetList::selRoomIdsByAddress(const QString &addr, int num)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     QString sql =
             QString("SELECT DISTINCT room_id from %1 where %2")
             .arg(tableName())
@@ -173,7 +173,7 @@ bool DbCabinetList::removeCab(const QString &room, const QString &cab)
 
 bool DbCabinetList::modifyItem(const CabinetItem &item, const QString &cmd)
 {
-    QSqlQuery query;
+    QSqlQuery query(mDb);
     query.prepare(cmd);
     query.bindValue(":id",item.id);
     query.bindValue(":cab",item.cab);

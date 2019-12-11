@@ -15,6 +15,8 @@ Cab_AddDlg::Cab_AddDlg(QWidget *parent) :
     ui(new Ui::Cab_AddDlg)
 {
     ui->setupUi(this);
+    ui->spinBox_1->setHidden(true);
+    ui->spinBox_2->setHidden(true);
 }
 
 Cab_AddDlg::~Cab_AddDlg()
@@ -40,10 +42,13 @@ void Cab_AddDlg::init(CabinetItem &item)
     ui->ipEdit_2->setText(item.spare_ip);
     ui->powSpin->setValue(item.pow/COM_RATE_POW);
     ui->heightSpin->setValue(item.height);
+    ui->spinBox_1->setHidden(true);
+    ui->spinBox_2->setHidden(true);
 
     if(!item.main_ip.isEmpty()) {
         int num = getDevNum(item.main_num);
         if(num) {
+            ui->spinBox_1->setHidden(false);
             ui->spinBox_1->setValue(num);
             ui->comboBox_1->setCurrentIndex(1);
         } else {
@@ -57,6 +62,7 @@ void Cab_AddDlg::init(CabinetItem &item)
         int num = getDevNum(item.spare_num);
         if(num) {
             ui->spinBox_2->setValue(num);
+            ui->spinBox_2->setHidden(false);
             ui->comboBox_2->setCurrentIndex(1);
         } else {
             ui->comboBox_2->setCurrentIndex(0);
