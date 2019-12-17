@@ -1,4 +1,4 @@
-#ifndef BASICSQL_H
+﻿#ifndef BASICSQL_H
 #define BASICSQL_H
 
 #include <QtSql>
