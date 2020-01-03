@@ -1,4 +1,4 @@
-/*
+﻿/*
  * BasicSql.cpp
  *
  *
@@ -287,6 +287,7 @@ QSqlDatabase BasicSql::initDb()
 {
     QSqlDatabase db;
     quint32 value = QRandomGenerator::global()->generate();
+    //quint32 value = qrand()%10;
     if (QSqlDatabase::contains(QString::number(value))) {
         db = QSqlDatabase::database(QString::number(value));
     } else {
