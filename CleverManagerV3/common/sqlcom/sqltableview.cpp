@@ -13,12 +13,9 @@ SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)
     tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //禁用编辑功能
     tableView->resizeColumnsToContents();
-
-    mDb = nullptr;
-    model = new SqlTableModel(tableView);
-    tableView->setModel(model->model);
     tableView->horizontalHeader()->setStretchLastSection(true);
 
+    mDb = nullptr;
     QGridLayout *gridLayout = new QGridLayout(parent);
     gridLayout->setContentsMargins(0, 0, 0, 0);
     gridLayout->addWidget(tableView);
@@ -35,10 +32,11 @@ SqlTableView::SqlTableView(QWidget *parent) : QWidget(parent)
  */
 void SqlTableView::initTable(BasicSql *db)
 {
+    model = new SqlTableModel(tableView, db->mDb);
+    tableView->setModel(model->model);
+
     this->mDb = db;
-    QString table = db->tableName();
-    this->refreshTable(table);
-    model->setHeaders(db->headList);
+    refreshSlot();
 }
 
 
@@ -132,7 +130,9 @@ void SqlTableView::setColumnHidden(int column)
 
 void SqlTableView::refreshSlot()
 {
-    initTable(mDb);
+    QString table = mDb->tableName();
+    this->refreshTable(table);
+    model->setHeaders(mDb->headList);
 }
 
 void SqlTableView::autoDelSlot()

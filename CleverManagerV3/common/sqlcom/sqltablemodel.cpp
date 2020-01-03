@@ -8,12 +8,16 @@
  */
 #include "sqltablemodel.h"
 
-SqlTableModel::SqlTableModel(QWidget *parent) :
+SqlTableModel::SqlTableModel(QWidget *parent, QSqlDatabase db) :
     QWidget(parent)
 {
-    model = new QSqlTableModel(this);
+    model = new QSqlTableModel(parent, db);
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->setSort(0, Qt::AscendingOrder); //选择按照 第一列 排序
+
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
+    gridLayout->addWidget(this);
 }
 
 
