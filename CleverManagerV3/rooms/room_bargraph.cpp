@@ -1,4 +1,4 @@
-/*
+﻿/*
  * tg_devnumgraph.cpp
  * 设备数量统计柱形图
  *
