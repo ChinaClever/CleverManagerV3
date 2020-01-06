@@ -13,7 +13,7 @@ class SqlTableModel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SqlTableModel(QWidget *parent = 0);
+    explicit SqlTableModel(QWidget *parent = 0, QSqlDatabase db = QSqlDatabase());
     
     void setHeaders(QStringList &);
 
