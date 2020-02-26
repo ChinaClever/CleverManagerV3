@@ -18,9 +18,10 @@ HEADERS += \
     $$PWD/net_pack/net_dataformat.h \
     $$PWD/net_pack/net_analyzedata.h \
     $$PWD/net_pack/net_packdata.h \
+    $$PWD/http/httpdaemon.h \
     $$PWD/net_dataanalyze.h
 
-	
+
 SOURCES += \
     $$PWD/udp/recv/udprecvsocket.cpp \
     $$PWD/udp/sent/udpbdsent.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     $$PWD/net_data/net_devdata.cpp \
     $$PWD/net_pack/net_analyzedata.cpp \
     $$PWD/net_pack/net_packdata.cpp \
+    $$PWD/http/httpdaemon.cpp \
     $$PWD/net_dataanalyze.cpp
 
 FORMS += \

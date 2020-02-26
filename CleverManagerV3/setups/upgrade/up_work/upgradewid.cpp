@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -83,8 +83,22 @@ void UpgradeWid::timeoutDone(void)
 
 void UpgradeWid::on_updateBtn_clicked()
 {
-    if(mData->devtype>1) mUpgradeThread = mTcpThread;
-    else mUpgradeThread = mTftpThread;
+    int index = mData->devtype;
+    switch(index)
+    {
+        case 0 :case 1: {
+            mUpgradeThread = mTftpThread;break;
+        }
+        case 2 :{
+            mUpgradeThread = mHttpThread;break;
+        }
+        case 3 :case 4: {
+            mUpgradeThread = mTcpThread;break;
+        }
+    default: {
+        mUpgradeThread = mTftpThread;break;
+        }
+    }
 
     if(checkFile()) {
         mUpgradeThread->startSend();

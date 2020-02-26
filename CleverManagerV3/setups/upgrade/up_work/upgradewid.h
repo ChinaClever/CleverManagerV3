@@ -1,8 +1,9 @@
-#ifndef TFTPWIDGET_H
+﻿#ifndef TFTPWIDGET_H
 #define TFTPWIDGET_H
 
 #include "sqlexportdlg.h"
 #include "tcpupgrade.h"
+#include "httpupgrade.h"
 
 namespace Ui {
 class UpgradeWid;
@@ -35,6 +36,7 @@ private:
     TftpUpgrade *mTftpThread;
     SqlExportDlg *mExportDlg;
     UpgradeThread *mUpgradeThread;
+    HttpUpgrade *mHttpThread;
 };
 
 #endif // TFTPWIDGET_H

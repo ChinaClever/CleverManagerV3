@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -85,7 +85,7 @@ void Up_DevSelectWid::on_comboBox_currentIndexChanged(int index)
 {
     bool en = true;
     mData->devtype = index;
-    if(index < 2) en = false;
+    if(index < 3) en = false;
     ui->userEdit->setEnabled(en);
     ui->pwdEdit->setEnabled(en);
 
