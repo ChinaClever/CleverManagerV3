@@ -15,6 +15,9 @@ Room_MainWid::Room_MainWid(QWidget *parent) :
 {
     ui->setupUi(this);
     QTimer::singleShot(5*1000,this,SLOT(initFunSLot())); //延时初始化
+    this->setStyleSheet("background-color: rgb(0,45,130);color: rgb(0, 0, 0);");
+    set_background_color(this, QColor(0,45,130));
+    initWid();
 }
 
 Room_MainWid::~Room_MainWid()
@@ -29,11 +32,6 @@ void Room_MainWid::initFunSLot()
     QStringList rooms = DbRoomList::get()->list();
     ui->comboBox->addItems(rooms);
     if(rooms.size()) ui->comboBox->setCurrentIndex(0);
-
-    this->setStyleSheet("background-color: rgb(0,45,130);color: rgb(0, 0, 0);");
-    set_background_color(this, QColor(0,45,130));
-
-    initWid();
 }
 
 
