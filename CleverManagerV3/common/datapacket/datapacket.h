@@ -206,7 +206,7 @@ struct sCabPacket
 
 struct sRoomPacket
 {
-    sRoomPacket() {status=0; en=1; count=0;}
+    sRoomPacket() {status=0; en=1; count=0; alarm=0;}
 
     QString room;
     uint status, en, room_id, count;
