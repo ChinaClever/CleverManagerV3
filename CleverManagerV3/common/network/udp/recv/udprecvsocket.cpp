@@ -1,4 +1,4 @@
-﻿/*
+/*
  * UdpRecvSocket.cpp
  * UDP 接收套接字
  *
@@ -41,8 +41,7 @@ bool UdpRecvSocket::initSocket(int port)
     if(ret) {
         // connect(g_udpSocket,SIGNAL(readyRead()),this,SLOT(dataReceivedSlot())); // 数据接收
         start(); // 启动接收线程
-    }
-    else
+    } else
         qDebug() << "udp socket create err" << port;
 
     return ret;
