@@ -1,6 +1,6 @@
 #include "websocketclient.h"
 #include "configbase.h"
-
+#include "json_recv.h"
 
 WebSocketClient::WebSocketClient(QObject *parent) : QObject(parent)
 {
@@ -107,7 +107,8 @@ void WebSocketClient::disconnected()
 
 void WebSocketClient::textMessageReceived(const QString &message)
 {
-    mRecvList.append(message);
+    Json_Recv::bulid()->recv(message);
+//    mRecvList.append(message);
     //    qDebug() << "WebSocketClient recv" <<message;
 }
 

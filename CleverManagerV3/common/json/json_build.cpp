@@ -55,7 +55,7 @@ bool Json_Build::saveJson(const QString &name, QJsonObject &json)
 void Json_Build::head(sDataPacket *packet,QJsonObject &obj)
 {
     obj.insert("company", "CLEVER");
-    obj.insert("version", 1);
+    obj.insert("version", JSON_VERSION);
 
     uutInfo(packet, obj);
     pduInfo(packet, obj);

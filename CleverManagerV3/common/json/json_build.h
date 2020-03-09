@@ -3,6 +3,8 @@
 #include "datapacket.h"
 #include "configbase.h"
 
+#define JSON_VERSION   1
+
 class Json_Build
 {
     Json_Build();
