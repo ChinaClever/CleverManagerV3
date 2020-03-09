@@ -1,4 +1,4 @@
-#ifndef DATAPACKET_H
+﻿#ifndef DATAPACKET_H
 #define DATAPACKET_H
 #include <QtCore>
 #include <QColor>
@@ -95,6 +95,8 @@ struct sEnvData
 {
     sEnvData() {size=0;}
     uchar size;
+    uchar type_index;//1:温度 2:湿度 3:门禁
+                     //4:门磁 5:水浸 6:烟雾
 
     QString name[SENOR_NUM];
     sDataUnit tem; // 温度

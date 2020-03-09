@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *
  *  Created on: 2018年10月1日
@@ -28,6 +28,7 @@ bool Json_Build::getJson(sDataPacket *packet, QJsonObject &json)
     if(packet->offLine > 0) {
         head(packet, json);
         devData(packet, json);
+        //'saveJson("cc", json);
     } else {
         ret = false;
     }
