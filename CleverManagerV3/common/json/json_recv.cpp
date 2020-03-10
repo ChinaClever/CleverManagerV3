@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *
  *  Created on: 2020年3月9日
@@ -117,7 +117,7 @@ bool Json_Recv::headInfo(QJsonObject &object, sJsonCmd &cmd)
     if(str.contains("SI-PDU")) type = PDU_TYPE_SI_PDU;
     if(str.contains("IP-PDU")) type = PDU_TYPE_IP_PDU;
     if(str.contains("NPM")) type = PDU_TYPE_NPM_PDU;
-    if(str.contains("MPDU")) type = PDU_TYPE_M_PDU;
+    if(str.contains("MPDU")) type = PDU_TYPE_MPDU;
     if(str.contains("RPDU")) type = PDU_TYPE_RPDU;
     if(str.contains("ZPDU")) type = PDU_TYPE_ZPDU;
     cmd.pduType = type;

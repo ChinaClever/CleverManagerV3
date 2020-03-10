@@ -157,12 +157,32 @@ void Json_Build::envItem(const QString &str, sDataUnit &unit, double rate, QJson
     if(unit.size) obj.insert(QString("%1_items").arg(str), QJsonValue(jsonArray));
 }
 
+void Json_Build::envItem(const QString &str, uchar* index, QJsonObject &obj)
+{
+    QJsonArray jsonArray;
+    int i = 0;
+
+    QJsonObject json;
+    json.insert("id",  i+1);
+    json.insert("name",  QString(str+" %1").arg(i+1));
+    json.insert("status", index[i]);
+    jsonArray.append(json);
+    obj.insert(QString("%1_items").arg(str), QJsonValue(jsonArray));
+}
+
 
 void Json_Build::envs(sEnvData &ObjData, QJsonObject &json)
 {
     QJsonObject obj;
-    envItem("tem", ObjData.tem, COM_RATE_TEM, obj);
-    envItem("hum", ObjData.hum, COM_RATE_HUM, obj);
+    switch(ObjData.type_index)
+    {
+        case 1:envItem("tem", ObjData.tem , COM_RATE_TEM, obj );break;
+        case 2:envItem("hum", ObjData.hum , COM_RATE_HUM, obj );break;
+        case 3:envItem("door", ObjData.door , obj );break;
+        case 4:break;
+        case 5:envItem("water", ObjData.water , obj );break;
+        case 6:envItem("smoke", ObjData.smoke , obj );break;
+    }
 
     json.insert("env_item_list", QJsonValue(obj));
 }
