@@ -93,9 +93,11 @@ bool Json_Recv::company(QJsonObject &object)
 
 bool Json_Recv::versionNumber(QJsonObject &object)
 {
-    bool ret = false;
-    int v = getData(object, "version");
-    if(v == JSON_VERSION) ret = true;
+    bool ret = company(object);
+    if(ret) {
+        int v = getData(object, "version");
+        if(v == JSON_VERSION) ret = true;
+    }
 
     return ret;
 }
