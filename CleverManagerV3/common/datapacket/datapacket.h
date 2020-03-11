@@ -155,6 +155,7 @@ struct sDataPacket
     uint devType; //设备类型
     uchar devSpec; // 设备规格 A\B\C\D
     uchar txType; // 通讯类型 1 UDP  3:SNMP  4：Zebra
+    uchar phase; //设备单三相
 
     uchar alarm; // 工作状态 ==0 正常
     ushort offLine; //离线标志 > 0在线
