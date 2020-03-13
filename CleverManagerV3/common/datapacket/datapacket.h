@@ -1,4 +1,4 @@
-#ifndef DATAPACKET_H
+﻿#ifndef DATAPACKET_H
 #define DATAPACKET_H
 #include <QtCore>
 #include <QColor>
@@ -23,7 +23,7 @@
 
 #define PDU_TYPE_SI_PDU     0x01000101
 #define PDU_TYPE_IP_PDU     0x01010101
-#define PDU_TYPE_M_PDU      0x01020101
+#define PDU_TYPE_MPDU      0x01020101
 #define PDU_TYPE_NPM_PDU    0x01030101
 #define PDU_TYPE_RPDU       0x01040101
 #define PDU_TYPE_ZPDU       0x01050101
@@ -95,6 +95,8 @@ struct sEnvData
 {
     sEnvData() {size=0;}
     uchar size;
+    uchar type_index;//1:温度 2:湿度 3:门禁
+                     //4:门磁 5:水浸 6:烟雾
 
     QString name[SENOR_NUM];
     sDataUnit tem; // 温度
@@ -153,6 +155,7 @@ struct sDataPacket
     uint devType; //设备类型
     uchar devSpec; // 设备规格 A\B\C\D
     uchar txType; // 通讯类型 1 UDP  3:SNMP  4：Zebra
+    uchar phase; //设备单三相
 
     uchar alarm; // 工作状态 ==0 正常
     ushort offLine; //离线标志 > 0在线

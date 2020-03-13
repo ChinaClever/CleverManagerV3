@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *  Created on: 2019年10月1日
  *      Author: Lzy
@@ -34,7 +34,7 @@ bool UpgradeWid::checkFile()
     bool ret = false;
     QString fn = ui->lineEdit->text();
     if(!fn.isEmpty()) {
-        if(fn.contains("bin") || ((mData->devtype>1) && fn.contains("tar"))) {
+        if(fn.contains("bin") || ((mData->devtype>=3) && fn.contains("tar"))|| ((mData->devtype==2) && fn.contains("rbl"))) {
             mData->file = fn;
             ret = true;
         } else {
@@ -83,8 +83,22 @@ void UpgradeWid::timeoutDone(void)
 
 void UpgradeWid::on_updateBtn_clicked()
 {
-    if(mData->devtype>1) mUpgradeThread = mTcpThread;
-    else mUpgradeThread = mTftpThread;
+    int index = mData->devtype;
+    switch(index)
+    {
+        case 0 :case 1: {
+            mUpgradeThread = mTftpThread;break;
+        }
+        case 2 :{
+            mUpgradeThread = mHttpThread;break;
+        }
+        case 3 :case 4: {
+            mUpgradeThread = mTcpThread;break;
+        }
+    default: {
+        mUpgradeThread = mTftpThread;break;
+        }
+    }
 
     if(checkFile()) {
         mUpgradeThread->startSend();

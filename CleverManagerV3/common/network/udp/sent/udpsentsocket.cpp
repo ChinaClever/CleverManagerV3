@@ -30,7 +30,6 @@ UdpSentSocket *UdpSentSocket::bulid(QObject *parent)
     return sington;
 }
 
-
 bool UdpSentSocket::sentData(const QString &addr, uchar *buf, ushort len, quint16 port)
 {
     QByteArray byte;
@@ -100,4 +99,3 @@ bool UdpSentSocket::sentBroadcastData(QByteArray &msg, quint16 port)
 
     return ret;
 }
-

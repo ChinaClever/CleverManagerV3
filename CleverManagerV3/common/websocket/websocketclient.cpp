@@ -1,4 +1,4 @@
-#include "websocketclient.h"
+﻿#include "websocketclient.h"
 #include "configbase.h"
 #include "json_recv.h"
 
@@ -109,7 +109,7 @@ void WebSocketClient::textMessageReceived(const QString &message)
 {
     Json_Recv::bulid()->recv(message);
 //    mRecvList.append(message);
-    //    qDebug() << "WebSocketClient recv" <<message;
+    qDebug() << "WebSocketClient recv" <<message;
 }
 
 QString WebSocketClient::getMessage()

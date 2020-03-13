@@ -1,4 +1,4 @@
-#ifndef BUILDJSON_H
+﻿#ifndef BUILDJSON_H
 #define BUILDJSON_H
 #include "datapacket.h"
 #include "configbase.h"
@@ -22,6 +22,7 @@ protected:
     void thresholdItem(const QString &str, int i, sDataUnit &unit, double rate, QJsonObject &obj);
 
     void envItem(const QString &str, sDataUnit &unit, double rate, QJsonObject &json);
+    void envItem(const QString &str, uchar *index, QJsonObject &obj);
     void envs(sEnvData &ObjData, QJsonObject &json);
     void netAddr(sIpAddr &net, QJsonObject &json);
     void devData(sDataPacket *packet, QJsonObject &obj);

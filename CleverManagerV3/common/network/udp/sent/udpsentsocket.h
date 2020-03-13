@@ -1,4 +1,4 @@
-#ifndef UDPSENTSOCKET_H
+﻿#ifndef UDPSENTSOCKET_H
 #define UDPSENTSOCKET_H
 
 #include <QtCore>
