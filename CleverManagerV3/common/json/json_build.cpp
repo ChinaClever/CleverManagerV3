@@ -79,7 +79,7 @@ void Json_Build::pduInfo(sDataPacket *packet, QJsonObject &json)
     obj.insert("pdu_num", packet->dev_num); //
 
     obj.insert("pdu_type", packet->dev_type);
-    obj.insert("pdu_phase", packet->phase);//////////////////////////////////////
+    obj.insert("pdu_phase", packet->phase);/////////////////////////////////////暂时写死，可能没有值  pmd 2020-3-11
     obj.insert("pdu_spec", packet->devSpec);
     obj.insert("pdu_name", packet->name);
     obj.insert("pdu_dc", packet->dc);
