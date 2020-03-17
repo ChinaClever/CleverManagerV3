@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  *
  *  Created on: 2018年10月1日
@@ -6,10 +6,11 @@
  */
 #include "json_push.h"
 #include "udp/sent/udpsentsocket.h"
-
+#include "json_recv.h"
 
 Json_Push::Json_Push(QObject *parent) : QObject(parent)
 {
+    Json_Recv::bulid(this);
     mJson = Json_Build::bulid();
     mItem = ConfigBase::bulid()->item;
     mSocket = WebSocketClient::bulid(this);

@@ -1,4 +1,4 @@
-#ifndef NETDATAANALYZE_H
+﻿#ifndef NETDATAANALYZE_H
 #define NETDATAANALYZE_H
 #include "udp/recv/udpsocketlist.h"
 #include "net_data/net_datasave.h"

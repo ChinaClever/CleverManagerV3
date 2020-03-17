@@ -109,7 +109,7 @@ void WebSocketClient::textMessageReceived(const QString &message)
 {
     Json_Recv::bulid()->recv(message);
 //    mRecvList.append(message);
-    qDebug() << "WebSocketClient recv" <<message;
+//    qDebug() << "WebSocketClient recv" <<message;
 }
 
 QString WebSocketClient::getMessage()

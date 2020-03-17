@@ -10,8 +10,16 @@
 Json_Recv::Json_Recv(QObject *parent) : QObject(parent)
 {
     mUdpSocket = new QUdpSocket(this);
-    mUdpSocket->bind(4545,QUdpSocket::ShareAddress);
-    connect(mUdpSocket,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
+    bool ret = mUdpSocket->bind(4545);
+    if(ret)
+        connect(mUdpSocket,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
+    else
+        qDebug()<<"socket bind err";
+}
+
+Json_Recv::~Json_Recv()
+{
+
 }
 
 Json_Recv *Json_Recv::bulid(QObject *parent)
@@ -107,12 +115,12 @@ bool Json_Recv::versionNumber(QJsonObject &object)
 bool Json_Recv::headInfo(QJsonObject &object, sJsonCmd &cmd)
 {
     bool ret = true;
-    QJsonObject obj = getObject(object, "head_info");
-    cmd.ip = getString(obj, "ip");
-    cmd.dev_type = getString(obj, "dev_type");
-    cmd.dev_num = getData(obj, "dev_num");
-    cmd.dev_spec = getData(obj, "dev_spec");
-    cmd.dev_name = getString(obj, "dev_name");
+    QJsonObject obj = getObject(object, "pdu_info");
+    cmd.ip = getString(obj, "pdu_ip");
+    cmd.dev_type = getString(obj, "pdu_type");
+    cmd.dev_num = getData(obj, "pdu_num");
+    cmd.dev_spec = getData(obj, "pdu_spec");
+    cmd.dev_name = getString(obj, "pdu_name");
 
     int type = PDU_TYPE_SI_PDU;
     QString str = cmd.dev_type;
@@ -166,7 +174,7 @@ bool Json_Recv::sentData(sJsonCmd &cmd)
 {
     Net_sDevData pkt;
 
-    pkt.addr = cmd.id;
+    pkt.addr = cmd.dev_num;
     pkt.fn[0] = cmd.fn;
     pkt.fn[1] = cmd.id;
     pkt.data = getData(cmd);
@@ -185,6 +193,7 @@ bool Json_Recv::sentData(sJsonCmd &cmd)
         UdpBDSent::bulid(this)->sent(buf, len);
     } else {
         UdpSentSocket::bulid(this)->sentData(ip, buf, len);
+        Sleep(10);
     }
 
     return true;
@@ -241,7 +250,7 @@ bool Json_Recv::setSwitch(sJsonCmd &cmd)
     }
 
     Net_sDevData pkt;
-    pkt.addr = cmd.id;
+    pkt.addr = cmd.dev_num;
     pkt.fn[0] = cmd.fn;
     pkt.fn[1] = cmd.id;
     pkt.data = data;
@@ -331,6 +340,7 @@ bool Json_Recv::envInfo(QJsonObject &object, sJsonCmd &cmd)
 bool Json_Recv::analyticalData(QJsonObject &object)
 {
     sJsonCmd cmd;
+    cmd.rate = 10;
 
     bool ret = headInfo(object, cmd);
     if(ret) {
@@ -361,7 +371,7 @@ bool Json_Recv::recv(const QString &msg)
 
 void Json_Recv::processPendingDatagram() //处理等待的数据报
 {
-    while(mUdpSocket->hasPendingDatagrams()) //拥有等待的数据报
+    if(mUdpSocket->hasPendingDatagrams()) //拥有等待的数据报
     {
         QByteArray datagram; //拥于存放接收的数据报
         datagram.resize(mUdpSocket->pendingDatagramSize());
@@ -373,4 +383,11 @@ void Json_Recv::processPendingDatagram() //处理等待的数据报
         //        memcpy(msg, datagram.data(), size);
         //        qDebug()<<msg[0]<<msg[1]<<msg[2]<<msg[3];
     }
+}
+
+void Json_Recv::Sleep(int msec)
+{
+    QTime dieTime = QTime::currentTime().addMSecs(msec);
+    while( QTime::currentTime() < dieTime )
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }

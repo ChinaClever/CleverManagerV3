@@ -1,4 +1,4 @@
-#ifndef JSON_RECV_H
+﻿#ifndef JSON_RECV_H
 #define JSON_RECV_H
 #include "json_build.h"
 #include <QUdpSocket>
@@ -16,10 +16,12 @@ struct sJsonCmd
     double rate;
 };
 
-class Json_Recv : public QObject
+class Json_Recv :  public QObject
 {
-    Json_Recv(QObject *parent = nullptr);
+    Q_OBJECT
+    explicit Json_Recv(QObject *parent = nullptr);
 public:
+    ~Json_Recv();
     static Json_Recv *bulid(QObject *parent = nullptr);
     bool recv(const QString &msg);
 
@@ -50,6 +52,8 @@ protected:
 
     bool envInfo(QJsonObject &object, sJsonCmd &cmd);
     bool analyticalData(QJsonObject &object);
+    void Sleep(int msec);
+
 
 protected slots:
     void processPendingDatagram();
