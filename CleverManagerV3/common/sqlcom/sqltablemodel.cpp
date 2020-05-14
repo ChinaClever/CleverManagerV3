@@ -11,13 +11,9 @@
 SqlTableModel::SqlTableModel(QWidget *parent, QSqlDatabase db) :
     QWidget(parent)
 {
-    model = new QSqlTableModel(parent, db);
+    model = new QSqlTableModel(this, db);
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->setSort(0, Qt::AscendingOrder); //选择按照 第一列 排序
-
-    QGridLayout *gridLayout = new QGridLayout(parent);
-    gridLayout->setContentsMargins(0, 0, 0, 0);
-    gridLayout->addWidget(this);
+    model->setSort(0, Qt::DescendingOrder); //选择按照 第一列 排序
 }
 
 
