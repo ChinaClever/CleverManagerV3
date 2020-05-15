@@ -1,4 +1,5 @@
 
+QT      += network
 
 INCLUDEPATH += $$PWD
 

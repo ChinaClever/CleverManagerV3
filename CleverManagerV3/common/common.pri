@@ -14,10 +14,11 @@ include(elecom/elecom.pri)
 include(tabcom/tabcom.pri)
 include(network/network.pri)
 include(websocket/websocket.pri)
+include(smtpclient/smtpclient.pri)
+include(snmpclient/snmpclient.pri)
 include(datapacket/datapacket.pri)
 include(backcolour/backcolour.pri)
 include(qtsingleapplication/qtsingleapplication.pri)
-include(snmplib/snmplib.pri)
 
 HEADERS += \	
     $$PWD/common.h
